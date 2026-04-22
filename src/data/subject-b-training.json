@@ -1,0 +1,1402 @@
+[
+  {
+    "id": 1,
+    "category": "Security Design",
+    "scenario": "A financial services company needs to design a secure architecture for a new online banking platform. The platform must handle customer transactions, account management, and regulatory compliance.",
+    "question": "Which architecture approach best implements defense in depth for this online banking platform?",
+    "options": [
+      "Single firewall at the perimeter",
+      "Layered security: WAF + API gateway + encryption + input validation + monitoring",
+      "Only use HTTPS",
+      "Client-side encryption only"
+    ],
+    "correct": 1,
+    "explanation": "Defense in depth requires multiple independent security layers. For online banking: WAF at edge (blocks web attacks), API gateway (authentication/rate limiting), TLS encryption (transit security), server-side input validation (injection prevention), and SIEM monitoring (threat detection). No single control is sufficient."
+  },
+  {
+    "id": 2,
+    "category": "Security Design",
+    "scenario": "An e-commerce company processes 10,000 orders daily. They store customer PII, payment card data, and order history. PCI DSS compliance is required.",
+    "question": "What is the most effective approach to protect payment card data in this environment?",
+    "options": [
+      "Store card data encrypted locally",
+      "Tokenization - replace card data with tokens and let a payment processor handle real card data",
+      "Use DES encryption",
+      "Store card data in a public cloud"
+    ],
+    "correct": 1,
+    "explanation": "Tokenization replaces sensitive card data with non-reversible tokens. The real card data is stored by a PCI DSS-compliant payment processor. This drastically reduces PCI DSS scope - the e-commerce company never stores actual card data, simplifying compliance and reducing breach impact."
+  },
+  {
+    "id": 3,
+    "category": "Security Design",
+    "scenario": "A hospital needs to design a network for patient records (EHR), medical devices, guest Wi-Fi, and staff workstations. HIPAA compliance is required.",
+    "question": "How should the network be segmented to best protect patient data?",
+    "options": [
+      "Flat network with VLANs for performance only",
+      "Separate VLANs: clinical (EHR), medical devices (isolated), guest (DMZ), staff, with firewall between segments",
+      "Single VLAN with ACLs",
+      "No segmentation - encryption is sufficient"
+    ],
+    "correct": 1,
+    "explanation": "Network segmentation isolates different traffic types: clinical VLAN for EHR (most protected), medical device VLAN (isolated with strict ACLs - FDA compliance), guest Wi-Fi in DMZ (no access to internal), staff VLAN with controlled access to clinical systems. Firewalls between segments prevent lateral movement."
+  },
+  {
+    "id": 4,
+    "category": "Security Design",
+    "scenario": "A startup is building a microservices architecture on Kubernetes. Services communicate via APIs and handle user authentication, payments, and notifications.",
+    "question": "What is the most appropriate authentication and authorization approach for inter-service communication?",
+    "options": [
+      "No authentication between internal services",
+      "Service mesh with mTLS (mutual TLS) and service account-based authorization",
+      "Shared API keys",
+      "Basic authentication"
+    ],
+    "correct": 1,
+    "explanation": "A service mesh (like Istio) provides mTLS for all inter-service communication, ensuring both the client and server authenticate each other. Combined with service accounts and RBAC, this prevents unauthorized lateral movement even if one service is compromised."
+  },
+  {
+    "id": 5,
+    "category": "Security Design",
+    "scenario": "A government agency must deploy a new system for citizens to submit tax returns online. The system handles sensitive financial data for millions of users.",
+    "question": "Which security architecture principle is most critical for this system's design?",
+    "options": [
+      "Maximum performance at all costs",
+      "Zero Trust: verify every request regardless of source, least privilege access, microsegmentation",
+      "Trust internal traffic completely",
+      "Use only open-source software"
+    ],
+    "correct": 1,
+    "explanation": "Zero Trust is essential for high-value government systems handling sensitive citizen data. Every request is authenticated and authorized regardless of network location. Combined with least privilege, microsegmentation, and continuous monitoring, this minimizes the blast radius of any breach."
+  },
+  {
+    "id": 6,
+    "category": "Security Design",
+    "scenario": "A multinational corporation needs to share specific data with partners while maintaining confidentiality and audit trail.",
+    "question": "Which security design pattern best enables secure data sharing?",
+    "options": [
+      "Email the data",
+      "Data Loss Prevention (DLP) with encrypted channels, access controls, and comprehensive logging",
+      "FTP transfer",
+      "Shared network drive"
+    ],
+    "correct": 1,
+    "explanation": "DLP policies prevent unauthorized data exfiltration, encrypted channels (TLS, SFTP) protect transit, role-based access controls ensure only authorized partners access the data, and comprehensive logging provides an audit trail. Data classification should determine sharing restrictions."
+  },
+  {
+    "id": 7,
+    "category": "Security Design",
+    "scenario": "A company is migrating its on-premises applications to AWS cloud. Security must be maintained during and after migration.",
+    "question": "Which approach ensures security is maintained during cloud migration?",
+    "options": [
+      "Move everything and secure later",
+      "Security-by-design: assess each workload, apply cloud-native controls (IAM, KMS, Security Groups, WAF) before and during migration",
+      "Use only AWS default settings",
+      "Disable network security for easier migration"
+    ],
+    "correct": 1,
+    "explanation": "Security-by-design ensures each workload is assessed for security requirements before migration. Cloud-native controls (AWS IAM for access, KMS for encryption, Security Groups for networking, WAF for web apps) should be configured before production deployment. Shared responsibility model must be understood."
+  },
+  {
+    "id": 8,
+    "category": "Security Design",
+    "scenario": "A manufacturing company uses IoT sensors on the factory floor that communicate with a central system. Recent attacks have targeted industrial IoT devices.",
+    "question": "What is the best security architecture for industrial IoT?",
+    "options": [
+      "Connect all IoT devices directly to the internet",
+      "Separate OT (operational technology) network from IT, implement network segmentation, device authentication, and monitoring",
+      "Use default credentials for easy setup",
+      "No encryption to maintain performance"
+    ],
+    "correct": 1,
+    "explanation": "IT/OT network separation is critical - compromise of an IoT sensor should not allow access to enterprise IT systems. Each device should authenticate, communication should be encrypted, and an OT-specific security monitoring system should detect anomalous device behavior."
+  },
+  {
+    "id": 9,
+    "category": "Security Design",
+    "scenario": "A SaaS company needs to implement a multi-tenant architecture where each customer's data is isolated from other customers.",
+    "question": "Which design pattern best ensures tenant data isolation?",
+    "options": [
+      "Shared database with shared tables",
+      "Database-per-tenant or schema-per-tenant with encryption at rest using tenant-specific keys",
+      "Single table with a tenant_id column only",
+      "All data stored in files"
+    ],
+    "correct": 1,
+    "explanation": "Database-per-tenant provides the strongest isolation. Schema-per-tenant with row-level security is also effective. Tenant-specific encryption keys ensure that even if data is accessed by the wrong tenant, it cannot be decrypted. Combined with access controls at every layer."
+  },
+  {
+    "id": 10,
+    "category": "Security Design",
+    "scenario": "A development team needs to build a CI/CD pipeline that builds, tests, and deploys applications. The pipeline must be secure against supply chain attacks.",
+    "question": "What security measures should be implemented in the CI/CD pipeline?",
+    "options": [
+      "Trust all dependencies implicitly",
+      "SAST/DAST scanning, dependency vulnerability scanning (SCA), signed artifacts, and pipeline-as-code with review",
+      "Manual security review before deployment",
+      "Deploy directly from developer machines"
+    ],
+    "correct": 1,
+    "explanation": "A secure CI/CD pipeline incorporates: SAST (static code analysis), DAST (dynamic testing), SCA (dependency vulnerability scanning like OWASP Dependency-Check), artifact signing (ensuring build integrity), and pipeline-as-code with mandatory review. This shifts security left and automates security gates."
+  },
+  {
+    "id": 11,
+    "category": "Security Design",
+    "scenario": "A research institution needs to collaborate with external researchers while protecting proprietary research data. Some data is classified.",
+    "question": "How should the collaboration environment be designed?",
+    "options": [
+      "Give all researchers access to all systems",
+      "Zero Trust network access with identity-based access, data classification, and tiered access based on clearance level",
+      "VPN access for everyone",
+      "Share data via email only"
+    ],
+    "correct": 1,
+    "explanation": "ZTNA ensures every access request is authenticated and authorized based on identity and context. Data classification determines access levels: public data has open access, proprietary data requires NDA and specific authorization, and classified data requires security clearance verification."
+  },
+  {
+    "id": 12,
+    "category": "Security Design",
+    "scenario": "A company stores backup data in three locations: primary data center, secondary site, and cloud storage. RPO is 1 hour.",
+    "question": "What backup strategy meets the RPO requirement most cost-effectively?",
+    "options": [
+      "Daily backup to all three locations",
+      "Real-time replication to primary, hourly incremental snapshots to secondary and cloud",
+      "Weekly full backup to cloud",
+      "Monthly backup to tape"
+    ],
+    "correct": 1,
+    "explanation": "Real-time replication to the primary site provides near-zero RPO for current data. Hourly incremental snapshots to the secondary and cloud provide 1-hour RPO for disaster recovery. This meets the 1-hour RPO at all three locations cost-effectively without requiring real-time replication to all three."
+  },
+  {
+    "id": 13,
+    "category": "Security Design",
+    "scenario": "A mobile banking app must securely store authentication credentials on the user's device and communicate with the backend API.",
+    "question": "What is the best approach for secure mobile credential storage?",
+    "options": [
+      "Store credentials in SharedPreferences/UserDefaults",
+      "Use platform secure storage (iOS Keychain / Android Keystore) with biometric authentication",
+      "Store in SQLite database",
+      "Save in plain text files"
+    ],
+    "correct": 1,
+    "explanation": "iOS Keychain and Android Keystore are hardware-backed secure storage that encrypts credentials using device-specific keys. Combined with biometric authentication (fingerprint/face), this provides strong protection even if the device is lost or stolen. Never store credentials in regular app storage."
+  },
+  {
+    "id": 14,
+    "category": "Security Design",
+    "scenario": "An organization deploys a web application accessible from the internet. They need to protect against automated attacks and credential stuffing.",
+    "question": "Which combination of controls best protects against automated attacks?",
+    "options": [
+      "CAPTCHA only",
+      "WAF + rate limiting + account lockout + CAPTCHA + behavioral analytics",
+      "Rate limiting only",
+      "Strong passwords only"
+    ],
+    "correct": 1,
+    "explanation": "No single control stops automated attacks. WAF blocks known attack patterns, rate limiting slows brute force, account lockout prevents credential stuffing, CAPTCHA (or invisible reCAPTCHA) differentiates humans from bots, and behavioral analytics detects anomalous access patterns."
+  },
+  {
+    "id": 15,
+    "category": "Security Design",
+    "scenario": "A company must design an email system that prevents phishing, protects confidential attachments, and meets regulatory requirements for email retention.",
+    "question": "What is the most comprehensive email security architecture?",
+    "options": [
+      "Standard email with spam filter",
+      "Email gateway (anti-spam, anti-phishing, DLP), encryption (S/MIME or PGP), and archiving solution",
+      "Only use encrypted email",
+      "Block all external email"
+    ],
+    "correct": 1,
+    "explanation": "A comprehensive approach includes: email gateway with anti-spam/anti-phishing (DMARC, SPF, DKIM), DLP for preventing data leakage in attachments, encryption for confidentiality (S/MIME for enterprise, PGP for flexibility), and email archiving for regulatory compliance and eDiscovery."
+  },
+  {
+    "id": 16,
+    "category": "Security Design",
+    "scenario": "A company's web application receives 1 million requests per day. They need to implement logging for security monitoring without impacting performance.",
+    "question": "What is the best approach for security logging at this scale?",
+    "options": [
+      "Log everything to a single file",
+      "Asynchronous structured logging to a message queue, forwarded to a centralized SIEM with log rotation and tiered storage",
+      "Log to the database",
+      "Disable logging for performance"
+    ],
+    "correct": 1,
+    "explanation": "Asynchronous logging (via message queues like Kafka) prevents logging from blocking application threads. Structured logs (JSON) enable efficient SIEM parsing. Log rotation prevents disk exhaustion. Tiered storage (hot/warm/cold) balances cost with query performance. Only security-relevant events should be logged."
+  },
+  {
+    "id": 17,
+    "category": "Security Design",
+    "scenario": "An API serves mobile apps, web applications, and third-party integrations. Different consumers need different access levels and rate limits.",
+    "question": "How should API access control be designed?",
+    "options": [
+      "Single API key for all consumers",
+      "OAuth 2.0 with different scopes per client type, API gateway with per-client rate limiting and access policies",
+      "No rate limiting",
+      "IP-based access only"
+    ],
+    "correct": 1,
+    "explanation": "OAuth 2.0 provides fine-grained authorization through scopes (e.g., 'read:profile', 'write:orders'). An API gateway enforces per-client rate limits, access policies, and authentication. This ensures mobile apps, web apps, and third parties each have appropriate access levels."
+  },
+  {
+    "id": 18,
+    "category": "Security Design",
+    "scenario": "A company must deploy a new authentication system supporting employees, contractors, and customers with different security requirements.",
+    "question": "What is the best identity architecture for this scenario?",
+    "options": [
+      "Separate databases for each user type",
+      "Centralized IAM with risk-based adaptive authentication: MFA for employees, SSO for contractors, progressive authentication for customers",
+      "Same password policy for everyone",
+      "No authentication for contractors"
+    ],
+    "correct": 1,
+    "explanation": "A centralized IAM supports all user types with appropriate controls: employees get MFA + SSO + managed devices, contractors get SSO + MFA with limited access, customers get progressive authentication (password + optional MFA for sensitive actions). Risk-based authentication adds extra steps when risk is detected."
+  },
+  {
+    "id": 19,
+    "category": "Security Design",
+    "scenario": "A critical infrastructure operator needs to protect SCADA systems from cyber attacks while maintaining operational availability.",
+    "question": "What is the recommended security architecture for SCADA systems?",
+    "options": [
+      "Connect SCADA to the internet for monitoring",
+      "Air-gapped or isolated OT network with unidirectional gateways for monitoring, strict change control, and specialized OT monitoring",
+      "Use the same security as IT systems",
+      "Disable all remote monitoring"
+    ],
+    "correct": 1,
+    "explanation": "SCADA/ICS systems require specialized security: physical or logical air-gapping from IT, unidirectional security gateways (data diodes) for monitoring without bidirectional access, strict change management (no unauthorized modifications), and OT-specific intrusion detection that understands industrial protocols."
+  },
+  {
+    "id": 20,
+    "category": "Security Design",
+    "scenario": "A development team uses both proprietary and open-source components. They need to ensure their software supply chain is secure.",
+    "question": "What is the most effective software supply chain security approach?",
+    "options": [
+      "Trust all packages from popular registries",
+      "Software Bill of Materials (SBOM), signed artifacts, dependency scanning, and verified build pipelines",
+      "Manual review of all dependencies",
+      "Avoid all open-source software"
+    ],
+    "correct": 1,
+    "explanation": "SBOM tracks all components and versions. Signed artifacts (with SLSA framework) ensure build integrity. Automated dependency scanning (Dependabot, Snyk) detects known vulnerabilities in real-time. Verified build pipelines (hermetic builds) prevent tampering during the build process."
+  },
+  {
+    "id": 21,
+    "category": "Incident Response Scenarios",
+    "scenario": "At 3 AM, the SOC receives alerts that multiple servers in the DMZ are exhibiting unusual outbound network traffic to unknown IP addresses. Several servers are also showing high CPU utilization.",
+    "question": "What is the first containment action that should be taken?",
+    "options": [
+      "Shut down all servers immediately",
+      "Isolate affected DMZ servers from outbound internet access while preserving inbound services and collecting forensic evidence",
+      "Ignore the alert until morning",
+      "Delete all files on affected servers"
+    ],
+    "correct": 1,
+    "explanation": "Immediate containment should block outbound communication (likely data exfiltration or C2) while minimizing business impact. Blocking outbound from affected servers stops data loss and C2 communication. Do not shut down systems (destroys volatile evidence) or delete files (destroys forensic evidence)."
+  },
+  {
+    "id": 22,
+    "category": "Incident Response Scenarios",
+    "scenario": "An employee reports that their computer is displaying a ransomware message demanding Bitcoin payment. Files appear encrypted. The employee was processing financial reports when this occurred.",
+    "question": "What is the correct immediate response sequence?",
+    "options": [
+      "Pay the ransom immediately",
+      "Isolate the system from the network, identify the ransomware variant, preserve evidence, check for lateral movement",
+      "Reinstall the operating system",
+      "Turn off the computer"
+    ],
+    "correct": 1,
+    "explanation": "First, isolate the infected system to prevent lateral movement. Then identify the ransomware variant (check ransom note, encrypted file extensions - NoMoreRansom.org can help). Preserve evidence (memory dump, disk image). Check network logs for lateral movement. Do NOT pay immediately and do NOT power off (volatile evidence lost)."
+  },
+  {
+    "id": 23,
+    "category": "Incident Response Scenarios",
+    "scenario": "The security team discovers that an attacker has been inside the network for 6 months, moving laterally through systems and accessing sensitive data. This appears to be an APT attack.",
+    "question": "What is the recommended response approach for an APT that has been present for months?",
+    "options": [
+      "Immediately shut down the entire network",
+      "Careful investigation to map attacker presence, then coordinated removal of persistence mechanisms, followed by credential resets and monitoring",
+      "Delete everything and restore from backup",
+      "Ignore it since data is already accessed"
+    ],
+    "correct": 1,
+    "explanation": "APTs establish multiple persistence mechanisms. Immediate shutdown may trigger destructive actions and eliminates forensic evidence. Instead: map all compromised systems and persistence mechanisms (backdoors, scheduled tasks), then coordinate simultaneous removal. Reset all credentials, revoke certificates, and implement enhanced monitoring for re-entry attempts."
+  },
+  {
+    "id": 24,
+    "category": "Incident Response Scenarios",
+    "scenario": "A web application reports that users are receiving emails about password resets they did not request. Investigation reveals that an attacker is using the password reset function to enumerate valid email addresses.",
+    "question": "How should this be mitigated?",
+    "options": [
+      "Disable password reset functionality",
+      "Implement rate limiting on password reset requests, add CAPTCHA, use generic messages ('if this email exists, a reset link was sent'), and add delay",
+      "Send password in the reset email",
+      "Block all users from resetting passwords"
+    ],
+    "correct": 1,
+    "explanation": "Rate limiting prevents mass enumeration. CAPTCHA distinguishes humans from automated tools. Generic messages prevent the attacker from distinguishing valid from invalid addresses. Adding artificial delay slows enumeration. This is a OWASP-recommended approach to account enumeration prevention."
+  },
+  {
+    "id": 25,
+    "category": "Incident Response Scenarios",
+    "scenario": "Database monitoring shows that someone is exfiltrating the entire customer database through a legitimate application API that is vulnerable to SQL injection. The queries are being made from an internal IP address.",
+    "question": "What is the most appropriate immediate response?",
+    "options": [
+      "Block the internal IP address only",
+      "Block the specific API endpoint, preserve database logs, identify the source of the SQL injection, and patch the vulnerability",
+      "Shut down the entire database",
+      "Wait for the exfiltration to complete for evidence"
+    ],
+    "correct": 1,
+    "explanation": "Blocking the API endpoint stops the exfiltration immediately while preserving other services. Database logs capture the full extent of accessed data. Identifying the internal source determines if this is a compromised insider account or an external attacker who gained internal access. The SQL injection vulnerability must be patched immediately."
+  },
+  {
+    "id": 26,
+    "category": "Incident Response Scenarios",
+    "scenario": "An employee in the finance department clicked a link in a phishing email and entered their credentials on a fake login page. The security team is notified 2 hours later.",
+    "question": "What immediate actions should be taken?",
+    "options": [
+      "Fire the employee",
+      "Force password reset for the affected account, check for MFA bypass, review account activity for the 2-hour window, check for OAuth tokens created",
+      "Only reset the password",
+      "Delete the employee's account"
+    ],
+    "correct": 1,
+    "explanation": "Force password reset invalidates the stolen credentials. If MFA was bypassed (e.g., adversary-in-the-middle attack), additional measures are needed. Reviewing account activity identifies what the attacker accessed during the 2-hour window. Checking OAuth tokens is critical - attackers often create persistent access through authorized applications."
+  },
+  {
+    "id": 27,
+    "category": "Incident Response Scenarios",
+    "scenario": "A company discovers that their source code repository was accessed by an unauthorized party using a compromised developer's SSH key. The repository contains proprietary algorithms and API keys.",
+    "question": "What is the most critical immediate action?",
+    "options": [
+      "Send a press release",
+      "Revoke all exposed credentials (API keys, SSH keys, secrets), rotate all secrets, and check if code was modified",
+      "Change the repository password",
+      "Fire the compromised developer"
+    ],
+    "correct": 1,
+    "explanation": "Credential rotation is the highest priority - exposed API keys and secrets can be used immediately. All credentials in the repository must be assumed compromised and rotated. Checking for unauthorized code modifications (git diff, commit history audit) is critical to detect backdoors or malicious changes. Consider the codebase compromised."
+  },
+  {
+    "id": 28,
+    "category": "Incident Response Scenarios",
+    "scenario": "The network intrusion detection system alerts on unusual DNS queries from multiple workstations. The queries follow a pattern of encoded subdomains (e.g., a1b2c3d4.attacker.com).",
+    "question": "What type of attack is this most likely, and what should be done?",
+    "options": [
+      "Normal DNS activity",
+      "DNS tunneling for data exfiltration - block the suspicious domain, identify infected hosts, and investigate the malware",
+      "DNS amplification attack",
+      "Misconfigured DNS server"
+    ],
+    "correct": 1,
+    "explanation": "Pattern-based encoded subdomain queries are classic DNS tunneling indicators. Data is encoded in subdomain labels and sent to the attacker's DNS server. Response: block the suspicious domain at the DNS resolver, identify all affected hosts from the IDS alerts, isolate them, and analyze the malware responsible."
+  },
+  {
+    "id": 29,
+    "category": "Incident Response Scenarios",
+    "scenario": "A company receives a blackmail email claiming their database has been stolen and threatening to publish the data. Attached is a sample of 100 customer records that appear legitimate.",
+    "question": "How should the organization respond?",
+    "options": [
+      "Pay the ransom immediately",
+      "Verify the breach by checking for unauthorized database access logs, assess the scope, notify affected customers per regulation, and engage law enforcement",
+      "Ignore the email as a scam",
+      "Delete the sample data"
+    ],
+    "correct": 1,
+    "explanation": "First verify the breach through forensic analysis of database logs and access records. If confirmed, assess the full scope of data exposed. Notify affected individuals per regulatory requirements (GDPR: 72 hours, APPI: promptly). Engage law enforcement. Do NOT pay - there is no guarantee the data will be deleted and it funds future attacks."
+  },
+  {
+    "id": 30,
+    "category": "Incident Response Scenarios",
+    "scenario": "A company's cloud infrastructure shows that someone created unauthorized VMs in multiple regions, launched cryptocurrency mining instances, and modified firewall rules to allow SSH access from the internet.",
+    "question": "What is the priority order for remediation?",
+    "options": [
+      "Delete the VMs first, then revoke access",
+      "Revoke compromised credentials first, then delete unauthorized VMs, then restore firewall rules, then audit all cloud resources",
+      "Restore firewall rules first",
+      "Contact the cloud provider"
+    ],
+    "correct": 1,
+    "explanation": "Revoking credentials first prevents the attacker from re-establishing access after cleanup. Then delete unauthorized resources (minimize ongoing cost and damage). Restore firewall rules to block internet SSH. Finally, audit all cloud resources for other unauthorized changes. The attacker likely created additional persistence mechanisms."
+  },
+  {
+    "id": 31,
+    "category": "Incident Response Scenarios",
+    "scenario": "A hospital's EHR system goes down. The IT team suspects a ransomware attack but cannot confirm. Doctors cannot access patient records, and emergency cases are being diverted.",
+    "question": "What is the most critical action?",
+    "options": [
+      "Wait for confirmation before acting",
+      "Activate BCP: switch to paper-based processes, isolate affected systems, engage incident response team, and coordinate with hospital leadership",
+      "Focus only on technical recovery",
+      "Send patients to other hospitals"
+    ],
+    "correct": 1,
+    "explanation": "Patient safety is the top priority. Activating BCP ensures continuity through paper-based processes (manual workarounds). Isolating systems prevents spread. The incident response team handles technical aspects. Hospital leadership coordinates communication with staff, patients, and regulators. Life safety always takes precedence over investigation."
+  },
+  {
+    "id": 32,
+    "category": "Incident Response Scenarios",
+    "scenario": "An attacker exploited a zero-day vulnerability in a web server and gained root access. The vulnerability has no available patch.",
+    "question": "What is the best containment strategy when no patch is available?",
+    "options": [
+      "Leave the system running and hope for the best",
+      "Apply virtual patching via WAF/IPS rules to block exploitation, deploy compensating controls, isolate the system, and monitor for vendor patch",
+      "Turn off the server permanently",
+      "Accept the risk"
+    ],
+    "correct": 1,
+    "explanation": "Virtual patching through WAF/IPS rules blocks the specific attack pattern without requiring a system update. Compensating controls (stricter network isolation, enhanced monitoring) reduce risk while waiting for a patch. Isolating the vulnerable system limits potential damage. Coordinate with the vendor for an emergency patch."
+  },
+  {
+    "id": 33,
+    "category": "Incident Response Scenarios",
+    "scenario": "An employee reports that a USB drive found in the parking lot was plugged into their computer. The antivirus did not detect anything but the employee's PC is now behaving erratically.",
+    "question": "What is the correct response?",
+    "options": [
+      "Ignore it since antivirus found nothing",
+      "Isolate the PC from the network, perform forensic analysis, check for fileless malware, and warn all employees about USB drives",
+      "Run another antivirus scan",
+      "Format the USB drive and reuse it"
+    ],
+    "correct": 1,
+    "explanation": "Antivirus may miss sophisticated or fileless malware. Isolating the PC prevents potential lateral movement. Forensic analysis (memory dump, process analysis) can detect fileless malware that lives only in RAM. This is a classic social engineering technique - warn all employees never to plug in found USB drives."
+  },
+  {
+    "id": 34,
+    "category": "Incident Response Scenarios",
+    "scenario": "During a security audit, it is discovered that a developer deployed code containing hardcoded database credentials to a production server 3 months ago. The credentials have admin-level access.",
+    "question": "What is the most critical immediate response?",
+    "options": [
+      "Fire the developer",
+      "Rotate the exposed credentials immediately, audit access logs for the 3-month period, remove credentials from source code, implement secret scanning",
+      "Document it for the next audit",
+      "Update the code only"
+    ],
+    "correct": 1,
+    "explanation": "Credential rotation is immediate priority - the credentials have been exposed in source code for 3 months and may be compromised. Audit access logs to determine if unauthorized access occurred. Remove credentials from code and use a secrets manager. Implement automated secret scanning (git-secrets, detect-secrets) to prevent recurrence."
+  },
+  {
+    "id": 35,
+    "category": "Incident Response Scenarios",
+    "scenario": "The company's public-facing website starts redirecting users to a malicious site. The SOC detects this at 2 PM. The website generates $50,000 per hour in revenue.",
+    "question": "What should the incident response team prioritize?",
+    "options": [
+      "Revenue - ignore the redirect temporarily",
+      "Take down or restore the compromised website immediately while investigating the attack vector, then restore from a known-good backup",
+      "Wait for the attacker to fix it",
+      "Post on social media about the issue"
+    ],
+    "correct": 1,
+    "explanation": "While revenue is important, a compromised website redirects users to malicious sites (malware, phishing) causing harm to customers and severe reputation damage. Immediate restoration from a known-good backup stops customer exposure. Then investigate how the compromise occurred (compromised CMS, DNS hijack, server breach) to prevent recurrence."
+  },
+  {
+    "id": 36,
+    "category": "Incident Response Scenarios",
+    "scenario": "A DDoS attack is flooding the company's e-commerce website. Legitimate customers cannot make purchases. The attack uses a mix of UDP floods, SYN floods, and HTTP floods.",
+    "question": "What is the best response to this multi-vector DDoS attack?",
+    "options": [
+      "Block all UDP traffic",
+      "Engage DDoS mitigation service, implement rate limiting, use anycast distribution, and filter traffic at the edge",
+      "Upgrade the web server hardware",
+      "Shut down the website"
+    ],
+    "correct": 1,
+    "explanation": "Multi-vector DDoS attacks require a multi-layered response: DDoS mitigation service (Cloudflare, Akamai) for volumetric attacks, rate limiting for HTTP floods, anycast distribution to spread traffic across global points, and edge filtering. Each vector requires different mitigation. Shutting down should be a last resort."
+  },
+  {
+    "id": 37,
+    "category": "Incident Response Scenarios",
+    "scenario": "An insider threat investigation reveals that a departing employee downloaded 50 GB of confidential documents to a personal USB drive over 2 weeks before their last day.",
+    "question": "What immediate and follow-up actions should be taken?",
+    "options": [
+      "Nothing since the employee has already left",
+      "Immediately revoke all access, preserve evidence (logs, USB drive if recoverable), assess data sensitivity, legal review, and update DLP policies",
+      "Confront the employee",
+      "Delete the evidence to avoid publicity"
+    ],
+    "correct": 1,
+    "explanation": "Revoke all remaining access immediately. Preserve digital evidence (access logs, download records, DLP alerts). If the USB drive can be recovered, preserve it for forensics. Legal review determines if criminal charges or civil action is appropriate. Update DLP policies and offboarding procedures to prevent recurrence."
+  },
+  {
+    "id": 38,
+    "category": "Incident Response Scenarios",
+    "scenario": "A company receives notification from a third-party vendor that the vendor's system was breached and the company's data (employee records) was among the stolen data.",
+    "question": "What is the company's responsibility in this supply chain breach scenario?",
+    "options": [
+      "The vendor is solely responsible",
+      "Verify the breach scope, assess impact on own employees, notify affected individuals per regulation, review the vendor relationship, and check contractual obligations",
+      "Wait for the vendor to notify employees",
+      "Terminate the vendor relationship immediately"
+    ],
+    "correct": 1,
+    "explanation": "Even though the breach occurred at the vendor, the data owner may have regulatory notification obligations. Verify what data was exposed, assess impact, and notify affected employees. Review the vendor contract for security requirements and breach notification clauses. Consider whether the vendor relationship should continue."
+  },
+  {
+    "id": 39,
+    "category": "Incident Response Scenarios",
+    "scenario": "A penetration test reveals that the company's wireless network can be accessed from the parking lot using a cracked WPA2 password. The pen tester also found that once connected, they could access the internal network.",
+    "question": "What remediation steps should be taken?",
+    "options": [
+      "Change the Wi-Fi password",
+      "Implement WPA3-Enterprise (802.1X), segment wireless onto a separate VLAN with firewall to internal network, and deploy wireless IDS",
+      "Disable Wi-Fi completely",
+      "Only use wired connections"
+    ],
+    "correct": 1,
+    "explanation": "WPA3-Enterprise with 802.1X provides per-user authentication and strong encryption, eliminating shared password risk. Network segmentation prevents wireless clients from directly accessing the internal network. Wireless IDS detects rogue access points and unauthorized connection attempts. Defense in depth is essential."
+  },
+  {
+    "id": 40,
+    "category": "Incident Response Scenarios",
+    "scenario": "A security researcher reports that the company's API is leaking user data. Any authenticated user can access other users' data by changing the user ID parameter in API requests.",
+    "question": "This is an example of which vulnerability, and what is the immediate fix?",
+    "options": [
+      "SQL injection - sanitize inputs",
+      "Insecure Direct Object Reference (IDOR) - implement proper authorization checks for each API endpoint",
+      "XSS - escape output",
+      "CSRF - add tokens"
+    ],
+    "correct": 1,
+    "explanation": "IDOR (BOLA - Broken Object Level Authorization) occurs when API endpoints do not properly verify that the requesting user is authorized to access the requested object. Fix: add authorization checks on every data access to verify the requesting user owns or is authorized to access the requested resource."
+  },
+  {
+    "id": 41,
+    "category": "Risk Assessment",
+    "scenario": "A medium-sized company (200 employees) has never conducted a formal risk assessment. They have a basic firewall, antivirus, and periodic backups but no security policies or incident response plan.",
+    "question": "What is the most appropriate first step in their risk assessment process?",
+    "options": [
+      "Buy expensive security tools",
+      "Identify and inventory all assets, then identify threats and vulnerabilities for each critical asset",
+      "Hire a security team of 20 people",
+      "Comply with all regulations at once"
+    ],
+    "correct": 1,
+    "explanation": "Risk assessment starts with asset identification - you cannot protect what you do not know exists. After inventory, identify threats (what could go wrong) and vulnerabilities (weaknesses that enable threats). Prioritize based on likelihood and impact. This informs a practical, risk-based security program."
+  },
+  {
+    "id": 42,
+    "category": "Risk Assessment",
+    "scenario": "A company processes credit card payments and discovers their PCI DSS assessment has expired. They process 50,000 transactions per month.",
+    "question": "What is the most critical risk from expired PCI DSS compliance?",
+    "options": [
+      "No significant risk",
+      "Potential fines from card brands ($5K-100K/month), loss of card processing ability, and increased liability for breaches",
+      "Only reputational risk",
+      "Minor administrative issue"
+    ],
+    "correct": 1,
+    "explanation": "Expired PCI DSS compliance exposes the company to escalating monthly fines from card brands (starting at $5K and increasing), potential loss of ability to process card payments (business-ending), and increased liability in case of a breach. Immediate priority should be completing the assessment."
+  },
+  {
+    "id": 43,
+    "category": "Risk Assessment",
+    "scenario": "A startup is using a popular open-source library that has a critical CVE (CVSS 9.8) with public exploit code. The library is deeply embedded in the application.",
+    "question": "What is the recommended risk response?",
+    "options": [
+      "Accept the risk since the startup is small",
+      "Immediately patch or replace the library, implement WAF rules to block exploit attempts, and monitor for exploitation indicators",
+      "Wait for the next release cycle",
+      "Only notify users"
+    ],
+    "correct": 1,
+    "explanation": "A CVSS 9.8 vulnerability with public exploit is an active threat. Immediate patching is the primary response. If patching is not immediately possible, virtual patching (WAF/IPS rules) provides temporary protection. Monitoring for exploitation indicators enables rapid detection if the vulnerability is targeted."
+  },
+  {
+    "id": 44,
+    "category": "Risk Assessment",
+    "scenario": "A company is considering moving from on-premises infrastructure to the cloud. The security team is concerned about losing control over data and infrastructure.",
+    "question": "How should the cloud migration risk be assessed?",
+    "options": [
+      "Cloud is always less secure - do not migrate",
+      "Assess risks using the shared responsibility model, identify what changes with cloud, and plan compensating controls for each risk",
+      "Cloud is always more secure - migrate everything",
+      "Only consider cost factors"
+    ],
+    "correct": 1,
+    "explanation": "The shared responsibility model clearly defines what the cloud provider secures (infrastructure) and what the customer secures (data, access, applications). Risk assessment should identify each control that changes with cloud migration and plan compensating controls. Cloud can be more secure if configured correctly."
+  },
+  {
+    "id": 45,
+    "category": "Risk Assessment",
+    "scenario": "A manufacturing company uses outdated Windows 7 systems on their factory floor. The vendor no longer provides security patches. Upgrading would require replacing specialized hardware and software worth $2 million.",
+    "question": "What is the best risk-based approach?",
+    "options": [
+      "Keep running Windows 7 without protection",
+      "Isolate Windows 7 systems on a separate network segment, implement strict access controls, deploy compensating controls (application whitelisting, network isolation), and plan migration",
+      "Immediately shut down all production",
+      "Accept the full risk"
+    ],
+    "correct": 1,
+    "explanation": "Immediate shutdown may not be practical. Network isolation prevents lateral movement from compromised Windows 7 systems. Application whitelisting prevents unauthorized software execution. These compensating controls reduce risk while a migration plan is developed. Document risk acceptance for the interim period."
+  },
+  {
+    "id": 46,
+    "category": "Risk Assessment",
+    "scenario": "A security audit reveals that the company's backup encryption keys are stored in the same data center as the encrypted backups. If the data center is destroyed, both backups and keys would be lost.",
+    "question": "What is this an example of, and what is the recommended fix?",
+    "options": [
+      "Good security practice",
+      "Single point of failure - store encryption keys in a geographically separate secure location (key management service or offline safe)",
+      "Redundancy issue only",
+      "Minor operational issue"
+    ],
+    "correct": 1,
+    "explanation": "This is a critical single point of failure. If the data center is destroyed, encrypted backups are useless without the keys. Fix: store encryption keys in a geographically separate HSM or cloud KMS, with offline backup copies in a secure physical location. The 3-2-1 rule (3 copies, 2 media types, 1 offsite) should apply to keys too."
+  },
+  {
+    "id": 47,
+    "category": "Risk Assessment",
+    "scenario": "A company's risk register shows 50 identified risks. The security team has bandwidth to address only 10 risks this quarter.",
+    "question": "How should the risks be prioritized for treatment?",
+    "options": [
+      "Address them in alphabetical order",
+      "Prioritize by risk score (likelihood x impact), focusing on the highest-scored risks that are also cost-effective to treat",
+      "Address the newest risks first",
+      "Random selection"
+    ],
+    "correct": 1,
+    "explanation": "Risk prioritization should be based on quantitative or qualitative risk scores. Address the highest-priority risks first where cost-effective mitigation exists. Some risks may be accepted or transferred if treatment cost exceeds benefit. Document the rationale for prioritization decisions."
+  },
+  {
+    "id": 48,
+    "category": "Risk Assessment",
+    "scenario": "A company uses third-party SaaS applications for CRM, HR, and project management. Each vendor handles employee PII.",
+    "question": "What is the primary supply chain risk, and how should it be mitigated?",
+    "options": [
+      "No risk with SaaS vendors",
+      "Vendor security posture risk - conduct security assessments, review SOC 2 reports, ensure data processing agreements, and verify compliance",
+      "Only cost risk",
+      "Performance risk only"
+    ],
+    "correct": 1,
+    "explanation": "Third-party vendors with access to PII create supply chain risk - a breach at the vendor affects your organization. Mitigation: require SOC 2 Type II reports, conduct vendor security assessments, ensure DPA (Data Processing Agreement) is in place, verify regulatory compliance, and maintain an exit strategy."
+  },
+  {
+    "id": 49,
+    "category": "Risk Assessment",
+    "scenario": "A company's risk assessment shows that phishing is the highest-likelihood threat vector, responsible for 80% of security incidents. Current training consists of an annual 1-hour video.",
+    "question": "What is the most effective risk mitigation for phishing?",
+    "options": [
+      "More expensive firewalls",
+      "Monthly phishing simulations combined with just-in-time training for those who fail, technical controls (email filtering, MFA), and executive reporting",
+      "Longer annual training video",
+      "Only technical controls"
+    ],
+    "correct": 1,
+    "explanation": "Phishing is primarily a human risk. Monthly simulations with immediate training for failures build lasting awareness. Technical controls (email filtering, DMARC, MFA) provide defense in depth. Executive reporting drives organizational commitment. The combination of people, process, and technology is most effective."
+  },
+  {
+    "id": 50,
+    "category": "Risk Assessment",
+    "scenario": "A critical business application has not been updated in 3 years and runs on an unsupported operating system. Replacing it would cost $5 million and take 18 months.",
+    "question": "What risk treatment strategy should be applied until replacement is complete?",
+    "options": [
+      "Ignore the risk",
+      "Risk reduction through compensating controls (isolation, monitoring, virtual patching) combined with documented risk acceptance for residual risk",
+      "Transfer all risk via insurance",
+      "Risk avoidance by shutting down the application"
+    ],
+    "correct": 1,
+    "explanation": "Since replacement will take 18 months, implement compensating controls immediately: network isolation, enhanced monitoring, virtual patching via WAF/IPS, and application whitelisting. Document the residual risk and obtain formal risk acceptance from senior management with defined timeline for replacement."
+  },
+  {
+    "id": 51,
+    "category": "Compliance Audit",
+    "scenario": "An ISO 27001 auditor finds that the organization's access review process is not documented and has not been consistently performed. Some employee accounts were active 6 months after termination.",
+    "question": "What is the severity of this finding, and what is the required response?",
+    "options": [
+      "Minor observation - no action needed",
+      "Major nonconformity requiring corrective action: implement documented access review process, conduct immediate review of all accounts, automate provisioning/deprovisioning, and verify before next audit",
+      "Critical failure - certification revoked immediately",
+      "Not an audit issue"
+    ],
+    "correct": 1,
+    "explanation": "Inactive accounts of terminated employees are a major nonconformity (ISO 27001 A.9.2.6). Required response: document the access review policy, immediately review all active accounts, disable orphaned accounts, implement automated joiner/mover/leaver process, and establish periodic review schedule. Must be corrected before recertification."
+  },
+  {
+    "id": 52,
+    "category": "Compliance Audit",
+    "scenario": "A GDPR audit reveals that the company has been collecting user location data without explicit consent and sharing it with third-party advertisers.",
+    "question": "What is the regulatory risk and required action?",
+    "options": [
+      "No action needed if data is anonymized",
+      "Significant GDPR violation - immediately stop data collection, conduct Data Protection Impact Assessment, obtain proper consent, notify supervisory authority, and potentially notify affected users",
+      "Only a documentation issue",
+      "Minor fine at worst"
+    ],
+    "correct": 1,
+    "explanation": "Collecting and sharing location data without explicit consent violates GDPR Articles 6 (lawful basis) and 7 (consent), and likely Articles 44-49 (international transfers). Required: cease unlawful processing, conduct DPIA, implement proper consent mechanism, self-report to supervisory authority (reduces penalties), and assess notification requirements."
+  },
+  {
+    "id": 53,
+    "category": "Compliance Audit",
+    "scenario": "A SOC 2 audit reveals that the company has not been encrypting sensitive data at rest in its database. The trust service criteria for security (CC6.1) require encryption of sensitive data.",
+    "question": "What is the appropriate remediation?",
+    "options": [
+      "Document that encryption is not needed",
+      "Implement encryption at rest for all sensitive data using AES-256, document the encryption policy, update the security controls, and verify compliance",
+      "Only encrypt backups",
+      "Encrypt data in transit instead"
+    ],
+    "correct": 1,
+    "explanation": "CC6.1 specifically requires logical access security including encryption. Remediation: implement AES-256 encryption at rest for databases, file storage, and backups. Use a centralized key management system. Document the encryption policy including which data classifications require encryption. Re-audit to confirm compliance."
+  },
+  {
+    "id": 54,
+    "category": "Compliance Audit",
+    "scenario": "A PCI DSS assessor finds that the company stores full track data (magnetic stripe information) from payment cards in their database, which is explicitly prohibited by PCI DSS Requirement 3.2.",
+    "question": "What is the severity and required remediation?",
+    "options": [
+      "Low severity - track data is needed for business",
+      "Critical violation requiring immediate remediation: purge all stored track data, implement tokenization, restrict access, and re-assess",
+      "Medium severity",
+      "Only requires documentation"
+    ],
+    "correct": 1,
+    "explanation": "Storing full track data after authorization is a critical PCI DSS violation (Requirement 3.2). Immediate remediation: securely delete all stored track data, implement tokenization to replace stored card data, restrict access to card data to need-to-know, and conduct a full re-assessment. Failure to remediate can result in fines and loss of card processing."
+  },
+  {
+    "id": 55,
+    "category": "Compliance Audit",
+    "scenario": "An audit reveals that the company's security awareness training program only covers new hires and not existing employees. The security policy requires annual training for all employees.",
+    "question": "What is the most effective approach to improve policy compliance?",
+    "options": [
+      "Policy exception is acceptable",
+      "Non-compliance finding - implement annual training for all employees, track completion, and report to management",
+      "Not a significant issue",
+      "Only IT staff need training"
+    ],
+    "correct": 1,
+    "explanation": "Gap between policy and practice is an audit finding. All employees must receive security awareness training annually. Implement a tracking system to monitor completion rates. Management reporting ensures accountability. Consider role-based training: developers receive secure coding training, finance receives fraud awareness training."
+  },
+  {
+    "question": "A HIPAA audit finds that a healthcare provider has been sending patient records via unencrypted email to a specialist clinic.",
+    "category": "Compliance Audit",
+    "scenario": "A HIPAA compliance audit discovers that patient records have been transmitted via unencrypted email to an external specialist clinic for the past year.",
+    "id": 56,
+    "options": [
+      "Acceptable if both parties agreed",
+      "HIPAA violation requiring: implement encrypted email (TLS/S/MIME), conduct risk assessment, notify HHS if breach determination, and retrain staff",
+      "Not a HIPAA issue since email is point-to-point",
+      "Minor documentation issue"
+    ],
+    "correct": 2,
+    "explanation": "Unencrypted email containing PHI is a HIPAA Security Rule violation (encryption is an addressable implementation specification). Required: implement encrypted email for all PHI transmission, conduct risk assessment, determine if breach notification is required (unencrypted PHI + unauthorized access), and retrain workforce members."
+  },
+  {
+    "id": 57,
+    "category": "Compliance Audit",
+    "scenario": "An audit discovers that the company has no formal process for security patch management. Patches are applied inconsistently and sometimes months after release.",
+    "question": "What is the recommended remediation based on best practices?",
+    "options": [
+      "Apply all patches within 24 hours",
+      "Implement a risk-based patch management program: critical patches within 7 days, high within 30 days, medium within 90 days, with testing and exception processes",
+      "Only patch when convenient",
+      "Outsource all patching"
+    ],
+    "correct": 1,
+    "explanation": "A risk-based approach prioritizes patches by severity. Critical vulnerabilities with active exploits need rapid deployment (within days). Regular patches need testing and staged rollout. An exception process handles systems that cannot be patched. Automated patch management tools ensure consistency and tracking."
+  },
+  {
+    "id": 58,
+    "category": "Compliance Audit",
+    "scenario": "A compliance audit reveals that the incident response plan was last updated 4 years ago and references outdated systems and contacts. No one has been trained on the plan.",
+    "question": "What should be done to address this finding?",
+    "options": [
+      "The plan is still valid",
+      "Immediately update the IR plan, test it through tabletop exercises, train all IR team members, and schedule regular reviews",
+      "Delete the old plan and start over",
+      "Only update contact information"
+    ],
+    "correct": 1,
+    "explanation": "An outdated IR plan is worse than no plan - it creates false confidence. Remediation: comprehensive update reflecting current infrastructure, contacts, and procedures. Test through tabletop exercises to identify gaps. Train all team members. Establish annual review cycle. Assign ownership for maintaining the plan."
+  },
+  {
+    "id": 59,
+    "category": "Compliance Audit",
+    "scenario": "An audit reveals that privileged accounts (admin/root) are shared among multiple IT staff. There is no individual accountability for actions performed with these accounts.",
+    "question": "What control should be implemented to address this?",
+    "options": [
+      "Continue sharing but add passwords",
+      "Implement PAM (Privileged Access Management) with individual accounts, session recording, and just-in-time access",
+      "Share fewer accounts",
+      "Write a policy against sharing"
+    ],
+    "correct": 1,
+    "explanation": "PAM addresses all aspects: individual privileged accounts ensure accountability, session recording creates audit trails, just-in-time access minimizes standing privileges, and credential vaulting prevents password sharing. This is a fundamental control for regulatory compliance (SOX, PCI DSS, ISO 27001)."
+  },
+  {
+    "id": 60,
+    "category": "Compliance Audit",
+    "scenario": "A compliance review finds that the company's data retention policy says 'retain customer data for 7 years after account closure' but some data has been retained for over 10 years.",
+    "question": "What is the risk and recommended action?",
+    "options": [
+      "No risk - more data is better",
+      "Compliance risk and data minimization violation - implement automated data retention/deletion processes aligned with the policy",
+      "Only a storage cost issue",
+      "Rewrite the policy to match current practice"
+    ],
+    "correct": 1,
+    "explanation": "Retaining data beyond the policy period violates data minimization principles (GDPR Article 5(1)(e)) and increases breach impact and liability. Implement automated deletion workflows triggered by retention periods. Audit existing data and execute cleanup. Ensure legal holds override retention policies when litigation is pending."
+  },
+  {
+    "id": 61,
+    "category": "Security Policy",
+    "scenario": "A company is writing its first acceptable use policy (AUP) for employees. The policy needs to cover device usage, data handling, and personal use of company resources.",
+    "question": "Which element is most important to include in an AUP?",
+    "options": [
+      "Detailed technical configurations",
+      "Clear statement of permitted and prohibited activities, consequences of violations, and employee acknowledgment requirement",
+      "Only legal disclaimers",
+      "Lengthy background on security threats"
+    ],
+    "correct": 1,
+    "explanation": "An effective AUP clearly defines what employees can and cannot do with company resources (personal use limits, prohibited activities, data handling requirements), consequences of violations (disciplinary action), and requires employee acknowledgment. Technical details belong in separate standards and procedures."
+  },
+  {
+    "id": 62,
+    "category": "Security Policy",
+    "scenario": "A company needs to create a remote work security policy as 50% of employees now work from home. Security incidents related to home networks and personal devices have increased.",
+    "question": "What should the remote work security policy primarily address?",
+    "options": [
+      "Ban all remote work",
+      "Device security requirements (endpoint protection, encryption), network security (VPN), physical security, and incident reporting from remote locations",
+      "Only require VPN usage",
+      "Trust employees completely"
+    ],
+    "correct": 1,
+    "explanation": "Remote work policy should cover: device requirements (company-managed or BYOD with security requirements), VPN for all company network access, endpoint protection and encryption, physical security (lock screens, secure workspace), incident reporting procedures, and clear data handling rules for home environments."
+  },
+  {
+    "id": 63,
+    "category": "Security Policy",
+    "scenario": "The security team needs to define a password policy that balances security with usability. The current policy requires 12+ characters with uppercase, lowercase, numbers, and special characters, changed every 30 days.",
+    "question": "What does modern guidance (NIST SP 800-63B) recommend?",
+    "options": [
+      "Make passwords even more complex",
+      "Minimum 8 characters (preferably 15+), block common breached passwords, no mandatory rotation unless compromise suspected, allow all printable characters including spaces",
+      "Keep the current policy",
+      "Use 4-digit PINs"
+    ],
+    "correct": 1,
+    "explanation": "NIST SP 800-63B revised password guidance: encourage longer passphrases (minimum 8, recommend 15+), block passwords found in breach databases, no mandatory periodic rotation (causes weaker passwords), screen against dictionary words, and allow all characters including spaces. Complex composition rules are no longer recommended."
+  },
+  {
+    "id": 64,
+    "category": "Security Policy",
+    "scenario": "A company has separate security policies for IT, HR, and Finance, each with conflicting requirements. Employees are confused about which policy applies.",
+    "question": "What is the best approach to policy management?",
+    "options": [
+      "Keep separate policies and let employees figure it out",
+      "Create an overarching information security policy with tiered sub-policies (standards and procedures) that are consistent and cross-referenced",
+      "Only have one policy for everything",
+      "Eliminate all policies"
+    ],
+    "correct": 1,
+    "explanation": "A hierarchical policy structure provides consistency: one master information security policy (principles and scope), domain-specific standards (access control, data classification), and detailed procedures (how to implement standards). Cross-references eliminate conflicts. This aligns with ISO 27001 policy requirements."
+  },
+  {
+    "id": 65,
+    "category": "Security Policy",
+    "scenario": "The company's board of directors has asked for a security briefing. They want to understand the organization's security posture in business terms, not technical details.",
+    "question": "What is the most effective way to communicate security status to the board?",
+    "options": [
+      "Show detailed vulnerability scan reports",
+      "Executive dashboard with risk posture, top risks, compliance status, incident trends, and security investment ROI in business metrics",
+      "Demonstrate a penetration test live",
+      "Show firewall configuration"
+    ],
+    "correct": 1,
+    "explanation": "Board members need business-relevant information: overall risk posture (high/medium/low), top risks with business impact, compliance status against regulatory requirements, incident trends and impact, and ROI of security investments. Technical details should be available but not the primary focus."
+  },
+  {
+    "id": 66,
+    "category": "Security Policy",
+    "scenario": "A company is implementing a bring-your-own-device (BYOD) program. The security team needs to write a policy that protects company data on personal devices without being overly restrictive.",
+    "question": "What is the most important BYOD security requirement?",
+    "options": [
+      "Ban all personal devices",
+      "Mobile Device Management (MDM) with containerization - separate work and personal data on the same device with remote wipe capability for work data only",
+      "Trust employees with no controls",
+      "Only allow iOS devices"
+    ],
+    "correct": 1,
+    "explanation": "MDM with containerization creates a secure workspace on personal devices, separating work data from personal data. Remote wipe capability only affects the work container, protecting company data without erasing personal content. This balances security requirements with employee privacy expectations."
+  },
+  {
+    "id": 67,
+    "category": "Security Policy",
+    "scenario": "The company has had 3 security incidents in the past year where employees fell for phishing emails. The security policy exists but employees clearly are not following it.",
+    "question": "What is the most effective approach to improve policy compliance?",
+    "options": [
+      "Increase punishment for violations",
+      "Combine regular phishing simulations with immediate targeted training for those who fail, positive reinforcement for security-conscious behavior, and executive sponsorship",
+      "Send more policy documents",
+      "Only focus on technical controls"
+    ],
+    "correct": 1,
+    "explanation": "People learn best through experience. Phishing simulations provide safe learning opportunities. Immediate training when someone fails is far more effective than annual training. Positive reinforcement (recognition for reporting phishing) creates a security culture. Executive sponsorship signals organizational importance."
+  },
+  {
+    "id": 68,
+    "category": "Security Policy",
+    "scenario": "A company needs to define a data classification policy. Currently, all data is treated the same, and employees do not know which data requires special handling.",
+    "question": "What is the recommended data classification framework?",
+    "options": [
+      "Only two levels: public and private",
+      "Four-level scheme: Public, Internal, Confidential, Restricted - with clear handling requirements for each level",
+      "Ten-level scheme for maximum granularity",
+      "No classification needed"
+    ],
+    "correct": 1,
+    "explanation": "A four-level classification scheme provides practical granularity: Public (anyone), Internal (employees only), Confidential (need-to-know with access controls), Restricted (highly sensitive with strictest controls). Each level has defined handling, storage, transmission, and disposal requirements. Too many levels become unmanageable."
+  },
+  {
+    "id": 69,
+    "category": "Security Policy",
+    "scenario": "The company's incident response policy states that all incidents must be reported within 1 hour. However, employees report that they often do not know what constitutes an incident worth reporting.",
+    "question": "What should be added to improve the policy?",
+    "options": [
+      "More strict penalties",
+      "Clear examples of reportable incidents, simplified reporting mechanism, and 'if in doubt, report' culture",
+      "Only IT should report incidents",
+      "Remove the time requirement"
+    ],
+    "correct": 1,
+    "explanation": "Clear examples help employees recognize incidents (suspicious emails, unusual system behavior, lost devices, unauthorized access). A simple reporting mechanism (one-click button, phone number) reduces friction. A 'when in doubt, report' culture ensures near-misses are captured. Fear of over-reporting is preferable to under-reporting."
+  },
+  {
+    "id": 70,
+    "category": "Security Policy",
+    "scenario": "A company is acquiring another company and needs to harmonize security policies. The acquired company has a much less mature security program.",
+    "question": "What is the best approach for policy harmonization after an acquisition?",
+    "options": [
+      "Immediately apply all acquirer's policies to the acquired company",
+      "Assess gaps between policies, prioritize the highest-risk areas for immediate alignment, create a 6-12 month roadmap for full harmonization",
+      "Keep both sets of policies separate",
+      "Adopt the acquired company's policies"
+    ],
+    "correct": 1,
+    "explanation": "Immediate wholesale policy changes can cause business disruption. Instead: assess the gap between both companies' policies, identify highest-risk areas needing immediate attention, implement critical policies first (access control, incident response), and create a phased roadmap for full alignment with clear timelines."
+  },
+  {
+    "id": 71,
+    "category": "Security Policy",
+    "scenario": "The company wants to implement a vendor security assessment program but has limited resources to evaluate every vendor.",
+    "question": "What is the most practical approach to vendor risk management?",
+    "options": [
+      "Assess every vendor equally regardless of risk",
+      "Tier vendors by risk (data access, criticality) - comprehensive assessment for high-risk vendors, questionnaire-based for medium, self-attestation for low",
+      "Trust all vendors",
+      "No vendor assessment needed"
+    ],
+    "correct": 1,
+    "explanation": "Tiered assessment based on risk optimizes resource allocation: high-risk vendors (access to sensitive data, critical services) get full security assessments including SOC 2 review; medium-risk get standardized questionnaires; low-risk get self-attestation. Annual re-assessment for high-risk, biennial for medium."
+  },
+  {
+    "id": 72,
+    "category": "Security Policy",
+    "scenario": "A company's change management policy requires security review for all production changes. Developers complain it slows deployment. The CTO wants faster releases without compromising security.",
+    "question": "How can security be integrated into DevOps without slowing deployment?",
+    "options": [
+      "Skip security review for faster deployment",
+      "Shift left: integrate security into CI/CD pipeline as automated gates (SAST, SCA, DAST) with pre-approved security baselines",
+      "Only review security quarterly",
+      "Separate security and development completely"
+    ],
+    "correct": 1,
+    "explanation": "DevSecOps integrates security as automated gates in the pipeline: SAST scans code on commit, SCA checks dependencies on build, container scanning validates images, DAST tests deployed applications. Pre-approved security baselines allow common changes to pass automatically. Security reviews are only needed for significant changes."
+  },
+  {
+    "id": 73,
+    "category": "Security Policy",
+    "scenario": "An organization needs to write a clean desk policy for an office handling sensitive client information. Employees regularly leave documents on desks overnight.",
+    "question": "What should the clean desk policy require?",
+    "options": [
+      "Only apply to the security team",
+      "All sensitive documents must be locked when unattended, screens locked when away, whiteboards cleared after meetings, and printing collected immediately",
+      "Only electronic documents need protection",
+      "Trust employees to self-regulate"
+    ],
+    "correct": 1,
+    "explanation": "Clean desk policy applies to all employees handling sensitive information. Requirements: lock sensitive documents (physical or locked cabinets), lock screens when stepping away (Win+L), clear whiteboards after meetings, collect printouts immediately, and dispose of sensitive waste in secure shredding bins. Regular audits ensure compliance."
+  },
+  {
+    "id": 74,
+    "category": "Security Policy",
+    "scenario": "The company's security policy prohibits shadow IT but employees frequently use unauthorized SaaS tools (Google Drive, Dropbox) for convenience.",
+    "question": "What is the most effective approach to address shadow IT?",
+    "options": [
+      "Block all internet access",
+      "Monitor for shadow IT (CASB), provide approved alternatives that meet user needs, and educate employees on the risks",
+      "Fire employees who use shadow IT",
+      "Allow all SaaS tools"
+    ],
+    "correct": 1,
+    "explanation": "Employees use shadow IT when approved tools do not meet their needs. CASB discovers shadow IT usage. Providing approved alternatives (enterprise file sharing, collaboration tools) that are both secure and user-friendly reduces the motivation for shadow IT. Education on risks helps employees understand the 'why' behind restrictions."
+  },
+  {
+    "id": 75,
+    "category": "Security Policy",
+    "scenario": "A company's security policy requires encryption of all laptops but 30% of employees have disabled BitLocker/FileVault because it slows their computers.",
+    "question": "What is the recommended approach to enforce encryption compliance?",
+    "options": [
+      "Accept the risk for those employees",
+      "Implement MDM that enforces encryption as a compliance requirement, cannot be disabled by users, and reports compliance status centrally",
+      "Send reminder emails only",
+      "Only encrypt executive laptops"
+    ],
+    "correct": 1,
+    "explanation": "MDM (Mobile Device Management) enforces encryption policy centrally - users cannot disable it. Compliance status is reported to the IT team, enabling identification of non-compliant devices. If a device falls out of compliance, conditional access can block access to corporate resources until encryption is restored."
+  },
+  {
+    "id": 76,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A financial institution discovers a sophisticated attack: an employee's credentials were stolen via a targeted phishing email, the attacker moved through the network over 3 months, accessed the customer database, and exfiltrated 500,000 customer records including names, addresses, SSNs, and account numbers.",
+    "question": "What is the correct comprehensive response?",
+    "options": [
+      "Only fix the vulnerability and move on",
+      "Contain: revoke credentials, isolate affected systems. Assess: determine full scope of data accessed. Notify: customers, regulators (73-hour GDPR), law enforcement. Remediate: patch vulnerability, enhance monitoring. Review: update incident response plan",
+      "Immediately pay any ransom demands",
+      "Keep the breach secret"
+    ],
+    "correct": 1,
+    "explanation": "A comprehensive response follows NIST framework: Containment (revoke credentials, isolate systems), Investigation (forensics to determine full scope), Notification (customers, regulators within 72 hours per GDPR, law enforcement), Remediation (patch entry point, enhance detection), and Post-incident review (update plans based on lessons learned)."
+  },
+  {
+    "id": 77,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A manufacturing company's production line stops due to ransomware. The ransomware has encrypted both production control systems and the ERP database. The company has backups but they are 48 hours old, and the ERP system is critical for order processing.",
+    "question": "What is the priority order for recovery?",
+    "options": [
+      "Recover ERP first",
+      "First ensure physical safety and manual production capability, then recover production control systems, then ERP. Assess 48-hour data loss impact and implement manual order processing",
+      "Pay the ransom for fastest recovery",
+      "Recover everything simultaneously"
+    ],
+    "correct": 1,
+    "explanation": "Life safety always comes first. Production control systems must be recovered to resume manufacturing operations. ERP is critical but can operate manually for a period. The 48-hour backup gap means data loss must be assessed and manually re-entered. Never pay ransom without exhausting recovery options."
+  },
+  {
+    "id": 78,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A cloud-based SaaS company discovers that one of their employees has been stealing customer data and selling it to a competitor for 2 years. The employee had legitimate database access as part of their job.",
+    "question": "What controls should have prevented or detected this insider threat?",
+    "options": [
+      "Only trust employees",
+      "DLP to detect bulk data access/exfiltration, user behavior analytics (UBA) to detect anomalous access patterns, separation of duties for sensitive data, and job rotation",
+      "Stronger passwords",
+      "Only background checks"
+    ],
+    "correct": 1,
+    "explanation": "Insider threats with legitimate access are hard to detect. DLP monitors for unusual data transfers. UBA establishes baselines of normal user behavior and alerts on deviations (e.g., accessing data outside normal scope). Separation of duties ensures no single person can both access and exfiltrate data without collaboration."
+  },
+  {
+    "id": 79,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A hospital discovers that their medical devices (MRI, X-ray) are running outdated software with known vulnerabilities. The vendor says the devices cannot be patched without voiding the warranty. These devices are on the hospital's main network.",
+    "question": "What is the recommended approach to secure these medical devices?",
+    "options": [
+      "Disconnect all medical devices",
+      "Network segmentation (isolated VLAN), compensating controls (firewall rules, IDS), vendor risk assessment, and documented risk acceptance",
+      "Accept the risk fully",
+      "Void the warranty and patch"
+    ],
+    "correct": 1,
+    "explanation": "Medical devices often cannot be patched due to FDA approval requirements. Network isolation prevents lateral movement from compromised devices. Strict firewall rules limit device communication to only necessary protocols. IDS monitors for exploitation attempts. Documented risk acceptance with compensating controls is the practical approach."
+  },
+  {
+    "id": 80,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company receives intelligence that a nation-state APT group is targeting their industry. Their SIEM shows no signs of compromise, but the threat intelligence indicates sophisticated tactics.",
+    "question": "What proactive measures should the organization take?",
+    "options": [
+      "Ignore the threat - not targeted specifically",
+      "Hunt for indicators of compromise (IOCs), enhance logging, review access controls, conduct red team exercise, update incident response plans, and brief leadership",
+      "Only add more firewalls",
+      "Wait until an incident occurs"
+    ],
+    "correct": 1,
+    "explanation": "Threat-informed defense: update SIEM with APT IOCs and TTPs (MITRE ATT&CK), conduct threat hunting to find evidence of compromise, enhance logging on critical systems, review and tighten access controls, run a red team exercise to test defenses, update IR plans for nation-state scenarios, and ensure leadership is informed."
+  },
+  {
+    "id": 81,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company migrates its email to a cloud provider. Shortly after, they discover that the cloud provider's admin portal was compromised and their email data was potentially accessed.",
+    "question": "What should the company do based on the shared responsibility model?",
+    "options": [
+      "The provider is fully responsible - no action needed",
+      "Verify scope of exposure, rotate all credentials, review email data for sensitivity, notify affected parties, review the provider's incident response, and evaluate relationship",
+      "Immediately switch providers",
+      "Sue the provider"
+    ],
+    "correct": 1,
+    "explanation": "While the provider secures the infrastructure, the customer is responsible for their data. Actions: verify what was accessed (request provider's forensic report), rotate all potentially compromised credentials, assess which sensitive data was in email, notify affected parties if required, review the provider's security practices, and consider if the relationship should continue."
+  },
+  {
+    "id": 82,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company's DevOps team uses GitHub Actions for CI/CD. An investigation reveals that a malicious pull request was merged that added a cryptocurrency miner to the production deployment pipeline. The miner ran in production for 2 weeks.",
+    "question": "What security controls should be implemented to prevent this?",
+    "options": [
+      "Only allow senior developers to submit PRs",
+      "Branch protection rules (required reviews), signed commits, pipeline security scanning (SAST, SCA), artifact integrity verification, and production deployment approvals",
+      "Disable CI/CD",
+      "Manual deployment only"
+    ],
+    "correct": 1,
+    "explanation": "Branch protection with required reviews prevents unauthorized merges. Signed commits ensure commit authenticity. SAST catches suspicious code patterns. SCA detects malicious dependencies. Artifact integrity verification ensures build outputs match source. Production deployment approvals add human oversight for the final step."
+  },
+  {
+    "id": 83,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A retail company's point-of-sale (POS) system is compromised by memory-scraping malware that captures card data during transactions. The breach affects 200 stores over 3 months.",
+    "question": "What is the comprehensive response for this PCI DSS breach?",
+    "options": [
+      "Only notify the affected stores",
+      "Contain: isolate POS systems. Investigate: forensic analysis to determine scope. Notify: card brands, PCI SSC, affected customers, regulators. Remediate: P2PE encryption, hardened POS, enhanced monitoring",
+      "Pay ransom to the attacker",
+      "Blame the POS vendor"
+    ],
+    "correct": 1,
+    "explanation": "POS breach response: contain affected systems, engage forensic investigators, notify card brands (Visa/Mastercard require notification), engage PCI SSC for assessment, notify customers per regulation, implement Point-to-Point Encryption (P2PE) to prevent future memory scraping, and enhance network monitoring for POS environments."
+  },
+  {
+    "id": 84,
+    "category": "Comprehensive Scenarios",
+    "scenario": "An employee discovers that the company's AI-powered chatbot for customer service is leaking other customers' conversation history. The chatbot sometimes includes information from previous conversations in its responses.",
+    "question": "What is this vulnerability called, and what should be done?",
+    "options": [
+      "Normal AI behavior",
+      "Cross-contamination/data leakage in AI - immediately disable the chatbot, audit all exposed data, implement session isolation and data access controls, notify affected customers",
+      "A feature, not a bug",
+      "Only a privacy policy issue"
+    ],
+    "correct": 1,
+    "explanation": "This is a data leakage vulnerability in the AI application. Immediate response: disable the chatbot, audit which customer data was exposed to other customers, implement proper session isolation (each conversation should only access that user's data), add access controls to the AI's data retrieval, and notify affected customers per privacy regulations."
+  },
+  {
+    "id": 85,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company discovers that their domain's DNS records were modified to point to a server controlled by an attacker. All incoming email is being intercepted and website visitors see a fake login page.",
+    "question": "What type of attack is this, and what is the immediate response?",
+    "options": [
+      "DNS cache poisoning",
+      "DNS hijacking - immediately contact the registrar to regain control, restore correct DNS records, enable DNSSEC, revoke compromised certificates, and notify affected users",
+      "DDoS attack",
+      "Website defacement"
+    ],
+    "correct": 1,
+    "explanation": "This is DNS hijacking (unauthorized DNS record modification). Immediate: contact the domain registrar to regain control and restore correct records. Enable DNSSEC to prevent future tampering. Revoke any SSL certificates that may have been issued for the fake site. Notify users who may have entered credentials on the fake site."
+  },
+  {
+    "id": 86,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company's security awareness training program shows a declining trend: click rates on phishing simulations have increased from 5% to 15% over the past year despite regular training.",
+    "question": "What is the likely cause and recommended improvement?",
+    "options": [
+      "Employees do not care about security",
+      "Training fatigue from repetitive content - implement varied, scenario-based training with gamification, role-specific content, positive reinforcement, and executive engagement",
+      "Training should be longer",
+      "Increase punishment for failures"
+    ],
+    "correct": 1,
+    "explanation": "Declining effectiveness often indicates training fatigue - the same content delivered the same way becomes boring and ineffective. Solutions: varied realistic scenarios (not obvious phishing), gamification (points, leaderboards), role-specific content (finance sees invoice scams, HR sees W-2 scams), recognition for good performance, and visible executive participation."
+  },
+  {
+    "id": 87,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company uses a third-party library for authentication. The library's maintainer, in a supply chain attack, added malicious code that steals authentication tokens from all applications using the library. The attack affects thousands of companies worldwide.",
+    "question": "What is this type of attack, and what should affected companies do?",
+    "options": [
+      "Regular malware",
+      "Software supply chain attack - immediately identify affected versions, update to a safe version (or fork), rotate all potentially compromised credentials, audit access logs, and implement SCA",
+      "Not our problem",
+      "Only notify the library maintainer"
+    ],
+    "correct": 1,
+    "explanation": "This is a supply chain attack (like the event-stream/left-pad incidents). Response: identify which version introduced the malicious code (using SBOM or SCA tools), immediately update to a pre-compromise version or a fork, rotate ALL credentials and tokens that may have been exposed, audit access logs for unauthorized access, and implement SCA to detect future malicious updates."
+  },
+  {
+    "id": 88,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A critical vulnerability (CVSS 10.0) is discovered in a widely-used VPN appliance. Proof-of-concept exploit code is published, and active exploitation in the wild is confirmed. The company uses this VPN appliance for remote access.",
+    "question": "What is the appropriate risk-based response?",
+    "options": [
+      "Wait for the official patch",
+      "Immediately apply available workarounds, implement virtual patching via IPS, restrict VPN access to essential users only, monitor for exploitation indicators, and plan emergency patching",
+      "Disable all remote access",
+      "Accept the risk temporarily"
+    ],
+    "correct": 1,
+    "explanation": "A CVSS 10.0 vulnerability with active exploitation requires immediate action. Workarounds from the vendor should be applied immediately. Virtual patching (IPS rules) blocks exploitation. Restricting VPN access to essential users reduces the attack surface. Monitoring detects if the vulnerability is being targeted. Emergency patching should be scheduled ASAP."
+  },
+  {
+    "id": 89,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company conducts a tabletop exercise simulating a major data breach. During the exercise, the team discovers that communication between IT, Legal, PR, and executive leadership is disorganized, with conflicting messages being sent.",
+    "question": "What should be improved based on this exercise finding?",
+    "options": [
+      "More technical tools",
+      "Establish clear communication protocols: predefined communication channels, message templates, spokesperson assignment, and a unified command structure with the incident commander coordinating all communications",
+      "Only IT should communicate",
+      "Cancel future exercises"
+    ],
+    "correct": 1,
+    "explanation": "The exercise revealed a critical gap in incident communication. Establish: a unified command structure (incident commander coordinates all external communications), pre-approved message templates for different scenarios, designated spokespersons for media and customers, legal review process for regulatory notifications, and practice this communication flow regularly."
+  },
+  {
+    "id": 90,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company's new CISO joins and finds: no asset inventory, no vulnerability management program, no incident response plan, shared admin credentials, and no security awareness training. Budget is limited.",
+    "question": "What should be the CISO's first three priorities?",
+    "options": [
+      "Buy expensive security tools immediately",
+      "1) Asset inventory (cannot protect unknown), 2) Credential hygiene (disable shared accounts, implement MFA), 3) Basic incident response plan (detect and respond to active threats)",
+      "Hire more staff first",
+      "Focus on compliance only"
+    ],
+    "correct": 1,
+    "explanation": "Asset inventory is foundational - you cannot protect what you do not know exists. Shared admin credentials are the highest-risk finding - an immediate risk that can be fixed cheaply. A basic IR plan enables the organization to detect and respond to threats. These three actions provide the highest security ROI with limited budget."
+  },
+  {
+    "id": 91,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company's security monitoring detects that an employee is accessing a competitor's confidential documents stored on a shared cloud drive. The employee has legitimate access to the cloud drive as part of a cross-company project.",
+    "question": "How should this be handled from a security and legal perspective?",
+    "options": [
+      "Ignore it since access is legitimate",
+      "Investigate the scope of access, verify if it exceeds project authorization, involve legal counsel, and implement enhanced access controls with just-in-time access and audit logging",
+      "Immediately terminate the employee",
+      "Delete all shared data"
+    ],
+    "correct": 1,
+    "explanation": "Legitimate access does not mean authorized for all data in the shared space. Investigate: what documents were accessed, was it within project scope, and how many times. Involve legal counsel to determine if this constitutes corporate espionage. Implement need-to-know access controls and enhanced audit logging for sensitive shared environments."
+  },
+  {
+    "id": 92,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A multinational company must comply with both GDPR (EU) and APPI (Japan) for personal data processing. The requirements have some differences in consent and data subject rights.",
+    "question": "What is the recommended compliance approach?",
+    "options": [
+      "Only comply with the stricter regulation",
+      "Implement controls that meet the strictest requirements of both regulations, with documented mapping of requirements to controls, and region-specific procedures where they differ",
+      "Comply with GDPR only",
+      "Create separate systems for each region"
+    ],
+    "correct": 1,
+    "explanation": "When complying with multiple privacy regulations, implement controls that satisfy the strictest requirements. Map each regulatory requirement to specific controls. Where requirements genuinely conflict, implement region-specific procedures. Document the compliance framework for audit purposes. Regular monitoring ensures ongoing compliance with evolving regulations."
+  },
+  {
+    "id": 93,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company's penetration test reveals critical findings: SQL injection in the main application, default credentials on the database, and unpatched servers. The IT director says fixing everything will take 6 months.",
+    "question": "What is the risk-based remediation priority?",
+    "options": [
+      "Fix everything at once in 6 months",
+      "Immediately patch default credentials (0 effort, critical risk), virtual patch SQL injection within days (WAF rule), plan server patching in risk-priority order, with continuous monitoring",
+      "Fix nothing until all fixes are ready",
+      "Only fix SQL injection"
+    ],
+    "correct": 1,
+    "explanation": "Risk-based prioritization: default credentials are trivial to fix (minutes) and critical risk - fix immediately. SQL injection can be virtually patched (WAF) while code fix is developed. Server patching should follow CVSS severity with critical patches within days, high within weeks. Monitor for exploitation during the remediation period."
+  },
+  {
+    "id": 94,
+    "category": "Comprehensive Scenarios",
+    "scenario": "An organization's CEO receives a targeted email with a malicious attachment disguised as a board meeting agenda. The email passes spam filters because it appears to come from a legitimate board member's compromised account.",
+    "question": "What type of attack is this, and what controls could have prevented it?",
+    "options": [
+      "Regular spam",
+      "Spear phishing via compromised account - DMARC to prevent email spoofing, sandboxing for attachments, executive awareness training, and out-of-band verification for financial requests",
+      "Not an attack - legitimate email",
+      "Only a virus"
+    ],
+    "correct": 1,
+    "explanation": "This is spear phishing using a compromised email account (BEC variant). DMARC prevents domain spoofing but cannot prevent sending from a legitimately compromised account. Attachment sandboxing detonates files in isolation before delivery. Executive training (especially for recognizing compromised sender indicators) and out-of-band verification are key defenses."
+  },
+  {
+    "id": 95,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company's security metrics dashboard shows: mean time to detect (MTTD) = 45 days, mean time to respond (MTTR) = 7 days, 80% of incidents detected by external parties, and only 2% of vulnerabilities patched within SLA.",
+    "question": "What do these metrics indicate about the security posture?",
+    "options": [
+      "Good security posture - metrics are normal",
+      "Poor security posture: MTTD and MTTR are excessive, over-reliance on external detection indicates poor monitoring, low patch compliance creates exploitation window - comprehensive improvement needed",
+      "Only patching needs improvement",
+      "Metrics are misleading"
+    ],
+    "correct": 1,
+    "explanation": "These metrics paint a concerning picture: 45-day MTTD means attackers have weeks of undetected access. 7-day MTTR is slow. 80% external detection means internal monitoring is failing. 2% patch compliance leaves vast exploitation surface. Comprehensive program improvement needed: better monitoring (SIEM, EDR), automated response (SOAR), and patch management."
+  },
+  {
+    "id": 96,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company wants to implement a zero trust architecture but has a traditional perimeter-based network with flat internal network segments. Migration must occur without disrupting business operations.",
+    "question": "What is the recommended phased approach to zero trust migration?",
+    "options": [
+      "Replace everything at once",
+      "Phase 1: Identity (MFA, SSO, IAM). Phase 2: Device trust (compliance checks, EDR). Phase 3: Network microsegmentation. Phase 4: Application access (ZTNA, per-app authorization). Phase 5: Continuous monitoring and analytics",
+      "Zero trust is only for cloud",
+      "Not possible with existing infrastructure"
+    ],
+    "correct": 1,
+    "explanation": "Zero trust migration should be phased: start with identity (strongest foundation), then device trust (endpoint compliance), then network (microsegmentation of critical assets), then application (ZTNA replacing VPN), and finally continuous monitoring. Each phase provides incremental security improvement without requiring a forklift upgrade."
+  },
+  {
+    "id": 97,
+    "category": "Comprehensive Scenarios",
+    "scenario": "During a routine security review, it is discovered that the company's test environment contains a copy of the production database with real customer data. The test environment has no security controls.",
+    "question": "What are the compliance implications and remediation steps?",
+    "options": [
+      "No issue - test environment is internal",
+      "GDPR/APPI violation - immediately mask or anonymize test data, implement access controls on test environments, establish data provisioning policies (no production data in non-production)",
+      "Only a minor issue",
+      "Document as a known exception"
+    ],
+    "correct": 1,
+    "explanation": "Using real customer data in uncontrolled test environments violates data minimization principles of GDPR, APPI, and other privacy regulations. Remediation: immediately anonymize or mask the test data, implement test data provisioning policies (synthetic data or masked production data), add access controls to test environments, and audit for other data sprawl."
+  },
+  {
+    "id": 98,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company's security operations team is overwhelmed with alerts. The SIEM generates 10,000 alerts per day, but only 50 are true positives. The team of 5 analysts can only investigate 200 alerts per day.",
+    "question": "What is the recommended approach to improve alert management?",
+    "options": [
+      "Hire 50 more analysts",
+      "Tune SIEM rules to reduce false positives, implement SOAR for automated triage, use ML-based alert prioritization, and establish clear escalation procedures",
+      "Ignore low-priority alerts",
+      "Turn off the SIEM"
+    ],
+    "correct": 1,
+    "explanation": "Alert fatigue leads to missed critical threats. SIEM tuning reduces false positives by refining correlation rules. SOAR automates triage (enrichment, deduplication, initial investigation). ML-based prioritization surfaces the most suspicious alerts. Clear escalation ensures critical alerts are never missed. Target: <5% false positive rate."
+  },
+  {
+    "id": 99,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A company must demonstrate SOC 2 compliance to win a major enterprise customer contract. They currently have no formal security program and the deadline is 6 months.",
+    "question": "What is the most realistic approach to achieve SOC 2 compliance in 6 months?",
+    "options": [
+      "Impossible - decline the contract",
+      "Gap analysis against SOC 2 TSC, prioritize highest-risk controls, implement quick wins (access control, logging, encryption), engage a SOC 2 readiness assessor, and plan for Type I audit with Type II follow-up",
+      "Fake the audit",
+      "Only implement cosmetic controls"
+    ],
+    "correct": 1,
+    "explanation": "Achieving SOC 2 in 6 months is challenging but possible with focus: conduct gap analysis, prioritize controls by risk and audit impact, implement 'quick wins' (MFA, logging, encryption, access reviews) immediately, engage an assessor for readiness review, and aim for Type I (design) audit first with Type II (operational) 6-12 months later."
+  },
+  {
+    "id": 100,
+    "category": "Comprehensive Scenarios",
+    "scenario": "A critical zero-day vulnerability is discovered in a foundational component used by most of the company's applications. The vendor has not released a patch. Active exploitation is detected in the wild targeting the company's industry.",
+    "question": "What comprehensive response should be taken?",
+    "options": [
+      "Wait for the vendor patch",
+      "Implement all available mitigations (virtual patching, configuration changes), increase monitoring for exploitation indicators, prepare incident response for potential breach, plan emergency patching, and brief leadership on business risk",
+      "Accept the risk silently",
+      "Shut down all affected applications"
+    ],
+    "correct": 1,
+    "explanation": "Zero-day with active exploitation requires maximum urgency: apply any vendor workarounds immediately, implement virtual patching (WAF/IPS), disable vulnerable features if possible, deploy enhanced monitoring (YARA rules, behavioral analytics), prepare IR for potential breach (assume compromise), and communicate business risk to leadership for informed decision-making."
+  }
+]

@@ -1,0 +1,1082 @@
+[
+  {
+    "id": 1,
+    "category": "Cryptographic Calculations",
+    "question": "If RSA uses two prime numbers p=61 and q=53, what is n (the modulus)?",
+    "options": ["323", "3133", "3233", "114"],
+    "correct": 2,
+    "explanation": "Step 1: Identify p=61 and q=53. Step 2: Calculate n = p * q = 61 * 53 = 3233. The modulus n is used as part of both the public and private keys. Its size determines the key length (1024-bit RSA means n is ~1024 bits).",
+    "cheatsheet": "RSA Key Generation:\n1. Select two large primes p and q\n2. n = p * q (modulus)\n3. phi(n) = (p-1)(q-1)\n4. Choose e where 1 < e < phi(n), gcd(e, phi(n)) = 1\n5. d = e^(-1) mod phi(n)\n6. Public key: (e, n), Private key: (d, n)"
+  },
+  {
+    "id": 2,
+    "category": "Cryptographic Calculations",
+    "question": "Using p=61 and q=53, calculate Euler's totient function phi(n).",
+    "options": ["3000", "3120", "3232", "113"],
+    "correct": 1,
+    "explanation": "Step 1: phi(n) = (p-1) * (q-1). Step 2: phi(n) = (61-1) * (53-1) = 60 * 52 = 3120. Euler's totient phi(n) gives the count of numbers less than n that are coprime to n. It is essential for RSA key generation to find e and d.",
+    "cheatsheet": "Euler's Totient for RSA:\nphi(n) = (p-1)(q-1)\nThis function counts integers coprime to n.\nIt is used to determine the public and private exponents in RSA.\nFor a prime p: phi(p) = p-1"
+  },
+  {
+    "id": 3,
+    "category": "Cryptographic Calculations",
+    "question": "Given phi(n)=3120 and e=17, find the private key exponent d (inverses of 17 mod 3120).",
+    "options": ["275", "2753", "183", "2937"],
+    "correct": 1,
+    "explanation": "Step 1: We need d such that e*d mod phi(n) = 1, i.e., 17*d mod 3120 = 1. Step 2: Using the Extended Euclidean Algorithm: 3120 = 183*17 + 9, 17 = 1*9 + 8, 9 = 1*8 + 1. Step 3: Working backwards: d = 2753. Verification: 17*2753 = 46801 = 15*3120 + 1. Therefore d=2753.",
+    "cheatsheet": "Finding d in RSA:\nd = e^(-1) mod phi(n)\nUse Extended Euclidean Algorithm:\ngcd(e, phi(n)) must equal 1\nIf gcd != 1, e is not valid and another e must be chosen.\nCommon e values: 3, 17, 65537"
+  },
+  {
+    "id": 4,
+    "category": "Cryptographic Calculations",
+    "question": "Using RSA public key (e=17, n=3233), encrypt the message M=42. What is the ciphertext C?",
+    "options": ["2557", "2790", "42", "3233"],
+    "correct": 0,
+    "explanation": "Step 1: Apply encryption formula C = M^e mod n. Step 2: C = 42^17 mod 3233. Step 3: Using modular exponentiation: 42^2 mod 3233 = 1764, 42^4 mod 3233 = 1764^2 mod 3233 = 2025, 42^8 mod 3233 = 2025^2 mod 3233 = 2826, 42^16 mod 3233 = 2826^2 mod 3233 = 2386. Step 4: 42^17 = 42^16 * 42 mod 3233 = 2386 * 42 mod 3233 = 100212 mod 3233 = 2557.",
+    "cheatsheet": "RSA Encryption:\nC = M^e mod n\nWhere M is the plaintext message (as integer)\nC is the ciphertext\ne is the public exponent\nn is the modulus\nModular exponentiation is used for efficiency."
+  },
+  {
+    "id": 5,
+    "category": "Cryptographic Calculations",
+    "question": "A system uses a 128-bit encryption key. How many possible keys exist?",
+    "options": ["2^64", "2^128", "2^256", "128^2"],
+    "correct": 1,
+    "explanation": "A 128-bit key has 2^128 possible combinations. This is approximately 3.4 x 10^38. Even at a rate of one trillion (10^12) keys per second, it would take approximately 10.8 billion billion years to exhaust all possibilities, far longer than the age of the universe.",
+    "cheatsheet": "Key Space Calculation:\nKey space = 2^n where n = key length in bits\n64-bit: 2^64 ~ 1.8 x 10^19\n128-bit: 2^128 ~ 3.4 x 10^38\n256-bit: 2^256 ~ 1.2 x 10^77\nEach additional bit doubles the key space."
+  },
+  {
+    "id": 6,
+    "category": "Cryptographic Calculations",
+    "question": "If a computer can test 10^9 keys per second, how long would it take to brute-force a 56-bit DES key?",
+    "options": ["About 1 day", "About 1 year", "About 114 years", "About 10,000 years"],
+    "correct": 1,
+    "explanation": "Step 1: Total keys = 2^56 = 7.2 x 10^16. Step 2: Time = 2^56 / 10^9 = 7.2 x 10^7 seconds. Step 3: Convert: 7.2 x 10^7 / 3600 / 24 / 365 = approximately 2.28 years on average (since we expect to find the key after checking half the key space on average). In practice, specialized hardware (DES cracker) broke DES in 56 hours in 1998.",
+    "cheatsheet": "Brute Force Time Estimation:\nTime = 2^(key_bits - 1) / testing_rate\nDivide by 2 because on average the key is found\nat the halfway point.\nDES (56-bit): ~1 year at 10^9/sec\nAES-128 (128-bit): ~10^22 years at 10^9/sec"
+  },
+  {
+    "id": 7,
+    "category": "Cryptographic Calculations",
+    "question": "How many bits of security does AES-256 provide against quantum computers using Grover's algorithm?",
+    "options": ["256 bits", "128 bits", "64 bits", "512 bits"],
+    "correct": 1,
+    "explanation": "Grover's algorithm provides a quadratic speedup for brute-force search, effectively halving the key length. AES-256 with 256-bit key against quantum: effective security = 256/2 = 128 bits. This means AES-256 remains secure against quantum attacks (128 bits of classical security is still considered strong).",
+    "cheatsheet": "Post-Quantum Key Security:\nGrover's algorithm: symmetric key strength is halved\nAES-128 -> 64 bits (insufficient)\nAES-256 -> 128 bits (still strong)\nShor's algorithm: breaks RSA and ECC entirely\nNo polynomial-time quantum attack on AES is known."
+  },
+  {
+    "id": 8,
+    "category": "Cryptographic Calculations",
+    "question": "An RSA key is 2048 bits. What is the approximate equivalent ECC key size for the same security level?",
+    "options": ["512 bits", "256 bits", "384 bits", "1024 bits"],
+    "correct": 1,
+    "explanation": "According to NIST recommendations, a 2048-bit RSA key provides approximately equivalent security to a 256-bit ECC key. Key size comparison: RSA 1024 ~ ECC 160, RSA 2048 ~ ECC 256, RSA 3072 ~ ECC 384, RSA 15360 ~ ECC 521.",
+    "cheatsheet": "Equivalent Key Sizes (NIST):\nAES-80  : RSA-1024 / ECC-160 / DH-1024\nAES-112 : RSA-2048 / ECC-224 / DH-2048\nAES-128 : RSA-3072 / ECC-256 / DH-3072\nAES-192 : RSA-7680 / ECC-384 / DH-7680\nAES-256 : RSA-15360 / ECC-521 / DH-15360"
+  },
+  {
+    "id": 9,
+    "category": "Cryptographic Calculations",
+    "question": "How many rounds does AES-256 use?",
+    "options": ["10", "12", "14", "16"],
+    "correct": 2,
+    "explanation": "AES uses different numbers of rounds based on key size: AES-128 uses 10 rounds, AES-192 uses 12 rounds, and AES-256 uses 14 rounds. Each round consists of substitution (SubBytes), row shifting (ShiftRows), column mixing (MixColumns - except last round), and key addition (AddRoundKey).",
+    "cheatsheet": "AES Round Counts:\nAES-128 (128-bit key): 10 rounds\nAES-192 (192-bit key): 12 rounds\nAES-256 (256-bit key): 14 rounds\nEach round: SubBytes -> ShiftRows -> MixColumns -> AddRoundKey\nFinal round omits MixColumns."
+  },
+  {
+    "id": 10,
+    "category": "Cryptographic Calculations",
+    "question": "If SHA-256 produces a 256-bit hash, what is the approximate probability of finding a collision using the birthday attack?",
+    "options": ["2^256 attempts", "2^128 attempts", "2^64 attempts", "2^32 attempts"],
+    "correct": 1,
+    "explanation": "The birthday attack reduces collision search from 2^n to approximately 2^(n/2). For SHA-256 with 256-bit output: collision probability becomes significant after approximately 2^(256/2) = 2^128 operations. This is why SHA-256 is considered secure against collision attacks.",
+    "cheatsheet": "Birthday Paradox in Hashing:\nCollision probability ≈ 2^(n/2) for n-bit hash\nMD5 (128-bit): collision in ~2^64 (BROKEN)\nSHA-1 (160-bit): collision in ~2^80 (BROKEN)\nSHA-256 (256-bit): collision in ~2^128 (SECURE)\nSHA-512 (512-bit): collision in ~2^256 (SECURE)"
+  },
+  {
+    "id": 11,
+    "category": "Cryptographic Calculations",
+    "question": "A message encrypted with RSA has a maximum plaintext size of 256 bytes. What is the minimum RSA key size in bits?",
+    "options": ["1024 bits", "2048 bits", "4096 bits", "512 bits"],
+    "correct": 1,
+    "explanation": "RSA can encrypt messages smaller than the modulus. With 256 bytes = 2048 bits, the modulus must be at least 2048 bits. In practice, the maximum plaintext for RSA with PKCS#1 v1.5 padding is (key_size_in_bytes - 11) bytes. For a 2048-bit key: (256 - 11) = 245 bytes of plaintext maximum.",
+    "cheatsheet": "RSA Plaintext Size:\nMax plaintext (PKCS#1 v1.5) = key_bytes - 11\nMax plaintext (OAEP) = key_bytes - 2*hash_len - 2\n2048-bit key: ~245 bytes (PKCS#1 v1.5)\n3072-bit key: ~374 bytes (PKCS#1 v1.5)\nFor larger data: use hybrid encryption (digital envelope)."
+  },
+  {
+    "id": 12,
+    "category": "Cryptographic Calculations",
+    "question": "If 3DES operates on 64-bit blocks and uses a 168-bit key, what is the effective key strength?",
+    "options": ["168 bits", "112 bits", "56 bits", "84 bits"],
+    "correct": 1,
+    "explanation": "3DES applies DES three times with three keys (K1, K2, K3). Effective security: If K1=K2=K3, effective = 56 bits (DES). If K1=K3, effective = 80 bits (2-key 3DES). If K1, K2, K3 all different, effective = 112 bits (not 168) due to the meet-in-the-middle attack reducing from 2^168 to 2^112.",
+    "cheatsheet": "3DES Key Strength:\n3-key 3DES (K1,K2,K3 all different): 112-bit effective\n2-key 3DES (K1=K3): 80-bit effective\n1-key 3DES (K1=K2=K3): 56-bit effective (same as DES)\nMeet-in-the-middle attack: 2^n becomes n+1 for double encryption."
+  },
+  {
+    "id": 13,
+    "category": "Cryptographic Calculations",
+    "question": "A certificate uses SHA-256 with RSA-2048 for its signature. If SHA-256 were broken, what would happen?",
+    "options": ["Nothing, RSA is still secure", "The certificate signature could be forged regardless of RSA key size", "Only the encryption would be affected", "The key would need to be doubled"],
+    "correct": 1,
+    "explanation": "A digital signature combines hash + asymmetric encryption. The security of the signature depends on the weaker of the two. If SHA-256 were broken (collisions found), an attacker could create a different document with the same hash, and the RSA signature would still validate. The overall security = min(hash_security, RSA_security).",
+    "cheatsheet": "Signature Security:\nDigital Signature Security = min(hash_security, asymmetric_security)\nIf hash is broken: signature is broken\nIf asymmetric key is broken: signature is broken\nPractice: use matching security levels:\nRSA-2048 + SHA-256 is well-matched."
+  },
+  {
+    "id": 14,
+    "category": "Cryptographic Calculations",
+    "question": "What is the block size of AES?",
+    "options": ["64 bits", "128 bits", "192 bits", "256 bits"],
+    "correct": 1,
+    "explanation": "AES always uses a 128-bit block size regardless of the key length (128, 192, or 256 bits). This means AES processes data in 16-byte chunks. For messages that are not a multiple of 16 bytes, padding (like PKCS#7) is required for block cipher modes.",
+    "cheatsheet": "AES Block Size:\nBlock size: ALWAYS 128 bits (16 bytes)\nKey sizes: 128, 192, or 256 bits\nDES block size: 64 bits\nBlowfish block size: 64 bits\nChaCha20: stream cipher (no block size)"
+  },
+  {
+    "id": 15,
+    "category": "Cryptographic Calculations",
+    "question": "A system uses CBC mode with AES-128 and 100 KB of data. How many AES block operations are performed?",
+    "options": ["100", "6250", "6400", "12800"],
+    "correct": 1,
+    "explanation": "Step 1: Block size = 128 bits = 16 bytes. Step 2: 100 KB = 100 * 1024 = 102,400 bytes. Step 3: Number of blocks = 102,400 / 16 = 6,400 blocks. Each block requires one AES encryption operation. With padding, if the data is not a multiple of 16, one additional block is added.",
+    "cheatsheet": "Block Cipher Operations:\nNumber of blocks = ceil(data_size / block_size)\nAES: block_size = 16 bytes\nDES: block_size = 8 bytes\nFor CBC mode, each block requires one encryption.\nFor CTR mode, blocks can be processed in parallel."
+  },
+  {
+    "id": 16,
+    "category": "Cryptographic Calculations",
+    "question": "If a Diffie-Hellman key exchange uses a prime p=23 and base g=5, and Alice sends A=8, Bob sends B=19, what is the shared secret if Alice's private key a=6?",
+    "options": ["2", "8", "19", "7"],
+    "correct": 0,
+    "explanation": "Step 1: Alice computes the shared secret: s = B^a mod p. Step 2: s = 19^6 mod 23. Step 3: 19^2 mod 23 = 361 mod 23 = 16. Step 4: 19^4 mod 23 = 16^2 mod 23 = 256 mod 23 = 3. Step 5: 19^6 = 19^4 * 19^2 = 3 * 16 mod 23 = 48 mod 23 = 2. The shared secret is 2. Bob would compute the same: 8^b mod 23.",
+    "cheatsheet": "Diffie-Hellman Key Exchange:\nPublic parameters: prime p, base g\nAlice: private a, sends A = g^a mod p\nBob: private b, sends B = g^b mod p\nShared secret: s = B^a mod p = A^b mod p = g^(ab) mod p\nSecurity: discrete logarithm problem"
+  },
+  {
+    "id": 17,
+    "category": "Cryptographic Calculations",
+    "question": "For a 2048-bit RSA key, approximately how many decimal digits does the modulus n have?",
+    "options": ["308", "616", "154", "77"],
+    "correct": 1,
+    "explanation": "Step 1: 2048 bits = 2^2048. Step 2: Number of decimal digits = log10(2^2048) = 2048 * log10(2) = 2048 * 0.3010 = 616.5. Step 3: The modulus has approximately 617 decimal digits. For reference: 1024-bit RSA ~ 309 digits, 4096-bit RSA ~ 1234 digits.",
+    "cheatsheet": "RSA Key Size to Decimal Digits:\nDigits = bits * log10(2) = bits * 0.30103\n1024 bits ~ 309 digits\n2048 bits ~ 617 digits\n4096 bits ~ 1234 digits\nFactorization difficulty grows exponentially with digits."
+  },
+  {
+    "id": 18,
+    "category": "Cryptographic Calculations",
+    "question": "If a hash function processes 1000 messages per second and has a 256-bit output, how long to find a collision via brute force?",
+    "options": ["About 1 year", "About 10^31 years", "About 10^15 years", "About 1 million years"],
+    "correct": 1,
+    "explanation": "Step 1: Birthday attack needs ~2^128 operations for 256-bit hash. Step 2: Time = 2^128 / 1000 per second. Step 3: 2^128 = 3.4 x 10^38. Step 4: 3.4 x 10^38 / 1000 / (365.25 * 24 * 3600) = approximately 1.08 x 10^31 years. This is astronomically longer than the age of the universe (~1.4 x 10^10 years).",
+    "cheatsheet": "Collision Resistance Time:\nFor n-bit hash: ~2^(n/2) operations\nSHA-256 at 10^9/sec: ~10^22 years\nSHA-1 at 10^9/sec: ~10^12 years (but practical attacks exist)\nMD5 at 10^9/sec: ~10^10 years (broken in practice - seconds to minutes)"
+  },
+  {
+    "id": 19,
+    "category": "Cryptographic Calculations",
+    "question": "In elliptic curve cryptography, if the curve order is approximately 2^256, what is the security level in bits?",
+    "options": ["256 bits", "128 bits", "512 bits", "64 bits"],
+    "correct": 1,
+    "explanation": "The best known algorithm for breaking ECC is Pollard's rho algorithm with complexity O(sqrt(n)). For a curve of order 2^256, the complexity is approximately sqrt(2^256) = 2^128. Therefore, ECC with a 256-bit curve provides 128 bits of security.",
+    "cheatsheet": "ECC Security Level:\nSecurity = curve_size / 2 (due to Pollard's rho)\nCurve 160-bit: 80-bit security\nCurve 256-bit: 128-bit security\nCurve 384-bit: 192-bit security\nCurve 521-bit: 260-bit security"
+  },
+  {
+    "id": 20,
+    "category": "Cryptographic Calculations",
+    "question": "What is the time complexity of Shor's algorithm for factoring an n-bit RSA key on a quantum computer?",
+    "options": ["O(2^n)", "O(n^3) polynomial time", "O(n^2)", "O(sqrt(n))"],
+    "correct": 1,
+    "explanation": "Shor's algorithm factors integers in polynomial time O((log N)^3) on a quantum computer, where N is the number to factor. This means factoring a 2048-bit RSA modulus would take polynomial rather than exponential time, effectively breaking RSA. This is the primary quantum threat to asymmetric cryptography.",
+    "cheatsheet": "Shor's Algorithm Complexity:\nQuantum: O((log N)^3) - polynomial time\nClassical best: sub-exponential O(exp(c * n^(1/3)))\nImpact: breaks RSA, ECC, DH\nDoes NOT break: symmetric encryption, hash functions\nGrover's algorithm affects symmetric: O(sqrt(2^n))"
+  },
+  {
+    "id": 21,
+    "category": "Risk Quantification",
+    "question": "A server worth $100,000 has a 40% chance of data loss from a fire. What is the SLE?",
+    "options": ["$40,000", "$100,000", "$140,000", "$60,000"],
+    "correct": 0,
+    "explanation": "Step 1: Identify Asset Value (AV) = $100,000. Step 2: Identify Exposure Factor (EF) = 40% = 0.4. Step 3: Calculate SLE = AV x EF = $100,000 x 0.4 = $40,000. SLE represents the monetary loss from a single fire incident on this server.",
+    "cheatsheet": "SLE (Single Loss Expectancy):\nSLE = Asset Value x Exposure Factor\nAV: the total value of the asset\nEF: the percentage of value that would be lost (0 to 1)\nSLE: the expected loss from ONE occurrence of the threat\nExample: $50,000 server x 0.3 EF = $15,000 SLE"
+  },
+  {
+    "id": 22,
+    "category": "Risk Quantification",
+    "question": "If the SLE is $40,000 and the threat is expected to occur 0.25 times per year (once every 4 years), what is the ALE?",
+    "options": ["$10,000", "$160,000", "$40,000", "$40,250"],
+    "correct": 0,
+    "explanation": "Step 1: SLE = $40,000. Step 2: ARO = 0.25. Step 3: ALE = SLE x ARO = $40,000 x 0.25 = $10,000. An ALE of $10,000 means the organization can expect to lose $10,000 per year on average from this threat.",
+    "cheatsheet": "ALE (Annual Loss Expectancy):\nALE = SLE x ARO\nSLE: loss per single incident\nARO: how many times per year the incident occurs\nARO < 1: incident happens less than once per year\nARO > 1: incident happens multiple times per year\nALE helps justify security control costs."
+  },
+  {
+    "id": 23,
+    "category": "Risk Quantification",
+    "question": "A company's ALE for data breaches is $500,000/year. A security control costs $200,000/year and reduces the ALE to $150,000/year. What is the annual cost-benefit?",
+    "options": ["$150,000 savings", "$500,000 savings", "$350,000 savings", "$300,000 savings"],
+    "correct": 0,
+    "explanation": "Step 1: Original ALE = $500,000. Step 2: Residual ALE with control = $150,000. Step 3: Control cost = $200,000. Step 4: Net benefit = (Original ALE - Residual ALE) - Control cost = ($500,000 - $150,000) - $200,000 = $150,000. The control provides $150,000 in annual savings and should be implemented.",
+    "cheatsheet": "Cost-Benefit Analysis:\nNet Benefit = (ALE_before - ALE_after) - Control_Cost\nIf Net Benefit > 0: implement the control\nIf Net Benefit < 0: control costs more than the risk\nIf Net Benefit = 0: break-even decision\nAlways factor in indirect benefits (reputation, compliance)."
+  },
+  {
+    "id": 24,
+    "category": "Risk Quantification",
+    "question": "An asset is valued at $500,000. If stolen, 80% of value would be lost. Theft occurs approximately 0.1 times per year. What is the ALE?",
+    "options": ["$40,000", "$50,000", "$400,000", "$4,000"],
+    "correct": 0,
+    "explanation": "Step 1: AV = $500,000, EF = 80% = 0.8, ARO = 0.1. Step 2: SLE = AV x EF = $500,000 x 0.8 = $400,000. Step 3: ALE = SLE x ARO = $400,000 x 0.1 = $40,000. The expected annual loss from theft is $40,000.",
+    "cheatsheet": "Full Risk Calculation:\n1. AV (Asset Value) = total value\n2. EF (Exposure Factor) = % loss per incident\n3. SLE = AV x EF\n4. ARO (Annual Rate of Occurrence)\n5. ALE = SLE x ARO\nExample: $500K x 0.8 x 0.1 = $40K ALE"
+  },
+  {
+    "id": 25,
+    "category": "Risk Quantification",
+    "question": "A control reduces the ALE from $100,000 to $30,000 per year. The control costs $80,000 per year. Should it be implemented?",
+    "options": ["Yes, saves $20,000/year", "No, costs exceed savings by $10,000/year", "Yes, reduces risk to zero", "No, the residual risk is still too high"],
+    "correct": 1,
+    "explanation": "Step 1: Risk reduction = $100,000 - $30,000 = $70,000. Step 2: Control cost = $80,000. Step 3: Net benefit = $70,000 - $80,000 = -$10,000. The control costs $10,000 more per year than the risk it reduces. Unless there are non-financial reasons (compliance, reputation), this control is not cost-effective.",
+    "cheatsheet": "Cost-Effectiveness Decision:\nRisk Reduction = ALE_before - ALE_after\nNet Benefit = Risk Reduction - Control Cost\nIf Net Benefit > 0: IMPLEMENT\nIf Net Benefit <= 0: RECONSIDER\nNote: Compliance requirements may mandate\nimplementation regardless of cost-benefit."
+  },
+  {
+    "id": 26,
+    "category": "Risk Quantification",
+    "question": "If a control costs $50,000/year and the maximum justifiable cost is when ALE reduction equals control cost, what ALE reduction makes this break-even?",
+    "options": ["$25,000", "$50,000", "$100,000", "$75,000"],
+    "correct": 1,
+    "explanation": "At break-even: ALE_reduction = Control_cost. Therefore, ALE reduction must be $50,000 to justify a $50,000 control. Any ALE reduction above $50,000 provides positive ROI; below $50,000 means the control costs more than it saves.",
+    "cheatsheet": "Break-Even Analysis:\nBreak-even: ALE_reduction = Control_cost\nMaximum justifiable cost = ALE_before - ALE_after\nThis is the 'risk-adjusted return on security investment'\n(ROSI = (ALE_reduction - Control_cost) / Control_cost x 100%)"
+  },
+  {
+    "id": 27,
+    "category": "Risk Quantification",
+    "question": "A company has 5 servers, each worth $200,000. A flood would destroy 100% of 3 servers and damage 50% of 2 servers. What is the SLE for a flood?",
+    "options": ["$1,000,000", "$700,000", "$500,000", "$1,200,000"],
+    "correct": 0,
+    "explanation": "Step 1: Total AV = 5 x $200,000 = $1,000,000. Step 2: Loss from 3 destroyed servers = 3 x $200,000 = $600,000. Step 3: Loss from 2 damaged servers = 2 x $200,000 x 0.5 = $200,000. Step 4: Total SLE = $600,000 + $200,000 = $800,000. Alternatively: EF = (3x100% + 2x50%) / 5 = 400/500 = 80%. SLE = $1,000,000 x 0.8 = $800,000.",
+    "cheatsheet": "Multi-Asset SLE Calculation:\nFor multiple assets: SLE = sum of (AV_i x EF_i) for each asset\nOr: SLE = Total_AV x Overall_EF\nOverall_EF = total_expected_loss / total_asset_value\nAlways convert partial damage to monetary terms."
+  },
+  {
+    "id": 28,
+    "category": "Risk Quantification",
+    "question": "A data breach occurs on average 2 times per year. Each breach costs an estimated $250,000 in damages. What is the ALE?",
+    "options": ["$125,000", "$250,000", "$500,000", "$2,000,000"],
+    "correct": 2,
+    "explanation": "Step 1: SLE = $250,000 (cost per breach). Step 2: ARO = 2 (two breaches per year). Step 3: ALE = $250,000 x 2 = $500,000. The company can expect $500,000 in annual losses from data breaches.",
+    "cheatsheet": "Multiple Incidents Per Year:\nIf ARO > 1: the threat occurs multiple times annually\nALE = SLE x ARO\n2 breaches/year x $250K each = $500K/year\n12 phishing incidents/year x $5K each = $60K/year\nHigher ARO means more urgent mitigation needed."
+  },
+  {
+    "id": 29,
+    "category": "Risk Quantification",
+    "question": "The ROSI (Return on Security Investment) for a $100,000 control that reduces ALE by $150,000 is what percentage?",
+    "options": ["150%", "50%", "33%", "67%"],
+    "correct": 1,
+    "explanation": "Step 1: ALE reduction = $150,000. Step 2: Control cost = $100,000. Step 3: ROSI = (ALE_reduction - Control_cost) / Control_cost x 100 = ($150,000 - $100,000) / $100,000 x 100 = 50%. A 50% ROSI means for every dollar spent on the control, the organization saves 50 cents in risk reduction.",
+    "cheatsheet": "ROSI (Return on Security Investment):\nROSI = (ALE_reduction - Control_cost) / Control_cost x 100%\nROSI > 0%: positive return\nROSI = 50%: saves $0.50 per $1.00 spent\nROSI = 0%: break-even\nCompare ROSI across controls to prioritize investments."
+  },
+  {
+    "id": 30,
+    "category": "Risk Quantification",
+    "question": "A qualitative risk matrix has likelihood 1-5 and impact 1-5. What is the risk score for a threat with likelihood 3 and impact 4?",
+    "options": ["7", "12", "15", "1"],
+    "correct": 1,
+    "explanation": "Step 1: Identify likelihood = 3, impact = 4. Step 2: Risk score = likelihood x impact = 3 x 4 = 12. In a typical 5x5 matrix: 1-4 = Low (green), 5-9 = Medium (yellow), 10-15 = High (orange/red), 16-25 = Critical (dark red). A score of 12 falls in the High risk category.",
+    "cheatsheet": "5x5 Risk Matrix:\nRisk = Likelihood x Impact (each 1-5)\n1-4: Low risk\n5-9: Medium risk\n10-15: High risk\n16-25: Critical risk\n3x4=12 (High), 5x5=25 (Critical), 1x1=1 (Low)"
+  },
+  {
+    "id": 31,
+    "category": "Risk Quantification",
+    "question": "A threat has an ALE of $200,000. After implementing a $30,000 control, the ALE becomes $100,000. What is the control effectiveness percentage?",
+    "options": ["50%", "65%", "35%", "85%"],
+    "correct": 0,
+    "explanation": "Step 1: ALE reduction = $200,000 - $100,000 = $100,000. Step 2: Control effectiveness = ALE reduction / Original ALE x 100 = $100,000 / $200,000 x 100 = 50%. The control eliminates 50% of the risk. Note that net benefit = $100,000 - $30,000 = $70,000.",
+    "cheatsheet": "Control Effectiveness:\nEffectiveness = ALE_reduction / Original_ALE x 100%\nAlso called Risk Reduction Percentage\n50% effectiveness: reduces risk by half\n100% effectiveness: eliminates risk entirely\nCost-effectiveness: effectiveness relative to control cost"
+  },
+  {
+    "id": 32,
+    "category": "Risk Quantification",
+    "question": "An organization has 3 risks with ALEs of $100K, $50K, and $200K. If controls cost $80K total and reduce the ALEs to $20K, $10K, and $40K respectively, what is the total net benefit?",
+    "options": ["$100K", "$200K", "$300K", "$50K"],
+    "correct": 1,
+    "explanation": "Step 1: Original total ALE = $100K + $50K + $200K = $350K. Step 2: Residual total ALE = $20K + $10K + $40K = $70K. Step 3: Total ALE reduction = $350K - $70K = $280K. Step 4: Net benefit = $280K - $80K = $200K.",
+    "cheatsheet": "Portfolio Risk Analysis:\nTotal ALE = sum of individual ALEs\nTotal Residual ALE = sum of residual ALEs\nTotal ALE reduction = Total_ALE - Total_Residual\nNet Benefit = Total Reduction - Total Control Cost\nPrioritize risks with highest individual ROI."
+  },
+  {
+    "id": 33,
+    "category": "Risk Quantification",
+    "question": "An ARO of 0.1 means the incident is expected to occur:",
+    "options": ["10 times per year", "Once every 10 years", "Once per year with 10% probability", "10 times every 10 years"],
+    "correct": 1,
+    "explanation": "An ARO of 0.1 means the event occurs 0.1 times per year, which is once every 10 years (1/0.1 = 10 years). ARO can be a fraction less than 1 (rare events) or greater than 1 (frequent events like phishing attempts).",
+    "cheatsheet": "Understanding ARO:\nARO = frequency per year\nARO = 0.1 -> once every 10 years\nARO = 0.5 -> once every 2 years\nARO = 1 -> once per year\nARO = 5 -> 5 times per year\nARO = 365 -> approximately daily"
+  },
+  {
+    "id": 34,
+    "category": "Risk Quantification",
+    "question": "What is the total risk before controls if inherent risk is $500,000 ALE?",
+    "options": ["$500,000", "$250,000", "$1,000,000", "$0"],
+    "correct": 0,
+    "explanation": "Total risk (before controls) equals the inherent risk, which is $500,000 ALE. This represents the expected annual loss with no security controls in place. The inherent risk is the starting point for risk assessment before determining what controls are needed to reduce it to an acceptable level.",
+    "cheatsheet": "Risk Before and After Controls:\nTotal Risk = Inherent Risk = ALE (no controls)\nControl Risk = likelihood that controls will fail\nResidual Risk = Total Risk - Risk Reduction\nResidual Risk should be within Risk Appetite\nResidual Risk can never be zero."
+  },
+  {
+    "id": 35,
+    "category": "Risk Quantification",
+    "question": "An organization has a risk appetite of $50,000 ALE. Current ALE is $200,000. How much ALE reduction is needed?",
+    "options": ["$150,000", "$200,000", "$50,000", "$250,000"],
+    "correct": 0,
+    "explanation": "Step 1: Current ALE = $200,000. Step 2: Risk appetite = $50,000. Step 3: Required ALE reduction = $200,000 - $50,000 = $150,000. Security controls must reduce the annual expected loss by at least $150,000 to bring the residual risk within the organization's risk appetite.",
+    "cheatsheet": "Gap Analysis:\nControl Gap = Current Risk - Risk Appetite\nThis is the minimum risk reduction required.\nIf control costs > control gap: consider acceptance or transfer\nIf control costs < control gap: implement controls\nAlways document the rationale for the decision."
+  },
+  {
+    "id": 36,
+    "category": "Risk Quantification",
+    "question": "A company purchases cyber insurance for $50,000/year with a $100,000 deductible. If a breach costs $500,000, what is the company's out-of-pocket cost?",
+    "options": ["$50,000", "$100,000", "$150,000", "$500,000"],
+    "correct": 2,
+    "explanation": "Step 1: Insurance premium (already paid) = $50,000. Step 2: Deductible (out-of-pocket before insurance pays) = $100,000. Step 3: Total out-of-pocket = premium + deductible = $50,000 + $100,000 = $150,000. Insurance covers the remaining $400,000.",
+    "cheatsheet": "Insurance Cost Calculation:\nTotal cost = Premium + Deductible + (Loss - Coverage)\nPremium: annual insurance cost\nDeductible: amount paid before insurance kicks in\nCoverage limit: maximum insurance payout\nOut-of-pocket = min(loss, deductible) + premium"
+  },
+  {
+    "id": 37,
+    "category": "Risk Quantification",
+    "question": "If annual maintenance of a security system is $25,000 and it needs replacement every 5 years at $100,000, what is the annualized total cost?",
+    "options": ["$45,000", "$125,000", "$25,000", "$145,000"],
+    "correct": 0,
+    "explanation": "Step 1: Annual maintenance = $25,000. Step 2: Replacement amortized = $100,000 / 5 years = $20,000/year. Step 3: Annualized total cost = $25,000 + $20,000 = $45,000. This gives a fair comparison of multi-year investments against annual ALE.",
+    "cheatsheet": "Annualized Cost Calculation:\nAnnualized Cost = Annual_maintenance + (Capital_cost / Useful_life)\nExample: $100K system / 5 years = $20K/year\nAdd $25K maintenance = $45K total annual cost\nCompare against ALE to determine cost-effectiveness."
+  },
+  {
+    "id": 38,
+    "category": "Risk Quantification",
+    "question": "What does a risk score of 'High' with 'Likelihood: Unlikely' and 'Impact: Catastrophic' indicate?",
+    "options": ["Ignore it", "Accept the risk", "Requires careful planning and contingency despite low likelihood", "Transfer the risk only"],
+    "correct": 2,
+    "explanation": "Even though unlikely, a catastrophic impact warrants serious attention. While you may not spend heavily on prevention, you should have contingency plans (insurance, BCP/DRP) to handle the scenario if it occurs. The risk treatment combines preparation with cost-effective mitigation.",
+    "cheatsheet": "Risk Response by Score:\nHigh Likelihood + High Impact: Mitigate immediately\nHigh Likelihood + Low Impact: Monitor and optimize\nLow Likelihood + High Impact: Plan contingencies\nLow Likelihood + Low Impact: Accept and monitor"
+  },
+  {
+    "id": 39,
+    "category": "Risk Quantification",
+    "question": "After implementing 3 controls, the residual risk is $30,000 ALE but the risk appetite is $20,000. What should the organization do?",
+    "options": ["Accept the risk and stop", "Implement additional controls, accept the residual risk with management approval, or transfer the remaining risk", "Ignore the gap", "Remove all controls"],
+    "correct": 1,
+    "explanation": "The residual risk ($30,000) exceeds the risk appetite ($20,000) by $10,000. Options: (1) implement more controls to close the gap, (2) formally accept the excess risk with senior management approval and documented rationale, or (3) transfer the remaining $10,000 through insurance.",
+    "cheatsheet": "Handling Residual Risk > Risk Appetite:\n1. Implement additional controls (if cost-effective)\n2. Formally accept with management approval\n3. Transfer remaining risk (insurance, outsourcing)\n4. Document rationale regardless of choice\n5. Monitor and review periodically"
+  },
+  {
+    "id": 40,
+    "category": "Risk Quantification",
+    "question": "In a quantitative risk assessment, if an asset has no assigned monetary value, which approach should be used?",
+    "options": ["Skip the assessment", "Use qualitative assessment instead", "Assign a value based on replacement cost or business impact", "Set value to $0"],
+    "correct": 2,
+    "explanation": "If an asset lacks a direct market value, assign a monetary value based on: replacement cost (cost to rebuild/replace), business impact (revenue loss if unavailable), regulatory penalty cost, or reputation damage estimate. Quantification enables cost-benefit analysis of controls.",
+    "cheatsheet": "Valuing Intangible Assets:\nReplacement cost: what it costs to recreate\nBusiness impact: revenue lost per hour/day\nRegulatory fines: penalties for breach/loss\nCompetitive advantage: value of IP/trade secrets\nReputation: cost of brand damage\nAlways document valuation methodology."
+  },
+  {
+    "id": 41,
+    "category": "Access Control Math",
+    "question": "A password uses 8 lowercase letters. What is the approximate entropy in bits?",
+    "options": ["8 bits", "26 bits", "37.6 bits", "52 bits"],
+    "correct": 2,
+    "explanation": "Step 1: Character pool size for lowercase letters = 26. Step 2: Entropy per character = log2(26) = 3.7 bits. Step 3: Total entropy = 8 x 3.7 = 29.6 bits. Wait, let me recalculate: log2(26) = ln(26)/ln(2) = 3.322 x log10(26) = 3.322 x 1.4147 = 4.7 bits per character. Total = 8 x 4.7 = 37.6 bits.",
+    "cheatsheet": "Password Entropy:\nEntropy = length x log2(charset_size)\nLowercase (26): 4.7 bits/char\nAlphanumeric (62): 5.95 bits/char\nAll printable (95): 6.57 bits/char\n8 lowercase: 37.6 bits\n12 alphanumeric: 71.4 bits\n16 all printable: 105.1 bits"
+  },
+  {
+    "id": 42,
+    "category": "Access Control Math",
+    "question": "A password has 64 bits of entropy. At 1 billion guesses per second, how long to brute-force on average?",
+    "options": ["About 1 year", "About 292 years", "About 2.9 years", "About 584 years"],
+    "correct": 1,
+    "explanation": "Step 1: Total combinations = 2^64. Step 2: Average guesses to find = 2^63 (half the key space). Step 3: Time = 2^63 / 10^9 seconds. Step 4: 2^63 / 10^9 = 9.22 x 10^9 seconds = 292 years. This demonstrates why 64 bits of entropy is considered a minimum for strong passwords.",
+    "cheatsheet": "Brute Force Time:\nTime = 2^(entropy-1) / guesses_per_second\n64 bits at 10^9/sec: ~292 years\n80 bits at 10^9/sec: ~19 million years\n128 bits at 10^9/sec: ~5.4 x 10^22 years\nAdditional entropy dramatically increases cracking time."
+  },
+  {
+    "id": 43,
+    "category": "Access Control Math",
+    "question": "A biometric system has FAR=0.1% and FRR=1%. If 10,000 impostors attempt access, how many are falsely accepted?",
+    "options": ["1", "10", "100", "1,000"],
+    "correct": 2,
+    "explanation": "Step 1: FAR = 0.1% = 0.001. Step 2: Number of impostors = 10,000. Step 3: False acceptances = 10,000 x 0.001 = 10. About 10 impostors would be falsely accepted. Lower FAR means better security against unauthorized access.",
+    "cheatsheet": "Biometric Error Rates:\nFAR (False Accept Rate): unauthorized users accepted\nFRR (False Reject Rate): authorized users rejected\nFalse Accepts = Impostors x FAR\nFalse Rejects = Authorized x FRR\nCER: point where FAR = FRR (system accuracy)\nLower CER = better biometric system"
+  },
+  {
+    "id": 44,
+    "category": "Access Control Math",
+    "question": "The same biometric system (FAR=0.1%, FRR=1%) serves 5,000 legitimate users daily. How many authorized users are falsely rejected?",
+    "options": ["5", "50", "500", "5,000"],
+    "correct": 1,
+    "explanation": "Step 1: FRR = 1% = 0.01. Step 2: Number of legitimate attempts = 5,000. Step 3: False rejections = 5,000 x 0.01 = 50. About 50 authorized users would be falsely rejected each day. This highlights the trade-off between security (FAR) and usability (FRR).",
+    "cheatsheet": "FAR/FRR Trade-off:\nDecrease threshold -> FAR increases, FRR decreases\nIncrease threshold -> FAR decreases, FRR increases\nSystem administrator must choose balance based on use case:\nHigh security (data center): lower FAR tolerated\nHigh convenience (office door): lower FRR preferred"
+  },
+  {
+    "id": 45,
+    "category": "Access Control Math",
+    "question": "What is the minimum password length needed for 128 bits of entropy using only lowercase letters?",
+    "options": ["27 characters", "32 characters", "37 characters", "16 characters"],
+    "correct": 0,
+    "explanation": "Step 1: Entropy per lowercase character = log2(26) = 4.7 bits. Step 2: Length needed = 128 / 4.7 = 27.2 characters. Step 3: Round up to 28 characters for 128-bit equivalent. This shows why password complexity requirements (mixing character types) are important for shorter passwords.",
+    "cheatsheet": "Password Length for Target Entropy:\n128 bits needed:\n- Lowercase only: 28 chars\n- Alphanumeric: 22 chars\n- All printable: 20 chars\nThis is why passphrases (lowercase words) need\nto be 6-8 random words for strong security."
+  },
+  {
+    "id": 46,
+    "category": "Access Control Math",
+    "question": "A password policy requires 8+ characters, uppercase, lowercase, and numbers. What is the maximum entropy?",
+    "options": ["47.6 bits", "52.7 bits", "37.6 bits", "8 bits"],
+    "correct": 0,
+    "explanation": "Step 1: Charset = 26 uppercase + 26 lowercase + 10 digits = 62 characters. Step 2: Entropy per char = log2(62) = 5.95 bits. Step 3: Max entropy for 8 chars = 8 x 5.95 = 47.6 bits. Note: this assumes random selection. Human-chosen passwords typically have far less entropy due to patterns.",
+    "cheatsheet": "Real vs. Theoretical Entropy:\nTheoretical: length x log2(charset) assumes random\nReal-world human passwords: typically 40% of theoretical\n'Password1!' has much less than 48-bit entropy\nUse password managers or Diceware for true random entropy\nNIST SP 800-63B: length matters more than complexity"
+  },
+  {
+    "id": 47,
+    "category": "Access Control Math",
+    "question": "In an RBAC system with 5 roles and 100 resources, each role accesses an average of 20 resources. How many access rules are there?",
+    "options": ["5,000", "100", "200", "500"],
+    "correct": 2,
+    "explanation": "Step 1: Number of roles = 5. Step 2: Average resources per role = 20. Step 3: Total access rules = 5 x 20 = 100. Compare to DAC where each of 500 users might need individual rules: RBAC drastically reduces administrative overhead by managing access at the role level.",
+    "cheatsheet": "RBAC vs DAC Complexity:\nRBAC rules = roles x avg_permissions_per_role\nDAC rules = users x avg_permissions_per_user\nWith 500 users and 100 resources:\nDAC: potentially 500 x 100 = 50,000 rules\nRBAC: 5 roles x 20 perms = 100 rules\nSimplicity and consistency are key RBAC benefits."
+  },
+  {
+    "id": 48,
+    "category": "Access Control Math",
+    "question": "If a system has 3 authentication factors, what is the probability of an attacker guessing all three if each has a 1/10,000 chance?",
+    "options": ["1/10,000", "3/10,000", "1/10^12", "1/30,000"],
+    "correct": 2,
+    "explanation": "Step 1: Probability of guessing each factor = 1/10,000. Step 2: For independent factors, multiply probabilities: (1/10,000) x (1/10,000) x (1/10,000) = 1/10^12 = 1/1,000,000,000,000. Multi-factor authentication exponentially increases security.",
+    "cheatsheet": "Multi-Factor Security:\nP(all factors guessed) = P(factor1) x P(factor2) x ... x P(factorN)\n2 factors at 1/10^4 each: 1/10^8\n3 factors at 1/10^4 each: 1/10^12\nThis is why MFA is so effective - factors multiply,\nnot add, in terms of security improvement."
+  },
+  {
+    "id": 49,
+    "category": "Access Control Math",
+    "question": "A system uses 4-digit PIN (0000-9999). How many possible combinations exist?",
+    "options": ["4,000", "10,000", "99,999", "1,000"],
+    "correct": 1,
+    "explanation": "A 4-digit PIN uses digits 0-9 for each position. Each position has 10 possibilities. Total = 10^4 = 10,000 possible combinations. With no rate limiting, this could be brute-forced very quickly. This is why additional factors (biometrics, device trust) are important for PIN-based systems.",
+    "cheatsheet": "PIN and Passcode Combinations:\n4-digit PIN: 10^4 = 10,000\n6-digit PIN: 10^6 = 1,000,000\n8-digit numeric: 10^8 = 100,000,000\n4-digit alphanumeric: 62^4 = 14,776,336\nAlways combine with rate limiting and lockout policies."
+  },
+  {
+    "id": 50,
+    "category": "Access Control Math",
+    "question": "A biometric system has a CER of 0.5%. System A has FAR=0.01% and System B has FAR=1%. Which is more appropriate for a nuclear facility?",
+    "options": ["System A (lower FAR)", "System B (lower FRR)", "Neither", "Both are equivalent"],
+    "correct": 0,
+    "explanation": "For a nuclear facility, security is paramount - preventing unauthorized access is more important than convenience. System A has FAR=0.01% (1 in 10,000 impostors accepted) vs System B's 1% (1 in 100). System A's lower FAR is more appropriate for high-security environments, even though it may have a higher FRR.",
+    "cheatsheet": "Choosing FAR/FRR by Use Case:\nHigh security (military, nuclear): minimize FAR\nHigh convenience (office, mobile): minimize FRR\nModerate security (banking): balanced\nThe threshold adjustment affects both rates inversely.\nCER provides a comparison point between systems."
+  },
+  {
+    "id": 51,
+    "category": "Access Control Math",
+    "question": "If a password uses a dictionary of 10,000 common words and is 4 words long, what is the entropy?",
+    "options": ["13.3 bits", "40,000 bits", "53.2 bits", "16 bits"],
+    "correct": 2,
+    "explanation": "Step 1: Word pool size = 10,000. Step 2: Entropy per word = log2(10,000) = 13.29 bits. Step 3: Total entropy = 4 x 13.29 = 53.2 bits. This is comparable to an 8-character random alphanumeric password but much easier to remember. Using EFF's 7,776-word list: 4 words = 51.7 bits.",
+    "cheatsheet": "Passphrase Entropy:\nEntropy = num_words x log2(word_list_size)\nDiceware (7776 words):\n4 words: 51.7 bits\n6 words: 77.6 bits\n8 words: 103.4 bits\nPassphrases trade length for memorability.\nRandom word selection is critical."
+  },
+  {
+    "id": 52,
+    "category": "Access Control Math",
+    "question": "An account lockout policy allows 5 attempts before locking for 30 minutes. Against a 4-digit PIN with 10,000 combinations, what is the maximum daily attempts?",
+    "options": ["10,000", "240", "120", "720"],
+    "correct": 0,
+    "explanation": "Wait - let me recalculate: 24 hours x 60 minutes = 1,440 minutes. 1,440 / 30 = 48 lockout cycles. 48 x 5 attempts = 240 attempts per day. This means only 240/10,000 = 2.4% of the PIN space can be tested per day, making brute force impractical.",
+    "cheatsheet": "Account Lockout Math:\nMax daily attempts = (1440/lockout_minutes) x max_attempts\n5 attempts, 30-min lockout: 240/day\n5 attempts, 60-min lockout: 120/day\n3 attempts, 15-min lockout: 288/day\nRate limiting dramatically slows brute force attacks."
+  },
+  {
+    "id": 53,
+    "category": "Access Control Math",
+    "question": "What is the effective security level of two independent authentication factors with 20 bits and 24 bits of entropy respectively?",
+    "options": ["44 bits", "24 bits", "20 bits", "480 bits"],
+    "correct": 0,
+    "explanation": "For independent authentication factors, the effective entropy is the SUM of individual entropies: 20 + 24 = 44 bits. This is because the attacker must crack both factors independently. This is the fundamental reason multi-factor authentication is so much stronger than single-factor.",
+    "cheatsheet": "MFA Entropy Addition:\nTotal entropy = entropy_factor1 + entropy_factor2 + ...\nFactor 1 (password): 40 bits\nFactor 2 (SMS code, 6 digits): ~20 bits\nCombined: 60 bits (not 40 or 20)\nEach additional factor adds to total security."
+  },
+  {
+    "id": 54,
+    "category": "Access Control Math",
+    "question": "A company has 1000 employees, each with unique access permissions. After implementing RBAC with 10 roles, how many permission sets need to be managed?",
+    "options": ["1,000", "10", "100", "5,000"],
+    "correct": 1,
+    "explanation": "With RBAC, permissions are assigned to 10 roles, not to 1000 individual users. Each user is assigned one or more roles. This reduces permission management from 1000 permission sets (DAC) to just 10 role-based permission sets. User-role assignments (1000) are simpler than resource-permission assignments.",
+    "cheatsheet": "RBAC Efficiency:\nBefore RBAC: manage permissions per user (N users)\nAfter RBAC: manage permissions per role (R roles)\nSimplification ratio: N/R\n1000 users / 10 roles = 100x simplification\nRole engineering is the critical initial investment."
+  },
+  {
+    "id": 55,
+    "category": "Access Control Math",
+    "question": "A system has a maximum of 10 failed login attempts before account lockout. If there are 10,000 possible passwords, what percentage can an attacker try?",
+    "options": ["1%", "0.1%", "10%", "100%"],
+    "correct": 1,
+    "explanation": "Step 1: Maximum attempts = 10. Step 2: Total passwords = 10,000. Step 3: Percentage = 10/10,000 x 100 = 0.1%. The attacker can only try 0.1% of the password space before being locked out. This demonstrates the effectiveness of account lockout policies against brute force.",
+    "cheatsheet": "Brute Force with Lockout:\nCoverage = max_attempts / total_passwords x 100%\n10 attempts / 10K passwords: 0.1%\n5 attempts / 10K passwords: 0.05%\nFor higher security: reduce max attempts and add delays\nCombine with MFA for defense in depth."
+  },
+  {
+    "id": 56,
+    "category": "Network Security",
+    "question": "A DMZ subnet uses 192.168.1.0/28. How many usable host addresses are available?",
+    "options": ["14", "16", "15", "12"],
+    "correct": 0,
+    "explanation": "Step 1: /28 means 28 bits for network, 4 bits for hosts. Step 2: Total addresses = 2^4 = 16. Step 3: Usable addresses = 16 - 2 (network address and broadcast) = 14. The DMZ can have 14 hosts (e.g., web servers, email servers, DNS servers).",
+    "cheatsheet": "Subnet Host Calculation:\nUsable hosts = 2^(32-prefix) - 2\n/24: 254 hosts\n/25: 126 hosts\n/26: 62 hosts\n/27: 30 hosts\n/28: 14 hosts\n/29: 6 hosts\n/30: 2 hosts (common for point-to-point links)"
+  },
+  {
+    "id": 57,
+    "category": "Network Security",
+    "question": "How many /24 subnets can be created from a 192.168.0.0/21 network?",
+    "options": ["2", "4", "8", "16"],
+    "correct": 2,
+    "explanation": "Step 1: /21 has 11 bits for hosts. Step 2: /24 has 8 bits for hosts. Step 3: Borrowed bits = 24 - 21 = 3 bits. Step 4: Number of /24 subnets = 2^3 = 8. Each /24 subnet provides 254 usable addresses. This is useful for network segmentation in security architecture.",
+    "cheatsheet": "Subnet Division:\nNew subnets = 2^(new_prefix - original_prefix)\n/16 to /24: 2^8 = 256 subnets\n/20 to /24: 2^4 = 16 subnets\n/22 to /24: 2^2 = 4 subnets\n/21 to /24: 2^3 = 8 subnets\nSubnetting is key to network segmentation."
+  },
+  {
+    "id": 58,
+    "category": "Network Security",
+    "question": "A firewall rule allows TCP port 443 from any source to destination 10.0.0.5. How many connections from 192.168.1.0/24 are permitted?",
+    "options": ["1", "254", "Unlimited", "256"],
+    "correct": 1,
+    "explanation": "Step 1: 192.168.1.0/24 has 254 usable hosts (excluding network 192.168.1.0 and broadcast 192.168.1.255). Step 2: Each host can connect on port 443 to 10.0.0.5. Step 3: 254 hosts can each establish connections. The number of connections (not hosts) could be much higher if each host makes multiple connections.",
+    "cheatsheet": "Firewall Rule Analysis:\nRule: Allow src_any -> dst:10.0.0.5 port:443\n/src/24: 254 hosts can connect\nConnections per host depend on application\nAdd rate limiting to prevent abuse\nUse stateful inspection to track connections"
+  },
+  {
+    "id": 59,
+    "category": "Network Security",
+    "question": "IPsec adds approximately 50-60 bytes of overhead per packet. A 1500-byte MTU Ethernet frame carrying a 1400-byte IP packet will become approximately what size after ESP tunnel mode?",
+    "options": ["1450 bytes", "1460 bytes", "1500 bytes", "1560 bytes"],
+    "correct": 1,
+    "explanation": "Step 1: Original IP packet = 1400 bytes. Step 2: ESP adds new IP header (20 bytes) + ESP header (8-12 bytes) + ESP trailer (~12 bytes) = ~44 bytes. Step 3: Total = 1400 + 44 = 1444 bytes. With additional overhead, approximately 1460 bytes. This often requires reducing the MTU or using TCP MSS clamping to avoid fragmentation.",
+    "cheatsheet": "IPsec Overhead:\nTransport mode: +20-30 bytes\nTunnel mode: +40-60 bytes\nESP overhead: new IP header + ESP header + ESP trailer\nResult may exceed MTU -> fragmentation\nSolution: reduce MTU or use TCP MSS clamping"
+  },
+  {
+    "id": 60,
+    "category": "Network Security",
+    "question": "A company needs 5 isolated network segments with at least 25 hosts each. What is the most efficient subnet mask?",
+    "options": ["255.255.255.192 (/26)", "255.255.255.128 (/25)", "255.255.255.224 (/27)", "255.255.255.0 (/24)"],
+    "correct": 2,
+    "explanation": "Step 1: Need at least 25 hosts per subnet. Step 2: /27 provides 2^5-2 = 30 usable hosts. /26 provides 62 hosts (more than needed). Step 3: From /24, creating /27 subnets: 2^(27-24) = 8 subnets available, need only 5. /27 is the most efficient mask providing exactly enough hosts.",
+    "cheatsheet": "Subnet Mask Selection:\nRequired hosts -> minimum host bits -> subnet mask\n1-2 hosts: /30\n3-6 hosts: /29\n7-14 hosts: /28\n15-30 hosts: /27\n31-62 hosts: /26\n63-126 hosts: /25\n127-254 hosts: /24"
+  },
+  {
+    "id": 61,
+    "category": "Network Security",
+    "question": "A firewall has 100 rules. If each rule takes 1 microsecond to evaluate, what is the maximum latency added to a packet that matches the last rule?",
+    "options": ["1 ms", "10 ms", "100 ms", "0.1 ms"],
+    "correct": 0,
+    "explanation": "Step 1: Rules are evaluated in order (first match). Step 2: Packet matching the last rule requires evaluation of all 100 rules. Step 3: Latency = 100 x 1 microsecond = 100 microseconds = 0.1 ms. This demonstrates why firewall rule ordering matters - frequently matched rules should be placed first.",
+    "cheatsheet": "Firewall Rule Optimization:\nLatency = rule_position x evaluation_time\nPlace most-hit rules at the top\nUse default deny as the last rule\nRegularly audit and remove unused rules\nComplex rules (deep inspection) take more time"
+  },
+  {
+    "id": 62,
+    "category": "Network Security",
+    "question": "How many ports are in the ephemeral port range (typically 49152-65535)?",
+    "options": ["1,024", "16,384", "65,536", "4,096"],
+    "correct": 1,
+    "explanation": "Step 1: Range = 49152 to 65535. Step 2: Count = 65535 - 49152 + 1 = 16,384 ports. These are used for temporary client-side ports when initiating connections. TCP SYN flood attacks can exhaust this pool, preventing legitimate connections.",
+    "cheatsheet": "Port Ranges:\nWell-known: 0-1023 (require root/admin)\nRegistered: 1024-49151\nEphemeral/Dynamic: 49152-65535 (16,384 ports)\nSYN flood target: ephemeral port exhaustion\nSolutions: SYN cookies,缩短 TIME_WAIT"
+  },
+  {
+    "id": 63,
+    "category": "Network Security",
+    "question": "A VPN adds 100 bytes of overhead per packet. How much bandwidth overhead for a 1 Gbps link?",
+    "options": ["0.1%", "About 5-10%", "50%", "100%"],
+    "correct": 1,
+    "explanation": "Step 1: Typical IP packet = ~1500 bytes. Step 2: VPN overhead = ~100 bytes. Step 3: Overhead percentage = 100/1500 = 6.67%. For smaller packets (500 bytes): 100/500 = 20%. Bandwidth reduction is typically 5-15% depending on packet size distribution.",
+    "cheatsheet": "VPN Bandwidth Impact:\nOverhead % = VPN_overhead / packet_size x 100\nLarge packets (1500B): ~5-7% overhead\nSmall packets (500B): ~15-20% overhead\nVoice (200B): ~33% overhead\nCompression can offset overhead for text data"
+  },
+  {
+    "id": 64,
+    "category": "Network Security",
+    "question": "A network uses VLAN IDs 10, 20, 30, and 40. What is the 802.1Q tag overhead per frame?",
+    "options": ["4 bytes", "8 bytes", "16 bytes", "2 bytes"],
+    "correct": 0,
+    "explanation": "802.1Q adds a 4-byte tag to each Ethernet frame: 2 bytes for Tag Protocol Identifier (TPID, 0x8100) and 2 bytes for Tag Control Information (TCI, including 12-bit VLAN ID and 3-bit priority). The maximum Ethernet frame increases from 1518 to 1522 bytes.",
+    "cheatsheet": "802.1Q VLAN Tagging:\nTag size: 4 bytes\nBreakdown: 2B TPID + 2B TCI\nTCI: 3-bit priority + 1-bit DEI + 12-bit VLAN ID\nMax VLANs: 4096 (0-4095)\n0 and 4095 are reserved\nUsable: 1-4094"
+  },
+  {
+    "id": 65,
+    "category": "Network Security",
+    "question": "An ACL has 50 rules and processes 10,000 packets per second. If 90% of packets match rule 1, what is the average evaluations per packet?",
+    "options": ["1", "5", "10", "50"],
+    "correct": 0,
+    "explanation": "Step 1: 90% of packets match rule 1 (1 evaluation). Step 2: Remaining 10% need more evaluations. Step 3: Average = 0.9 x 1 + 0.1 x avg_remaining = approximately 1.x. Since most packets match early, the average is close to 1. This highlights the importance of rule ordering for performance.",
+    "cheatsheet": "ACL Performance Optimization:\nMost matched rules at the top\nDefault deny at the bottom\nMonitor hit counts per rule\nRemove or consolidate unused rules\nUse object groups for cleaner rules\nEarly matches = lower processing overhead"
+  },
+  {
+    "id": 66,
+    "category": "Network Security",
+    "question": "What is the CIDR notation for a subnet mask of 255.255.255.240?",
+    "options": ["/26", "/27", "/28", "/29"],
+    "correct": 2,
+    "explanation": "Step 1: 255.255.255.240 in binary: 11111111.11111111.11111111.11110000. Step 2: Count the 1-bits: 8+8+8+4 = 28. Step 3: CIDR = /28. The last octet (240 = 11110000) has 4 host bits, giving 2^4-2 = 14 usable addresses.",
+    "cheatsheet": "Subnet Mask to CIDR:\n255.0.0.0 = /8\n255.255.0.0 = /16\n255.255.255.0 = /24\n255.255.255.128 = /25\n255.255.255.192 = /26\n255.255.255.224 = /27\n255.255.255.240 = /28\n255.255.255.248 = /29\n255.255.255.252 = /30"
+  },
+  {
+    "id": 67,
+    "category": "Network Security",
+    "question": "A DDoS attack sends 10 Gbps of traffic to a server with 1 Gbps bandwidth. What happens?",
+    "options": ["The server processes normally", "The server is overwhelmed and legitimate traffic cannot get through", "The firewall blocks it all", "The attacker's traffic is slowed to 1 Gbps"],
+    "correct": 1,
+    "explanation": "The 10 Gbps attack overwhelms the 1 Gbps server link, saturating its bandwidth. Legitimate traffic cannot compete with the flood of malicious traffic. The server becomes unavailable to legitimate users. Mitigation requires upstream scrubbing, anycast distribution, or traffic rerouting.",
+    "cheatsheet": "DDoS Bandwidth Analysis:\nIf attack > capacity: link saturated, service unavailable\nScrubbing center: filters attack traffic upstream\nAnycast: distributes traffic globally\nBlackholing: drops all traffic to the target\nRate limiting: reduces impact of moderate attacks"
+  },
+  {
+    "id": 68,
+    "category": "Network Security",
+    "question": "A stateful firewall tracks 10,000 concurrent connections. Each entry uses 300 bytes. How much memory is used?",
+    "options": ["3 MB", "30 MB", "300 KB", "3 GB"],
+    "correct": 0,
+    "explanation": "Step 1: Connections = 10,000. Step 2: Memory per entry = 300 bytes. Step 3: Total = 10,000 x 300 = 3,000,000 bytes = 3 MB. This is manageable but state exhaustion attacks (SYN floods) can fill the state table, preventing legitimate connections.",
+    "cheatsheet": "Firewall State Table:\nMemory = connections x entry_size\nTypical entry: 200-400 bytes\n10,000 connections x 300B = 3 MB\nSYN flood: fills state table with half-open connections\nMitigation: SYN cookies, SYN proxy, TCP intercept"
+  },
+  {
+    "id": 69,
+    "category": "Network Security",
+    "question": "How many /24 networks can fit in a /16 network?",
+    "options": ["16", "64", "128", "256"],
+    "correct": 3,
+    "explanation": "Step 1: /16 has 16 network bits. Step 2: /24 has 24 network bits. Step 3: Borrowed bits = 24 - 16 = 8 bits. Step 4: Number of /24s = 2^8 = 256. Each /24 has 254 hosts. Total: 256 x 254 = 65,024 hosts in the /16.",
+    "cheatsheet": "Network Division:\n/16 = 256 x /24 = 1024 x /22\n/8 = 256 x /16 = 65,536 x /24\nUseful for organization-wide IP planning:\nDepartment A: /24\nDepartment B: /24\nDMZ: /24\nManagement: /24"
+  },
+  {
+    "id": 70,
+    "category": "Network Security",
+    "question": "A stateless firewall processes a packet in 5 microseconds. If it receives 1,000,000 packets per second, what percentage of CPU time is used?",
+    "options": ["50%", "500%", "5%", "100%"],
+    "correct": 1,
+    "explanation": "Step 1: Processing per packet = 5 microseconds. Step 2: Packets per second = 1,000,000. Step 3: Total processing time = 1,000,000 x 5 microseconds = 5,000,000 microseconds = 5 seconds. Step 4: At 1,000,000 pps, the firewall needs 5 seconds per second = 500% CPU. This exceeds capacity and packets will be dropped.",
+    "cheatsheet": "Firewall Capacity Planning:\nCPU usage = pps x processing_time_per_packet\nIf > 100%: packets dropped, latency increases\nBudget headroom: plan for 60-70% max utilization\nBurst capacity: handle 2-3x average traffic\nHardware acceleration helps with encrypted traffic"
+  },
+  {
+    "id": 71,
+    "category": "Incident Metrics",
+    "question": "A server was available for 7000 hours in a year and had MTTR of 10 hours per incident with 5 incidents. What is the availability percentage?",
+    "options": ["99.5%", "99.9%", "80%", "99.43%"],
+    "correct": 3,
+    "explanation": "Step 1: Total downtime = 5 incidents x 10 hours = 50 hours. Step 2: Total time = 7000 + 50 = 7050 hours (using 8760 for a full year gives different answer). Using actual: Availability = Uptime / Total_time = 7000 / (7000 + 50) = 7000/7050 = 99.29%. Alternatively, using MTBF/MTTR: MTBF = 7000/5 = 1400. Availability = 1400/(1400+10) = 99.29%.",
+    "cheatsheet": "Availability Calculation:\nAvailability = MTBF / (MTBF + MTTR) x 100%\nOr: Uptime / Total_time x 100%\n99.9% = ~8.76 hours downtime/year\n99.99% = ~52.6 minutes/year\n99.999% = ~5.26 minutes/year (five nines)"
+  },
+  {
+    "id": 72,
+    "category": "Incident Metrics",
+    "question": "What is the MTBF if a system operated for 10,000 hours and had 4 failures?",
+    "options": ["2,500 hours", "4,000 hours", "10,000 hours", "2,000 hours"],
+    "correct": 0,
+    "explanation": "Step 1: Total operating time = 10,000 hours. Step 2: Number of failures = 4. Step 3: MTBF = Total operating time / Number of failures = 10,000 / 4 = 2,500 hours. MTBF measures the average time between failures, indicating system reliability.",
+    "cheatsheet": "MTBF (Mean Time Between Failures):\nMTBF = Total_operating_time / Number_of_failures\nHigher MTBF = more reliable system\nDoes not include repair time (that's MTTR)\nAvailability = MTBF / (MTBF + MTTR)\nTarget MTBF depends on business requirements"
+  },
+  {
+    "id": 73,
+    "category": "Incident Metrics",
+    "question": "If MTBF is 2000 hours and MTTR is 4 hours, what is the system availability?",
+    "options": ["99.5%", "99.8%", "98%", "99.9%"],
+    "correct": 1,
+    "explanation": "Step 1: MTBF = 2,000 hours, MTTR = 4 hours. Step 2: Availability = MTBF / (MTBF + MTTR) = 2,000 / (2,000 + 4) = 2,000 / 2,004 = 0.9980 = 99.80%. This means the system is available 99.8% of the time, with approximately 17.5 hours of downtime per year.",
+    "cheatsheet": "Availability Targets:\n99% (two nines): 87.6 hours downtime/year\n99.9% (three nines): 8.76 hours/year\n99.99% (four nines): 52.6 minutes/year\n99.999% (five nines): 5.26 minutes/year\nEach nine requires ~10x more investment"
+  },
+  {
+    "id": 74,
+    "category": "Incident Metrics",
+    "question": "A system needs 99.99% availability. What is the maximum allowable downtime per year?",
+    "options": ["8.76 hours", "52.6 minutes", "5.26 minutes", "87.6 hours"],
+    "correct": 1,
+    "explanation": "Step 1: 99.99% availability means 0.01% downtime. Step 2: Hours per year = 365 x 24 = 8,760. Step 3: Maximum downtime = 8,760 x 0.0001 = 0.876 hours = 52.56 minutes. Achieving this requires redundant systems, automatic failover, and robust disaster recovery.",
+    "cheatsheet": "Downtime Budget (per year):\n99%: 87.6 hours (3.65 days)\n99.9%: 8.76 hours\n99.99%: 52.6 minutes\n99.999%: 5.26 minutes\n99.9999%: 31.5 seconds\nSLAs typically define minimum availability requirements."
+  },
+  {
+    "id": 75,
+    "category": "Incident Metrics",
+    "question": "RTO is 4 hours and RPO is 1 hour. Backups run every 30 minutes. Does this meet the requirements?",
+    "options": ["RPO met, RTO not specified", "Both RPO and RTO are met", "RPO not met", "Neither is met"],
+    "correct": 0,
+    "explanation": "Step 1: RPO is 1 hour (maximum data loss). Step 2: Backup interval is 30 minutes. Step 3: Maximum data loss = 30 minutes < 1 hour RPO. RPO requirement is met. The RTO (4 hours) defines recovery time but the backup interval alone does not guarantee this - recovery procedures must also complete within 4 hours.",
+    "cheatsheet": "RPO and Backup Frequency:\nBackup interval must be <= RPO\nRPO = 1 hour: backups every 30 min (good)\nRPO = 1 hour: backups every 2 hours (NOT met)\nRPO = 0: real-time replication needed\nRTO: separate from backup frequency,\nrequires tested recovery procedures"
+  },
+  {
+    "id": 76,
+    "category": "Incident Metrics",
+    "question": "A company had 20 incidents this year. Total resolution time was 100 hours. What is the average MTTR?",
+    "options": ["20 hours", "5 hours", "100 hours", "10 hours"],
+    "correct": 1,
+    "explanation": "Step 1: Total resolution time = 100 hours. Step 2: Number of incidents = 20. Step 3: Average MTTR = 100 / 20 = 5 hours per incident. This metric helps evaluate the incident response team's efficiency and identify areas for improvement.",
+    "cheatsheet": "MTTR (Mean Time to Recovery):\nMTTR = Total_resolution_time / Number_of_incidents\nLower is better\nComponents: Detection time + Diagnosis + Repair + Verify\nTrack MTTR by incident type and severity\nTarget MTTR should be < RTO"
+  },
+  {
+    "id": 77,
+    "category": "Incident Metrics",
+    "question": "If a system has 99.95% availability, what is the approximate annual downtime?",
+    "options": ["4.38 hours", "8.76 hours", "43.8 minutes", "26.3 minutes"],
+    "correct": 0,
+    "explanation": "Step 1: Downtime percentage = 100% - 99.95% = 0.05%. Step 2: Annual downtime = 8,760 hours x 0.0005 = 4.38 hours. Step 3: 4.38 hours = 4 hours 22.8 minutes. This is between three nines (8.76 hours) and four nines (52.6 minutes).",
+    "cheatsheet": "Quick Downtime Calculation:\nDowntime(hours) = 8760 x (1 - availability_decimal)\n99.9%: 8.76 hours\n99.95%: 4.38 hours\n99.99%: 52.56 minutes\n99.999%: 5.26 minutes\nSmall improvements in availability = big reduction in downtime"
+  },
+  {
+    "id": 78,
+    "category": "Incident Metrics",
+    "question": "An incident response team takes an average of 30 minutes to detect, 1 hour to contain, and 2 hours to eradicate and recover. What is the total MTTR?",
+    "options": ["3.5 hours", "2 hours", "1.5 hours", "3 hours"],
+    "correct": 0,
+    "explanation": "Step 1: Detection time = 30 minutes. Step 2: Containment time = 1 hour. Step 3: Eradication + Recovery time = 2 hours. Step 4: Total MTTR = 0.5 + 1 + 2 = 3.5 hours. MTTR encompasses all phases from detection to full recovery.",
+    "cheatsheet": "MTTR Components:\nMTTR = Detection + Containment + Eradication + Recovery\nDetection: time to notice the incident\nContainment: time to limit the damage\nEradication: time to remove the threat\nRecovery: time to restore normal operations\nFocus improvement on the largest component."
+  },
+  {
+    "id": 79,
+    "category": "Incident Metrics",
+    "question": "A database must have RPO = 0. Which backup strategy is required?",
+    "options": ["Daily backups", "Hourly backups", "Real-time replication (synchronous)", "Weekly backups"],
+    "correct": 2,
+    "explanation": "RPO = 0 means zero data loss is acceptable. No periodic backup can achieve this because data created between backups would be lost. Synchronous real-time replication ensures every transaction is immediately copied to the secondary system, achieving RPO = 0.",
+    "cheatsheet": "RPO to Backup Strategy:\nRPO = 0: synchronous replication\nRPO = minutes: frequent log shipping\nRPO = hours: hourly/daily backups\nRPO = days: daily/weekly backups\nShorter RPO = exponentially higher cost\nChoose RPO based on business impact analysis"
+  },
+  {
+    "id": 80,
+    "category": "Incident Metrics",
+    "question": "System A has 99.9% availability and System B has 99.99% availability. Both must be operational for the service to work. What is the combined availability?",
+    "options": ["99.89%", "99.99%", "99.9%", "99.998%"],
+    "correct": 0,
+    "explanation": "Step 1: For series dependency, multiply: 0.999 x 0.9999 = 0.9989001. Step 2: Combined availability = 99.89%. This demonstrates that each additional dependent system reduces overall availability. A service with many dependencies must have extremely reliable individual components.",
+    "cheatsheet": "Combined Availability:\nSeries (all required): A1 x A2 x A3 x ...\nParallel (any one sufficient): 1 - (1-A1)(1-A2)(1-A3)...\nExample: 3 systems at 99.9% in series:\n0.999^3 = 99.7% (not 99.9%!)\nDesign for minimal dependency chains."
+  },
+  {
+    "id": 81,
+    "category": "Incident Metrics",
+    "question": "MTTD (Mean Time to Detect) is 2 hours and MTTR is 6 hours. What is the total incident duration?",
+    "options": ["8 hours", "6 hours", "2 hours", "4 hours"],
+    "correct": 0,
+    "explanation": "Step 1: The total incident duration from initial occurrence to full recovery = MTTD + MTTR = 2 + 6 = 8 hours. Reducing either MTTD (faster detection through monitoring) or MTTR (faster recovery through automation) reduces the total impact.",
+    "cheatsheet": "Total Incident Duration:\nTotal = MTTD + MTTR\nMTTD: Mean Time to Detect (occurrence to detection)\nMTTR: Mean Time to Recovery (detection to restored)\nReducing MTTD often has more business impact\nthan reducing MTTR, as the vulnerability window shrinks."
+  },
+  {
+    "id": 82,
+    "category": "Incident Metrics",
+    "question": "A warm site takes 12 hours to become operational. If the RTO is 4 hours, is this acceptable?",
+    "options": ["Yes", "No, warm site recovery exceeds RTO", "It depends on RPO", "Warm sites are always acceptable"],
+    "correct": 1,
+    "explanation": "The warm site's 12-hour recovery time exceeds the 4-hour RTO requirement. The organization would need either a hot site (near-immediate recovery) or to accept a longer RTO. This illustrates the importance of aligning DR site selection with business requirements.",
+    "cheatsheet": "DR Site Selection vs RTO:\nCold site: days to weeks recovery\nWarm site: hours to days recovery\nHot site: minutes to hours recovery\nSite type must match or exceed RTO requirements\nCost increases: Cold < Warm < Hot"
+  },
+  {
+    "id": 83,
+    "category": "Incident Metrics",
+    "question": "If an organization processes 1000 transactions per hour and the RPO is 30 minutes, what is the maximum acceptable data loss in transactions?",
+    "options": ["500 transactions", "1000 transactions", "100 transactions", "50,000 transactions"],
+    "correct": 0,
+    "explanation": "Step 1: Transactions per hour = 1,000. Step 2: Transactions per 30 minutes = 1,000 / 2 = 500. Step 3: Maximum acceptable data loss = 500 transactions. This translates the RPO time into concrete business impact terms.",
+    "cheatsheet": "RPO in Business Terms:\nMax data loss = RPO_hours x transactions_per_hour\nRPO = 30 min, 1000 TPH: 500 transactions lost\nConvert to monetary terms: 500 x avg_value_per_transaction\nThis makes RPO meaningful to business stakeholders\nAlign RPO with acceptable financial loss."
+  },
+  {
+    "id": 84,
+    "category": "Incident Metrics",
+    "question": "A BCP specifies an alternate processing site 200 km away. The RTO is 2 hours. What is the minimum requirement?",
+    "options": ["Data replication with <= 2 hour lag", "Near-real-time data replication and pre-staged equipment", "Manual data transport", "Cloud backup"],
+    "correct": 1,
+    "explanation": "An RTO of 2 hours requires the alternate site to be ready with current data and equipment within 2 hours. Manual transport and long-lag replication would not meet this. Pre-staged equipment with near-real-time data replication is needed.",
+    "cheatsheet": "RTO Requirements by Duration:\n< 1 hour: hot site + synchronous replication\n1-4 hours: hot/warm site + frequent replication\n4-24 hours: warm site + log shipping\n1-7 days: cold site + daily backups\n> 7 days: cold site + manual recovery"
+  },
+  {
+    "id": 85,
+    "category": "Incident Metrics",
+    "question": "System MTBF is 8760 hours (1 year). MTTR is 24 hours. If two identical systems operate in parallel, what is the approximate availability?",
+    "options": ["99.7%", "99.99%", "99.999%", "99.97%"],
+    "correct": 2,
+    "explanation": "Step 1: Single system availability = 8760/(8760+24) = 99.727%. Step 2: For parallel (redundant) systems: combined availability = 1 - (1-0.99727)^2 = 1 - 0.0000729 = 99.99927%. Two parallel systems dramatically improve availability from 99.7% to approximately 99.999% (five nines).",
+    "cheatsheet": "Parallel Redundancy:\nAvailability = 1 - (1 - A)^N\nWhere A = single system availability, N = number of systems\nA=99.7%, N=2: 99.999%\nA=99.7%, N=3: 99.999999%\nDiminishing returns after 2-3 redundant systems"
+  },
+  {
+    "id": 86,
+    "category": "Compliance Costs",
+    "question": "A data breach exposes 100,000 records. Industry average cost per record is $150. What is the estimated total breach cost?",
+    "options": ["$1,500,000", "$15,000,000", "$150,000", "$15,000"],
+    "correct": 1,
+    "explanation": "Step 1: Records exposed = 100,000. Step 2: Cost per record = $150. Step 3: Total estimated cost = 100,000 x $150 = $15,000,000. According to IBM/Trustwave reports, the average cost includes detection, notification, remediation, legal fees, and lost business.",
+    "cheatsheet": "Breach Cost Estimation (Ponemon/IBM):\nCost = records_exposed x cost_per_record\nAverage cost/record: $100-200 (varies by industry)\nHealthcare: $400+ per record\nFinancial: $200+ per record\nRetail: $100+ per record\nAdditional: regulatory fines, reputation damage"
+  },
+  {
+    "id": 87,
+    "category": "Compliance Costs",
+    "question": "A security awareness training program costs $50,000/year. It reduces phishing success rate from 30% to 5%. If 1,000 phishing emails are sent per year and each successful phishing costs $10,000, what is the ROI?",
+    "options": ["$1,950,000", "$2,000,000", "$100,000", "$150,000"],
+    "correct": 0,
+    "explanation": "Step 1: Before training: 1000 x 0.30 = 300 successful phish x $10,000 = $3,000,000 loss. Step 2: After training: 1000 x 0.05 = 50 successful phish x $10,000 = $500,000 loss. Step 3: Savings = $3,000,000 - $500,000 = $2,500,000. Step 4: ROI = ($2,500,000 - $50,000) / $50,000 x 100 = 4,900%.",
+    "cheatsheet": "Security Program ROI:\nROI = (Risk_reduction - Program_cost) / Program_cost x 100%\nInclude direct and indirect costs avoided\nQuantify: reduced incidents, faster recovery, compliance\nSecurity awareness often has the highest ROI\nCalculate for 3-5 year periods for capital investments."
+  },
+  {
+    "id": 88,
+    "category": "Compliance Costs",
+    "question": "GDPR fine for a serious violation can be up to 4% of global annual revenue. A company has $500M annual revenue. What is the maximum fine?",
+    "options": ["$20M", "$500M", "$2M", "$200M"],
+    "correct": 0,
+    "explanation": "Step 1: Global annual revenue = $500M. Step 2: Fine percentage = 4%. Step 3: Maximum fine = $500M x 0.04 = $20,000,000. This is the maximum; actual fines depend on severity, cooperation, and mitigation. The other cap is 20 million EUR, whichever is higher.",
+    "cheatsheet": "GDPR Fine Calculation:\nMaximum = max(20M EUR, 4% of global revenue)\nSerious violations: up to 4%\nLesser violations: up to 2% (or 10M EUR)\nFactors: severity, mitigation, cooperation, repeat\nExample: $500M revenue x 4% = $20M max fine"
+  },
+  {
+    "id": 89,
+    "category": "Compliance Costs",
+    "question": "A PCI DSS compliance program costs $500,000/year. Non-compliance fines could be $100,000/month plus loss of card processing ability. What is the annual cost of non-compliance?",
+    "options": ["$600,000", "$1,200,000", "$500,000", "$100,000"],
+    "correct": 1,
+    "explanation": "Step 1: Monthly fines = $100,000. Step 2: Annual fines = $100,000 x 12 = $1,200,000. Step 3: This does not include the incalculable cost of losing card processing ability. Step 4: Compliance cost ($500,000) is less than non-compliance fines ($1,200,000+). Compliance is clearly cost-effective.",
+    "cheatsheet": "Compliance vs Non-Compliance:\nNon-compliance cost = fines + penalties + lost business\nPCI DSS: $5K-100K/month fines + processing loss\nHIPAA: $100-50K per violation + criminal charges\nGDPR: up to 4% of revenue\nAlways compare: compliance_cost vs non-compliance_cost"
+  },
+  {
+    "id": 90,
+    "category": "Compliance Costs",
+    "question": "An ISO 27001 certification audit costs $100,000. Preparation takes 6 months with 2 FTE staff at $80,000/year each. What is the total first-year cost?",
+    "options": ["$100,000", "$260,000", "$180,000", "$80,000"],
+    "correct": 2,
+    "explanation": "Step 1: Audit cost = $100,000. Step 2: Staff cost for 6 months = 2 x $80,000 x 0.5 = $80,000. Step 3: Total first-year cost = $100,000 + $80,000 = $180,000. Subsequent years only require surveillance audits (~$40,000-60,000).",
+    "cheatsheet": "ISO 27001 Cost Estimation:\nYear 1 (certification): Audit + preparation + remediation\nYear 2-3 (surveillance): Annual surveillance audit\nYear 3 (recertification): Full recertification audit\nAdditional: technology controls, training, tools\nROI: reduced incidents, customer trust, competitive advantage"
+  },
+  {
+    "id": 91,
+    "category": "Compliance Costs",
+    "question": "A security control costs $200,000 to implement and $20,000/year to maintain over 5 years. The ALE reduction is $80,000/year. What is the 5-year net benefit?",
+    "options": ["$100,000", "$0", "$200,000", "$300,000"],
+    "correct": 0,
+    "explanation": "Step 1: Total cost = $200,000 + ($20,000 x 5) = $300,000 over 5 years. Step 2: Total ALE reduction = $80,000 x 5 = $400,000. Step 3: 5-year net benefit = $400,000 - $300,000 = $100,000. The control is cost-effective over the 5-year period.",
+    "cheatsheet": "Multi-Year Cost-Benefit Analysis:\nNet Benefit = (ALE_reduction x years) - (implementation + maintenance x years)\nBreak-even year: total_savings = total_cost\nInclude: discount rate for future costs\nInclude: intangible benefits (reputation, compliance)\n5-10 year horizon for capital investments"
+  },
+  {
+    "id": 92,
+    "category": "Compliance Costs",
+    "question": "A company has 1,000 employees. Security awareness training costs $20 per employee per year. Phishing simulations cost $5,000/year. What is the total annual training cost?",
+    "options": ["$25,000", "$20,000", "$5,000", "$30,000"],
+    "correct": 0,
+    "explanation": "Step 1: Training cost = 1,000 x $20 = $20,000. Step 2: Simulation cost = $5,000. Step 3: Total = $25,000. At about $25 per employee per year, this is a relatively small investment compared to the potential cost of a successful social engineering attack.",
+    "cheatsheet": "Security Training Budget:\nPer-employee training: $15-50/year\nPhishing simulation: $3-10 per employee/year\nTotal per employee: $20-60/year\n1,000 employees: $20,000-60,000/year\nCompare to: single breach = millions\nHighest ROI security investment"
+  },
+  {
+    "id": 93,
+    "category": "Compliance Costs",
+    "question": "A company processes credit cards and faces a breach. The forensic investigation costs $500,000, fines are $200,000, and card replacement costs are $300,000. What is the total direct cost?",
+    "options": ["$1,000,000", "$500,000", "$700,000", "$200,000"],
+    "correct": 0,
+    "explanation": "Step 1: Forensic investigation = $500,000. Step 2: Fines = $200,000. Step 3: Card replacement = $300,000. Step 4: Total direct cost = $500,000 + $200,000 + $300,000 = $1,000,000. This excludes indirect costs like lost business, reputation damage, and increased insurance premiums.",
+    "cheatsheet": "Breach Cost Components:\nDirect costs: investigation, fines, notification, credit monitoring\nIndirect costs: lost business, reputation, stock price\nDetection and escalation: forensics, assessment\nResponse: notification, help desk, credit services\nPost-breach: legal, regulatory, business loss"
+  },
+  {
+    "id": 94,
+    "category": "Compliance Costs",
+    "question": "An EDR solution costs $15 per endpoint per month. A company has 500 endpoints. What is the annual cost?",
+    "options": ["$75,000", "$90,000", "$7,500", "$900,000"],
+    "correct": 1,
+    "explanation": "Step 1: Monthly cost per endpoint = $15. Step 2: Monthly total = $15 x 500 = $7,500. Step 3: Annual cost = $7,500 x 12 = $90,000. Per-endpoint cost is a common pricing model for security tools (EDR, CASB, DLP, etc.).",
+    "cheatsheet": "Per-Endpoint Security Costing:\nAnnual cost = per_endpoint_monthly x endpoints x 12\nEDR: $10-25/endpoint/month\nCASB: $5-15/user/month\nDLP: $15-30/endpoint/month\nTotal per endpoint security: $30-70/month\nInclude: implementation, training, management overhead"
+  },
+  {
+    "id": 95,
+    "category": "Compliance Costs",
+    "question": "A SIEM solution costs $100,000/year for the platform plus $20/day per GB of log data. The company generates 50 GB/day. What is the annual cost?",
+    "options": ["$100,000", "$465,000", "$365,000", "$200,000"],
+    "correct": 1,
+    "explanation": "Step 1: Platform cost = $100,000. Step 2: Log data cost = $20 x 50 GB x 365 = $365,000. Step 3: Total annual cost = $100,000 + $365,000 = $465,000. Log volume significantly impacts SIEM cost - log optimization and filtering can reduce costs.",
+    "cheatsheet": "SIEM Cost Calculation:\nTotal = Platform_fee + (per_GB_rate x daily_GB x 365)\nPlatform: $50K-500K/year\nLog ingestion: $1-50/GB/day\nCost drivers: log volume, retention period, sources\nOptimization: log filtering, deduplication, tiered storage"
+  },
+  {
+    "id": 96,
+    "category": "Compliance Costs",
+    "question": "Implementing MFA for all users costs $30,000. Account compromise incidents average 20 per year at $5,000 each. MFA reduces incidents by 80%. What is the annual savings?",
+    "options": ["$50,000", "$80,000", "$20,000", "$30,000"],
+    "correct": 0,
+    "explanation": "Step 1: Current incident cost = 20 x $5,000 = $100,000/year. Step 2: After MFA: 20 x 0.20 = 4 incidents remaining x $5,000 = $20,000. Step 3: Annual savings = $100,000 - $20,000 = $80,000. Step 4: ROI = ($80,000 - $30,000) / $30,000 = 167%. First-year net benefit = $50,000.",
+    "cheatsheet": "MFA ROI Calculation:\nBefore MFA: incidents x cost_per_incident\nAfter MFA: incidents x (1 - reduction_rate) x cost\nAnnual savings = before - after\nFirst year ROI = (savings - cost) / cost\nMFA typically achieves 80-99% reduction in account compromise"
+  },
+  {
+    "id": 97,
+    "category": "Compliance Costs",
+    "question": "Cyber insurance costs $75,000/year with a $250,000 deductible. A breach costs $2M. How much does insurance save?",
+    "options": ["$1,675,000", "$2,000,000", "$1,750,000", "$250,000"],
+    "correct": 0,
+    "explanation": "Step 1: Without insurance: cost = $2,000,000. Step 2: With insurance: premium ($75,000) + deductible ($250,000) = $325,000. Step 3: Savings = $2,000,000 - $325,000 = $1,675,000. Insurance provides significant financial protection for catastrophic events.",
+    "cheatsheet": "Insurance Value Analysis:\nSavings = Loss - (Premium + Deductible)\nBreak-even loss = Premium / (1 - deductible_ratio)\nConsider: coverage limits, exclusions, claim process\nInsurance + controls = optimal risk strategy\nInsurance does not replace controls."
+  },
+  {
+    "id": 98,
+    "category": "Compliance Costs",
+    "question": "A penetration test costs $30,000 and finds 3 critical vulnerabilities. If exploited, each could cause $500,000 damage. What is the value of the penetration test?",
+    "options": ["$1,500,000", "$1,470,000", "$30,000", "$90,000"],
+    "correct": 1,
+    "explanation": "Step 1: Total potential damage = 3 x $500,000 = $1,500,000. Step 2: Penetration test cost = $30,000. Step 3: Value = $1,500,000 - $30,000 = $1,470,000. The penetration test provides enormous value by identifying vulnerabilities before attackers can exploit them.",
+    "cheatsheet": "Penetration Test ROI:\nValue = (vulnerabilities_found x potential_damage) - test_cost\nCritical vulns typically cost $100K-$5M+ each\nFrequency: at least annually + after major changes\nInclude remediation costs in total security investment\nProactive testing vs reactive breach response"
+  },
+  {
+    "id": 99,
+    "category": "Compliance Costs",
+    "question": "A vulnerability management program costs $150,000/year. It prevents 5 breaches per year that would each cost $200,000. What is the ROI?",
+    "options": ["567%", "500%", "667%", "300%"],
+    "correct": 0,
+    "explanation": "Step 1: Total prevention = 5 x $200,000 = $1,000,000. Step 2: Cost = $150,000. Step 3: Net savings = $1,000,000 - $150,000 = $850,000. Step 4: ROI = ($850,000 / $150,000) x 100 = 567%. Vulnerability management typically has very high ROI as it prevents the most common attack vectors.",
+    "cheatsheet": "Vulnerability Management ROI:\nROI = (prevented_losses - program_cost) / program_cost x 100%\nIncludes: scanning tools, staff, remediation time\nPrevented losses = vulnerabilities_fixed x avg_exploit_cost\nIndustry average: 300-600% ROI\nCritical: patch management is highest-priority activity"
+  },
+  {
+    "id": 100,
+    "category": "Compliance Costs",
+    "question": "A company allocates 5% of its $10M IT budget to security. The industry average is 7%. What is the security budget gap?",
+    "options": ["$500,000", "$200,000", "$700,000", "$50,000"],
+    "correct": 1,
+    "explanation": "Step 1: Current security budget = 5% of $10M = $500,000. Step 2: Industry average = 7% of $10M = $700,000. Step 3: Gap = $700,000 - $500,000 = $200,000. The company is underinvesting in security compared to industry peers.",
+    "cheatsheet": "Security Budget Benchmarking:\nSecurity spend typically 5-15% of IT budget\nVaries by industry: finance > retail > manufacturing\nPer-employee: $500-5,000/year\nAs percentage of revenue: 0.1-1%\nCompare to peers but also to risk exposure"
+  },
+  {
+    "id": 101,
+    "category": "Encryption Performance",
+    "question": "AES-128 processes data at 10 Gbps on a given hardware. What is the approximate throughput of AES-256 on the same hardware?",
+    "options": ["10 Gbps", "7 Gbps", "5 Gbps", "20 Gbps"],
+    "correct": 1,
+    "explanation": "AES-256 requires 14 rounds vs AES-128's 10 rounds, a 40% increase in operations. Throughput is approximately inversely proportional to round count: 10 Gbps x (10/14) = approximately 7 Gbps. AES-192 (12 rounds) would be approximately 8.3 Gbps.",
+    "cheatsheet": "AES Throughput Comparison:\nAES-128 (10 rounds): baseline speed\nAES-192 (12 rounds): ~83% of AES-128\nAES-256 (14 rounds): ~70% of AES-128\nKey size affects key schedule, not data throughput significantly\nHardware acceleration (AES-NI) dramatically improves all"
+  },
+  {
+    "id": 102,
+    "category": "Encryption Performance",
+    "question": "TLS 1.3 with AES-128-GCM adds approximately 20 bytes of overhead per record. For a 1 KB message, what percentage overhead does encryption add?",
+    "options": ["2%", "20%", "0.2%", "5%"],
+    "correct": 0,
+    "explanation": "Step 1: Message size = 1024 bytes (1 KB). Step 2: TLS overhead = 20 bytes (GCM tag 16 bytes + record header 5 bytes + implicit nonce). Step 3: Overhead percentage = 20/1024 x 100 = 1.95% approximately 2%. For larger messages, the percentage is even smaller.",
+    "cheatsheet": "TLS Encryption Overhead:\nTLS 1.3 record overhead: ~20-30 bytes\nAES-GCM: 16-byte authentication tag\nRecord header: 5 bytes\nOverhead % = overhead_bytes / message_size x 100\n1KB: ~2%, 10KB: ~0.2%, 1MB: ~0.002%\nLarger messages = lower relative overhead"
+  },
+  {
+    "id": 103,
+    "category": "Encryption Performance",
+    "question": "A certificate has a validity period of 365 days. If automated key rotation is used, how often should the key be rotated for optimal security?",
+    "options": ["Every 365 days", "Every 90 days", "Every 30 days", "Daily"],
+    "correct": 1,
+    "explanation": "Industry best practice recommends rotating TLS certificates every 90 days (or less), well before the 365-day expiry. Shorter rotation limits the window of exposure if a private key is compromised. Let's Encrypt provides 90-day certificates by default. Critical systems may rotate even more frequently.",
+    "cheatsheet": "Certificate Rotation Best Practice:\nStandard: 90 days (Let's Encrypt default)\nInternal certificates: 1 year\nLong-lived (code signing): 1-3 years\nCritical infrastructure: 30-60 days\nAutomate rotation to avoid outages\nMonitor expiry: set alerts at 30/14/7 days before expiry"
+  },
+  {
+    "id": 104,
+    "category": "Encryption Performance",
+    "question": "A VPN tunnel using AES-256-CBC has a throughput of 500 Mbps with a 1 Gbps network link. What is the efficiency?",
+    "options": ["50%", "75%", "25%", "100%"],
+    "correct": 0,
+    "explanation": "Step 1: Available bandwidth = 1 Gbps. Step 2: VPN throughput = 500 Mbps. Step 3: Efficiency = 500/1000 x 100 = 50%. CBC mode without hardware acceleration can reduce throughput significantly. Using AES-GCM with hardware acceleration (AES-NI) can improve efficiency to 80-95%.",
+    "cheatsheet": "VPN Throughput Efficiency:\nEfficiency = VPN_throughput / raw_bandwidth x 100%\nCBC without HW acceleration: 40-60%\nGCM with AES-NI: 80-95%\nFactors: cipher, mode, CPU, packet size\nHardware acceleration is critical for performance"
+  },
+  {
+    "id": 105,
+    "category": "Encryption Performance",
+    "question": "A server processes 10,000 TLS handshakes per second. Each RSA-2048 handshake takes 5 ms. What percentage of CPU time is used?",
+    "options": ["50%", "5%", "100%", "200%"],
+    "correct": 0,
+    "explanation": "Step 1: CPU time needed = 10,000 x 5 ms = 50,000 ms = 50 seconds per second. Step 2: CPU utilization = 50/1 x 100 = 5000%. This exceeds capacity (100%), so the server can only handle 200 handshakes/second (1000ms / 5ms). This is why session resumption and ECDSA are important for high-traffic servers.",
+    "cheatsheet": "TLS Handshake CPU Impact:\nRSA-2048 handshake: ~5-10ms\nECDSA/ECDHE handshake: ~1-2ms\nSession resumption: ~0.1ms\nFor high traffic: use ECDHE + session resumption\nLoad balancers can distribute handshake computation"
+  },
+  {
+    "id": 106,
+    "category": "Encryption Performance",
+    "question": "AES-GCM provides both encryption and authentication in a single pass. If separate encryption (AES-CBC) and authentication (HMAC-SHA256) were used, approximately how much more processing would be needed?",
+    "options": ["50% more", "100% more (double)", "10% more", "200% more (triple)"],
+    "correct": 1,
+    "explanation": "Separate encrypt-then-MAC requires two full passes through the data: one for AES-CBC encryption and one for HMAC-SHA256 authentication. This is approximately double the processing of AEAD modes like AES-GCM which do both in a single pass.",
+    "cheatsheet": "AEAD vs Separate Encrypt+MAC:\nAES-GCM (AEAD): single pass for both\nAES-CBC + HMAC: two separate passes (~2x CPU)\nAES-GCM benefits: faster, simpler API, no padding oracle risk\nTLS 1.3 mandates AEAD modes only\nAEAD = Authenticated Encryption with Associated Data"
+  },
+  {
+    "id": 107,
+    "category": "Encryption Performance",
+    "question": "A disk encryption solution using AES-XTS adds 1 CPU cycle per 16 bytes on hardware with AES-NI. For a 1 TB disk read, how many extra CPU cycles?",
+    "options": ["1 billion", "1 million", "67 billion", "67 million"],
+    "correct": 2,
+    "explanation": "Step 1: 1 TB = 10^12 bytes. Step 2: Extra cycles = 10^12 / 16 = 6.25 x 10^10 = 62.5 billion cycles. Step 3: At 3 GHz, this is approximately 62.5 billion / 3 x 10^9 = 20.8 seconds of CPU time. This shows hardware-accelerated encryption has minimal performance impact.",
+    "cheatsheet": "Disk Encryption Performance:\nWith AES-NI: ~1-2 cycles/16 bytes (negligible impact)\nWithout AES-NI: ~50-100 cycles/16 bytes (significant)\nSSD encryption overhead: typically <3%\nHDD encryption overhead: typically <1%\nFull disk encryption: bottleneck is usually the disk, not CPU"
+  },
+  {
+    "id": 108,
+    "category": "Encryption Performance",
+    "question": "SHA-256 hashes a large file at 500 MB/s on a given CPU. How long to hash a 10 GB file?",
+    "options": ["20 seconds", "2 seconds", "200 seconds", "10 seconds"],
+    "correct": 0,
+    "explanation": "Step 1: File size = 10 GB = 10,240 MB. Step 2: Hash speed = 500 MB/s. Step 3: Time = 10,240 / 500 = 20.48 seconds. SHA-256 is relatively fast; SHA-512 would be faster on 64-bit systems. Hashing speed matters for file integrity checking and malware scanning.",
+    "cheatsheet": "Hash Function Speed:\nSHA-256: ~400-600 MB/s (software)\nSHA-512: ~600-800 MB/s (64-bit)\nMD5: ~1000 MB/s (fast but broken)\nbcrypt (password): intentionally slow (~1K/sec)\nArgon2 (password): configurable, memory-hard"
+  },
+  {
+    "id": 109,
+    "category": "Encryption Performance",
+    "question": "A web server uses TLS termination (decrypts HTTPS, forwards HTTP). If it handles 1000 concurrent connections with 2 ms encryption overhead each, what is the total TLS overhead?",
+    "options": ["2 seconds", "2 ms", "200 ms", "20 ms"],
+    "correct": 0,
+    "explanation": "Step 1: Overhead per connection = 2 ms. Step 2: Concurrent connections = 1,000. Step 3: If all connections are simultaneously active, total overhead = 1,000 x 2 ms = 2,000 ms = 2 seconds. TLS offloading to dedicated hardware or using session tickets can reduce this overhead.",
+    "cheatsheet": "TLS Termination Overhead:\nPer-connection: encryption + MAC overhead\nTotal = concurrent_connections x per_connection_overhead\nMitigation: TLS offload (hardware/load balancer)\nSession tickets: avoid full handshake for returning clients\n0-RTT (TLS 1.3): eliminate round trip for repeat visits"
+  },
+  {
+    "id": 110,
+    "category": "Encryption Performance",
+    "question": "bcrypt with cost factor 10 takes approximately 100ms per hash. What is the expected time with cost factor 12?",
+    "options": ["120 ms", "400 ms", "144 ms", "200 ms"],
+    "correct": 1,
+    "explanation": "Step 1: bcrypt cost factor is exponential - each increment doubles the work. Step 2: Cost 10 to 12 = 2 increments = 2^2 = 4x more work. Step 3: Time = 100 ms x 4 = 400 ms. This makes brute force attacks 4x harder. Cost factor 12 is the current minimum recommendation.",
+    "cheatsheet": "bcrypt Cost Factor:\nTime doubles for each cost increment\nCost 10: ~100 ms\nCost 11: ~200 ms\nCost 12: ~400 ms\nCost 13: ~800 ms\nOWASP recommends minimum cost 10, target 12+\nHigher cost = slower login but better security"
+  },
+  {
+    "id": 111,
+    "category": "Encryption Performance",
+    "question": "A certificate authority issues certificates with 398-day maximum validity. If automated rotation renews at 60 days before expiry, how long is each certificate actively used?",
+    "options": ["398 days", "338 days", "60 days", "460 days"],
+    "correct": 1,
+    "explanation": "Step 1: Certificate validity = 398 days. Step 2: Renewal happens 60 days before expiry. Step 3: Active use = 398 - 60 = 338 days. After 338 days, a new certificate is deployed while the old one remains valid for 60 more days as overlap for compatibility.",
+    "cheatsheet": "Certificate Lifecycle:\nValidity: 398 days (CA/Browser Forum max)\nRotation: 60 days before expiry recommended\nActive use: validity - rotation lead time\nOverlap period: old and new both valid\nAutomation tools: certbot, ACME clients\nMonitor: alert at 30/14/7 days before expiry"
+  },
+  {
+    "id": 112,
+    "category": "Encryption Performance",
+    "question": "An RSA-2048 signature operation takes 10 ms, while ECDSA P-256 takes 1 ms. For a system signing 1000 messages per second, how much CPU time does each save compared to RSA?",
+    "options": ["9 seconds per second (900%)", "10 seconds per second (1000%)", "1 second per second (100%)", "5 seconds per second (500%)"],
+    "correct": 0,
+    "explanation": "Step 1: RSA CPU time = 1000 x 10 ms = 10,000 ms = 10 seconds/second (1000% CPU - impossible). Step 2: ECDSA CPU time = 1000 x 1 ms = 1,000 ms = 1 second/second (100% CPU). Step 3: CPU savings = 9 seconds per second. RSA would require 10 cores for this workload; ECDSA needs only 1.",
+    "cheatsheet": "Signature Algorithm Performance:\nRSA-2048 sign: ~5-10 ms\nECDSA P-256 sign: ~0.5-1 ms\nEd25519 sign: ~0.05-0.1 ms\nRSA verify: ~0.1-0.5 ms (fast!)\nECDSA verify: ~1-2 ms\nFor high-volume signing: prefer ECDSA or Ed25519"
+  },
+  {
+    "id": 113,
+    "category": "Encryption Performance",
+    "question": "If TLS 1.3 reduces the handshake from 2 round trips (TLS 1.2) to 1 round trip, and each round trip takes 50 ms over a long-distance link, how much latency is saved on connection setup?",
+    "options": ["100 ms", "50 ms", "150 ms", "25 ms"],
+    "correct": 1,
+    "explanation": "Step 1: TLS 1.2 handshake = 2 round trips = 2 x 50 ms = 100 ms. Step 2: TLS 1.3 handshake = 1 round trip = 50 ms. Step 3: Savings = 100 - 50 = 50 ms. With 0-RTT resumption, the saving can be the full 100 ms for returning clients.",
+    "cheatsheet": "TLS Handshake Latency:\nTLS 1.2 full: 2 RTT\nTLS 1.3 full: 1 RTT (saves 1 RTT)\nTLS 1.3 0-RTT: 0 RTT for resumption\nSaving = RTT time (varies by distance)\nLocal: <1 ms, Cross-country: 30-80 ms\nInternational: 100-300 ms"
+  },
+  {
+    "id": 114,
+    "category": "Encryption Performance",
+    "question": "Encrypting a 1 GB database column with AES-256 takes 30 seconds. If the same database grows to 10 GB, approximately how long will encryption take?",
+    "options": ["30 seconds", "300 seconds (5 minutes)", "3 seconds", "3000 seconds"],
+    "correct": 1,
+    "explanation": "Encryption time scales linearly with data size (assuming consistent hardware). 10 GB is 10x larger than 1 GB, so time = 30 x 10 = 300 seconds = 5 minutes. This is important for planning encryption of large databases - consider incremental encryption or column-level encryption for large datasets.",
+    "cheatsheet": "Bulk Encryption Time Estimation:\nTime scales linearly with data size\n1 GB at 30 sec -> 10 GB at 300 sec (5 min)\nThroughput = data_size / time\nAES with AES-NI: 5-15 GB/s\nWithout AES-NI: 0.5-2 GB/s\nPlan for: initial encryption + ongoing performance impact"
+  },
+  {
+    "id": 115,
+    "category": "Encryption Performance",
+    "question": "Key derivation using PBKDF2 with 100,000 iterations takes 500 ms. Increasing to 600,000 iterations would take approximately how long?",
+    "options": ["3,000 ms (3 seconds)", "600 ms", "5,000 ms (5 seconds)", "1,000 ms (1 second)"],
+    "correct": 0,
+    "explanation": "Step 1: PBKDF2 time scales linearly with iterations. Step 2: Ratio = 600,000 / 100,000 = 6x. Step 3: New time = 500 ms x 6 = 3,000 ms = 3 seconds. NIST recommends at least 10,000 iterations; OWASP recommends 600,000 for PBKDF2-HMAC-SHA256.",
+    "cheatsheet": "Key Derivation Performance:\nPBKDF2: linear with iterations\nbcrypt: exponential with cost factor\nArgon2: configurable CPU, memory, parallelism\nNIST min: PBKDF2 10,000 iterations\nOWASP: PBKDF2 600K, bcrypt cost 10, Argon2id m=19456,t=2,p=1\nHigher = more secure but slower login"
+  },
+  {
+    "id": 116,
+    "category": "Encryption Performance",
+    "question": "An encrypted backup of 500 GB at 2 GB/s encryption speed takes how long?",
+    "options": ["250 seconds", "4 minutes 10 seconds", "100 seconds", "500 seconds"],
+    "correct": 0,
+    "explanation": "Step 1: Data size = 500 GB. Step 2: Encryption speed = 2 GB/s. Step 3: Time = 500 / 2 = 250 seconds = 4 minutes 10 seconds. This should be factored into backup window planning. Encryption overhead on backup is usually minimal compared to I/O time.",
+    "cheatsheet": "Backup Encryption Time:\nTime = data_size / encryption_speed\n500 GB at 2 GB/s: 250 seconds (~4 min)\n500 GB at 0.5 GB/s: 1000 seconds (~17 min)\nI/O often bottleneck, not CPU\nHardware AES-NI dramatically improves backup encryption speed"
+  },
+  {
+    "id": 117,
+    "category": "Encryption Performance",
+    "question": "TLS 1.3 removed support for RSA key exchange. What is the primary performance benefit of this change?",
+    "options": ["No performance benefit", "Only one round trip needed for handshake, reducing latency", "Faster data transfer", "Smaller certificates"],
+    "correct": 1,
+    "explanation": "TLS 1.3 mandates ECDHE for key exchange, allowing the entire handshake to complete in 1 round trip (vs 2 for TLS 1.2 with RSA key exchange). This reduces connection setup latency by 50% and eliminates the RSA key exchange overhead.",
+    "cheatsheet": "TLS 1.3 vs 1.2 Performance:\n1 RTT vs 2 RTT for handshake (50% less latency)\n0-RTT available for resumption\nRemoved: RSA key exchange, static RSA, CBC, RC4\nMandatory: ECDHE, AEAD (AES-GCM, ChaCha20-Poly1305)\nForward secrecy by default"
+  },
+  {
+    "id": 118,
+    "category": "Encryption Performance",
+    "question": "A HSM (Hardware Security Module) performs 10,000 RSA-2048 signing operations per second. If an application needs 50,000 signatures per second, how many HSMs are needed?",
+    "options": ["5 HSMs", "1 HSM", "10 HSMs", "50 HSMs"],
+    "correct": 0,
+    "explanation": "Step 1: Required throughput = 50,000 ops/sec. Step 2: Per HSM capacity = 10,000 ops/sec. Step 3: HSMs needed = 50,000 / 10,000 = 5. Add redundancy (n+1), so plan for 6 HSMs. Load balancing distributes the signing operations across HSMs.",
+    "cheatsheet": "HSM Capacity Planning:\nHSMs needed = ceil(required_ops / per_HSM_ops)\nAdd 1 for redundancy (n+1 rule)\nConsider: peak vs average load\nLoad balancer distributes operations\nHSM also protects keys from extraction"
+  },
+  {
+    "id": 119,
+    "category": "Encryption Performance",
+    "question": "If ChaCha20-Poly1305 and AES-256-GCM provide equivalent security, why might ChaCha20 be preferred on mobile devices?",
+    "options": ["It is more secure", "It is faster on devices without AES hardware acceleration", "It uses shorter keys", "It is newer"],
+    "correct": 1,
+    "explanation": "ChaCha20-Poly1305 is a software-optimized cipher that performs well on devices without AES-NI hardware support (many mobile phones and IoT devices). On hardware with AES-NI, AES-GCM is faster. TLS 1.3 supports both and can negotiate based on hardware capabilities.",
+    "cheatsheet": "Cipher Selection by Hardware:\nWith AES-NI (most servers, newer CPUs): AES-GCM preferred\nWithout AES-NI (mobile, IoT, older CPUs): ChaCha20-Poly1305 preferred\nBoth provide 256-bit security level\nTLS negotiates automatically based on capabilities\nSecurity is equivalent; difference is performance"
+  },
+  {
+    "id": 120,
+    "category": "Encryption Performance",
+    "question": "Full disk encryption using AES-XTS on a modern CPU with AES-NI typically reduces disk I/O performance by approximately how much?",
+    "options": ["50%", "1-5%", "20-30%", "0%"],
+    "correct": 1,
+    "explanation": "With AES-NI hardware acceleration, full disk encryption overhead is typically 1-5% because the CPU can encrypt at speeds faster than the disk can read/write. The bottleneck is the storage device, not encryption. Without AES-NI, overhead can be 20-40%.",
+    "cheatsheet": "FDE Performance Impact:\nWith AES-NI: 1-5% overhead (negligible)\nWithout AES-NI: 20-40% overhead\nSSD + AES-NI: typically <3%\nHDD + AES-NI: typically <1%\nMost modern CPUs (since 2010) have AES-NI\nFDE should always be enabled - security benefit far exceeds tiny performance cost"
+  }
+]
