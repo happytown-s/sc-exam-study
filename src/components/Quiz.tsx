@@ -21,6 +21,19 @@ const categories = [...new Set(questions.map((q) => q.category))]
 const STORAGE_WRONG = 'sc-quiz-wrong'
 const STORAGE_STATS = 'sc-quiz-stats'
 
+const categoryNames: Record<string, string> = {
+  'Cryptography': '暗号技術',
+  'Access Control': 'アクセス制御',
+  'Network Security': 'ネットワークセキュリティ',
+  'Application Security': 'アプリケーションセキュリティ',
+  'Risk Management': 'リスクマネジメント',
+  'Governance & Compliance': 'ガバナンスとコンプライアンス',
+  'Incident Response': 'インシデント対応',
+  'Physical Security': '物理セキュリティ',
+  'Security Architecture': 'セキュリティアーキテクチャ',
+  'Emerging Threats': '新たな脅威',
+}
+
 function loadWrongIds(): Set<number> {
   try {
     const raw = localStorage.getItem(STORAGE_WRONG)
@@ -145,7 +158,7 @@ export default function Quiz() {
       <div>
         <div className="flex gap-4 mb-4 flex-wrap">
           <button onClick={startAll} className="px-4 py-2 rounded text-white font-bold" style={{ background: '#c0392b' }}>
-            All Questions ({questions.length})
+            全問 ({questions.length})
           </button>
           <button
             onClick={startWrong}
@@ -153,15 +166,15 @@ export default function Quiz() {
             style={{ background: wrongIds.size > 0 ? '#e74c3c' : '#555' }}
             disabled={wrongIds.size === 0}
           >
-            Wrong Answers ({wrongIds.size})
+            復習 ({wrongIds.size})
           </button>
         </div>
         <div className="mb-4 p-3 rounded" style={{ background: '#1a1a3e' }}>
           <p className="text-sm" style={{ color: '#ccc' }}>
-            Total answered: {stats.total} | Correct: {stats.correct} | Rate: {stats.total > 0 ? ((stats.correct / stats.total) * 100).toFixed(1) : 0}%
+            合計回答: {stats.total} | 正解: {stats.correct} | 正解率: {stats.total > 0 ? ((stats.correct / stats.total) * 100).toFixed(1) : 0}%
           </p>
         </div>
-        <h2 className="text-white font-bold mb-2">Categories</h2>
+        <h2 className="text-white font-bold mb-2">カテゴリ</h2>
         <div className="grid gap-2">
           {categories.map((cat) => {
             const catQuestions = questions.filter((q) => q.category === cat)
@@ -174,16 +187,16 @@ export default function Quiz() {
                 className="flex justify-between items-center p-3 rounded text-left transition-colors"
                 style={{ background: '#1a1a3e', color: '#ddd' }}
               >
-                <span>{cat}</span>
+                <span>{categoryNames[cat] || cat}</span>
                 <span className="text-sm" style={{ color: '#888' }}>
-                  {catQuestions.length}Q | {rate}%
+                  {catQuestions.length}問 | {rate}%
                 </span>
               </button>
             )
           })}
         </div>
         <button onClick={reset} className="mt-6 text-sm" style={{ color: '#666' }}>
-          Reset All Progress
+          全進捗リセット
         </button>
       </div>
     )
@@ -194,20 +207,20 @@ export default function Quiz() {
     const pct = total > 0 ? ((sessionCorrect / total) * 100).toFixed(1) : '0'
     return (
       <div className="text-center">
-        <h2 className="text-white text-2xl font-bold mb-4">Session Complete</h2>
+        <h2 className="text-white text-2xl font-bold mb-4">セッション完了</h2>
         <div className="p-6 rounded mb-4" style={{ background: '#1a1a3e' }}>
           <p className="text-3xl font-bold" style={{ color: '#e74c3c' }}>{pct}%</p>
           <p className="text-sm mt-2" style={{ color: '#aaa' }}>
-            {sessionCorrect} correct / {total} total
+            {sessionCorrect}問正解 / 合計{total}問
           </p>
         </div>
         {sessionWrong.length > 0 && (
           <p className="text-sm mb-4" style={{ color: '#e74c3c' }}>
-            {sessionWrong.length} incorrect - added to wrong answers for review
+            {sessionWrong.length}問不正解 - 復習用に追加されました
           </p>
         )}
         <button onClick={() => setMode('menu')} className="px-4 py-2 rounded text-white font-bold" style={{ background: '#c0392b' }}>
-          Back to Menu
+          メニューに戻る
         </button>
       </div>
     )
@@ -223,7 +236,7 @@ export default function Quiz() {
           {idx + 1} / {pool.length}
         </span>
         <span className="text-xs px-2 py-0.5 rounded" style={{ background: '#2a2a5e', color: '#aaa' }}>
-          {q.category}
+          {categoryNames[q.category] || q.category}
         </span>
       </div>
       <div className="w-full rounded-full h-1.5 mb-4" style={{ background: '#2a2a5e' }}>
@@ -270,11 +283,11 @@ export default function Quiz() {
       )}
       {selected !== null && (
         <button onClick={next} className="mt-4 px-4 py-2 rounded text-white font-bold" style={{ background: '#c0392b' }}>
-          {idx + 1 >= pool.length ? 'See Results' : 'Next'}
+          {idx + 1 >= pool.length ? '結果を見る' : '次へ'}
         </button>
       )}
       <button onClick={() => setMode('menu')} className="mt-2 ml-2 px-4 py-2 rounded text-sm" style={{ color: '#666' }}>
-        Quit
+        終了
       </button>
     </div>
   )

@@ -5,10 +5,10 @@ import SubjectBTraining from './components/SubjectBTraining'
 import Progress from './components/Progress'
 
 const tabs = [
-  { id: 'quiz', label: 'Subject A Quiz' },
-  { id: 'calc', label: 'Calc Training' },
-  { id: 'subjectb', label: 'Subject B' },
-  { id: 'progress', label: 'Progress' },
+  { id: 'quiz', label: '科目A問題集' },
+  { id: 'calc', label: '計算トレーニング' },
+  { id: 'subjectb', label: '科目B' },
+  { id: 'progress', label: '進捗' },
 ] as const
 
 type TabId = typeof tabs[number]['id']
