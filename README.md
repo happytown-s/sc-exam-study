@@ -1,73 +1,78 @@
-# React + TypeScript + Vite
+# SC Exam Study
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 情報処理安全確保支援士（SC）試験対策のWebアプリケーション
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- 科目A（午前）対策クイズ -- カテゴリ別・ランダム出題に対応
+- 計算トレーニング -- 暗号・リスク・ネットワーク等の数値計算問題
+- 科目B（午後）演習 -- シナリオベースの実践的問題
+- 学習進捗管理 -- localStorageによる解答履歴の記録
+- ダークテーマUI -- 目に優しいネイビー系カラースキーム
 
-## React Compiler
+## Contents
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Quiz（科目A）
+- 250問
+- カテゴリ一覧（問題数）:
+  - Cryptography: 35
+  - Network Security: 30
+  - Emerging Threats: 30
+  - Application Security: 25
+  - Security Architecture: 25
+  - Access Control: 25
+  - Risk Management: 25
+  - Incident Response: 20
+  - Governance & Compliance: 20
+  - Physical Security: 15
+- クイズモード: カテゴリ選択、ランダム出題、解説表示
 
-## Expanding the ESLint configuration
+### Calc Training（計算トレーニング）
+- 120問
+- カテゴリ一覧（問題数）:
+  - Cryptographic Calculations: 20
+  - Encryption Performance: 20
+  - Risk Quantification: 20
+  - Incident Metrics: 15
+  - Network Security: 15
+  - Access Control Math: 15
+  - Compliance Costs: 15
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Subject B（科目B演習）
+- 100問
+- カテゴリ一覧（問題数）:
+  - Comprehensive Scenarios: 25
+  - Security Design: 20
+  - Incident Response Scenarios: 20
+  - Security Policy: 15
+  - Risk Assessment: 10
+  - Compliance Audit: 10
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Progress（進捗管理）
+- 解答履歴と正答率の確認
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- React 19 + TypeScript
+- Vite（ビルドツール）
+- Tailwind CSS（スタイリング）
+- localStorage（進捗データ永続化）
+
+## Usage
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+ブラウザで `http://localhost:5173` にアクセス。
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Deployment
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run build
 ```
+
+`dist/` ディレクトリを任意の静的ホスティングサービスにデプロイ。
+
+## License: MIT
