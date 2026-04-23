@@ -1,1402 +1,1402 @@
 [
   {
     "id": 1,
-    "category": "Security Design",
-    "scenario": "A financial services company needs to design a secure architecture for a new online banking platform. The platform must handle customer transactions, account management, and regulatory compliance.",
-    "question": "Which architecture approach best implements defense in depth for this online banking platform?",
+    "category": "セキュリティ設計",
+    "scenario": "金融機関が新しいオンラインバンキングプラットフォーム向けのセキュアなアーキテクチャを設計する必要がある。このプラットフォームは顧客取引、口座管理、および規制コンプライアンスを処理しなければならない。",
+    "question": "このオンラインバンキングプラットフォームの防御-in-depth（多層防御）を最適に実装するアーキテクチャアプローチはどれか？",
     "options": [
-      "Single firewall at the perimeter",
-      "Layered security: WAF + API gateway + encryption + input validation + monitoring",
-      "Only use HTTPS",
-      "Client-side encryption only"
+      "境界に単一のファイアウォールを設置",
+      "多層セキュリティ：WAF + APIゲートウェイ + 暗号化 + 入力検証 + 監視",
+      "HTTPSのみを使用",
+      "クライアント側の暗号化のみ"
     ],
     "correct": 1,
-    "explanation": "Defense in depth requires multiple independent security layers. For online banking: WAF at edge (blocks web attacks), API gateway (authentication/rate limiting), TLS encryption (transit security), server-side input validation (injection prevention), and SIEM monitoring (threat detection). No single control is sufficient."
+    "explanation": "防御-in-depthには複数の独立したセキュリティ層が必要。オンラインバンキングの場合：エッジのWAF（Web攻撃をブロック）、APIゲートウェイ（認証/レート制限）、TLS暗号化（通信セキュリティ）、サーバー側入力検証（インジェクション防止）、SIEM監視（脅威検出）。単一の制御だけでは不十分。"
   },
   {
     "id": 2,
-    "category": "Security Design",
-    "scenario": "An e-commerce company processes 10,000 orders daily. They store customer PII, payment card data, and order history. PCI DSS compliance is required.",
-    "question": "What is the most effective approach to protect payment card data in this environment?",
+    "category": "セキュリティ設計",
+    "scenario": "あるECサイト企業は1日10,000件の注文を処理している。顧客のPII、決済カードデータ、注文履歴を保存しており、PCI DSSコンプライアンスが必須である。",
+    "question": "この環境で決済カードデータを保護する最も効果的なアプローチはどれか？",
     "options": [
-      "Store card data encrypted locally",
-      "Tokenization - replace card data with tokens and let a payment processor handle real card data",
-      "Use DES encryption",
-      "Store card data in a public cloud"
+      "カードデータをローカルで暗号化して保存",
+      "トークン化 - カードデータをトークンに置き換え、決済プロセッサーに実際のカードデータを処理させる",
+      "DES暗号化を使用",
+      "カードデータをパブリッククラウドに保存"
     ],
     "correct": 1,
-    "explanation": "Tokenization replaces sensitive card data with non-reversible tokens. The real card data is stored by a PCI DSS-compliant payment processor. This drastically reduces PCI DSS scope - the e-commerce company never stores actual card data, simplifying compliance and reducing breach impact."
+    "explanation": "トークン化は機密カードデータを不可逆的なトークンに置き換える。実際のカードデータはPCI DSS準拠の決済プロセッサーが保管する。これによりPCI DSSの対象範囲が大幅に縮小され、ECサイト企業は実際のカードデータを保存しないため、コンプライアンスが簡素化され、侵害の影響も軽減される。"
   },
   {
     "id": 3,
-    "category": "Security Design",
-    "scenario": "A hospital needs to design a network for patient records (EHR), medical devices, guest Wi-Fi, and staff workstations. HIPAA compliance is required.",
-    "question": "How should the network be segmented to best protect patient data?",
+    "category": "セキュリティ設計",
+    "scenario": "病院が患者記録（EHR）、医療機器、ゲストWi-Fi、スタッフワークステーション向けのネットワークを設計する必要がある。HIPAAコンプライアンスが必須である。",
+    "question": "患者データを最適に保護するため、ネットワークをどのようにセグメント化すべきか？",
     "options": [
-      "Flat network with VLANs for performance only",
-      "Separate VLANs: clinical (EHR), medical devices (isolated), guest (DMZ), staff, with firewall between segments",
-      "Single VLAN with ACLs",
-      "No segmentation - encryption is sufficient"
+      "パフォーマンス向上のみを目的としたVLANを持つフラットネットワーク",
+      "別々のVLAN：臨床（EHR）、医療機器（分離）、ゲスト（DMZ）、スタッフ、セグメント間にファイアウォールを設置",
+      "ACLのみの単一VLAN",
+      "セグメント化なし - 暗号化で十分"
     ],
     "correct": 1,
-    "explanation": "Network segmentation isolates different traffic types: clinical VLAN for EHR (most protected), medical device VLAN (isolated with strict ACLs - FDA compliance), guest Wi-Fi in DMZ (no access to internal), staff VLAN with controlled access to clinical systems. Firewalls between segments prevent lateral movement."
+    "explanation": "ネットワークセグメント化は異なるトラフィックタイプを分離する：臨床VLAN（EHR、最も保護）、医療機器VLAN（厳格なACLで分離、FDAコンプライアンス）、ゲストWi-Fi（DMZ、内部へのアクセスなし）、スタッフVLAN（臨床システムへの制御付きアクセス）。セグメント間のファイアウォールが横移動を防止する。"
   },
   {
     "id": 4,
-    "category": "Security Design",
-    "scenario": "A startup is building a microservices architecture on Kubernetes. Services communicate via APIs and handle user authentication, payments, and notifications.",
-    "question": "What is the most appropriate authentication and authorization approach for inter-service communication?",
+    "category": "セキュリティ設計",
+    "scenario": "スタートアップがKubernetes上でマイクロサービスアーキテクチャを構築している。サービスはAPI経由で通信し、ユーザー認証、決済、通知を処理する。",
+    "question": "サービス間通信に対する最も適切な認証・認可アプローチはどれか？",
     "options": [
-      "No authentication between internal services",
-      "Service mesh with mTLS (mutual TLS) and service account-based authorization",
-      "Shared API keys",
-      "Basic authentication"
+      "内部サービス間で認証を行わない",
+      "mTLS（相互TLS）とサービスアカウントベースの認可を持つサービスメッシュ",
+      "共有APIキー",
+      "ベーシック認証"
     ],
     "correct": 1,
-    "explanation": "A service mesh (like Istio) provides mTLS for all inter-service communication, ensuring both the client and server authenticate each other. Combined with service accounts and RBAC, this prevents unauthorized lateral movement even if one service is compromised."
+    "explanation": "サービスメッシュ（Istioなど）は全サービス間通信にmTLSを提供し、クライアントとサーバーの双方が互いに認証する。サービスアカウントとRBACと組み合わせることで、1つのサービスが侵害されても不正な横移動を防止できる。"
   },
   {
     "id": 5,
-    "category": "Security Design",
-    "scenario": "A government agency must deploy a new system for citizens to submit tax returns online. The system handles sensitive financial data for millions of users.",
-    "question": "Which security architecture principle is most critical for this system's design?",
+    "category": "セキュリティ設計",
+    "scenario": "政府機関が市民がオンラインで税金申告を提出できる新しいシステムを導入する必要がある。このシステムは数百万人のユーザーの機密財務データを処理する。",
+    "question": "このシステムの設計において最も重要なセキュリティアーキテクチャ原則はどれか？",
     "options": [
-      "Maximum performance at all costs",
-      "Zero Trust: verify every request regardless of source, least privilege access, microsegmentation",
-      "Trust internal traffic completely",
-      "Use only open-source software"
+      "パフォーマンスを最優先",
+      "ゼロトラスト：ソースに関わらず全リクエストを検証、最小権限アクセス、マイクロセグメンテーション",
+      "内部トラフィックを完全に信頼",
+      "オープンソースソフトウェアのみを使用"
     ],
     "correct": 1,
-    "explanation": "Zero Trust is essential for high-value government systems handling sensitive citizen data. Every request is authenticated and authorized regardless of network location. Combined with least privilege, microsegmentation, and continuous monitoring, this minimizes the blast radius of any breach."
+    "explanation": "ゼロトラストは機密な市民データを扱う高価値な政府システムに不可欠。すべてのリクエストがネットワーク位置に関係なく認証・認可される。最小権限、マイクロセグメンテーション、継続的監視と組み合わせることで、侵害の影響範囲を最小化する。"
   },
   {
     "id": 6,
-    "category": "Security Design",
-    "scenario": "A multinational corporation needs to share specific data with partners while maintaining confidentiality and audit trail.",
-    "question": "Which security design pattern best enables secure data sharing?",
+    "category": "セキュリティ設計",
+    "scenario": "多国籍企業がパートナーと特定のデータを共有する必要があるが、機密性と監査証跡を維持しなければならない。",
+    "question": "安全なデータ共有を最適に可能にするセキュリティ設計パターンはどれか？",
     "options": [
-      "Email the data",
-      "Data Loss Prevention (DLP) with encrypted channels, access controls, and comprehensive logging",
-      "FTP transfer",
-      "Shared network drive"
+      "データをメールで送信",
+      "暗号化チャネル、アクセス制御、包括的なログを備えたデータ損失防止（DLP）",
+      "FTP転送",
+      "共有ネットワークドライブ"
     ],
     "correct": 1,
-    "explanation": "DLP policies prevent unauthorized data exfiltration, encrypted channels (TLS, SFTP) protect transit, role-based access controls ensure only authorized partners access the data, and comprehensive logging provides an audit trail. Data classification should determine sharing restrictions."
+    "explanation": "DLPポリシーは不正なデータ持ち出しを防止し、暗号化チャネル（TLS、SFTP）は転送中のデータを保護し、ロールベースのアクセス制御は認可されたパートナーのみがデータにアクセスすることを保証し、包括的なログは監査証跡を提供する。データ分類により共有制限を決定すべき。"
   },
   {
     "id": 7,
-    "category": "Security Design",
-    "scenario": "A company is migrating its on-premises applications to AWS cloud. Security must be maintained during and after migration.",
-    "question": "Which approach ensures security is maintained during cloud migration?",
+    "category": "セキュリティ設計",
+    "scenario": "企業がオンプレミスアプリケーションをAWSクラウドに移行する。移行中および移行後もセキュリティを維持する必要がある。",
+    "question": "クラウド移行中のセキュリティを確保するアプローチはどれか？",
     "options": [
-      "Move everything and secure later",
-      "Security-by-design: assess each workload, apply cloud-native controls (IAM, KMS, Security Groups, WAF) before and during migration",
-      "Use only AWS default settings",
-      "Disable network security for easier migration"
+      "すべてを移動して後でセキュアにする",
+      "セキュリティ・バイ・デザイン：各ワークロードを評価し、移行前・移行中にクラウドネイティブ制御（IAM、KMS、セキュリティグループ、WAF）を適用",
+      "AWSデフォルト設定のみを使用",
+      "移行を容易にするためにネットワークセキュリティを無効化"
     ],
     "correct": 1,
-    "explanation": "Security-by-design ensures each workload is assessed for security requirements before migration. Cloud-native controls (AWS IAM for access, KMS for encryption, Security Groups for networking, WAF for web apps) should be configured before production deployment. Shared responsibility model must be understood."
+    "explanation": "セキュリティ・バイ・デザインにより、移行前に各ワークロードのセキュリティ要件が評価される。クラウドネイティブ制御（AWS IAM、KMS、セキュリティグループ、WAF）を本番デプロイ前に設定すべき。共有責任モデルを理解する必要がある。"
   },
   {
     "id": 8,
-    "category": "Security Design",
-    "scenario": "A manufacturing company uses IoT sensors on the factory floor that communicate with a central system. Recent attacks have targeted industrial IoT devices.",
-    "question": "What is the best security architecture for industrial IoT?",
+    "category": "セキュリティ設計",
+    "scenario": "製造企業が工場のIoTセンサーを使用しており、中央システムと通信している。最近、産業用IoT機器を標的とした攻撃が発生している。",
+    "question": "産業用IoTの最適なセキュリティアーキテクチャはどれか？",
     "options": [
-      "Connect all IoT devices directly to the internet",
-      "Separate OT (operational technology) network from IT, implement network segmentation, device authentication, and monitoring",
-      "Use default credentials for easy setup",
-      "No encryption to maintain performance"
+      "全IoT機器をインターネットに直接接続",
+      "OT（運用技術）ネットワークをITから分離、ネットワークセグメント化、機器認証、監視を実装",
+      "設定を簡単にするためデフォルト認証情報を使用",
+      "パフォーマンス維持のため暗号化なし"
     ],
     "correct": 1,
-    "explanation": "IT/OT network separation is critical - compromise of an IoT sensor should not allow access to enterprise IT systems. Each device should authenticate, communication should be encrypted, and an OT-specific security monitoring system should detect anomalous device behavior."
+    "explanation": "IT/OTネットワーク分離が重要 - IoTセンサーが侵害されてもエンタープライズITシステムへのアクセスを許可すべきではない。各機器が認証し、通信を暗号化し、OT特有のセキュリティ監視システムで異常な機器動作を検出すべき。"
   },
   {
     "id": 9,
-    "category": "Security Design",
-    "scenario": "A SaaS company needs to implement a multi-tenant architecture where each customer's data is isolated from other customers.",
-    "question": "Which design pattern best ensures tenant data isolation?",
+    "category": "セキュリティ設計",
+    "scenario": "SaaS企業がマルチテナントアーキテクチャを実装する必要がある。各顧客のデータが他の顧客から分離されていなければならない。",
+    "question": "テナントデータ分離を最適に確保する設計パターンはどれか？",
     "options": [
-      "Shared database with shared tables",
-      "Database-per-tenant or schema-per-tenant with encryption at rest using tenant-specific keys",
-      "Single table with a tenant_id column only",
-      "All data stored in files"
+      "テーブルを共有する共有データベース",
+      "テナント固有のキーによる保存時暗号化を備えたテナント別データベースまたはスキーマ別設計",
+      "tenant_id列のみの単一テーブル",
+      "すべてのデータをファイルに保存"
     ],
     "correct": 1,
-    "explanation": "Database-per-tenant provides the strongest isolation. Schema-per-tenant with row-level security is also effective. Tenant-specific encryption keys ensure that even if data is accessed by the wrong tenant, it cannot be decrypted. Combined with access controls at every layer."
+    "explanation": "テナント別データベースが最強の分離を提供。スキーマ別設計と行レベルセキュリティも有効。テナント固有の暗号化キーにより、誤ったテナントがデータにアクセスしても復号できない。各層でのアクセス制御と組み合わせる。"
   },
   {
     "id": 10,
-    "category": "Security Design",
-    "scenario": "A development team needs to build a CI/CD pipeline that builds, tests, and deploys applications. The pipeline must be secure against supply chain attacks.",
-    "question": "What security measures should be implemented in the CI/CD pipeline?",
+    "category": "セキュリティ設計",
+    "scenario": "開発チームがアプリケーションをビルド、テスト、デプロイするCI/CDパイプラインを構築する必要がある。パイプラインはサプライチェーン攻撃に対して安全でなければならない。",
+    "question": "CI/CDパイプラインに実装すべきセキュリティ対策はどれか？",
     "options": [
-      "Trust all dependencies implicitly",
-      "SAST/DAST scanning, dependency vulnerability scanning (SCA), signed artifacts, and pipeline-as-code with review",
-      "Manual security review before deployment",
-      "Deploy directly from developer machines"
+      "すべての依存関係を暗黙的に信頼",
+      "SAST/DASTスキャン、依存関係脆弱性スキャン（SCA）、署名付きアーティファクト、レビュー付きパイプライン・アズ・コード",
+      "デプロイ前の手動セキュリティレビュー",
+      "開発者マシンから直接デプロイ"
     ],
     "correct": 1,
-    "explanation": "A secure CI/CD pipeline incorporates: SAST (static code analysis), DAST (dynamic testing), SCA (dependency vulnerability scanning like OWASP Dependency-Check), artifact signing (ensuring build integrity), and pipeline-as-code with mandatory review. This shifts security left and automates security gates."
+    "explanation": "安全なCI/CDパイプラインには以下が組み込まれる：SAST（静的コード解析）、DAST（動的テスト）、SCA（OWASP Dependency-Check等の依存関係脆弱性スキャン）、アーティファクト署名（ビルド完全性の保証）、必須レビュー付きパイプライン・アズ・コード。これによりセキュリティを左シフトし、セキュリティゲートを自動化する。"
   },
   {
     "id": 11,
-    "category": "Security Design",
-    "scenario": "A research institution needs to collaborate with external researchers while protecting proprietary research data. Some data is classified.",
-    "question": "How should the collaboration environment be designed?",
+    "category": "セキュリティ設計",
+    "scenario": "研究機関が外部研究者と協力する必要があるが、独自の研究データを保護しなければならない。一部のデータは機密指定されている。",
+    "question": "協力環境をどのように設計すべきか？",
     "options": [
-      "Give all researchers access to all systems",
-      "Zero Trust network access with identity-based access, data classification, and tiered access based on clearance level",
-      "VPN access for everyone",
-      "Share data via email only"
+      "全研究者に全システムへのアクセスを許可",
+      "アイデンティティベースのアクセス、データ分類、セキュリティクリアランスレベルに基づく階層化アクセスを備えたゼロトラストネットワークアクセス",
+      "全員にVPNアクセス",
+      "データはメールでのみ共有"
     ],
     "correct": 1,
-    "explanation": "ZTNA ensures every access request is authenticated and authorized based on identity and context. Data classification determines access levels: public data has open access, proprietary data requires NDA and specific authorization, and classified data requires security clearance verification."
+    "explanation": "ZTNAは全アクセスリクエストがアイデンティティとコンテキストに基づいて認証・認可されることを保証する。データ分類がアクセスレベルを決定：公開データはオープンアクセス、独自データはNDAと特定の認可を要求、機密データはセキュリティクリアランスの検証が必要。"
   },
   {
     "id": 12,
-    "category": "Security Design",
-    "scenario": "A company stores backup data in three locations: primary data center, secondary site, and cloud storage. RPO is 1 hour.",
-    "question": "What backup strategy meets the RPO requirement most cost-effectively?",
+    "category": "セキュリティ設計",
+    "scenario": "企業が3拠点にバックアップデータを保存している：プライマリデータセンター、セカンダリサイト、クラウドストレージ。RPOは1時間。",
+    "question": "RPO要件を最もコスト効率よく満たすバックアップ戦略はどれか？",
     "options": [
-      "Daily backup to all three locations",
-      "Real-time replication to primary, hourly incremental snapshots to secondary and cloud",
-      "Weekly full backup to cloud",
-      "Monthly backup to tape"
+      "3拠点すべてに毎日バックアップ",
+      "プライマリへのリアルタイムレプリケーション、セカンダリとクラウドへの1時間ごとの増分スナップショット",
+      "クラウドへの週次フルバックアップ",
+      "テープへの月次バックアップ"
     ],
     "correct": 1,
-    "explanation": "Real-time replication to the primary site provides near-zero RPO for current data. Hourly incremental snapshots to the secondary and cloud provide 1-hour RPO for disaster recovery. This meets the 1-hour RPO at all three locations cost-effectively without requiring real-time replication to all three."
+    "explanation": "プライマリサイトへのリアルタイムレプリケーションは現在のデータのほぼゼロRPOを提供。セカンダリとクラウドへの1時間ごとの増分スナップショットは災害復旧に1時間RPOを提供。3拠点すべてにリアルタイムレプリケーションを要求せずに、1時間RPOをコスト効率よく満たす。"
   },
   {
     "id": 13,
-    "category": "Security Design",
-    "scenario": "A mobile banking app must securely store authentication credentials on the user's device and communicate with the backend API.",
-    "question": "What is the best approach for secure mobile credential storage?",
+    "category": "セキュリティ設計",
+    "scenario": "モバイルバンキングアプリがユーザーデバイス上の認証情報を安全に保存し、バックエンドAPIと通信する必要がある。",
+    "question": "安全なモバイル認証情報保存の最適なアプローチはどれか？",
     "options": [
-      "Store credentials in SharedPreferences/UserDefaults",
-      "Use platform secure storage (iOS Keychain / Android Keystore) with biometric authentication",
-      "Store in SQLite database",
-      "Save in plain text files"
+      "SharedPreferences/UserDefaultsに認証情報を保存",
+      "生体認証を備えたプラットフォームセキュアストレージ（iOS Keychain / Android Keystore）を使用",
+      "SQLiteデータベースに保存",
+      "プレーンテキストファイルに保存"
     ],
     "correct": 1,
-    "explanation": "iOS Keychain and Android Keystore are hardware-backed secure storage that encrypts credentials using device-specific keys. Combined with biometric authentication (fingerprint/face), this provides strong protection even if the device is lost or stolen. Never store credentials in regular app storage."
+    "explanation": "iOS KeychainとAndroid Keystoreはハードウェアバックのセキュアストレージで、デバイス固有のキーを使用して認証情報を暗号化する。生体認証（指紋/顔認証）と組み合わせることで、デバイスの紛失・盗難時にも強力な保護を提供。通常のアプリストレージに認証情報を保存してはならない。"
   },
   {
     "id": 14,
-    "category": "Security Design",
-    "scenario": "An organization deploys a web application accessible from the internet. They need to protect against automated attacks and credential stuffing.",
-    "question": "Which combination of controls best protects against automated attacks?",
+    "category": "セキュリティ設計",
+    "scenario": "企業のWebアプリケーションが1日100万件のリクエストを受信する。自動化された攻撃とクレデンシャルスタッフィングから保護する必要がある。",
+    "question": "自動化攻撃に対する最適な保護コントロールの組み合わせはどれか？",
     "options": [
-      "CAPTCHA only",
-      "WAF + rate limiting + account lockout + CAPTCHA + behavioral analytics",
-      "Rate limiting only",
-      "Strong passwords only"
+      "CAPTCHAのみ",
+      "WAF + レート制限 + アカウントロックアウト + CAPTCHA + 行動分析",
+      "レート制限のみ",
+      "強力なパスワードのみ"
     ],
     "correct": 1,
-    "explanation": "No single control stops automated attacks. WAF blocks known attack patterns, rate limiting slows brute force, account lockout prevents credential stuffing, CAPTCHA (or invisible reCAPTCHA) differentiates humans from bots, and behavioral analytics detects anomalous access patterns."
+    "explanation": "単一の制御では自動化攻撃を止められない。WAFは既知の攻撃パターンをブロック、レート制限はブルートフォースを遅延、アカウントロックアウトはクレデンシャルスタッフィングを防止、CAPTCHAは人間とボットを区別、行動分析は異常なアクセスパターンを検出。"
   },
   {
     "id": 15,
-    "category": "Security Design",
-    "scenario": "A company must design an email system that prevents phishing, protects confidential attachments, and meets regulatory requirements for email retention.",
-    "question": "What is the most comprehensive email security architecture?",
+    "category": "セキュリティ設計",
+    "scenario": "企業がフィッシングを防止し、機密添付ファイルを保護し、メール保持の規制要件を満たすメールシステムを設計する必要がある。",
+    "question": "最も包括的なメールセキュリティアーキテクチャはどれか？",
     "options": [
-      "Standard email with spam filter",
-      "Email gateway (anti-spam, anti-phishing, DLP), encryption (S/MIME or PGP), and archiving solution",
-      "Only use encrypted email",
-      "Block all external email"
+      "スパムフィルター付きの標準メール",
+      "メールゲートウェイ（アンチスパム、アンチフィッシング、DLP）、暗号化（S/MIMEまたはPGP）、アーカイブソリューション",
+      "暗号化メールのみを使用",
+      "全外部メールをブロック"
     ],
     "correct": 1,
-    "explanation": "A comprehensive approach includes: email gateway with anti-spam/anti-phishing (DMARC, SPF, DKIM), DLP for preventing data leakage in attachments, encryption for confidentiality (S/MIME for enterprise, PGP for flexibility), and email archiving for regulatory compliance and eDiscovery."
+    "explanation": "包括的なアプローチには以下が含まれる：アンチスパム/アンチフィッシング付きメールゲートウェイ（DMARC、SPF、DKIM）、添付ファイルのデータ漏洩防止DLP、機密性のための暗号化（企業向けS/MIME、柔軟性のあるPGP）、規制コンプライアンスとeディスカバリのためのメールアーカイブ。"
   },
   {
     "id": 16,
-    "category": "Security Design",
-    "scenario": "A company's web application receives 1 million requests per day. They need to implement logging for security monitoring without impacting performance.",
-    "question": "What is the best approach for security logging at this scale?",
+    "category": "セキュリティ設計",
+    "scenario": "企業のWebアプリケーションが1日100万件のリクエストを受信する。パフォーマンスに影響を与えずにセキュリティ監視用のログを実装する必要がある。",
+    "question": "この規模でのセキュリティロギングの最適なアプローチはどれか？",
     "options": [
-      "Log everything to a single file",
-      "Asynchronous structured logging to a message queue, forwarded to a centralized SIEM with log rotation and tiered storage",
-      "Log to the database",
-      "Disable logging for performance"
+      "すべてを単一ファイルにログ出力",
+      "メッセージキューへの非同期構造化ログ、ログローテーションと階層ストレージを備えた中央SIEMへの転送",
+      "データベースにログ出力",
+      "パフォーマンスのためにログを無効化"
     ],
     "correct": 1,
-    "explanation": "Asynchronous logging (via message queues like Kafka) prevents logging from blocking application threads. Structured logs (JSON) enable efficient SIEM parsing. Log rotation prevents disk exhaustion. Tiered storage (hot/warm/cold) balances cost with query performance. Only security-relevant events should be logged."
+    "explanation": "非同期ロギング（Kafka等のメッセージキュー経由）はログがアプリケーションスレッドをブロックするのを防ぐ。構造化ログ（JSON）は効率的なSIEM解析を可能にする。ログローテーションはディスク枯渇を防ぐ。階層ストレージ（ホット/ウォーム/コールド）はコストとクエリパフォーマンスのバランスをとる。"
   },
   {
     "id": 17,
-    "category": "Security Design",
-    "scenario": "An API serves mobile apps, web applications, and third-party integrations. Different consumers need different access levels and rate limits.",
-    "question": "How should API access control be designed?",
+    "category": "セキュリティ設計",
+    "scenario": "APIがモバイルアプリ、Webアプリケーション、サードパーティ連携に対応する。異なる利用者は異なるアクセスレベルとレート制限を必要とする。",
+    "question": "APIアクセス制御をどのように設計すべきか？",
     "options": [
-      "Single API key for all consumers",
-      "OAuth 2.0 with different scopes per client type, API gateway with per-client rate limiting and access policies",
-      "No rate limiting",
-      "IP-based access only"
+      "全利用者に単一のAPIキー",
+      "クライアントタイプ別の異なるスコープを持つOAuth 2.0、クライアント別レート制限とアクセスポリシーを持つAPIゲートウェイ",
+      "レート制限なし",
+      "IPベースのアクセスのみ"
     ],
     "correct": 1,
-    "explanation": "OAuth 2.0 provides fine-grained authorization through scopes (e.g., 'read:profile', 'write:orders'). An API gateway enforces per-client rate limits, access policies, and authentication. This ensures mobile apps, web apps, and third parties each have appropriate access levels."
+    "explanation": "OAuth 2.0はスコープを通じてきめ細かな認可を提供する（例：'read:profile'、'write:orders'）。APIゲートウェイはクライアント別のレート制限、アクセスポリシー、認証を強制する。これによりモバイルアプリ、Webアプリ、サードパーティがそれぞれ適切なアクセスレベルを持つ。"
   },
   {
     "id": 18,
-    "category": "Security Design",
-    "scenario": "A company must deploy a new authentication system supporting employees, contractors, and customers with different security requirements.",
-    "question": "What is the best identity architecture for this scenario?",
+    "category": "セキュリティ設計",
+    "scenario": "企業が従業員、請負業者、顧客向けに異なるセキュリティ要件を備えた新しい認証システムを導入する必要がある。",
+    "question": "このシナリオで最適なアイデンティティアーキテクチャはどれか？",
     "options": [
-      "Separate databases for each user type",
-      "Centralized IAM with risk-based adaptive authentication: MFA for employees, SSO for contractors, progressive authentication for customers",
-      "Same password policy for everyone",
-      "No authentication for contractors"
+      "各ユーザータイプに別々のデータベース",
+      "リスクベースの適応型認証を備えた中央IAM：従業員にMFA、請負業者にSSO、顧客に段階的認証",
+      "全員に同じパスワードポリシー",
+      "請負業者に認証なし"
     ],
     "correct": 1,
-    "explanation": "A centralized IAM supports all user types with appropriate controls: employees get MFA + SSO + managed devices, contractors get SSO + MFA with limited access, customers get progressive authentication (password + optional MFA for sensitive actions). Risk-based authentication adds extra steps when risk is detected."
+    "explanation": "中央IAMは全ユーザータイプを適切な制御でサポート：従業員はMFA + SSO + 管理対象デバイス、請負業者はSSO + MFA（制限付きアクセス）、顧客は段階的認証（パスワード + 機密操作時のオプションMFA）。リスクベース認証はリスク検出時に追加ステップを加える。"
   },
   {
     "id": 19,
-    "category": "Security Design",
-    "scenario": "A critical infrastructure operator needs to protect SCADA systems from cyber attacks while maintaining operational availability.",
-    "question": "What is the recommended security architecture for SCADA systems?",
+    "category": "セキュリティ設計",
+    "scenario": "重要インフラ事業者がサイバー攻撃からSCADAシステムを保護しつつ、運用の可用性を維持する必要がある。",
+    "question": "SCADAシステムに推奨されるセキュリティアーキテクチャはどれか？",
     "options": [
-      "Connect SCADA to the internet for monitoring",
-      "Air-gapped or isolated OT network with unidirectional gateways for monitoring, strict change control, and specialized OT monitoring",
-      "Use the same security as IT systems",
-      "Disable all remote monitoring"
+      "監視のためにSCADAをインターネットに接続",
+      "監視用の単方向ゲートウェイ、厳格な変更管理、OT特有の監視を備えたエアギャップまたは分離されたOTネットワーク",
+      "ITシステムと同じセキュリティを使用",
+      "全リモート監視を無効化"
     ],
     "correct": 1,
-    "explanation": "SCADA/ICS systems require specialized security: physical or logical air-gapping from IT, unidirectional security gateways (data diodes) for monitoring without bidirectional access, strict change management (no unauthorized modifications), and OT-specific intrusion detection that understands industrial protocols."
+    "explanation": "SCADA/ICSシステムは特化したセキュリティを必要とする：ITからの物理的または論理的エアギャップ、監視用の単方向セキュリティゲートウェイ（データダイオード）、厳格な変更管理（不正な変更なし）、産業プロトコルを理解するOT特有の侵入検出。"
   },
   {
     "id": 20,
-    "category": "Security Design",
-    "scenario": "A development team uses both proprietary and open-source components. They need to ensure their software supply chain is secure.",
-    "question": "What is the most effective software supply chain security approach?",
+    "category": "セキュリティ設計",
+    "scenario": "開発チームが独自コンポーネントとオープンソースコンポーネントの両方を使用している。ソフトウェアサプライチェーンの安全性を確保する必要がある。",
+    "question": "最も効果的なソフトウェアサプライチェーンセキュリティアプローチはどれか？",
     "options": [
-      "Trust all packages from popular registries",
-      "Software Bill of Materials (SBOM), signed artifacts, dependency scanning, and verified build pipelines",
-      "Manual review of all dependencies",
-      "Avoid all open-source software"
+      "人気レジストリの全パッケージを信頼",
+      "ソフトウェア部品構成表（SBOM）、署名付きアーティファクト、依存関係スキャン、検証済みビルドパイプライン",
+      "全依存関係の手動レビュー",
+      "全オープンソースソフトウェアを回避"
     ],
     "correct": 1,
-    "explanation": "SBOM tracks all components and versions. Signed artifacts (with SLSA framework) ensure build integrity. Automated dependency scanning (Dependabot, Snyk) detects known vulnerabilities in real-time. Verified build pipelines (hermetic builds) prevent tampering during the build process."
+    "explanation": "SBOMは全コンポーネントとバージョンを追跡。署名付きアーティファクト（SLSAフレームワーク）はビルド完全性を保証。自動依存関係スキャン（Dependabot、Snyk）は既知の脆弱性をリアルタイムで検出。検証済みビルドパイプライン（隔離ビルド）はビルド中の改ざんを防止。"
   },
   {
     "id": 21,
-    "category": "Incident Response Scenarios",
-    "scenario": "At 3 AM, the SOC receives alerts that multiple servers in the DMZ are exhibiting unusual outbound network traffic to unknown IP addresses. Several servers are also showing high CPU utilization.",
-    "question": "What is the first containment action that should be taken?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "午前3時、SOCがDMZ内の複数サーバーが未知のIPアドレスへの異常な送信ネットワークトラフィックを示しているというアラートを受信。一部のサーバーが高CPU使用率も示している。",
+    "question": "最初に取るべき封じ込め措置はどれか？",
     "options": [
-      "Shut down all servers immediately",
-      "Isolate affected DMZ servers from outbound internet access while preserving inbound services and collecting forensic evidence",
-      "Ignore the alert until morning",
-      "Delete all files on affected servers"
+      "全サーバーを即座にシャットダウン",
+      "影響を受けたDMZサーバーのインターネットへの送信アクセスを遮断しつつ、受信サービスを維持し、フォレンジック証拠を収集",
+      "朝までアラートを無視",
+      "影響を受けたサーバーの全ファイルを削除"
     ],
     "correct": 1,
-    "explanation": "Immediate containment should block outbound communication (likely data exfiltration or C2) while minimizing business impact. Blocking outbound from affected servers stops data loss and C2 communication. Do not shut down systems (destroys volatile evidence) or delete files (destroys forensic evidence)."
+    "explanation": "即時封じ込めは送信通信（データ持ち出しまたはC2の可能性）をブロックすべきであり、ビジネス影響を最小限にする。影響を受けたサーバーからの送信をブロックするとデータ損失とC2通信が停止。システムをシャットダウンしない（揮発性証拠を破壊）、ファイルを削除しない（フォレンジック証拠を破壊）。"
   },
   {
     "id": 22,
-    "category": "Incident Response Scenarios",
-    "scenario": "An employee reports that their computer is displaying a ransomware message demanding Bitcoin payment. Files appear encrypted. The employee was processing financial reports when this occurred.",
-    "question": "What is the correct immediate response sequence?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "従業員がコンピュータにビットコイン支払いを要求するランサムウェアメッセージが表示されていると報告。ファイルが暗号化されている様子。従業員はこの発生時に財務レポートを処理していた。",
+    "question": "正しい即時対応の順序はどれか？",
     "options": [
-      "Pay the ransom immediately",
-      "Isolate the system from the network, identify the ransomware variant, preserve evidence, check for lateral movement",
-      "Reinstall the operating system",
-      "Turn off the computer"
+      "直ちに身代金を支払う",
+      "システムをネットワークから分離、ランサムウェアの種類を特定、証拠を保全、横移動を確認",
+      "オペレーティングシステムを再インストール",
+      "コンピュータの電源を切る"
     ],
     "correct": 1,
-    "explanation": "First, isolate the infected system to prevent lateral movement. Then identify the ransomware variant (check ransom note, encrypted file extensions - NoMoreRansom.org can help). Preserve evidence (memory dump, disk image). Check network logs for lateral movement. Do NOT pay immediately and do NOT power off (volatile evidence lost)."
+    "explanation": "まず、感染したシステムを分離して横移動を防止。次にランサムウェアの種類を特定（身代金ノート、暗号化ファイル拡張子を確認 - NoMoreRansom.orgが役立つ）。証拠を保全（メモリダンプ、ディスクイメージ）。ネットワークログで横移動を確認。直ちに支払わず、電源を切らない（揮発性証拠が失われる）。"
   },
   {
     "id": 23,
-    "category": "Incident Response Scenarios",
-    "scenario": "The security team discovers that an attacker has been inside the network for 6 months, moving laterally through systems and accessing sensitive data. This appears to be an APT attack.",
-    "question": "What is the recommended response approach for an APT that has been present for months?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "セキュリティチームが6ヶ月間ネットワーク内に侵入し、システム間を横移動し、機密データにアクセスしていた攻撃者を発見。APT攻撃と思われる。",
+    "question": "数ヶ月間潜伏していたAPTに対する推奨対応アプローチはどれか？",
     "options": [
-      "Immediately shut down the entire network",
-      "Careful investigation to map attacker presence, then coordinated removal of persistence mechanisms, followed by credential resets and monitoring",
-      "Delete everything and restore from backup",
-      "Ignore it since data is already accessed"
+      "直ちにネットワーク全体をシャットダウン",
+      "攻撃者の存在をマッピングする慎重な調査、その後永続化メカニズムの調整された削除、クレデンシャルリセットと監視",
+      "すべてを削除してバックアップから復元",
+      "データは既にアクセスされているため無視"
     ],
     "correct": 1,
-    "explanation": "APTs establish multiple persistence mechanisms. Immediate shutdown may trigger destructive actions and eliminates forensic evidence. Instead: map all compromised systems and persistence mechanisms (backdoors, scheduled tasks), then coordinate simultaneous removal. Reset all credentials, revoke certificates, and implement enhanced monitoring for re-entry attempts."
+    "explanation": "APTは複数の永続化メカニズムを確立する。即時シャットダウンは破壊的アクションを引き起こし、フォレンジック証拠を消滅させる可能性がある。代わりに：全侵害システムと永続化メカニズム（バックドア、スケジュールタスク）をマッピングし、同時削除を調整。全クレデンシャルをリセット、証明書を失効、再侵入の監視を強化。"
   },
   {
     "id": 24,
-    "category": "Incident Response Scenarios",
-    "scenario": "A web application reports that users are receiving emails about password resets they did not request. Investigation reveals that an attacker is using the password reset function to enumerate valid email addresses.",
-    "question": "How should this be mitigated?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "Webアプリケーションでユーザーがリクエストしていないパスワードリセットに関するメールを受信していると報告。調査により、攻撃者がパスワードリセット機能を使用して有効なメールアドレスを列挙していることが判明。",
+    "question": "これをどのように緩和すべきか？",
     "options": [
-      "Disable password reset functionality",
-      "Implement rate limiting on password reset requests, add CAPTCHA, use generic messages ('if this email exists, a reset link was sent'), and add delay",
-      "Send password in the reset email",
-      "Block all users from resetting passwords"
+      "パスワードリセット機能を無効化",
+      "パスワードリセットリクエストにレート制限、CAPTCHA追加、汎用メッセージ（「このメールが存在する場合、リセットリンクを送信しました」）、遅延追加",
+      "リセットメールにパスワードを送信",
+      "全ユーザーのパスワードリセットをブロック"
     ],
     "correct": 1,
-    "explanation": "Rate limiting prevents mass enumeration. CAPTCHA distinguishes humans from automated tools. Generic messages prevent the attacker from distinguishing valid from invalid addresses. Adding artificial delay slows enumeration. This is a OWASP-recommended approach to account enumeration prevention."
+    "explanation": "レート制限は大量列挙を防止。CAPTCHAは自動化ツールと人間を区別。汎用メッセージは攻撃者が有効と無効を区別できないようにする。人工的な遅延を追加して列挙を遅延。これはOWASP推奨のアカウント列挙防止アプローチ。"
   },
   {
     "id": 25,
-    "category": "Incident Response Scenarios",
-    "scenario": "Database monitoring shows that someone is exfiltrating the entire customer database through a legitimate application API that is vulnerable to SQL injection. The queries are being made from an internal IP address.",
-    "question": "What is the most appropriate immediate response?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "データベース監視で、SQLインジェクションに脆弱な正当なアプリケーションAPIを通じて誰かが顧客データベース全体を持ち出していることが判明。クエリは内部IPアドレスから行われている。",
+    "question": "最も適切な即時対応はどれか？",
     "options": [
-      "Block the internal IP address only",
-      "Block the specific API endpoint, preserve database logs, identify the source of the SQL injection, and patch the vulnerability",
-      "Shut down the entire database",
-      "Wait for the exfiltration to complete for evidence"
+      "内部IPアドレスのみをブロック",
+      "特定のAPIエンドポイントをブロック、データベースログを保全、SQLインジェクションの発生源を特定、脆弱性を修正",
+      "データベース全体をシャットダウン",
+      "証拠のために持ち出しが完了するまで待機"
     ],
     "correct": 1,
-    "explanation": "Blocking the API endpoint stops the exfiltration immediately while preserving other services. Database logs capture the full extent of accessed data. Identifying the internal source determines if this is a compromised insider account or an external attacker who gained internal access. The SQL injection vulnerability must be patched immediately."
+    "explanation": "APIエンドポイントのブロックは他のサービスを維持しつつ即座に持ち出しを停止。データベースログはアクセスされたデータの全範囲を記録。内部発生源の特定は侵害された内部アカウントか、内部アクセスを取得した外部攻撃者かを判断。SQLインジェクション脆弱性を即座に修正。"
   },
   {
     "id": 26,
-    "category": "Incident Response Scenarios",
-    "scenario": "An employee in the finance department clicked a link in a phishing email and entered their credentials on a fake login page. The security team is notified 2 hours later.",
-    "question": "What immediate actions should be taken?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "財務部門の従業員がフィッシングメールのリンクをクリックし、偽ログインページに認証情報を入力した。セキュリティチームに2時間後に通知された。",
+    "question": "どの即時措置を取るべきか？",
     "options": [
-      "Fire the employee",
-      "Force password reset for the affected account, check for MFA bypass, review account activity for the 2-hour window, check for OAuth tokens created",
-      "Only reset the password",
-      "Delete the employee's account"
+      "従業員を解雇",
+      "影響を受けたアカウントの強制パスワードリセット、MFAバイパスの確認、2時間のアカウント活動レビュー、OAuthトークンの確認",
+      "パスワードのリセットのみ",
+      "従業員のアカウントを削除"
     ],
     "correct": 1,
-    "explanation": "Force password reset invalidates the stolen credentials. If MFA was bypassed (e.g., adversary-in-the-middle attack), additional measures are needed. Reviewing account activity identifies what the attacker accessed during the 2-hour window. Checking OAuth tokens is critical - attackers often create persistent access through authorized applications."
+    "explanation": "強制パスワードリセットは盗まれた認証情報を無効化。MFAがバイパスされた場合（例：中間者攻撃）、追加の対策が必要。アカウント活動のレビューで2時間の間に攻撃者が何にアクセスしたかを特定。OAuthトークンの確認が重要 - 攻撃者は認可済みアプリを通じた永続的アクセスを作成することが多い。"
   },
   {
     "id": 27,
-    "category": "Incident Response Scenarios",
-    "scenario": "A company discovers that their source code repository was accessed by an unauthorized party using a compromised developer's SSH key. The repository contains proprietary algorithms and API keys.",
-    "question": "What is the most critical immediate action?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "企業がソースコードリポジトリが侵害された開発者のSSHキーを使用して不正アクセスされたことを発見。リポジトリには独自のアルゴリズムとAPIキーが含まれている。",
+    "question": "最も重要な即時措置はどれか？",
     "options": [
-      "Send a press release",
-      "Revoke all exposed credentials (API keys, SSH keys, secrets), rotate all secrets, and check if code was modified",
-      "Change the repository password",
-      "Fire the compromised developer"
+      "プレスリリースを発表",
+      "露出した認証情報（APIキー、SSHキー、シークレット）をすべて失効、全シークレットをローテーション、コードが改変されていないか確認",
+      "リポジトリのパスワードを変更",
+      "侵害された開発者を解雇"
     ],
     "correct": 1,
-    "explanation": "Credential rotation is the highest priority - exposed API keys and secrets can be used immediately. All credentials in the repository must be assumed compromised and rotated. Checking for unauthorized code modifications (git diff, commit history audit) is critical to detect backdoors or malicious changes. Consider the codebase compromised."
+    "explanation": "認証情報のローテーションが最優先 - 露出したAPIキーとシークレットは即座に使用可能。リポジトリ内の全認証情報を侵害されたと仮定しローテーション。不正なコード改変の確認（git diff、コミット履歴監査）がバックドアや悪意のある変更を検出するために重要。コードベースを侵害されたと見なす。"
   },
   {
     "id": 28,
-    "category": "Incident Response Scenarios",
-    "scenario": "The network intrusion detection system alerts on unusual DNS queries from multiple workstations. The queries follow a pattern of encoded subdomains (e.g., a1b2c3d4.attacker.com).",
-    "question": "What type of attack is this most likely, and what should be done?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "ネットワーク侵入検知システムが複数のワークステーションからの異常なDNSクエリにアラート。クエリはエンコードされたサブドメインのパターンに従っている（例：a1b2c3d4.attacker.com）。",
+    "question": "これはどのタイプの攻撃の可能性が最も高く、何をすべきか？",
     "options": [
-      "Normal DNS activity",
-      "DNS tunneling for data exfiltration - block the suspicious domain, identify infected hosts, and investigate the malware",
-      "DNS amplification attack",
-      "Misconfigured DNS server"
+      "正常なDNSアクティビティ",
+      "データ持ち出しのためのDNSトンネリング - 疑わしいドメインをブロック、感染ホストを特定、マルウェアを調査",
+      "DNS増幅攻撃",
+      "誤設定されたDNSサーバー"
     ],
     "correct": 1,
-    "explanation": "Pattern-based encoded subdomain queries are classic DNS tunneling indicators. Data is encoded in subdomain labels and sent to the attacker's DNS server. Response: block the suspicious domain at the DNS resolver, identify all affected hosts from the IDS alerts, isolate them, and analyze the malware responsible."
+    "explanation": "パターンベースのエンコードされたサブドメインクエリは典型的なDNSトンネリングの兆候。データはサブドメインラベルにエンコードされ、攻撃者のDNSサーバーに送信される。対応：DNSリゾルバで疑わしいドメインをブロック、IDSアラートから全影響ホストを特定、隔離、原因マルウェアを分析。"
   },
   {
     "id": 29,
-    "category": "Incident Response Scenarios",
-    "scenario": "A company receives a blackmail email claiming their database has been stolen and threatening to publish the data. Attached is a sample of 100 customer records that appear legitimate.",
-    "question": "How should the organization respond?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "企業がデータベースが盗まれ、データの公開を脅迫する恐喝メールを受信。添付は100件の顧客レコードのサンプルで、正当に見える。",
+    "question": "組織はどのように対応すべきか？",
     "options": [
-      "Pay the ransom immediately",
-      "Verify the breach by checking for unauthorized database access logs, assess the scope, notify affected customers per regulation, and engage law enforcement",
-      "Ignore the email as a scam",
-      "Delete the sample data"
+      "直ちに身代金を支払う",
+      "不正なデータベースアクセスログで侵害を確認、影響範囲を評価、規制に従い影響を受けた顧客に通知、法執行機関に通報",
+      "詐欺としてメールを無視",
+      "サンプルデータを削除"
     ],
     "correct": 1,
-    "explanation": "First verify the breach through forensic analysis of database logs and access records. If confirmed, assess the full scope of data exposed. Notify affected individuals per regulatory requirements (GDPR: 72 hours, APPI: promptly). Engage law enforcement. Do NOT pay - there is no guarantee the data will be deleted and it funds future attacks."
+    "explanation": "まずデータベースログとアクセス記録のフォレンジック分析で侵害を確認。確認された場合、露出したデータの全範囲を評価。規制要件に従い影響を受けた個人に通知（GDPR：72時間、APPI：速やかに）。法執行機関に通報。支払わない - データが削除される保証はなく、将来の攻撃に資金を提供するだけ。"
   },
   {
     "id": 30,
-    "category": "Incident Response Scenarios",
-    "scenario": "A company's cloud infrastructure shows that someone created unauthorized VMs in multiple regions, launched cryptocurrency mining instances, and modified firewall rules to allow SSH access from the internet.",
-    "question": "What is the priority order for remediation?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "企業のクラウドインフラで、誰かが複数リージョンで不正なVMを作成し、暗号資産マイニングインスタンスを起動し、ファイアウォールルールを変更してインターネットからのSSHアクセスを許可したことが判明。",
+    "question": "修復の優先順位はどれか？",
     "options": [
-      "Delete the VMs first, then revoke access",
-      "Revoke compromised credentials first, then delete unauthorized VMs, then restore firewall rules, then audit all cloud resources",
-      "Restore firewall rules first",
-      "Contact the cloud provider"
+      "まずVMを削除、次にアクセスを失効",
+      "まず侵害された認証情報を失効、次に不正VMを削除、次にファイアウォールルールを復元、最後に全クラウドリソースを監査",
+      "まずファイアウォールルールを復元",
+      "クラウドプロバイダーに連絡"
     ],
     "correct": 1,
-    "explanation": "Revoking credentials first prevents the attacker from re-establishing access after cleanup. Then delete unauthorized resources (minimize ongoing cost and damage). Restore firewall rules to block internet SSH. Finally, audit all cloud resources for other unauthorized changes. The attacker likely created additional persistence mechanisms."
+    "explanation": "まず認証情報を失効すると、クリーンアップ後に攻撃者が再アクセスするのを防止。次に不正リソースを削除（継続的なコストと損害を最小化）。ファイアウォールルールを復元してインターネットSSHをブロック。最後に他の不正変更がないか全クラウドリソースを監査。攻撃者は追加の永続化メカニズムを作成している可能性が高い。"
   },
   {
     "id": 31,
-    "category": "Incident Response Scenarios",
-    "scenario": "A hospital's EHR system goes down. The IT team suspects a ransomware attack but cannot confirm. Doctors cannot access patient records, and emergency cases are being diverted.",
-    "question": "What is the most critical action?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "病院のEHRシステムがダウン。ITチームはランサムウェア攻撃を疑うが確認できない。医師は患者記録にアクセスできず、救急ケースが別の病院に振り替えられている。",
+    "question": "最も重要な措置はどれか？",
     "options": [
-      "Wait for confirmation before acting",
-      "Activate BCP: switch to paper-based processes, isolate affected systems, engage incident response team, and coordinate with hospital leadership",
-      "Focus only on technical recovery",
-      "Send patients to other hospitals"
+      "確認するまで行動を待つ",
+      "BCPを起動：紙ベースのプロセスに切り替え、影響を受けたシステムを分離、インシデント対応チームを参画、病院経営陣と連携",
+      "技術的復旧のみに集中",
+      "患者を別の病院に送る"
     ],
     "correct": 1,
-    "explanation": "Patient safety is the top priority. Activating BCP ensures continuity through paper-based processes (manual workarounds). Isolating systems prevents spread. The incident response team handles technical aspects. Hospital leadership coordinates communication with staff, patients, and regulators. Life safety always takes precedence over investigation."
+    "explanation": "患者の安全が最優先。BCPの起動により紙ベースのプロセス（手動代替手段）で継続を確保。システムの分離で拡散を防止。インシデント対応チームが技術的側面を処理。病院経営陣がスタッフ、患者、規制当局とのコミュニケーションを調整。命の安全は常に調査より優先。"
   },
   {
     "id": 32,
-    "category": "Incident Response Scenarios",
-    "scenario": "An attacker exploited a zero-day vulnerability in a web server and gained root access. The vulnerability has no available patch.",
-    "question": "What is the best containment strategy when no patch is available?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "攻撃者がWebサーバーのゼロデイ脆弱性を悪用し、root権限を取得。この脆弱性には利用可能なパッチがない。",
+    "question": "パッチが利用できない場合の最適な封じ込め戦略はどれか？",
     "options": [
-      "Leave the system running and hope for the best",
-      "Apply virtual patching via WAF/IPS rules to block exploitation, deploy compensating controls, isolate the system, and monitor for vendor patch",
-      "Turn off the server permanently",
-      "Accept the risk"
+      "システムを実行したまま運に任せる",
+      "WAF/IPSルールによる仮想パッチングで悪用をブロック、補償制御を展開、システムを分離、ベンダーパッチを監視",
+      "サーバーを永久に停止",
+      "リスクを受け入れる"
     ],
     "correct": 1,
-    "explanation": "Virtual patching through WAF/IPS rules blocks the specific attack pattern without requiring a system update. Compensating controls (stricter network isolation, enhanced monitoring) reduce risk while waiting for a patch. Isolating the vulnerable system limits potential damage. Coordinate with the vendor for an emergency patch."
+    "explanation": "WAF/IPSルールによる仮想パッチングはシステムアップデートなしに特定の攻撃パターンをブロック。補償制御（厳格なネットワーク分離、強化された監視）はパッチ待機中のリスクを低減。脆弱なシステムの分離で潜在的な損害を制限。ベンダーに緊急パッチを調整。"
   },
   {
     "id": 33,
-    "category": "Incident Response Scenarios",
-    "scenario": "An employee reports that a USB drive found in the parking lot was plugged into their computer. The antivirus did not detect anything but the employee's PC is now behaving erratically.",
-    "question": "What is the correct response?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "従業員が駐車場で見つけたUSBドライブをコンピュータに接続したと報告。アンチウイルスは何も検出しなかったが、従業員のPCの動作が不安定になっている。",
+    "question": "正しい対応はどれか？",
     "options": [
-      "Ignore it since antivirus found nothing",
-      "Isolate the PC from the network, perform forensic analysis, check for fileless malware, and warn all employees about USB drives",
-      "Run another antivirus scan",
-      "Format the USB drive and reuse it"
+      "アンチウイルスが何も見つけなかったので無視",
+      "PCをネットワークから分離、フォレンジック分析を実行、ファイルレスマルウェアを確認、全従業員にUSBドライブについて警告",
+      "別のアンチウイルススキャンを実行",
+      "USBドライブをフォーマットして再利用"
     ],
     "correct": 1,
-    "explanation": "Antivirus may miss sophisticated or fileless malware. Isolating the PC prevents potential lateral movement. Forensic analysis (memory dump, process analysis) can detect fileless malware that lives only in RAM. This is a classic social engineering technique - warn all employees never to plug in found USB drives."
+    "explanation": "アンチウイルスは高度なファイルレスマルウェアを見逃す可能性がある。PCの分離は潜在的な横移動を防止。フォレンジック分析（メモリダンプ、プロセス分析）はRAMにのみ存在するファイルレスマルウェアを検出できる。これは古典的なソーシャルエンジニアリング技術 - 見つけたUSBドライブを接続しないよう全従業員に警告。"
   },
   {
     "id": 34,
-    "category": "Incident Response Scenarios",
-    "scenario": "During a security audit, it is discovered that a developer deployed code containing hardcoded database credentials to a production server 3 months ago. The credentials have admin-level access.",
-    "question": "What is the most critical immediate response?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "セキュリティ監査で、開発者がハードコードされたデータベース認証情報を含むコードを3ヶ月前に本番サーバーにデプロイしたことが判明。認証情報は管理者レベルのアクセスを持っている。",
+    "question": "最も重要な即時対応はどれか？",
     "options": [
-      "Fire the developer",
-      "Rotate the exposed credentials immediately, audit access logs for the 3-month period, remove credentials from source code, implement secret scanning",
-      "Document it for the next audit",
-      "Update the code only"
+      "開発者を解雇",
+      "露出した認証情報を即座にローテーション、3ヶ月間のアクセスログを監査、ソースコードから認証情報を削除、シークレットスキャンを実装",
+      "次の監査のために記録",
+      "コードのみを更新"
     ],
     "correct": 1,
-    "explanation": "Credential rotation is immediate priority - the credentials have been exposed in source code for 3 months and may be compromised. Audit access logs to determine if unauthorized access occurred. Remove credentials from code and use a secrets manager. Implement automated secret scanning (git-secrets, detect-secrets) to prevent recurrence."
+    "explanation": "認証情報のローテーションが即時優先 - 認証情報が3ヶ月間ソースコードに露出しており、侵害されている可能性がある。アクセスログを監査して不正アクセスがあったかを確認。コードから認証情報を削除し、シークレットマネージャーを使用。自動シークレットスキャン（git-secrets、detect-secrets）を実装して再発を防止。"
   },
   {
     "id": 35,
-    "category": "Incident Response Scenarios",
-    "scenario": "The company's public-facing website starts redirecting users to a malicious site. The SOC detects this at 2 PM. The website generates $50,000 per hour in revenue.",
-    "question": "What should the incident response team prioritize?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "企業の公開Webサイトがユーザーを悪意のあるサイトにリダイレクトし始める。SOCが午後2時にこれを検出。Webサイトは1時間あたり5万ドルの収益を生成している。",
+    "question": "インシデント対応チームは何を優先すべきか？",
     "options": [
-      "Revenue - ignore the redirect temporarily",
-      "Take down or restore the compromised website immediately while investigating the attack vector, then restore from a known-good backup",
-      "Wait for the attacker to fix it",
-      "Post on social media about the issue"
+      "収益 - リダイレクトを一時的に無視",
+      "侵害されたWebサイトを即座に削除または復元しつつ攻撃ベクトルを調査、その後既知の正常なバックアップから復元",
+      "攻撃者が修正するのを待つ",
+      "ソーシャルメディアで問題を投稿"
     ],
     "correct": 1,
-    "explanation": "While revenue is important, a compromised website redirects users to malicious sites (malware, phishing) causing harm to customers and severe reputation damage. Immediate restoration from a known-good backup stops customer exposure. Then investigate how the compromise occurred (compromised CMS, DNS hijack, server breach) to prevent recurrence."
+    "explanation": "収益は重要だが、侵害されたWebサイトはユーザーを悪意のあるサイト（マルウェア、フィッシング）にリダイレクトし、顧客に危害を与え深刻な評判損害を引き起こす。既知の正常なバックアップからの即時復元が顧客の露出を停止。その後侵害の発生方法（CMSの侵害、DNSハイジャック、サーバー侵入）を調査して再発を防止。"
   },
   {
     "id": 36,
-    "category": "Incident Response Scenarios",
-    "scenario": "A DDoS attack is flooding the company's e-commerce website. Legitimate customers cannot make purchases. The attack uses a mix of UDP floods, SYN floods, and HTTP floods.",
-    "question": "What is the best response to this multi-vector DDoS attack?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "DDoS攻撃が企業のECサイトを洪水攻撃している。正当な顧客が購入できない。攻撃はUDPフラッド、SYNフラッド、HTTPフラッドの組み合わせを使用。",
+    "question": "この多ベクトルDDoS攻撃に対する最適な対応はどれか？",
     "options": [
-      "Block all UDP traffic",
-      "Engage DDoS mitigation service, implement rate limiting, use anycast distribution, and filter traffic at the edge",
-      "Upgrade the web server hardware",
-      "Shut down the website"
+      "全UDPトラフィックをブロック",
+      "DDoS緩和サービスに参画、レート制限を実装、エニーキャスト分散を使用、エッジでトラフィックをフィルタ",
+      "Webサーバーハードウェアをアップグレード",
+      "Webサイトをシャットダウン"
     ],
     "correct": 1,
-    "explanation": "Multi-vector DDoS attacks require a multi-layered response: DDoS mitigation service (Cloudflare, Akamai) for volumetric attacks, rate limiting for HTTP floods, anycast distribution to spread traffic across global points, and edge filtering. Each vector requires different mitigation. Shutting down should be a last resort."
+    "explanation": "多ベクトルDDoS攻撃には多層的な対応が必要：DDoS緩和サービス（Cloudflare、Akamai）でボリューム攻撃に対処、HTTPフラッドにレート制限、トラフィックをグローバルポイントに分散するエニーキャスト、エッジフィルタリング。各ベクトルには異なる緩和が必要。シャットダウンは最後の手段。"
   },
   {
     "id": 37,
-    "category": "Incident Response Scenarios",
-    "scenario": "An insider threat investigation reveals that a departing employee downloaded 50 GB of confidential documents to a personal USB drive over 2 weeks before their last day.",
-    "question": "What immediate and follow-up actions should be taken?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "インサイダー脅威調査で、退職予定の従業員が最終出社日の2週間前から50GBの機密文書を個人USBドライブにダウンロードしていたことが判明。",
+    "question": "どの即時措置とフォローアップ措置を取るべきか？",
     "options": [
-      "Nothing since the employee has already left",
-      "Immediately revoke all access, preserve evidence (logs, USB drive if recoverable), assess data sensitivity, legal review, and update DLP policies",
-      "Confront the employee",
-      "Delete the evidence to avoid publicity"
+      "従業員は既に退職しているため何もしない",
+      "全アクセスを即座に失効、証拠を保全（ログ、回収可能なUSBドライブ）、データの機密性を評価、法的レビュー、DLPポリシーを更新",
+      "従業員を問いただす",
+      "公表を避けるために証拠を削除"
     ],
     "correct": 1,
-    "explanation": "Revoke all remaining access immediately. Preserve digital evidence (access logs, download records, DLP alerts). If the USB drive can be recovered, preserve it for forensics. Legal review determines if criminal charges or civil action is appropriate. Update DLP policies and offboarding procedures to prevent recurrence."
+    "explanation": "全残存アクセスを即座に失効。デジタル証拠を保全（アクセスログ、ダウンロード記録、DLPアラート）。USBドライブが回収可能な場合、フォレンジック用に保全。法的レビューで刑事告訴または民事訴訟が適切かを判断。DLPポリシーとオフボーディング手順を更新して再発を防止。"
   },
   {
     "id": 38,
-    "category": "Incident Response Scenarios",
-    "scenario": "A company receives notification from a third-party vendor that the vendor's system was breached and the company's data (employee records) was among the stolen data.",
-    "question": "What is the company's responsibility in this supply chain breach scenario?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "企業がサードパーティベンダーから、ベンダーのシステムが侵害され、企業のデータ（従業員記録）が盗まれたデータに含まれていたとの通知を受信。",
+    "question": "このサプライチェーン侵害シナリオで企業の責任は何か？",
     "options": [
-      "The vendor is solely responsible",
-      "Verify the breach scope, assess impact on own employees, notify affected individuals per regulation, review the vendor relationship, and check contractual obligations",
-      "Wait for the vendor to notify employees",
-      "Terminate the vendor relationship immediately"
+      "ベンダーのみが責任",
+      "侵害範囲を確認、自社従業員への影響を評価、規制に従い影響を受けた個人に通知、ベンダー関係を見直し、契約上の義務を確認",
+      "ベンダーが従業員に通知するのを待つ",
+      "直ちにベンダー関係を終了"
     ],
     "correct": 1,
-    "explanation": "Even though the breach occurred at the vendor, the data owner may have regulatory notification obligations. Verify what data was exposed, assess impact, and notify affected employees. Review the vendor contract for security requirements and breach notification clauses. Consider whether the vendor relationship should continue."
+    "explanation": "侵害はベンダーで発生しても、データ所有者には規制上の通知義務がある可能性がある。何のデータが露出したかを確認、影響を評価、影響を受けた従業員に通知。ベンダー契約のセキュリティ要件と侵害通知条項を見直す。ベンダー関係を継続すべきかを検討。"
   },
   {
     "id": 39,
-    "category": "Incident Response Scenarios",
-    "scenario": "A penetration test reveals that the company's wireless network can be accessed from the parking lot using a cracked WPA2 password. The pen tester also found that once connected, they could access the internal network.",
-    "question": "What remediation steps should be taken?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "ペネトレーションテストで、企業の無線ネットワークが駐車場からクラックされたWPA2パスワードを使用してアクセス可能であることが判明。ペンテスターは接続後、内部ネットワークにアクセスできることも発見。",
+    "question": "どの修復ステップを取るべきか？",
     "options": [
-      "Change the Wi-Fi password",
-      "Implement WPA3-Enterprise (802.1X), segment wireless onto a separate VLAN with firewall to internal network, and deploy wireless IDS",
-      "Disable Wi-Fi completely",
-      "Only use wired connections"
+      "Wi-Fiパスワードを変更",
+      "WPA3-Enterprise（802.1X）を実装、無線をファイアウォール付きの別VLANにセグメント化、無線IDSを展開",
+      "Wi-Fiを完全に無効化",
+      "有線接続のみを使用"
     ],
     "correct": 1,
-    "explanation": "WPA3-Enterprise with 802.1X provides per-user authentication and strong encryption, eliminating shared password risk. Network segmentation prevents wireless clients from directly accessing the internal network. Wireless IDS detects rogue access points and unauthorized connection attempts. Defense in depth is essential."
+    "explanation": "WPA3-Enterprise with 802.1Xはユーザー別認証と強力な暗号化を提供し、共有パスワードのリスクを排除。ネットワークセグメント化は無線クライアントが内部ネットワークに直接アクセスするのを防止。無線IDSは不正アクセスポイントと不正接続を検出。防御-in-depthが重要。"
   },
   {
     "id": 40,
-    "category": "Incident Response Scenarios",
-    "scenario": "A security researcher reports that the company's API is leaking user data. Any authenticated user can access other users' data by changing the user ID parameter in API requests.",
-    "question": "This is an example of which vulnerability, and what is the immediate fix?",
+    "category": "インシデント対応シナリオ",
+    "scenario": "セキュリティ研究者が企業のAPIがユーザーデータを漏洩していると報告。認証済みの任意のユーザーがAPIリクエストのユーザーIDパラメータを変更することで他のユーザーのデータにアクセスできる。",
+    "question": "これはどの脆弱性の例で、即時修正は何か？",
     "options": [
-      "SQL injection - sanitize inputs",
-      "Insecure Direct Object Reference (IDOR) - implement proper authorization checks for each API endpoint",
-      "XSS - escape output",
-      "CSRF - add tokens"
+      "SQLインジェクション - 入力をサニタイズ",
+      "安全でない直接オブジェクト参照（IDOR） - 各APIエンドポイントに適切な認可チェックを実装",
+      "XSS - 出力をエスケープ",
+      "CSRF - トークンを追加"
     ],
     "correct": 1,
-    "explanation": "IDOR (BOLA - Broken Object Level Authorization) occurs when API endpoints do not properly verify that the requesting user is authorized to access the requested object. Fix: add authorization checks on every data access to verify the requesting user owns or is authorized to access the requested resource."
+    "explanation": "IDOR（BOLA - Broken Object Level Authorization）はAPIエンドポイントが要求ユーザーが要求オブジェクトへのアクセスを認可されているかを適切に検証しない場合に発生。修正：各データアクセスに認可チェックを追加し、要求ユーザーが要求リソースを所有またはアクセスを認可されているかを検証。"
   },
   {
     "id": 41,
-    "category": "Risk Assessment",
-    "scenario": "A medium-sized company (200 employees) has never conducted a formal risk assessment. They have a basic firewall, antivirus, and periodic backups but no security policies or incident response plan.",
-    "question": "What is the most appropriate first step in their risk assessment process?",
+    "category": "リスク評価",
+    "scenario": "中規模企業（200名の従業員）が正式なリスク評価を実施したことがない。基本的なファイアウォール、アンチウイルス、定期バックアップがあるが、セキュリティポリシーやインシデント対応計画がない。",
+    "question": "リスク評価プロセスで最も適切な最初のステップはどれか？",
     "options": [
-      "Buy expensive security tools",
-      "Identify and inventory all assets, then identify threats and vulnerabilities for each critical asset",
-      "Hire a security team of 20 people",
-      "Comply with all regulations at once"
+      "高価なセキュリティツールを購入",
+      "全アセットを特定・棚卸し、その後各重要アセットに対する脅威と脆弱性を特定",
+      "20名のセキュリティチームを採用",
+      "全規制に一度にコンプライアンス"
     ],
     "correct": 1,
-    "explanation": "Risk assessment starts with asset identification - you cannot protect what you do not know exists. After inventory, identify threats (what could go wrong) and vulnerabilities (weaknesses that enable threats). Prioritize based on likelihood and impact. This informs a practical, risk-based security program."
+    "explanation": "リスク評価はアセットの特定から始まる - 存在を知らないものを保護できない。棚卸後、脅威（何が起こり得るか）と脆弱性（脅威を有効にする弱点）を特定。発生可能性と影響に基づいて優先順位付け。これにより実用的でリスクベースのセキュリティプログラムが形成される。"
   },
   {
     "id": 42,
-    "category": "Risk Assessment",
-    "scenario": "A company processes credit card payments and discovers their PCI DSS assessment has expired. They process 50,000 transactions per month.",
-    "question": "What is the most critical risk from expired PCI DSS compliance?",
+    "category": "リスク評価",
+    "scenario": "企業がクレジットカード決済を処理しており、PCI DSS評価の期限が切れていることを発見。月5万件の取引を処理している。",
+    "question": "期限切れのPCI DSSコンプライアンスによる最も重要なリスクはどれか？",
     "options": [
-      "No significant risk",
-      "Potential fines from card brands ($5K-100K/month), loss of card processing ability, and increased liability for breaches",
-      "Only reputational risk",
-      "Minor administrative issue"
+      "重要なリスクはない",
+      "カードブランドからの潜在的な罰金（月5千〜10万ドル）、カード決済能力の喪失、侵害時の責任増大",
+      "評判リスクのみ",
+      "軽微な管理上の問題"
     ],
     "correct": 1,
-    "explanation": "Expired PCI DSS compliance exposes the company to escalating monthly fines from card brands (starting at $5K and increasing), potential loss of ability to process card payments (business-ending), and increased liability in case of a breach. Immediate priority should be completing the assessment."
+    "explanation": "期限切れのPCI DSSコンプライアンスはカードブランドからの月次罰金のエスカレーション（5千ドルから増加）、カード決済能力の潜在的な喪失（ビジネス終了）、侵害時の責任増大に企業をさらす。即時優先事項は評価を完了すること。"
   },
   {
     "id": 43,
-    "category": "Risk Assessment",
-    "scenario": "A startup is using a popular open-source library that has a critical CVE (CVSS 9.8) with public exploit code. The library is deeply embedded in the application.",
-    "question": "What is the recommended risk response?",
+    "category": "リスク評価",
+    "scenario": "スタートアップが公開エクスプロイトコードのあるクリティカルなCVE（CVSS 9.8）を持つ人気オープンソースライブラリを使用している。ライブラリはアプリケーションに深く組み込まれている。",
+    "question": "推奨されるリスク対応はどれか？",
     "options": [
-      "Accept the risk since the startup is small",
-      "Immediately patch or replace the library, implement WAF rules to block exploit attempts, and monitor for exploitation indicators",
-      "Wait for the next release cycle",
-      "Only notify users"
+      "スタートアップは小さいのでリスクを受け入れる",
+      "ライブラリを即座に修正または置換、エクスプロイト試行をブロックするWAFルールを実装、悪用指標を監視",
+      "次のリリースサイクルまで待つ",
+      "ユーザーに通知のみ"
     ],
     "correct": 1,
-    "explanation": "A CVSS 9.8 vulnerability with public exploit is an active threat. Immediate patching is the primary response. If patching is not immediately possible, virtual patching (WAF/IPS rules) provides temporary protection. Monitoring for exploitation indicators enables rapid detection if the vulnerability is targeted."
+    "explanation": "公開エクスプロイトのあるCVSS 9.8脆弱性は積極的な脅威。即時パッチが主要な対応。即時パッチが不可能な場合、仮想パッチ（WAF/IPSルール）が一時的保護を提供。悪用指標の監視で脆弱性が標的にされた場合の迅速な検出を可能に。"
   },
   {
     "id": 44,
-    "category": "Risk Assessment",
-    "scenario": "A company is considering moving from on-premises infrastructure to the cloud. The security team is concerned about losing control over data and infrastructure.",
-    "question": "How should the cloud migration risk be assessed?",
+    "category": "リスク評価",
+    "scenario": "企業がオンプレミスインフラからクラウドへの移行を検討。セキュリティチームはデータとインフラの管理権の喪失を懸念している。",
+    "question": "クラウド移行リスクをどのように評価すべきか？",
     "options": [
-      "Cloud is always less secure - do not migrate",
-      "Assess risks using the shared responsibility model, identify what changes with cloud, and plan compensating controls for each risk",
-      "Cloud is always more secure - migrate everything",
-      "Only consider cost factors"
+      "クラウドは常に安全性が低い - 移行しない",
+      "共有責任モデルを使用してリスクを評価、クラウドで何が変わるかを特定、各リスクに対する補償制御を計画",
+      "クラウドは常に安全 - すべて移行",
+      "コスト要因のみを考慮"
     ],
     "correct": 1,
-    "explanation": "The shared responsibility model clearly defines what the cloud provider secures (infrastructure) and what the customer secures (data, access, applications). Risk assessment should identify each control that changes with cloud migration and plan compensating controls. Cloud can be more secure if configured correctly."
+    "explanation": "共有責任モデルはクラウドプロバイダーが保護するもの（インフラ）と顧客が保護するもの（データ、アクセス、アプリケーション）を明確に定義。リスク評価はクラウド移行で変わる各制御を特定し、補償制御を計画すべき。正しく設定されればクラウドはより安全になり得る。"
   },
   {
     "id": 45,
-    "category": "Risk Assessment",
-    "scenario": "A manufacturing company uses outdated Windows 7 systems on their factory floor. The vendor no longer provides security patches. Upgrading would require replacing specialized hardware and software worth $2 million.",
-    "question": "What is the best risk-based approach?",
+    "category": "リスク評価",
+    "scenario": "製造企業が工場のWindows 7システムを使用している。ベンダーはセキュリティパッチを提供していない。アップグレードには200万ドル相当の専用ハードウェアとソフトウェアの交換が必要。",
+    "question": "最適なリスクベースのアプローチはどれか？",
     "options": [
-      "Keep running Windows 7 without protection",
-      "Isolate Windows 7 systems on a separate network segment, implement strict access controls, deploy compensating controls (application whitelisting, network isolation), and plan migration",
-      "Immediately shut down all production",
-      "Accept the full risk"
+      "保護なしでWindows 7を実行し続ける",
+      "Windows 7システムを別ネットワークセグメントに分離、厳格なアクセス制御、補償制御（アプリケーションホワイトリスト、ネットワーク分離）を実装、移行を計画",
+      "全生産を即座に停止",
+      "リスクを全面的に受け入れる"
     ],
     "correct": 1,
-    "explanation": "Immediate shutdown may not be practical. Network isolation prevents lateral movement from compromised Windows 7 systems. Application whitelisting prevents unauthorized software execution. These compensating controls reduce risk while a migration plan is developed. Document risk acceptance for the interim period."
+    "explanation": "即時停止は実用的ではない場合がある。ネットワーク分離は侵害されたWindows 7システムからの横移動を防止。アプリケーションホワイトリストは不正ソフトウェアの実行を防止。これらの補償制御は移行計画の策定中のリスクを低減。移行期間中のリスク受諾を文書化。"
   },
   {
     "id": 46,
-    "category": "Risk Assessment",
-    "scenario": "A security audit reveals that the company's backup encryption keys are stored in the same data center as the encrypted backups. If the data center is destroyed, both backups and keys would be lost.",
-    "question": "What is this an example of, and what is the recommended fix?",
+    "category": "リスク評価",
+    "scenario": "セキュリティ監査で、企業のバックアップ暗号化キーが暗号化バックアップと同じデータセンターに保存されていることが判明。データセンターが破壊された場合、バックアップとキーの両方が失われる。",
+    "question": "これは何の例で、推奨される修正は何か？",
     "options": [
-      "Good security practice",
-      "Single point of failure - store encryption keys in a geographically separate secure location (key management service or offline safe)",
-      "Redundancy issue only",
-      "Minor operational issue"
+      "良いセキュリティ慣行",
+      "単一障害点 - 暗号化キーを地理的に離れた安全な場所（鍵管理サービスまたはオフライン金庫）に保存",
+      "冗長性の問題のみ",
+      "軽微な運用上の問題"
     ],
     "correct": 1,
-    "explanation": "This is a critical single point of failure. If the data center is destroyed, encrypted backups are useless without the keys. Fix: store encryption keys in a geographically separate HSM or cloud KMS, with offline backup copies in a secure physical location. The 3-2-1 rule (3 copies, 2 media types, 1 offsite) should apply to keys too."
+    "explanation": "これは重大な単一障害点。データセンターが破壊された場合、暗号化されたバックアップはキーなしでは無用。修正：暗号化キーを地理的に離れたHSMまたはクラウドKMSに保存し、安全な物理場所にオフラインバックアップコピーを保持。3-2-1ルール（3コピー、2メディアタイプ、1オフサイト）はキーにも適用すべき。"
   },
   {
     "id": 47,
-    "category": "Risk Assessment",
-    "scenario": "A company's risk register shows 50 identified risks. The security team has bandwidth to address only 10 risks this quarter.",
-    "question": "How should the risks be prioritized for treatment?",
+    "category": "リスク評価",
+    "scenario": "企業のリスクレジスタに50件の識別されたリスクがある。セキュリティチームは今四半期に10リスクしか対応できない。",
+    "question": "リスクの処理優先順位をどのように付けるべきか？",
     "options": [
-      "Address them in alphabetical order",
-      "Prioritize by risk score (likelihood x impact), focusing on the highest-scored risks that are also cost-effective to treat",
-      "Address the newest risks first",
-      "Random selection"
+      "アルファベット順に対応",
+      "リスクスコア（発生可能性 × 影響）で優先順位付け、コスト効率の良い処理が可能な最高スコアのリスクに集中",
+      "最新のリスクから対応",
+      "ランダム選択"
     ],
     "correct": 1,
-    "explanation": "Risk prioritization should be based on quantitative or qualitative risk scores. Address the highest-priority risks first where cost-effective mitigation exists. Some risks may be accepted or transferred if treatment cost exceeds benefit. Document the rationale for prioritization decisions."
+    "explanation": "リスクの優先順位付けは定量的または定性的なリスクスコアに基づくべき。コスト効率の良い緩和策が存在する最高優先度のリスクを先に対応。一部のリスクは処理コストが利益を上回る場合、受諾または移転可能。優先順位付け決定の根拠を文書化。"
   },
   {
     "id": 48,
-    "category": "Risk Assessment",
-    "scenario": "A company uses third-party SaaS applications for CRM, HR, and project management. Each vendor handles employee PII.",
-    "question": "What is the primary supply chain risk, and how should it be mitigated?",
+    "category": "リスク評価",
+    "scenario": "企業がCRM、HR、プロジェクト管理にサードパーティSaaSアプリケーションを使用。各ベンダーが従業員PIIを処理している。",
+    "question": "主要なサプライチェーンリスクは何で、どのように緩和すべきか？",
     "options": [
-      "No risk with SaaS vendors",
-      "Vendor security posture risk - conduct security assessments, review SOC 2 reports, ensure data processing agreements, and verify compliance",
-      "Only cost risk",
-      "Performance risk only"
+      "SaaSベンダーにリスクはない",
+      "ベンダーセキュリティ態勢リスク - セキュリティ評価を実施、SOC 2レポートを確認、データ処理契約を確保、コンプライアンスを検証",
+      "コストリスクのみ",
+      "パフォーマンスリスクのみ"
     ],
     "correct": 1,
-    "explanation": "Third-party vendors with access to PII create supply chain risk - a breach at the vendor affects your organization. Mitigation: require SOC 2 Type II reports, conduct vendor security assessments, ensure DPA (Data Processing Agreement) is in place, verify regulatory compliance, and maintain an exit strategy."
+    "explanation": "PIIへのアクセスを持つサードパーティベンダーはサプライチェーンリスクを生む - ベンダーでの侵害は自組織に影響する。緩和：SOC 2 Type IIレポートを要求、ベンダーセキュリティ評価を実施、DPA（データ処理契約）が整っていることを確認、規制コンプライアンスを検証、出口戦略を維持。"
   },
   {
     "id": 49,
-    "category": "Risk Assessment",
-    "scenario": "A company's risk assessment shows that phishing is the highest-likelihood threat vector, responsible for 80% of security incidents. Current training consists of an annual 1-hour video.",
-    "question": "What is the most effective risk mitigation for phishing?",
+    "category": "リスク評価",
+    "scenario": "企業のリスク評価でフィッシングが最高発生可能性の脅威ベクトルで、セキュリティインシデントの80%を占めていることが判明。現在の研修は年1時間のビデオ。",
+    "question": "フィッシングに対する最も効果的なリスク緩和策はどれか？",
     "options": [
-      "More expensive firewalls",
-      "Monthly phishing simulations combined with just-in-time training for those who fail, technical controls (email filtering, MFA), and executive reporting",
-      "Longer annual training video",
-      "Only technical controls"
+      "より高価なファイアウォール",
+      "月次フィッシングシミュレーションと失敗者へのジャストインタイム研修、技術的制御（メールフィルタリング、MFA）、経営陣への報告",
+      "より長い年次研修ビデオ",
+      "技術的制御のみ"
     ],
     "correct": 1,
-    "explanation": "Phishing is primarily a human risk. Monthly simulations with immediate training for failures build lasting awareness. Technical controls (email filtering, DMARC, MFA) provide defense in depth. Executive reporting drives organizational commitment. The combination of people, process, and technology is most effective."
+    "explanation": "フィッシングは主に人的リスク。月次シミュレーションと失敗時の即時研修が持続的な意識を構築。技術的制御（メールフィルタリング、DMARC、MFA）が防御-in-depthを提供。経営陣への報告が組織的なコミットメントを推進。人、プロセス、技術の組み合わせが最も効果的。"
   },
   {
     "id": 50,
-    "category": "Risk Assessment",
-    "scenario": "A critical business application has not been updated in 3 years and runs on an unsupported operating system. Replacing it would cost $5 million and take 18 months.",
-    "question": "What risk treatment strategy should be applied until replacement is complete?",
+    "category": "リスク評価",
+    "scenario": "重要なビジネスアプリケーションが3年間更新されておらず、サポートされていないOSで動作している。置換には500万ドルかかり18ヶ月かかる。",
+    "question": "置換完了までどのリスク処理戦略を適用すべきか？",
     "options": [
-      "Ignore the risk",
-      "Risk reduction through compensating controls (isolation, monitoring, virtual patching) combined with documented risk acceptance for residual risk",
-      "Transfer all risk via insurance",
-      "Risk avoidance by shutting down the application"
+      "リスクを無視",
+      "補償制御によるリスク低減（分離、監視、仮想パッチング）と残余リスクの文書化されたリスク受諾の組み合わせ",
+      "保険ですべてのリスクを移転",
+      "アプリケーションをシャットダウンしてリスク回避"
     ],
     "correct": 1,
-    "explanation": "Since replacement will take 18 months, implement compensating controls immediately: network isolation, enhanced monitoring, virtual patching via WAF/IPS, and application whitelisting. Document the residual risk and obtain formal risk acceptance from senior management with defined timeline for replacement."
+    "explanation": "置換に18ヶ月かかるため、直ちに補償制御を実装：ネットワーク分離、強化された監視、WAF/IPSによる仮想パッチング、アプリケーションホワイトリスト。残余リスクを文書化し、上級管理層から置換の定義されたタイムライン付きの正式なリスク受諾を取得。"
   },
   {
     "id": 51,
-    "category": "Compliance Audit",
-    "scenario": "An ISO 27001 auditor finds that the organization's access review process is not documented and has not been consistently performed. Some employee accounts were active 6 months after termination.",
-    "question": "What is the severity of this finding, and what is the required response?",
+    "category": "コンプライアンス監査",
+    "scenario": "ISO 27001監査人が組織のアクセスレビュープロセスが文書化されておらず、一貫して実行されていないことを発見。一部の従業員アカウントが退職後6ヶ月もアクティブだった。",
+    "question": "この所見の重大度と必要な対応はどれか？",
     "options": [
-      "Minor observation - no action needed",
-      "Major nonconformity requiring corrective action: implement documented access review process, conduct immediate review of all accounts, automate provisioning/deprovisioning, and verify before next audit",
-      "Critical failure - certification revoked immediately",
-      "Not an audit issue"
+      "軽微な観察事項 - 対応不要",
+      "是正措置が必要な重大な不適合：文書化されたアクセスレビュープロセスを実装、全アカウントの即時レビュー、プロビジョニング/プロビジョニング解除の自動化、次回監査前に検証",
+      "重大な失敗 - 認証が即座に取り消される",
+      "監査上の問題ではない"
     ],
     "correct": 1,
-    "explanation": "Inactive accounts of terminated employees are a major nonconformity (ISO 27001 A.9.2.6). Required response: document the access review policy, immediately review all active accounts, disable orphaned accounts, implement automated joiner/mover/leaver process, and establish periodic review schedule. Must be corrected before recertification."
+    "explanation": "退職従業員の非アクティブアカウントは重大な不適合（ISO 27001 A.9.2.6）。必要な対応：アクセスレビューポリシーを文書化、全アクティブアカウントを即時レビュー、孤立アカウントを無効化、自動化された入社/異動/退社プロセスを実装、定期レビュースケジュールを確立。再認証前に修正必須。"
   },
   {
     "id": 52,
-    "category": "Compliance Audit",
-    "scenario": "A GDPR audit reveals that the company has been collecting user location data without explicit consent and sharing it with third-party advertisers.",
-    "question": "What is the regulatory risk and required action?",
+    "category": "コンプライアンス監査",
+    "scenario": "GDPR監査で、企業が明示的な同意なくユーザーの位置情報データを収集し、サードパーティ広告主と共有していることが判明。",
+    "question": "規制上のリスクと必要な措置はどれか？",
     "options": [
-      "No action needed if data is anonymized",
-      "Significant GDPR violation - immediately stop data collection, conduct Data Protection Impact Assessment, obtain proper consent, notify supervisory authority, and potentially notify affected users",
-      "Only a documentation issue",
-      "Minor fine at worst"
+      "データが匿名化されていれば対応不要",
+      "重大なGDPR違反 - データ収集を直ちに停止、データ保護影響評価を実施、適切な同意を取得、監督当局に通知、影響を受けたユーザーに通知する可能性",
+      "文書化の問題のみ",
+      "最大でも軽微な罰金"
     ],
     "correct": 1,
-    "explanation": "Collecting and sharing location data without explicit consent violates GDPR Articles 6 (lawful basis) and 7 (consent), and likely Articles 44-49 (international transfers). Required: cease unlawful processing, conduct DPIA, implement proper consent mechanism, self-report to supervisory authority (reduces penalties), and assess notification requirements."
+    "explanation": "明示的な同意なしの位置情報データの収集と共有はGDPR第6条（適法な根拠）と第7条（同意）、およびおそらく第44-49条（国際移転）に違反。必要：違法な処理を停止、DPIAを実施、適切な同意メカニズムを実装、監督当局に自主報告（罰金を減額）、通知要件を評価。"
   },
   {
     "id": 53,
-    "category": "Compliance Audit",
-    "scenario": "A SOC 2 audit reveals that the company has not been encrypting sensitive data at rest in its database. The trust service criteria for security (CC6.1) require encryption of sensitive data.",
-    "question": "What is the appropriate remediation?",
+    "category": "コンプライアンス監査",
+    "scenario": "SOC 2監査で、企業がデータベース内の機密データの保存時暗号化を行っていないことが判明。セキュリティの信頼サービス基準（CC6.1）が機密データの暗号化を要求している。",
+    "question": "適切な修復はどれか？",
     "options": [
-      "Document that encryption is not needed",
-      "Implement encryption at rest for all sensitive data using AES-256, document the encryption policy, update the security controls, and verify compliance",
-      "Only encrypt backups",
-      "Encrypt data in transit instead"
+      "暗号化は不要と文書化",
+      "AES-256ですべての機密データの保存時暗号化を実装、暗号化ポリシーを文書化、セキュリティ制御を更新、コンプライアンスを検証",
+      "バックアップのみを暗号化",
+      "代わりに転送中のデータを暗号化"
     ],
     "correct": 1,
-    "explanation": "CC6.1 specifically requires logical access security including encryption. Remediation: implement AES-256 encryption at rest for databases, file storage, and backups. Use a centralized key management system. Document the encryption policy including which data classifications require encryption. Re-audit to confirm compliance."
+    "explanation": "CC6.1は暗号化を含む論理アクセスセキュリティを具体的に要求。修復：データベース、ファイルストレージ、バックアップにAES-256保存時暗号化を実装。中央鍵管理システムを使用。暗号化ポリシー（どのデータ分類に暗号化が必要かを含む）を文書化。コンプライアンス確認のため再監査。"
   },
   {
     "id": 54,
-    "category": "Compliance Audit",
-    "scenario": "A PCI DSS assessor finds that the company stores full track data (magnetic stripe information) from payment cards in their database, which is explicitly prohibited by PCI DSS Requirement 3.2.",
-    "question": "What is the severity and required remediation?",
+    "category": "コンプライアンス監査",
+    "scenario": "PCI DSS評価者が企業がデータベースに決済カードのフルトラックデータ（磁気ストライプ情報）を保存していることを発見。これはPCI DSS要件3.2で明示的に禁止されている。",
+    "question": "重大度と必要な修復はどれか？",
     "options": [
-      "Low severity - track data is needed for business",
-      "Critical violation requiring immediate remediation: purge all stored track data, implement tokenization, restrict access, and re-assess",
-      "Medium severity",
-      "Only requires documentation"
+      "低重大度 - トラックデータはビジネスに必要",
+      "即時修復が必要な重大な違反：保存されている全トラックデータを消去、トークン化を実装、アクセスを制限、再評価",
+      "中程度の重大度",
+      "文書化のみでよい"
     ],
     "correct": 1,
-    "explanation": "Storing full track data after authorization is a critical PCI DSS violation (Requirement 3.2). Immediate remediation: securely delete all stored track data, implement tokenization to replace stored card data, restrict access to card data to need-to-know, and conduct a full re-assessment. Failure to remediate can result in fines and loss of card processing."
+    "explanation": "認可後のフルトラックデータの保存は重大なPCI DSS違反（要件3.2）。即時修復：保存されている全トラックデータを安全に削除、保存カードデータを置き換えるトークン化を実装、カードデータへのアクセスを知る必要のある人に制限、フル再評価を実施。修復失敗は罰金とカード決済能力の喪失を招く。"
   },
   {
     "id": 55,
-    "category": "Compliance Audit",
-    "scenario": "An audit reveals that the company's security awareness training program only covers new hires and not existing employees. The security policy requires annual training for all employees.",
-    "question": "What is the most effective approach to improve policy compliance?",
+    "category": "コンプライアンス監査",
+    "scenario": "監査で企業のセキュリティ意識向上研修プログラムが新入社員のみを対象としており、既存従業員を対象としていないことが判明。セキュリティポリシーは全従業員の年次研修を要求している。",
+    "question": "ポリシーコンプライアンスを改善する最も効果的なアプローチはどれか？",
     "options": [
-      "Policy exception is acceptable",
-      "Non-compliance finding - implement annual training for all employees, track completion, and report to management",
-      "Not a significant issue",
-      "Only IT staff need training"
+      "ポリシー例外は許容される",
+      "非コンプライアンス所見 - 全従業員の年次研修を実装、完了を追跡、管理層に報告",
+      "重要な問題ではない",
+      "ITスタッフのみが研修を必要"
     ],
     "correct": 1,
-    "explanation": "Gap between policy and practice is an audit finding. All employees must receive security awareness training annually. Implement a tracking system to monitor completion rates. Management reporting ensures accountability. Consider role-based training: developers receive secure coding training, finance receives fraud awareness training."
+    "explanation": "ポリシーと実践のギャップは監査所見。全従業員は年次セキュリティ意識研修を受講すべき。完了率をモニタリングする追跡システムを実装。管理層への報告で責任を確保。ロールベース研修を検討：開発者にはセキュアコーディング研修、財務には詐欺意識研修。"
   },
   {
-    "question": "A HIPAA audit finds that a healthcare provider has been sending patient records via unencrypted email to a specialist clinic.",
-    "category": "Compliance Audit",
-    "scenario": "A HIPAA compliance audit discovers that patient records have been transmitted via unencrypted email to an external specialist clinic for the past year.",
+    "question": "HIPAA監査で医療提供者が患者記録を暗号化されていないメールで専門クリニックに送信していることが発見。",
+    "category": "コンプライアンス監査",
+    "scenario": "HIPAAコンプライアンス監査で、患者記録が過去1年間暗号化されていないメールで外部の専門クリニックに送信されていたことが発見。",
     "id": 56,
     "options": [
-      "Acceptable if both parties agreed",
-      "HIPAA violation requiring: implement encrypted email (TLS/S/MIME), conduct risk assessment, notify HHS if breach determination, and retrain staff",
-      "Not a HIPAA issue since email is point-to-point",
-      "Minor documentation issue"
+      "両当事者が合意すれば許容される",
+      "HIPAA違反：暗号化メール（TLS/S/MIME）を実施、リスク評価を実施、侵害判定の場合HHSに通知、スタッフを再研修",
+      "メールはポイントツーポイントなのでHIPAAの問題ではない",
+      "軽微な文書化の問題"
     ],
     "correct": 2,
-    "explanation": "Unencrypted email containing PHI is a HIPAA Security Rule violation (encryption is an addressable implementation specification). Required: implement encrypted email for all PHI transmission, conduct risk assessment, determine if breach notification is required (unencrypted PHI + unauthorized access), and retrain workforce members."
+    "explanation": "PHIを含む暗号化されていないメールはHIPAAセキュリティルール違反（暗号化はアドレス指定可能な実装仕様）。必要：全PHI送信に暗号化メールを実装、リスク評価を実施、侵害通知が必要かを判断（暗号化されていないPHI + 不正アクセス）、労働者を再研修。"
   },
   {
     "id": 57,
-    "category": "Compliance Audit",
-    "scenario": "An audit discovers that the company has no formal process for security patch management. Patches are applied inconsistently and sometimes months after release.",
-    "question": "What is the recommended remediation based on best practices?",
+    "category": "コンプライアンス監査",
+    "scenario": "監査で企業にセキュリティパッチ管理の正式なプロセスがないことが発見。パッチが不整合に適用され、リリースから数ヶ月後になることもある。",
+    "question": "ベストプラクティスに基づく推奨修復はどれか？",
     "options": [
-      "Apply all patches within 24 hours",
-      "Implement a risk-based patch management program: critical patches within 7 days, high within 30 days, medium within 90 days, with testing and exception processes",
-      "Only patch when convenient",
-      "Outsource all patching"
+      "全パッチを24時間以内に適用",
+      "リスクベースのパッチ管理プログラムの実装：クリティカルパッチは7日以内、高は30日以内、中は90日以内、テストと例外プロセス付き",
+      "都合の良い時のみパッチ適用",
+      "全パッチングをアウトソース"
     ],
     "correct": 1,
-    "explanation": "A risk-based approach prioritizes patches by severity. Critical vulnerabilities with active exploits need rapid deployment (within days). Regular patches need testing and staged rollout. An exception process handles systems that cannot be patched. Automated patch management tools ensure consistency and tracking."
+    "explanation": "リスクベースのアプローチは重大度でパッチを優先。アクティブエクスプロイトのあるクリティカル脆弱性には迅速なデプロイが必要（数日内）。通常パッチにはテストと段階的ロールアウトが必要。例外プロセスはパッチ適用できないシステムを扱う。自動パッチ管理ツールが一貫性と追跡を確保。"
   },
   {
     "id": 58,
-    "category": "Compliance Audit",
-    "scenario": "A compliance audit reveals that the incident response plan was last updated 4 years ago and references outdated systems and contacts. No one has been trained on the plan.",
-    "question": "What should be done to address this finding?",
+    "category": "コンプライアンス監査",
+    "scenario": "コンプライアンス監査でインシデント対応計画が4年前に最後に更新されており、古いシステムと連絡先を参照していることが判明。誰も計画について訓練を受けていない。",
+    "question": "この所見に対処するために何をすべきか？",
     "options": [
-      "The plan is still valid",
-      "Immediately update the IR plan, test it through tabletop exercises, train all IR team members, and schedule regular reviews",
-      "Delete the old plan and start over",
-      "Only update contact information"
+      "計画はまだ有効",
+      "IR計画を即座に更新、テーブルトップ演習でテスト、全IRチームメンバーを訓練、定期レビューをスケジュール",
+      "古い計画を削除して最初から作り直す",
+      "連絡先情報のみを更新"
     ],
     "correct": 1,
-    "explanation": "An outdated IR plan is worse than no plan - it creates false confidence. Remediation: comprehensive update reflecting current infrastructure, contacts, and procedures. Test through tabletop exercises to identify gaps. Train all team members. Establish annual review cycle. Assign ownership for maintaining the plan."
+    "explanation": "古いIR計画は計画がないより悪い - 誤った自信を生む。修復：現在のインフラ、連絡先、手順を反映した包括的更新。テーブルトップ演習でテストしてギャップを特定。全チームメンバーを訓練。年次レビューサイクルを確立。計画の維持に責任を割り当て。"
   },
   {
     "id": 59,
-    "category": "Compliance Audit",
-    "scenario": "An audit reveals that privileged accounts (admin/root) are shared among multiple IT staff. There is no individual accountability for actions performed with these accounts.",
-    "question": "What control should be implemented to address this?",
+    "category": "コンプライアンス監査",
+    "scenario": "監査で特権アカウント（管理者/root）が複数のITスタッフ間で共有されており、これらのアカウントで実行されるアクションに個人の責任追及がないことが判明。",
+    "question": "これに対処するためにどの制御を実装すべきか？",
     "options": [
-      "Continue sharing but add passwords",
-      "Implement PAM (Privileged Access Management) with individual accounts, session recording, and just-in-time access",
-      "Share fewer accounts",
-      "Write a policy against sharing"
+      "共有を続けるがパスワードを追加",
+      "個人アカウント、セッション記録、ジャストインタイムアクセスを備えたPAM（特権アクセス管理）を実装",
+      "共有アカウントを減らす",
+      "共有禁止のポリシーを文書化"
     ],
     "correct": 1,
-    "explanation": "PAM addresses all aspects: individual privileged accounts ensure accountability, session recording creates audit trails, just-in-time access minimizes standing privileges, and credential vaulting prevents password sharing. This is a fundamental control for regulatory compliance (SOX, PCI DSS, ISO 27001)."
+    "explanation": "PAMは全側面に対応：個人特権アカウントで責任追及を確保、セッション記録で監査証跡を作成、ジャストインタイムアクセスで常設権限を最小化、クレデンシャルボールティングでパスワード共有を防止。これは規制コンプライアンス（SOX、PCI DSS、ISO 27001）の基本的な制御。"
   },
   {
     "id": 60,
-    "category": "Compliance Audit",
-    "scenario": "A compliance review finds that the company's data retention policy says 'retain customer data for 7 years after account closure' but some data has been retained for over 10 years.",
-    "question": "What is the risk and recommended action?",
+    "category": "コンプライアンス監査",
+    "scenario": "コンプライアンスレビューで、企業のデータ保持ポリシーが「アカウント閉鎖後7年間顧客データを保持」と規定しているが、一部のデータが10年以上保持されていることが判明。",
+    "question": "リスクと推奨措置はどれか？",
     "options": [
-      "No risk - more data is better",
-      "Compliance risk and data minimization violation - implement automated data retention/deletion processes aligned with the policy",
-      "Only a storage cost issue",
-      "Rewrite the policy to match current practice"
+      "リスクなし - データは多いほど良い",
+      "コンプライアンスリスクとデータ最小化違反 - ポリシーに合わせた自動データ保持/削除プロセスを実装",
+      "ストレージコストの問題のみ",
+      "ポリシーを現在の慣行に合わせて書き直す"
     ],
     "correct": 1,
-    "explanation": "Retaining data beyond the policy period violates data minimization principles (GDPR Article 5(1)(e)) and increases breach impact and liability. Implement automated deletion workflows triggered by retention periods. Audit existing data and execute cleanup. Ensure legal holds override retention policies when litigation is pending."
+    "explanation": "ポリシー期間を超えてデータを保持することはデータ最小化原則（GDPR第5条1項e）に違反し、侵害の影響と責任を増大させる。保持期間でトリガーされる自動削除ワークフローを実装。既存データを監査しクリーンアップを実行。訴訟が保留中の場合は法的ホールドが保持ポリシーを上書きすることを確認。"
   },
   {
     "id": 61,
-    "category": "Security Policy",
-    "scenario": "A company is writing its first acceptable use policy (AUP) for employees. The policy needs to cover device usage, data handling, and personal use of company resources.",
-    "question": "Which element is most important to include in an AUP?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業が従業員向けの最初のAcceptable Use Policy（AUP）を作成している。ポリシーはデバイス使用、データ取り扱い、企業リソースの個人使用を網羅する必要がある。",
+    "question": "AUPに含める最も重要な要素はどれか？",
     "options": [
-      "Detailed technical configurations",
-      "Clear statement of permitted and prohibited activities, consequences of violations, and employee acknowledgment requirement",
-      "Only legal disclaimers",
-      "Lengthy background on security threats"
+      "詳細な技術設定",
+      "許可および禁止アクティビティの明確な記述、違反の結果、従業員の確認要求",
+      "法的免責事項のみ",
+      "セキュリティ脅威に関する長い背景説明"
     ],
     "correct": 1,
-    "explanation": "An effective AUP clearly defines what employees can and cannot do with company resources (personal use limits, prohibited activities, data handling requirements), consequences of violations (disciplinary action), and requires employee acknowledgment. Technical details belong in separate standards and procedures."
+    "explanation": "効果的なAUPは従業員が企業リソースで何をしてはいけないか（個人使用の制限、禁止アクティビティ、データ取り扱い要件）を明確に定義し、違反の結果（懲戒処分）を規定し、従業員の確認を要求する。技術的な詳細は別の基準と手順に属する。"
   },
   {
     "id": 62,
-    "category": "Security Policy",
-    "scenario": "A company needs to create a remote work security policy as 50% of employees now work from home. Security incidents related to home networks and personal devices have increased.",
-    "question": "What should the remote work security policy primarily address?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業がリモートワークセキュリティポリシーを作成する必要がある。従業員の50%が在宅勤務しており、ホームネットワークと個人デバイス関連のセキュリティインシデントが増加している。",
+    "question": "リモートワークセキュリティポリシーは主に何に対処すべきか？",
     "options": [
-      "Ban all remote work",
-      "Device security requirements (endpoint protection, encryption), network security (VPN), physical security, and incident reporting from remote locations",
-      "Only require VPN usage",
-      "Trust employees completely"
+      "全リモートワークを禁止",
+      "デバイスセキュリティ要件（エンドポイント保護、暗号化）、ネットワークセキュリティ（VPN）、物理セキュリティ、リモートからのインシデント報告",
+      "VPN使用のみを要求",
+      "従業員を完全に信頼"
     ],
     "correct": 1,
-    "explanation": "Remote work policy should cover: device requirements (company-managed or BYOD with security requirements), VPN for all company network access, endpoint protection and encryption, physical security (lock screens, secure workspace), incident reporting procedures, and clear data handling rules for home environments."
+    "explanation": "リモートワークポリシーは以下を網羅すべき：デバイス要件（企業管理またはセキュリティ要件付きBYOD）、全企業ネットワークアクセスにVPN、エンドポイント保護と暗号化、物理セキュリティ（画面ロック、安全な作業スペース）、インシデント報告手順、ホーム環境向けの明確なデータ取り扱いルール。"
   },
   {
     "id": 63,
-    "category": "Security Policy",
-    "scenario": "The security team needs to define a password policy that balances security with usability. The current policy requires 12+ characters with uppercase, lowercase, numbers, and special characters, changed every 30 days.",
-    "question": "What does modern guidance (NIST SP 800-63B) recommend?",
+    "category": "セキュリティポリシー",
+    "scenario": "セキュリティチームがセキュリティと使いやすさのバランスを取ったパスワードポリシーを定義する必要がある。現在のポリシーは12文字以上の大文字・小文字・数字・特殊文字を含み、30日ごとに変更を要求。",
+    "question": "最新のガイダンス（NIST SP 800-63B）は何を推奨しているか？",
     "options": [
-      "Make passwords even more complex",
-      "Minimum 8 characters (preferably 15+), block common breached passwords, no mandatory rotation unless compromise suspected, allow all printable characters including spaces",
-      "Keep the current policy",
-      "Use 4-digit PINs"
+      "パスワードをさらに複雑にする",
+      "最小8文字（推奨15以上）、一般的な漏洩パスワードをブロック、侵害が疑われない限り強制ローテーションなし、スペースを含む全印刷可能文字を許可",
+      "現在のポリシーを維持",
+      "4桁のPINを使用"
     ],
     "correct": 1,
-    "explanation": "NIST SP 800-63B revised password guidance: encourage longer passphrases (minimum 8, recommend 15+), block passwords found in breach databases, no mandatory periodic rotation (causes weaker passwords), screen against dictionary words, and allow all characters including spaces. Complex composition rules are no longer recommended."
+    "explanation": "NIST SP 800-63Bはパスワードガイダンスを改定：より長いパスフレーズ（最小8、推奨15以上）を推奨、漏洩データベースにあるパスワードをブロック、強制定期ローテーションなし（より弱いパスワードを引き起こす）、辞書語をスクリーニング、スペースを含む全文字を許可。複雑な構成ルールはもはや推奨されない。"
   },
   {
     "id": 64,
-    "category": "Security Policy",
-    "scenario": "A company has separate security policies for IT, HR, and Finance, each with conflicting requirements. Employees are confused about which policy applies.",
-    "question": "What is the best approach to policy management?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業にIT、HR、財務用の別々のセキュリティポリシーがあり、それぞれに矛盾する要件がある。従業員はどのポリシーが適用されるか混乱している。",
+    "question": "ポリシー管理の最適なアプローチはどれか？",
     "options": [
-      "Keep separate policies and let employees figure it out",
-      "Create an overarching information security policy with tiered sub-policies (standards and procedures) that are consistent and cross-referenced",
-      "Only have one policy for everything",
-      "Eliminate all policies"
+      "別々のポリシーを維持し、従業員に判断させる",
+      "上位の情報セキュリティポリシーと一貫性のある相互参照された階層化サブポリシー（基準と手順）を作成",
+      "すべてをカバーする単一ポリシーのみ",
+      "全ポリシーを廃止"
     ],
     "correct": 1,
-    "explanation": "A hierarchical policy structure provides consistency: one master information security policy (principles and scope), domain-specific standards (access control, data classification), and detailed procedures (how to implement standards). Cross-references eliminate conflicts. This aligns with ISO 27001 policy requirements."
+    "explanation": "階層的なポリシー構造が一貫性を提供：1つのマスター情報セキュリティポリシー（原則と範囲）、ドメイン固有の基準（アクセス制御、データ分類）、詳細な手順（基準の実装方法）。相互参照で矛盾を排除。ISO 27001ポリシー要件に準拠。"
   },
   {
     "id": 65,
-    "category": "Security Policy",
-    "scenario": "The company's board of directors has asked for a security briefing. They want to understand the organization's security posture in business terms, not technical details.",
-    "question": "What is the most effective way to communicate security status to the board?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業の取締役会がセキュリティブリーフィングを求めている。技術的詳細ではなくビジネス用語で組織のセキュリティ態勢を理解したい。",
+    "question": "取締役会にセキュリティ状況を伝える最も効果的な方法はどれか？",
     "options": [
-      "Show detailed vulnerability scan reports",
-      "Executive dashboard with risk posture, top risks, compliance status, incident trends, and security investment ROI in business metrics",
-      "Demonstrate a penetration test live",
-      "Show firewall configuration"
+      "詳細な脆弱性スキャンレポートを見せる",
+      "ビジネス指標でリスク態勢、トップリスク、コンプライアンス状況、インシデント傾向、セキュリティ投資ROIを示すエグゼクティブダッシュボード",
+      "ペネトレーションテストをライブで実演",
+      "ファイアウォール設定を見せる"
     ],
     "correct": 1,
-    "explanation": "Board members need business-relevant information: overall risk posture (high/medium/low), top risks with business impact, compliance status against regulatory requirements, incident trends and impact, and ROI of security investments. Technical details should be available but not the primary focus."
+    "explanation": "取締役会はビジネス関連情報を必要とする：全体的なリスク態勢（高/中/低）、ビジネスインパクト付きのトップリスク、規制要件に対するコンプライアンス状況、インシデント傾向と影響、セキュリティ投資のROI。技術的詳細は利用可能であるべきだが、主要な焦点ではない。"
   },
   {
     "id": 66,
-    "category": "Security Policy",
-    "scenario": "A company is implementing a bring-your-own-device (BYOD) program. The security team needs to write a policy that protects company data on personal devices without being overly restrictive.",
-    "question": "What is the most important BYOD security requirement?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業がBYOD（Bring Your Own Device）プログラムを実装している。セキュリティチームは個人デバイス上の企業データを保護するポリシーを作成する必要があるが、過度に制限的ではないものにしたい。",
+    "question": "最も重要なBYODセキュリティ要件はどれか？",
     "options": [
-      "Ban all personal devices",
-      "Mobile Device Management (MDM) with containerization - separate work and personal data on the same device with remote wipe capability for work data only",
-      "Trust employees with no controls",
-      "Only allow iOS devices"
+      "全個人デバイスを禁止",
+      "コンテナ化を備えたMDM（モバイルデバイス管理） - 同一デバイス上で業務データと個人データを分離し、業務データのみのリモートワイプ機能",
+      "従業員を制御なしで信頼",
+      "iOSデバイスのみ許可"
     ],
     "correct": 1,
-    "explanation": "MDM with containerization creates a secure workspace on personal devices, separating work data from personal data. Remote wipe capability only affects the work container, protecting company data without erasing personal content. This balances security requirements with employee privacy expectations."
+    "explanation": "コンテナ化付きMDMは個人デバイス上に安全なワークスペースを作成し、業務データと個人データを分離。リモートワイプ機能は作業コンテナのみに影響し、個人内容を消去することなく企業データを保護。これによりセキュリティ要件と従業員のプライバシー期待のバランスをとる。"
   },
   {
     "id": 67,
-    "category": "Security Policy",
-    "scenario": "The company has had 3 security incidents in the past year where employees fell for phishing emails. The security policy exists but employees clearly are not following it.",
-    "question": "What is the most effective approach to improve policy compliance?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業が過去1年間に従業員がフィッシングメールに引っかかった3件のセキュリティインシデントがあった。セキュリティポリシーは存在するが、従業員は明らかに従っていない。",
+    "question": "ポリシーコンプライアンスを改善する最も効果的なアプローチはどれか？",
     "options": [
-      "Increase punishment for violations",
-      "Combine regular phishing simulations with immediate targeted training for those who fail, positive reinforcement for security-conscious behavior, and executive sponsorship",
-      "Send more policy documents",
-      "Only focus on technical controls"
+      "違反への罰則を強化",
+      "定期的なフィッシングシミュレーションと失敗者への即時ターゲット研修、セキュリティ意識の高い行動へのポジティブ強化、経営陣のスポンサーシップの組み合わせ",
+      "より多くのポリシー文書を送る",
+      "技術的制御のみに集中"
     ],
     "correct": 1,
-    "explanation": "People learn best through experience. Phishing simulations provide safe learning opportunities. Immediate training when someone fails is far more effective than annual training. Positive reinforcement (recognition for reporting phishing) creates a security culture. Executive sponsorship signals organizational importance."
+    "explanation": "人は経験を通じて最もよく学ぶ。フィッシングシミュレーションは安全な学習機会を提供。失敗時の即時研修は年次研修よりはるかに効果的。ポジティブ強化（フィッシング報告の認識）がセキュリティ文化を構築。経営陣のスポンサーシップが組織的重要性を示す。"
   },
   {
     "id": 68,
-    "category": "Security Policy",
-    "scenario": "A company needs to define a data classification policy. Currently, all data is treated the same, and employees do not know which data requires special handling.",
-    "question": "What is the recommended data classification framework?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業がデータ分類ポリシーを定義する必要がある。現在、すべてのデータが同じように扱われ、従業員はどのデータに特別な取り扱いが必要かわかっていない。",
+    "question": "推奨されるデータ分類フレームワークはどれか？",
     "options": [
-      "Only two levels: public and private",
-      "Four-level scheme: Public, Internal, Confidential, Restricted - with clear handling requirements for each level",
-      "Ten-level scheme for maximum granularity",
-      "No classification needed"
+      "公開と非公開の2レベルのみ",
+      "4レベル方式：公開、内部、機密、制限 - 各レベルに明確な取り扱い要件",
+      "最大粒度のための10レベル方式",
+      "分類は不要"
     ],
     "correct": 1,
-    "explanation": "A four-level classification scheme provides practical granularity: Public (anyone), Internal (employees only), Confidential (need-to-know with access controls), Restricted (highly sensitive with strictest controls). Each level has defined handling, storage, transmission, and disposal requirements. Too many levels become unmanageable."
+    "explanation": "4レベルの分類方式が実用的な粒度を提供：公開（誰でも）、内部（従業員のみ）、機密（アクセス制御付きの知る必要のある人）、制限（最も厳格な制御を持つ極めて機密なデータ）。各レベルには定義された取り扱い、保存、送信、廃棄要件がある。レベルが多すぎると管理不能になる。"
   },
   {
     "id": 69,
-    "category": "Security Policy",
-    "scenario": "The company's incident response policy states that all incidents must be reported within 1 hour. However, employees report that they often do not know what constitutes an incident worth reporting.",
-    "question": "What should be added to improve the policy?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業のインシデント対応ポリシーは全インシデントを1時間以内に報告することを規定している。しかし、従業員は何が報告に値するインシデントか分からないと報告している。",
+    "question": "ポリシーを改善するために何を追加すべきか？",
     "options": [
-      "More strict penalties",
-      "Clear examples of reportable incidents, simplified reporting mechanism, and 'if in doubt, report' culture",
-      "Only IT should report incidents",
-      "Remove the time requirement"
+      "より厳格な罰則",
+      "報告すべきインシデントの明確な例、簡素化された報告メカニズム、「迷ったら報告」の文化",
+      "ITのみがインシデントを報告",
+      "時間要件を削除"
     ],
     "correct": 1,
-    "explanation": "Clear examples help employees recognize incidents (suspicious emails, unusual system behavior, lost devices, unauthorized access). A simple reporting mechanism (one-click button, phone number) reduces friction. A 'when in doubt, report' culture ensures near-misses are captured. Fear of over-reporting is preferable to under-reporting."
+    "explanation": "明確な例が従業員にインシデントを認識させる（不審なメール、異常なシステム動作、紛失デバイス、不正アクセス）。シンプルな報告メカニズム（ワンクリックボタン、電話番号）が摩擦を減らす。「迷ったら報告」の文化によりニアミスもキャプチャされる。過剰報告の恐怖は報告不足より好ましい。"
   },
   {
     "id": 70,
-    "category": "Security Policy",
-    "scenario": "A company is acquiring another company and needs to harmonize security policies. The acquired company has a much less mature security program.",
-    "question": "What is the best approach for policy harmonization after an acquisition?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業が別の企業を買収し、セキュリティポリシーを調和させる必要がある。買収された企業のセキュリティプログラムは成熟度がはるかに低い。",
+    "question": "買収後のポリシー調和の最適なアプローチはどれか？",
     "options": [
-      "Immediately apply all acquirer's policies to the acquired company",
-      "Assess gaps between policies, prioritize the highest-risk areas for immediate alignment, create a 6-12 month roadmap for full harmonization",
-      "Keep both sets of policies separate",
-      "Adopt the acquired company's policies"
+      "買収企業の全ポリシーを買収された企業に即座に適用",
+      "ポリシー間のギャップを評価、最高リスク領域を即時調整のために優先順位付け、6-12ヶ月の完全調和ロードマップを作成",
+      "両方のポリシーセットを別々に維持",
+      "買収された企業のポリシーを採用"
     ],
     "correct": 1,
-    "explanation": "Immediate wholesale policy changes can cause business disruption. Instead: assess the gap between both companies' policies, identify highest-risk areas needing immediate attention, implement critical policies first (access control, incident response), and create a phased roadmap for full alignment with clear timelines."
+    "explanation": "即時の全面的なポリシー変更はビジネスの中断を引き起こす可能性がある。代わりに：両企業のポリシー間のギャップを評価、即時の注意が必要な最高リスク領域を特定、重要ポリシーを先に実装（アクセス制御、インシデント対応）、明確なタイムライン付きの完全調整のための段階的ロードマップを作成。"
   },
   {
     "id": 71,
-    "category": "Security Policy",
-    "scenario": "The company wants to implement a vendor security assessment program but has limited resources to evaluate every vendor.",
-    "question": "What is the most practical approach to vendor risk management?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業がベンダーセキュリティ評価プログラムを実装したいが、全ベンダーを評価するリソースが限られている。",
+    "question": "ベンダーリスク管理の最も実用的なアプローチはどれか？",
     "options": [
-      "Assess every vendor equally regardless of risk",
-      "Tier vendors by risk (data access, criticality) - comprehensive assessment for high-risk vendors, questionnaire-based for medium, self-attestation for low",
-      "Trust all vendors",
-      "No vendor assessment needed"
+      "リスクに関わらず全ベンダーを均等に評価",
+      "リスク（データアクセス、重要度）でベンダーを階層化 - 高リスクベンダーに包括的評価、中リスクに質問票ベース、低リスクに自己表明",
+      "全ベンダーを信頼",
+      "ベンダー評価は不要"
     ],
     "correct": 1,
-    "explanation": "Tiered assessment based on risk optimizes resource allocation: high-risk vendors (access to sensitive data, critical services) get full security assessments including SOC 2 review; medium-risk get standardized questionnaires; low-risk get self-attestation. Annual re-assessment for high-risk, biennial for medium."
+    "explanation": "リスクベースの階層化評価がリソース割り当てを最適化：高リスクベンダー（機密データへのアクセス、重要サービス）にSOC 2レビューを含むフルセキュリティ評価、中リスクに標準化された質問票、低リスクに自己表明。高リスクは年次再評価、中リスクは隔年。"
   },
   {
     "id": 72,
-    "category": "Security Policy",
-    "scenario": "A company's change management policy requires security review for all production changes. Developers complain it slows deployment. The CTO wants faster releases without compromising security.",
-    "question": "How can security be integrated into DevOps without slowing deployment?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業の変更管理ポリシーは全本番変更にセキュリティレビューを要求。開発者はデプロイメントが遅くなると不満。CTOはセキュリティを妥協せずにより速いリリースを望んでいる。",
+    "question": "DevOpsにセキュリティを統合し、デプロイメントを遅くしないにはどうすればよいか？",
     "options": [
-      "Skip security review for faster deployment",
-      "Shift left: integrate security into CI/CD pipeline as automated gates (SAST, SCA, DAST) with pre-approved security baselines",
-      "Only review security quarterly",
-      "Separate security and development completely"
+      "より速いデプロイのためにセキュリティレビューをスキップ",
+      "シフトレフト：自動化ゲート（SAST、SCA、DAST）としてCI/CDパイプラインにセキュリティを統合、事前承認済みセキュリティベースライン付き",
+      "セキュリティレビューを四半期のみに",
+      "セキュリティと開発を完全に分離"
     ],
     "correct": 1,
-    "explanation": "DevSecOps integrates security as automated gates in the pipeline: SAST scans code on commit, SCA checks dependencies on build, container scanning validates images, DAST tests deployed applications. Pre-approved security baselines allow common changes to pass automatically. Security reviews are only needed for significant changes."
+    "explanation": "DevSecOpsはパイプラインの自動化ゲートとしてセキュリティを統合：コミット時にSASTがコードをスキャン、ビルド時にSCAが依存関係を確認、コンテナスキャンがイメージを検証、DASTがデプロイ済みアプリケーションをテスト。事前承認済みセキュリティベースラインにより一般的な変更は自動的に通過。セキュリティレビューは重要な変更のみに必要。"
   },
   {
     "id": 73,
-    "category": "Security Policy",
-    "scenario": "An organization needs to write a clean desk policy for an office handling sensitive client information. Employees regularly leave documents on desks overnight.",
-    "question": "What should the clean desk policy require?",
+    "category": "セキュリティポリシー",
+    "scenario": "組織が機密な顧客情報を扱うオフィス向けのクリーンデスクポリシーを作成する必要がある。従業員が夜通し机に書類を置いている。",
+    "question": "クリーンデスクポリシーは何を要求すべきか？",
     "options": [
-      "Only apply to the security team",
-      "All sensitive documents must be locked when unattended, screens locked when away, whiteboards cleared after meetings, and printing collected immediately",
-      "Only electronic documents need protection",
-      "Trust employees to self-regulate"
+      "セキュリティチームのみに適用",
+      "機密文書は放置時に施錠、離席時に画面をロック、会議後にホワイトボードを消去、印刷物は直ちに回収",
+      "電子文書のみを保護",
+      "従業員の自己規律を信頼"
     ],
     "correct": 1,
-    "explanation": "Clean desk policy applies to all employees handling sensitive information. Requirements: lock sensitive documents (physical or locked cabinets), lock screens when stepping away (Win+L), clear whiteboards after meetings, collect printouts immediately, and dispose of sensitive waste in secure shredding bins. Regular audits ensure compliance."
+    "explanation": "クリーンデスクポリシーは機密情報を扱う全従業員に適用。要件：機密文書を施錠（物理的またはロックキャビネット）、離席時に画面をロック（Win+L）、会議後にホワイトボードを消去、印刷物を直ちに回収、機密廃棄物は安全なシュレッダービンで廃棄。定期的な監査でコンプライアンスを確保。"
   },
   {
     "id": 74,
-    "category": "Security Policy",
-    "scenario": "The company's security policy prohibits shadow IT but employees frequently use unauthorized SaaS tools (Google Drive, Dropbox) for convenience.",
-    "question": "What is the most effective approach to address shadow IT?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業のセキュリティポリシーはシャドーITを禁止しているが、従業員は利便性のため不正なSaaSツール（Google Drive、Dropbox）を頻繁に使用している。",
+    "question": "シャドーITに対処する最も効果的なアプローチはどれか？",
     "options": [
-      "Block all internet access",
-      "Monitor for shadow IT (CASB), provide approved alternatives that meet user needs, and educate employees on the risks",
-      "Fire employees who use shadow IT",
-      "Allow all SaaS tools"
+      "全インターネットアクセスをブロック",
+      "シャドーITをモニタリング（CASB）、ユーザーニーズを満たす承認済み代替手段を提供、従業員にリスクを教育",
+      "シャドーITを使用する従業員を解雇",
+      "全SaaSツールを許可"
     ],
     "correct": 1,
-    "explanation": "Employees use shadow IT when approved tools do not meet their needs. CASB discovers shadow IT usage. Providing approved alternatives (enterprise file sharing, collaboration tools) that are both secure and user-friendly reduces the motivation for shadow IT. Education on risks helps employees understand the 'why' behind restrictions."
+    "explanation": "従業員は承認済みツールがニーズを満たさない場合にシャドーITを使用。CASBがシャドーIT使用を発見。安全でユーザーフレンドリーな承認済み代替手段（エンタープライズファイル共有、コラボレーションツール）を提供することがシャドーITの動機を低減。リスクに関する教育が従業員に制限の理由を理解させる。"
   },
   {
     "id": 75,
-    "category": "Security Policy",
-    "scenario": "A company's security policy requires encryption of all laptops but 30% of employees have disabled BitLocker/FileVault because it slows their computers.",
-    "question": "What is the recommended approach to enforce encryption compliance?",
+    "category": "セキュリティポリシー",
+    "scenario": "企業のセキュリティポリシーは全ノートPCの暗号化を要求しているが、30%の従業員がBitLocker/FileVaultをコンピュータを遅くするため無効化している。",
+    "question": "暗号化コンプライアンスを強制する推奨アプローチはどれか？",
     "options": [
-      "Accept the risk for those employees",
-      "Implement MDM that enforces encryption as a compliance requirement, cannot be disabled by users, and reports compliance status centrally",
-      "Send reminder emails only",
-      "Only encrypt executive laptops"
+      "その従業員のリスクを受け入れる",
+      "コンプライアンス要件として暗号化を強制するMDMを実装、ユーザーが無効化できず、コンプライアンス状況を中央で報告",
+      "リマインダーメールのみを送信",
+      "経営陣ノートPCのみを暗号化"
     ],
     "correct": 1,
-    "explanation": "MDM (Mobile Device Management) enforces encryption policy centrally - users cannot disable it. Compliance status is reported to the IT team, enabling identification of non-compliant devices. If a device falls out of compliance, conditional access can block access to corporate resources until encryption is restored."
+    "explanation": "MDM（モバイルデバイス管理）は暗号化ポリシーを中央で強制 - ユーザーは無効化できない。コンプライアンス状況がITチームに報告され、非コンプライアンスデバイスの特定が可能。デバイスがコンプライアンスから外れると、条件付きアクセスが暗号化復旧まで企業リソースへのアクセスをブロック。"
   },
   {
     "id": 76,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A financial institution discovers a sophisticated attack: an employee's credentials were stolen via a targeted phishing email, the attacker moved through the network over 3 months, accessed the customer database, and exfiltrated 500,000 customer records including names, addresses, SSNs, and account numbers.",
-    "question": "What is the correct comprehensive response?",
+    "category": "総合シナリオ",
+    "scenario": "金融機関が巧妙な攻撃を発見：従業員の認証情報が標的型フィッシングメールで盗まれ、攻撃者が3ヶ月間ネットワーク内を横移動し、顧客データベースにアクセスし、氏名、住所、SSN、口座番号を含む50万件の顧客レコードを持ち出した。",
+    "question": "正しい包括的対応はどれか？",
     "options": [
-      "Only fix the vulnerability and move on",
-      "Contain: revoke credentials, isolate affected systems. Assess: determine full scope of data accessed. Notify: customers, regulators (73-hour GDPR), law enforcement. Remediate: patch vulnerability, enhance monitoring. Review: update incident response plan",
-      "Immediately pay any ransom demands",
-      "Keep the breach secret"
+      "脆弱性のみを修正して先に進む",
+      "封じ込め：認証情報を失効、影響システムを分離。評価：アクセスされたデータの全範囲を特定。通知：顧客、規制当局（GDPR 73時間）、法執行機関。修復：脆弱性を修正、監視を強化。レビュー：インシデント対応計画を更新",
+      "身代金要求があれば直ちに支払う",
+      "侵害を秘密にする"
     ],
     "correct": 1,
-    "explanation": "A comprehensive response follows NIST framework: Containment (revoke credentials, isolate systems), Investigation (forensics to determine full scope), Notification (customers, regulators within 72 hours per GDPR, law enforcement), Remediation (patch entry point, enhance detection), and Post-incident review (update plans based on lessons learned)."
+    "explanation": "包括的対応はNISTフレームワークに従う：封じ込め（認証情報の失効、システムの分離）、調査（全範囲を特定するフォレンジック）、通知（GDPRに従い72時間以内に顧客、規制当局、法執行機関）、修復（侵入ポイントの修正、検知の強化）、事後レビュー（教訓に基づく計画の更新）。"
   },
   {
     "id": 77,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A manufacturing company's production line stops due to ransomware. The ransomware has encrypted both production control systems and the ERP database. The company has backups but they are 48 hours old, and the ERP system is critical for order processing.",
-    "question": "What is the priority order for recovery?",
+    "category": "総合シナリオ",
+    "scenario": "製造企業の生産ラインがランサムウェアで停止。ランサムウェアが生産制御システムとERPデータベースの両方を暗号化。企業にはバックアップがあるが48時間前のもので、ERPシステムは注文処理に重要。",
+    "question": "復旧の優先順位はどれか？",
     "options": [
-      "Recover ERP first",
-      "First ensure physical safety and manual production capability, then recover production control systems, then ERP. Assess 48-hour data loss impact and implement manual order processing",
-      "Pay the ransom for fastest recovery",
-      "Recover everything simultaneously"
+      "ERPを先に復旧",
+      "まず物理的安全性と手動生産能力を確保、次に生産制御システムを復旧、次にERP。48時間のデータ損失影響を評価し、手動注文処理を実装",
+      "最速の復旧のために身代金を支払う",
+      "すべてを同時に復旧"
     ],
     "correct": 1,
-    "explanation": "Life safety always comes first. Production control systems must be recovered to resume manufacturing operations. ERP is critical but can operate manually for a period. The 48-hour backup gap means data loss must be assessed and manually re-entered. Never pay ransom without exhausting recovery options."
+    "explanation": "生命の安全が常に最優先。生産制御システムを復旧して製造運用を再開。ERPは重要だが一定期間は手動で運用可能。48時間のバックアップギャップはデータ損失を評価し手動で再入力する必要がある。復旧オプションを使い果たす前に身代金を支払わない。"
   },
   {
     "id": 78,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A cloud-based SaaS company discovers that one of their employees has been stealing customer data and selling it to a competitor for 2 years. The employee had legitimate database access as part of their job.",
-    "question": "What controls should have prevented or detected this insider threat?",
+    "category": "総合シナリオ",
+    "scenario": "クラウドベースのSaaS企業が従業員が2年間にわたり顧客データを盗み、競合他社に売却していたことを発見。従業員は仕事の一環として正当なデータベースアクセス権を持っていた。",
+    "question": "このインサイダー脅威を防止または検知できたはずの制御はどれか？",
     "options": [
-      "Only trust employees",
-      "DLP to detect bulk data access/exfiltration, user behavior analytics (UBA) to detect anomalous access patterns, separation of duties for sensitive data, and job rotation",
-      "Stronger passwords",
-      "Only background checks"
+      "従業員のみを信頼",
+      "一括データアクセス/持ち出しを検知するDLP、異常アクセスパターンを検知するユーザー行動分析（UBA）、機密データの職務分離、ジョブローテーション",
+      "より強力なパスワード",
+      "身元調査のみ"
     ],
     "correct": 1,
-    "explanation": "Insider threats with legitimate access are hard to detect. DLP monitors for unusual data transfers. UBA establishes baselines of normal user behavior and alerts on deviations (e.g., accessing data outside normal scope). Separation of duties ensures no single person can both access and exfiltrate data without collaboration."
+    "explanation": "正当なアクセスを持つインサイダー脅威は検知が困難。DLPは異常なデータ転送を監視。UBAは正常なユーザー行動のベースラインを確立し、逸脱（例：通常の範囲外のデータアクセス）をアラート。職務分離により単独者がコラボレーションなしにデータへのアクセスと持ち出しの両方ができない。"
   },
   {
     "id": 79,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A hospital discovers that their medical devices (MRI, X-ray) are running outdated software with known vulnerabilities. The vendor says the devices cannot be patched without voiding the warranty. These devices are on the hospital's main network.",
-    "question": "What is the recommended approach to secure these medical devices?",
+    "category": "総合シナリオ",
+    "scenario": "病院が医療機器（MRI、X線）が既知の脆弱性を持つ古いソフトウェアで動作していることを発見。ベンダーはパッチ適用が保証を無効にすると述べている。これらの機器は病院のメインネットワークにある。",
+    "question": "これらの医療機器を保護する推奨アプローチはどれか？",
     "options": [
-      "Disconnect all medical devices",
-      "Network segmentation (isolated VLAN), compensating controls (firewall rules, IDS), vendor risk assessment, and documented risk acceptance",
-      "Accept the risk fully",
-      "Void the warranty and patch"
+      "全医療機器を切断",
+      "ネットワークセグメント化（分離されたVLAN）、補償制御（ファイアウォールルール、IDS）、ベンダーリスク評価、文書化されたリスク受諾",
+      "リスクを全面的に受け入れる",
+      "保証を無効にしてパッチ適用"
     ],
     "correct": 1,
-    "explanation": "Medical devices often cannot be patched due to FDA approval requirements. Network isolation prevents lateral movement from compromised devices. Strict firewall rules limit device communication to only necessary protocols. IDS monitors for exploitation attempts. Documented risk acceptance with compensating controls is the practical approach."
+    "explanation": "医療機器はFDA承認要件のためパッチ適用できないことが多い。ネットワーク分離は侵害された機器からの横移動を防止。厳格なファイアウォールルールは機器通信を必要なプロトコルのみに制限。IDSは悪用試行を監視。補償制御付きの文書化されたリスク受諾が実用的なアプローチ。"
   },
   {
     "id": 80,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company receives intelligence that a nation-state APT group is targeting their industry. Their SIEM shows no signs of compromise, but the threat intelligence indicates sophisticated tactics.",
-    "question": "What proactive measures should the organization take?",
+    "category": "総合シナリオ",
+    "scenario": "企業が国家支援APTグループが自業界を標的にしているという情報を入手。SIEMには侵害の兆候はないが、脅威インテリジェンスは高度な戦術を示している。",
+    "question": "組織はどの予防的措置を取るべきか？",
     "options": [
-      "Ignore the threat - not targeted specifically",
-      "Hunt for indicators of compromise (IOCs), enhance logging, review access controls, conduct red team exercise, update incident response plans, and brief leadership",
-      "Only add more firewalls",
-      "Wait until an incident occurs"
+      "脅威を無視 - 具体的に標的にされていない",
+      "侵害の指標（IOC）のハンティング、ロギングの強化、アクセス制御のレビュー、レッドチーム演習、インシデント対応計画の更新、経営陣へのブリーフィング",
+      "ファイアウォールを追加するのみ",
+      "インシデントが発生するまで待つ"
     ],
     "correct": 1,
-    "explanation": "Threat-informed defense: update SIEM with APT IOCs and TTPs (MITRE ATT&CK), conduct threat hunting to find evidence of compromise, enhance logging on critical systems, review and tighten access controls, run a red team exercise to test defenses, update IR plans for nation-state scenarios, and ensure leadership is informed."
+    "explanation": "脅威インフォームド防衛：SIEMにAPT IOCとTTP（MITRE ATT&CK）を更新、侵害の証拠を探す脅威ハンティングを実施、重要システムのロギングを強化、アクセス制御をレビュー・強化、防御をテストするレッドチーム演習を実行、国家規模シナリオ向けにIR計画を更新、経営陣が情報を受け取ることを確保。"
   },
   {
     "id": 81,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company migrates its email to a cloud provider. Shortly after, they discover that the cloud provider's admin portal was compromised and their email data was potentially accessed.",
-    "question": "What should the company do based on the shared responsibility model?",
+    "category": "総合シナリオ",
+    "scenario": "企業がメールをクラウドプロバイダーに移行。直後、クラウドプロバイダーの管理ポータルが侵害され、メールデータがアクセスされた可能性があることを発見。",
+    "question": "共有責任モデルに基づき企業は何をすべきか？",
     "options": [
-      "The provider is fully responsible - no action needed",
-      "Verify scope of exposure, rotate all credentials, review email data for sensitivity, notify affected parties, review the provider's incident response, and evaluate relationship",
-      "Immediately switch providers",
-      "Sue the provider"
+      "プロバイダーが完全に責任 - 対応不要",
+      "露出範囲を確認、全クレデンシャルをローテーション、メールデータの機密性をレビュー、影響を受けた関係者に通知、プロバイダーのインシデント対応をレビュー、関係を評価",
+      "直ちにプロバイダーを変更",
+      "プロバイダーを訴える"
     ],
     "correct": 1,
-    "explanation": "While the provider secures the infrastructure, the customer is responsible for their data. Actions: verify what was accessed (request provider's forensic report), rotate all potentially compromised credentials, assess which sensitive data was in email, notify affected parties if required, review the provider's security practices, and consider if the relationship should continue."
+    "explanation": "プロバイダーがインフラを保護しても、顧客は自身のデータに責任を持つ。対応：何がアクセスされたかを確認（プロバイダーのフォレンジックレポートを要求）、侵害された可能性のある全クレデンシャルをローテーション、メールにどの機密データがあったかを評価、必要に応じて影響を受けた関係者に通知、プロバイダーのセキュリティ慣行をレビュー、関係を継続すべきか検討。"
   },
   {
     "id": 82,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company's DevOps team uses GitHub Actions for CI/CD. An investigation reveals that a malicious pull request was merged that added a cryptocurrency miner to the production deployment pipeline. The miner ran in production for 2 weeks.",
-    "question": "What security controls should be implemented to prevent this?",
+    "category": "総合シナリオ",
+    "scenario": "企業のDevOpsチームがCI/CDにGitHub Actionsを使用。調査で本番デプロイメントパイプラインに暗号資産マイナーを追加する悪意のあるプルリクエストがマージされていたことが判明。マイナーが本番で2週間稼働。",
+    "question": "これを防止するためにどのセキュリティ制御を実装すべきか？",
     "options": [
-      "Only allow senior developers to submit PRs",
-      "Branch protection rules (required reviews), signed commits, pipeline security scanning (SAST, SCA), artifact integrity verification, and production deployment approvals",
-      "Disable CI/CD",
-      "Manual deployment only"
+      "シニア開発者のみPRを提出可能にする",
+      "ブランチ保護ルール（必須レビュー）、署名済みコミット、パイプラインセキュリティスキャン（SAST、SCA）、アーティファクト完全性検証、本番デプロイメント承認",
+      "CI/CDを無効化",
+      "手動デプロイメントのみ"
     ],
     "correct": 1,
-    "explanation": "Branch protection with required reviews prevents unauthorized merges. Signed commits ensure commit authenticity. SAST catches suspicious code patterns. SCA detects malicious dependencies. Artifact integrity verification ensures build outputs match source. Production deployment approvals add human oversight for the final step."
+    "explanation": "必須レビュー付きブランチ保護が不正なマージを防止。署名済みコミットがコミットの信頼性を確保。SASTが不審なコードパターンを捕捉。SCAが悪意のある依存関係を検出。アーティファクト完全性検証がビルド出力がソースと一致することを確認。本番デプロイメント承認が最終ステップに人的監視を追加。"
   },
   {
     "id": 83,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A retail company's point-of-sale (POS) system is compromised by memory-scraping malware that captures card data during transactions. The breach affects 200 stores over 3 months.",
-    "question": "What is the comprehensive response for this PCI DSS breach?",
+    "category": "総合シナリオ",
+    "scenario": "小売企業のPOSシステムが取引中にカードデータをキャプチャするメモリスクレーピングマルウェアに侵害された。侵害は3ヶ月にわたり200店舗に影響。",
+    "question": "このPCI DSS侵害に対する包括的対応はどれか？",
     "options": [
-      "Only notify the affected stores",
-      "Contain: isolate POS systems. Investigate: forensic analysis to determine scope. Notify: card brands, PCI SSC, affected customers, regulators. Remediate: P2PE encryption, hardened POS, enhanced monitoring",
-      "Pay ransom to the attacker",
-      "Blame the POS vendor"
+      "影響を受けた店舗にのみ通知",
+      "封じ込め：POSシステムを分離。調査：範囲を特定するフォレンジック分析。通知：カードブランド、PCI SSC、影響を受けた顧客、規制当局。修復：P2PE暗号化、強化されたPOS、強化された監視",
+      "攻撃者に身代金を支払う",
+      "POSベンダーを非難"
     ],
     "correct": 1,
-    "explanation": "POS breach response: contain affected systems, engage forensic investigators, notify card brands (Visa/Mastercard require notification), engage PCI SSC for assessment, notify customers per regulation, implement Point-to-Point Encryption (P2PE) to prevent future memory scraping, and enhance network monitoring for POS environments."
+    "explanation": "POS侵害対応：影響システムを封じ込め、フォレンジック調査者を参画、カードブランドに通知（Visa/Mastercardは通知を要求）、PCI SSCに評価を依頼、規制に従い顧客に通知、将来のメモリスクレーピングを防止するPoint-to-Point Encryption（P2PE）を実装、POS環境向けのネットワーク監視を強化。"
   },
   {
     "id": 84,
-    "category": "Comprehensive Scenarios",
-    "scenario": "An employee discovers that the company's AI-powered chatbot for customer service is leaking other customers' conversation history. The chatbot sometimes includes information from previous conversations in its responses.",
-    "question": "What is this vulnerability called, and what should be done?",
+    "category": "総合シナリオ",
+    "scenario": "従業員が顧客サービス用のAIチャットボットが他の顧客の会話履歴を漏洩していることを発見。チャットボットが以前の会話の情報を回答に含むことがある。",
+    "question": "この脆弱性は何と呼ばれ、何をすべきか？",
     "options": [
-      "Normal AI behavior",
-      "Cross-contamination/data leakage in AI - immediately disable the chatbot, audit all exposed data, implement session isolation and data access controls, notify affected customers",
-      "A feature, not a bug",
-      "Only a privacy policy issue"
+      "正常なAI動作",
+      "AIの交差汚染/データ漏洩 - チャットボットを直ちに無効化、露出したデータを監査、セッション分離とデータアクセス制御を実装、影響を受けた顧客に通知",
+      "機能、バグではない",
+      "プライバシーポリシーの問題のみ"
     ],
     "correct": 1,
-    "explanation": "This is a data leakage vulnerability in the AI application. Immediate response: disable the chatbot, audit which customer data was exposed to other customers, implement proper session isolation (each conversation should only access that user's data), add access controls to the AI's data retrieval, and notify affected customers per privacy regulations."
+    "explanation": "これはAIアプリケーションのデータ漏洩脆弱性。即時対応：チャットボットを無効化、どの顧客データが他の顧客に露出したかを監査、適切なセッション分離（各会話はそのユーザーのデータのみにアクセス）を実装、AIのデータ検索にアクセス制御を追加、プライバシー規制に従い影響を受けた顧客に通知。"
   },
   {
     "id": 85,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company discovers that their domain's DNS records were modified to point to a server controlled by an attacker. All incoming email is being intercepted and website visitors see a fake login page.",
-    "question": "What type of attack is this, and what is the immediate response?",
+    "category": "総合シナリオ",
+    "scenario": "企業がドメインのDNSレコードが攻撃者制御のサーバーを指すように変更されたことを発見。全着信メールが傍受され、Webサイト訪問者に偽ログインページが表示されている。",
+    "question": "これはどのタイプの攻撃で、即時対応は何か？",
     "options": [
-      "DNS cache poisoning",
-      "DNS hijacking - immediately contact the registrar to regain control, restore correct DNS records, enable DNSSEC, revoke compromised certificates, and notify affected users",
-      "DDoS attack",
-      "Website defacement"
+      "DNSキャッシュポイズニング",
+      "DNSハイジャック - レジストラに連絡して制御を回復、正しいDNSレコードを復元、DNSSECを有効化、侵害された証明書を失効、影響を受けたユーザーに通知",
+      "DDoS攻撃",
+      "Webサイトの改ざん"
     ],
     "correct": 1,
-    "explanation": "This is DNS hijacking (unauthorized DNS record modification). Immediate: contact the domain registrar to regain control and restore correct records. Enable DNSSEC to prevent future tampering. Revoke any SSL certificates that may have been issued for the fake site. Notify users who may have entered credentials on the fake site."
+    "explanation": "これはDNSハイジャック（不正なDNSレコード変更）。即時：ドメインレジストラに連絡して制御を回復し正しいレコードを復元。DNSSECを有効化して将来の改ざんを防止。偽サイト用に発行された可能性のあるSSL証明書を失効。偽サイトに認証情報を入力した可能性のあるユーザーに通知。"
   },
   {
     "id": 86,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company's security awareness training program shows a declining trend: click rates on phishing simulations have increased from 5% to 15% over the past year despite regular training.",
-    "question": "What is the likely cause and recommended improvement?",
+    "category": "総合シナリオ",
+    "scenario": "企業のセキュリティ意識研修プログラムに低下傾向が見られる：フィッシングシミュレーションのクリック率が過去1年間に定期的な研修にもかかわらず5%から15%に上昇。",
+    "question": "考えられる原因と推奨される改善はどれか？",
     "options": [
-      "Employees do not care about security",
-      "Training fatigue from repetitive content - implement varied, scenario-based training with gamification, role-specific content, positive reinforcement, and executive engagement",
-      "Training should be longer",
-      "Increase punishment for failures"
+      "従業員はセキュリティに関心がない",
+      "反復的なコンテンツによる研修疲労 - ゲーミフィケーション、ロール固有コンテンツ、ポジティブ強化、経営陣のエンゲージメントを備えた多様なシナリオベース研修を実装",
+      "研修を長くすべき",
+      "失敗への罰則を強化"
     ],
     "correct": 1,
-    "explanation": "Declining effectiveness often indicates training fatigue - the same content delivered the same way becomes boring and ineffective. Solutions: varied realistic scenarios (not obvious phishing), gamification (points, leaderboards), role-specific content (finance sees invoice scams, HR sees W-2 scams), recognition for good performance, and visible executive participation."
+    "explanation": "効果の低下は研修疲労を示すことが多い - 同じコンテンツが同じ方法で配信されると退屈で無効になる。解決策：多様なリアルなシナリオ（明らかなフィッシングではない）、ゲーミフィケーション（ポイント、リーダーボード）、ロール固有コンテンツ（財務は請求書詐欺、HRはW-2詐欺）、良いパフォーマンスの認識、目に見える経営陣の参加。"
   },
   {
     "id": 87,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company uses a third-party library for authentication. The library's maintainer, in a supply chain attack, added malicious code that steals authentication tokens from all applications using the library. The attack affects thousands of companies worldwide.",
-    "question": "What is this type of attack, and what should affected companies do?",
+    "category": "総合シナリオ",
+    "scenario": "企業が認証にサードパーティライブラリを使用。ライブラリのメンテナーがサプライチェーン攻撃で、ライブラリを使用する全アプリケーションの認証トークンを盗む悪意のあるコードを追加。この攻撃は世界中の数千企業に影響。",
+    "question": "これはどのタイプの攻撃で、影響を受けた企業は何をすべきか？",
     "options": [
-      "Regular malware",
-      "Software supply chain attack - immediately identify affected versions, update to a safe version (or fork), rotate all potentially compromised credentials, audit access logs, and implement SCA",
-      "Not our problem",
-      "Only notify the library maintainer"
+      "通常のマルウェア",
+      "ソフトウェアサプライチェーン攻撃 - 影響を受けるバージョンを即座に特定、安全なバージョンに更新（またはフォーク）、侵害された可能性のある全クレデンシャルをローテーション、アクセスログを監査、SCAを実装",
+      "我々の問題ではない",
+      "ライブラリメンテナーに通知のみ"
     ],
     "correct": 1,
-    "explanation": "This is a supply chain attack (like the event-stream/left-pad incidents). Response: identify which version introduced the malicious code (using SBOM or SCA tools), immediately update to a pre-compromise version or a fork, rotate ALL credentials and tokens that may have been exposed, audit access logs for unauthorized access, and implement SCA to detect future malicious updates."
+    "explanation": "これはサプライチェーン攻撃（event-stream/left-pad事件のような）。対応：悪意のあるコードを導入したバージョンを特定（SBOMまたはSCAツール使用）、侵害前バージョンまたはフォークに即座に更新、露出した可能性のある全クレデンシャルとトークンをローテーション、不正アクセスのためにアクセスログを監査、将来の悪意のある更新を検出するSCAを実装。"
   },
   {
     "id": 88,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A critical vulnerability (CVSS 10.0) is discovered in a widely-used VPN appliance. Proof-of-concept exploit code is published, and active exploitation in the wild is confirmed. The company uses this VPN appliance for remote access.",
-    "question": "What is the appropriate risk-based response?",
+    "category": "総合シナリオ",
+    "scenario": "広く使用されているVPN機器にクリティカルな脆弱性（CVSS 10.0）が発見。概念実証エクスプロイトコードが公開され、野生でのアクティブ悪用が確認。企業はリモートアクセスにこのVPN機器を使用。",
+    "question": "適切なリスクベースの対応はどれか？",
     "options": [
-      "Wait for the official patch",
-      "Immediately apply available workarounds, implement virtual patching via IPS, restrict VPN access to essential users only, monitor for exploitation indicators, and plan emergency patching",
-      "Disable all remote access",
-      "Accept the risk temporarily"
+      "公式パッチを待つ",
+      "利用可能な回避策を直ちに適用、IPSによる仮想パッチングを実装、VPNアクセスを必要不可欠なユーザーのみに制限、悪用指標を監視、緊急パッチ適用を計画",
+      "全リモートアクセスを無効化",
+      "一時的にリスクを受け入れる"
     ],
     "correct": 1,
-    "explanation": "A CVSS 10.0 vulnerability with active exploitation requires immediate action. Workarounds from the vendor should be applied immediately. Virtual patching (IPS rules) blocks exploitation. Restricting VPN access to essential users reduces the attack surface. Monitoring detects if the vulnerability is being targeted. Emergency patching should be scheduled ASAP."
+    "explanation": "アクティブ悪用のあるCVSS 10.0脆弱性には即時対応が必要。ベンダーの回避策を直ちに適用。仮想パッチ（IPSルール）が悪用をブロック。VPNアクセスを必要不可欠なユーザーのみに制限して攻撃面を低減。監視で脆弱性が標的にされているかを検出。緊急パッチ適用をできるだけ早くスケジュール。"
   },
   {
     "id": 89,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company conducts a tabletop exercise simulating a major data breach. During the exercise, the team discovers that communication between IT, Legal, PR, and executive leadership is disorganized, with conflicting messages being sent.",
-    "question": "What should be improved based on this exercise finding?",
+    "category": "総合シナリオ",
+    "scenario": "企業が大規模なデータ侵害をシミュレートするテーブルトップ演習を実施。演習中、IT、法務、広報、経営陣間のコミュニケーションが乱雑で、矛盾するメッセージが送信されていることが判明。",
+    "question": "この演習の所見に基づき何を改善すべきか？",
     "options": [
-      "More technical tools",
-      "Establish clear communication protocols: predefined communication channels, message templates, spokesperson assignment, and a unified command structure with the incident commander coordinating all communications",
-      "Only IT should communicate",
-      "Cancel future exercises"
+      "より多くの技術ツール",
+      "明確なコミュニケーションプロトコルの確立：事前定義されたコミュニケーションチャネル、メッセージテンプレート、スポークスパーソンの割り当て、インシデントコマンダーが全コミュニケーションを調整する統一指揮構造",
+      "ITのみがコミュニケーション",
+      "将来の演習をキャンセル"
     ],
     "correct": 1,
-    "explanation": "The exercise revealed a critical gap in incident communication. Establish: a unified command structure (incident commander coordinates all external communications), pre-approved message templates for different scenarios, designated spokespersons for media and customers, legal review process for regulatory notifications, and practice this communication flow regularly."
+    "explanation": "演習でインシデントコミュニケーションの重要なギャップが判明。確立すべきこと：統一指揮構造（インシデントコマンダーが全外部コミュニケーションを調整）、異なるシナリオ向けの事前承認メッセージテンプレート、メディアと顧客向けの指定スポークスパーソン、規制通知のための法務レビュープロセス、このコミュニケーションフローの定期的な練習。"
   },
   {
     "id": 90,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company's new CISO joins and finds: no asset inventory, no vulnerability management program, no incident response plan, shared admin credentials, and no security awareness training. Budget is limited.",
-    "question": "What should be the CISO's first three priorities?",
+    "category": "総合シナリオ",
+    "scenario": "企業の新しいCISOが就任し、以下を発見：アセット棚卸しなし、脆弱性管理プログラムなし、インシデント対応計画なし、共有管理者クレデンシャル、セキュリティ意識研修なし。予算は限られている。",
+    "question": "CISOの最初の3つの優先事項は何であるべきか？",
     "options": [
-      "Buy expensive security tools immediately",
-      "1) Asset inventory (cannot protect unknown), 2) Credential hygiene (disable shared accounts, implement MFA), 3) Basic incident response plan (detect and respond to active threats)",
-      "Hire more staff first",
-      "Focus on compliance only"
+      "高価なセキュリティツールを即座に購入",
+      "1) アセット棚卸（未知のものを保護できない）、2) クレデンシャル管理（共有アカウントを無効化、MFAを実装）、3) 基本的なインシデント対応計画（アクティブ脅威の検知と対応）",
+      "まずスタッフを採用",
+      "コンプライアンスのみに集中"
     ],
     "correct": 1,
-    "explanation": "Asset inventory is foundational - you cannot protect what you do not know exists. Shared admin credentials are the highest-risk finding - an immediate risk that can be fixed cheaply. A basic IR plan enables the organization to detect and respond to threats. These three actions provide the highest security ROI with limited budget."
+    "explanation": "アセット棚卸が基礎的 - 存在を知らないものを保護できない。共有管理者クレデンシャルは最高リスクの所見 - 安価に修正できる即時リスク。基本的なIR計画により組織が脅威を検知・対応できる。この3つのアクションが限られた予算で最高のセキュリティROIを提供。"
   },
   {
     "id": 91,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company's security monitoring detects that an employee is accessing a competitor's confidential documents stored on a shared cloud drive. The employee has legitimate access to the cloud drive as part of a cross-company project.",
-    "question": "How should this be handled from a security and legal perspective?",
+    "category": "総合シナリオ",
+    "scenario": "企業のセキュリティ監視で従業員が共有クラウドドライブに保存された競合他社の機密文書にアクセスしていることを検知。従業員はクロスカンパニープロジェクトの一環として正当なクラウドドライブアクセス権を持っている。",
+    "question": "セキュリティおよび法的観点からこれをどのように処理すべきか？",
     "options": [
-      "Ignore it since access is legitimate",
-      "Investigate the scope of access, verify if it exceeds project authorization, involve legal counsel, and implement enhanced access controls with just-in-time access and audit logging",
-      "Immediately terminate the employee",
-      "Delete all shared data"
+      "アクセスが正当なので無視",
+      "アクセスの範囲を調査、プロジェクト認可を超えているかを確認、法務顧問を参画、ジャストインタイムアクセスと監査ログを備えた強化されたアクセス制御を実装",
+      "従業員を即座に解雇",
+      "全共有データを削除"
     ],
     "correct": 1,
-    "explanation": "Legitimate access does not mean authorized for all data in the shared space. Investigate: what documents were accessed, was it within project scope, and how many times. Involve legal counsel to determine if this constitutes corporate espionage. Implement need-to-know access controls and enhanced audit logging for sensitive shared environments."
+    "explanation": "正当なアクセスは共有スペースの全データへの認可を意味しない。調査：どの文書にアクセスしたか、プロジェクト範囲内だったか、何回アクセスしたか。法務顧問を参画してこれが産業スパイ行為に該当するかを判断。知る必要のあるアクセス制御と機密な共有環境向けの強化された監査ログを実装。"
   },
   {
     "id": 92,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A multinational company must comply with both GDPR (EU) and APPI (Japan) for personal data processing. The requirements have some differences in consent and data subject rights.",
-    "question": "What is the recommended compliance approach?",
+    "category": "総合シナリオ",
+    "scenario": "多国籍企業がGDPR（EU）とAPPI（日本）の両方の個人データ処理にコンプライアンスする必要がある。同意とデータ主体の権利について一部要件に違いがある。",
+    "question": "推奨されるコンプライアンスアプローチはどれか？",
     "options": [
-      "Only comply with the stricter regulation",
-      "Implement controls that meet the strictest requirements of both regulations, with documented mapping of requirements to controls, and region-specific procedures where they differ",
-      "Comply with GDPR only",
-      "Create separate systems for each region"
+      "より厳しい規制のみにコンプライアンス",
+      "両規制の最も厳しい要件を満たす制御を実装、要件から制御への文書化されたマッピング、差異がある場合は地域固有の手順",
+      "GDPRのみにコンプライアンス",
+      "各地域に別々のシステムを作成"
     ],
     "correct": 1,
-    "explanation": "When complying with multiple privacy regulations, implement controls that satisfy the strictest requirements. Map each regulatory requirement to specific controls. Where requirements genuinely conflict, implement region-specific procedures. Document the compliance framework for audit purposes. Regular monitoring ensures ongoing compliance with evolving regulations."
+    "explanation": "複数のプライバシー規制にコンプライアンスする場合、最も厳しい要件を満たす制御を実装。各規制要件を特定の制御にマッピング。要件が真に矛盾する場合、地域固有の手順を実装。監査目的のためにコンプライアンスフレームワークを文書化。定期的な監視で進化する規制への継続的コンプライアンスを確保。"
   },
   {
     "id": 93,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company's penetration test reveals critical findings: SQL injection in the main application, default credentials on the database, and unpatched servers. The IT director says fixing everything will take 6 months.",
-    "question": "What is the risk-based remediation priority?",
+    "category": "総合シナリオ",
+    "scenario": "企業のペネトレーションテストでクリティカルな所見が判明：メインアプリケーションのSQLインジェクション、データベースのデフォルト認証情報、未パッチのサーバー。ITディレクターは全修正に6ヶ月かかるという。",
+    "question": "リスクベースの修復優先順位はどれか？",
     "options": [
-      "Fix everything at once in 6 months",
-      "Immediately patch default credentials (0 effort, critical risk), virtual patch SQL injection within days (WAF rule), plan server patching in risk-priority order, with continuous monitoring",
-      "Fix nothing until all fixes are ready",
-      "Only fix SQL injection"
+      "6ヶ月で一度にすべてを修正",
+      "デフォルト認証情報を即座に修正（0労力、クリティカルリスク）、数日内にSQLインジェクションを仮想パッチ（WAFルール）、リスク優先順位でサーバーパッチ計画、継続的監視",
+      "全修正の準備ができるまで何も修正しない",
+      "SQLインジェクションのみを修正"
     ],
     "correct": 1,
-    "explanation": "Risk-based prioritization: default credentials are trivial to fix (minutes) and critical risk - fix immediately. SQL injection can be virtually patched (WAF) while code fix is developed. Server patching should follow CVSS severity with critical patches within days, high within weeks. Monitor for exploitation during the remediation period."
+    "explanation": "リスクベースの優先順位付け：デフォルト認証情報は修正が trivial（数分）でクリティカルリスク - 即座に修正。SQLインジェクションはコード修正の開発中に仮想パッチ（WAF）で対応可能。サーバーパッチはCVSS重大度に従いクリティカルを数日内、高を数週間以内に。修復期間中の悪用を監視。"
   },
   {
     "id": 94,
-    "category": "Comprehensive Scenarios",
-    "scenario": "An organization's CEO receives a targeted email with a malicious attachment disguised as a board meeting agenda. The email passes spam filters because it appears to come from a legitimate board member's compromised account.",
-    "question": "What type of attack is this, and what controls could have prevented it?",
+    "category": "総合シナリオ",
+    "scenario": "組織のCEOが取締役会議の議題に偽装された添付ファイル付きの標的型メールを受信。メールは正当な取締役会メンバーの侵害されたアカウントから送信されたように見えるためスパムフィルタを通過。",
+    "question": "これはどのタイプの攻撃で、どの制御が防止できたか？",
     "options": [
-      "Regular spam",
-      "Spear phishing via compromised account - DMARC to prevent email spoofing, sandboxing for attachments, executive awareness training, and out-of-band verification for financial requests",
-      "Not an attack - legitimate email",
-      "Only a virus"
+      "通常のスパム",
+      "侵害アカウント経由のスピアフィッシング - メールスプーフィング防止のDMARC、添付ファイルのサンドボックス化、経営陣向け意識研修、財務要求のバンド外検証",
+      "攻撃ではない - 正当なメール",
+      "ウイルスのみ"
     ],
     "correct": 1,
-    "explanation": "This is spear phishing using a compromised email account (BEC variant). DMARC prevents domain spoofing but cannot prevent sending from a legitimately compromised account. Attachment sandboxing detonates files in isolation before delivery. Executive training (especially for recognizing compromised sender indicators) and out-of-band verification are key defenses."
+    "explanation": "これは侵害されたメールアカウントを使用するスピアフィッシング（BECバリアント）。DMARCはドメインスプーフィングを防止できるが、正当に侵害されたアカウントからの送信は防止できない。添付ファイルサンドボックスは配信前に隔離環境でファイルを実行。経営陣研修（侵害送信者の指標を認識）とバンド外検証が重要な防御。"
   },
   {
     "id": 95,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company's security metrics dashboard shows: mean time to detect (MTTD) = 45 days, mean time to respond (MTTR) = 7 days, 80% of incidents detected by external parties, and only 2% of vulnerabilities patched within SLA.",
-    "question": "What do these metrics indicate about the security posture?",
+    "category": "総合シナリオ",
+    "scenario": "企業のセキュリティメトリクスダッシュボードが以下を示している：平均検知時間（MTTD）= 45日、平均対応時間（MTTR）= 7日、インシデントの80%を外部が検知、SLA内にパッチ適用された脆弱性は2%のみ。",
+    "question": "これらのメトリクスはセキュリティ態勢について何を示しているか？",
     "options": [
-      "Good security posture - metrics are normal",
-      "Poor security posture: MTTD and MTTR are excessive, over-reliance on external detection indicates poor monitoring, low patch compliance creates exploitation window - comprehensive improvement needed",
-      "Only patching needs improvement",
-      "Metrics are misleading"
+      "良いセキュリティ態勢 - メトリクスは正常",
+      "不良なセキュリティ態勢：MTTDとMTTRが過大、外部検出への過度な依存は監視の不備を示す、低パッチコンプライアンスは悪用の窓を作成 - 包括的改善が必要",
+      "パッチングのみの改善が必要",
+      "メトリクスは誤解を招く"
     ],
     "correct": 1,
-    "explanation": "These metrics paint a concerning picture: 45-day MTTD means attackers have weeks of undetected access. 7-day MTTR is slow. 80% external detection means internal monitoring is failing. 2% patch compliance leaves vast exploitation surface. Comprehensive program improvement needed: better monitoring (SIEM, EDR), automated response (SOAR), and patch management."
+    "explanation": "これらのメトリクスは懸念すべき状況を示す：45日MTTDは攻撃者が数週間検知されずアクセスできることを意味。7日MTTRは遅い。80%外部検出は内部監視が失敗していることを意味。2%パッチコンプライアンスは広大な悪用面を残す。包括的プログラム改善が必要：より良い監視（SIEM、EDR）、自動化対応（SOAR）、パッチ管理。"
   },
   {
     "id": 96,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company wants to implement a zero trust architecture but has a traditional perimeter-based network with flat internal network segments. Migration must occur without disrupting business operations.",
-    "question": "What is the recommended phased approach to zero trust migration?",
+    "category": "総合シナリオ",
+    "scenario": "企業がゼロトラストアーキテクチャを実装したいが、フラットな内部ネットワークセグメントを持つ従来の境界ベースネットワークがある。移行はビジネス運用を中断せずに行う必要がある。",
+    "question": "ゼロトラスト移行の推奨される段階的アプローチはどれか？",
     "options": [
-      "Replace everything at once",
-      "Phase 1: Identity (MFA, SSO, IAM). Phase 2: Device trust (compliance checks, EDR). Phase 3: Network microsegmentation. Phase 4: Application access (ZTNA, per-app authorization). Phase 5: Continuous monitoring and analytics",
-      "Zero trust is only for cloud",
-      "Not possible with existing infrastructure"
+      "すべてを一度に置き換える",
+      "フェーズ1：アイデンティティ（MFA、SSO、IAM）。フェーズ2：デバイス信頼（コンプライアンスチェック、EDR）。フェーズ3：ネットワークマイクロセグメンテーション。フェーズ4：アプリケーションアクセス（ZTNA、アプリ別認可）。フェーズ5：継続的監視と分析",
+      "ゼロトラストはクラウドのみ",
+      "既存インフラでは不可能"
     ],
     "correct": 1,
-    "explanation": "Zero trust migration should be phased: start with identity (strongest foundation), then device trust (endpoint compliance), then network (microsegmentation of critical assets), then application (ZTNA replacing VPN), and finally continuous monitoring. Each phase provides incremental security improvement without requiring a forklift upgrade."
+    "explanation": "ゼロトラスト移行は段階的に行うべき：アイデンティティ（最強の基盤）から始め、次にデバイス信頼（エンドポイントコンプライアンス）、次にネットワーク（重要アセットのマイクロセグメンテーション）、次にアプリケーション（VPNに代わるZTNA）、最後に継続的監視。各フェーズがフォークリフトアップグレードなしで段階的なセキュリティ改善を提供。"
   },
   {
     "id": 97,
-    "category": "Comprehensive Scenarios",
-    "scenario": "During a routine security review, it is discovered that the company's test environment contains a copy of the production database with real customer data. The test environment has no security controls.",
-    "question": "What are the compliance implications and remediation steps?",
+    "category": "総合シナリオ",
+    "scenario": "定期セキュリティレビューで企業のテスト環境に実際の顧客データを含む本番データベースのコピーが含まれていることが発見。テスト環境にはセキュリティ制御がない。",
+    "question": "コンプライアンスへの影響と修復ステップはどれか？",
     "options": [
-      "No issue - test environment is internal",
-      "GDPR/APPI violation - immediately mask or anonymize test data, implement access controls on test environments, establish data provisioning policies (no production data in non-production)",
-      "Only a minor issue",
-      "Document as a known exception"
+      "問題なし - テスト環境は内部",
+      "GDPR/APPI違反 - テストデータを直ちにマスキングまたは匿名化、テスト環境にアクセス制御を実装、データプロビジョニングポリシーを確立（非本番に本番データなし）",
+      "軽微な問題のみ",
+      "既知の例外として文書化"
     ],
     "correct": 1,
-    "explanation": "Using real customer data in uncontrolled test environments violates data minimization principles of GDPR, APPI, and other privacy regulations. Remediation: immediately anonymize or mask the test data, implement test data provisioning policies (synthetic data or masked production data), add access controls to test environments, and audit for other data sprawl."
+    "explanation": "管理されていないテスト環境での実際の顧客データの使用はGDPR、APPI、その他のプライバシー規制のデータ最小化原則に違反。修復：テストデータを直ちに匿名化またはマスキング、テストデータプロビジョニングポリシーを実装（合成データまたはマスクされた本番データ）、テスト環境にアクセス制御を追加、他のデータ散在を監査。"
   },
   {
     "id": 98,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company's security operations team is overwhelmed with alerts. The SIEM generates 10,000 alerts per day, but only 50 are true positives. The team of 5 analysts can only investigate 200 alerts per day.",
-    "question": "What is the recommended approach to improve alert management?",
+    "category": "総合シナリオ",
+    "scenario": "企業のセキュリティ運用チームがアラートに圧倒されている。SIEMが1日10,000件のアラートを生成するが、真陽性は50件のみ。5名のアナリストチームは1日200件のアラートしか調査できない。",
+    "question": "アラート管理を改善する推奨されるアプローチはどれか？",
     "options": [
-      "Hire 50 more analysts",
-      "Tune SIEM rules to reduce false positives, implement SOAR for automated triage, use ML-based alert prioritization, and establish clear escalation procedures",
-      "Ignore low-priority alerts",
-      "Turn off the SIEM"
+      "さらに50名のアナリストを採用",
+      "SIEMルールをチューニングして偽陽性を削減、自動トリアージにSOARを実装、MLベースのアラート優先順位付け、明確なエスカレーション手順を確立",
+      "低優先度アラートを無視",
+      "SIEMをオフにする"
     ],
     "correct": 1,
-    "explanation": "Alert fatigue leads to missed critical threats. SIEM tuning reduces false positives by refining correlation rules. SOAR automates triage (enrichment, deduplication, initial investigation). ML-based prioritization surfaces the most suspicious alerts. Clear escalation ensures critical alerts are never missed. Target: <5% false positive rate."
+    "explanation": "アラート疲労は重大な脅威の見逃しにつながる。SIEMチューニングは相関ルールを洗練して偽陽性を削減。SOARがトリアージを自動化（エンリッチメント、重複排除、初期調査）。MLベースの優先順位付けが最も疑わしいアラートを表面化。明確なエスカレーションで重大なアラートを見逃さない。目標：偽陽性率5%未満。"
   },
   {
     "id": 99,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A company must demonstrate SOC 2 compliance to win a major enterprise customer contract. They currently have no formal security program and the deadline is 6 months.",
-    "question": "What is the most realistic approach to achieve SOC 2 compliance in 6 months?",
+    "category": "総合シナリオ",
+    "scenario": "企業が主要なエンタープライズ顧客契約を獲得するためにSOC 2コンプライアンスを実証する必要がある。現在正式なセキュリティプログラムがなく、期限は6ヶ月。",
+    "question": "6ヶ月でSOC 2コンプライアンスを達成する最も現実的なアプローチはどれか？",
     "options": [
-      "Impossible - decline the contract",
-      "Gap analysis against SOC 2 TSC, prioritize highest-risk controls, implement quick wins (access control, logging, encryption), engage a SOC 2 readiness assessor, and plan for Type I audit with Type II follow-up",
-      "Fake the audit",
-      "Only implement cosmetic controls"
+      "不可能 - 契約を辞退",
+      "SOC 2 TSCに対するギャップ分析、最高リスク制御を優先順位付け、クイックウィン（アクセス制御、ロギング、暗号化）を実装、SOC 2準備評価者に参画、Type I監査をType IIフォローアップ付きで計画",
+      "監査を偽造",
+      "表面的な制御のみを実装"
     ],
     "correct": 1,
-    "explanation": "Achieving SOC 2 in 6 months is challenging but possible with focus: conduct gap analysis, prioritize controls by risk and audit impact, implement 'quick wins' (MFA, logging, encryption, access reviews) immediately, engage an assessor for readiness review, and aim for Type I (design) audit first with Type II (operational) 6-12 months later."
+    "explanation": "6ヶ月でSOC 2を達成することは集中すれば可能：ギャップ分析を実施、リスクと監査インパクトで制御を優先順位付け、クイックウィン（MFA、ロギング、暗号化、アクセスレビュー）を即座に実装、準備レビューのために評価者に参画、まずType I（設計）監査を目指し、6-12ヶ月後にType II（運用）を目指す。"
   },
   {
     "id": 100,
-    "category": "Comprehensive Scenarios",
-    "scenario": "A critical zero-day vulnerability is discovered in a foundational component used by most of the company's applications. The vendor has not released a patch. Active exploitation is detected in the wild targeting the company's industry.",
-    "question": "What comprehensive response should be taken?",
+    "category": "総合シナリオ",
+    "scenario": "企業の大部分のアプリケーションで使用されている基盤コンポーネントにクリティカルなゼロデイ脆弱性が発見。ベンダーはパッチを未リリース。企業の業界を標的とした野生でのアクティブ悪用が検出されている。",
+    "question": "どの包括的対応を取るべきか？",
     "options": [
-      "Wait for the vendor patch",
-      "Implement all available mitigations (virtual patching, configuration changes), increase monitoring for exploitation indicators, prepare incident response for potential breach, plan emergency patching, and brief leadership on business risk",
-      "Accept the risk silently",
-      "Shut down all affected applications"
+      "ベンダーパッチを待つ",
+      "利用可能な全軽減策（仮想パッチ、設定変更）を実装、悪用指標の監視を強化、潜在的侵害に備えたインシデント対応を準備、緊急パッチ適用を計画、経営陣にビジネスリスクをブリーフィング",
+      "リスクを黙って受け入れる",
+      "全影響アプリケーションをシャットダウン"
     ],
     "correct": 1,
-    "explanation": "Zero-day with active exploitation requires maximum urgency: apply any vendor workarounds immediately, implement virtual patching (WAF/IPS), disable vulnerable features if possible, deploy enhanced monitoring (YARA rules, behavioral analytics), prepare IR for potential breach (assume compromise), and communicate business risk to leadership for informed decision-making."
+    "explanation": "アクティブ悪用のあるゼロデイには最大の緊急度が必要：ベンダーの回避策を直ちに適用、仮想パッチ（WAF/IPS）を実装、可能であれば脆弱な機能を無効化、強化された監視（YARAルール、行動分析）を展開、潜在的侵害に備えたIRを準備（侵害を仮定）、経営陣にビジネスリスクを伝達して情報に基づいた意思決定を可能にする。"
   }
 ]
