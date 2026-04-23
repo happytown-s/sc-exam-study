@@ -2,7 +2,7 @@
   {
     "id": 1,
     "category": "Cryptography",
-    "question": "Which symmetric encryption algorithm uses a block size of 128 bits and supports key sizes of 128, 192, and 256 bits?",
+    "question": "128ビットブロックサイズを使用し、128、192、256ビットの鍵サイズをサポートする共通鍵暗号アルゴリズムはどれか。",
     "options": [
       "DES",
       "3DES",
@@ -15,12 +15,12 @@
   {
     "id": 2,
     "category": "Cryptography",
-    "question": "What is the primary advantage of using ECC (Elliptic Curve Cryptography) over RSA?",
+    "question": "RSAに比べてECC (Elliptic Curve Cryptography) の最大の利点は何か。",
     "options": [
-      "Faster key generation only",
-      "Equivalent security with smaller key sizes",
-      "Support for larger key sizes",
-      "Resistance to quantum computing"
+      "鍵生成の高速化のみ",
+      "より小さな鍵サイズで同等のセキュリティ",
+      "より大きな鍵サイズのサポート",
+      "量子コンピューティングへの耐性"
     ],
     "correct": 1,
     "explanation": "ECCはRSAと同等のセキュリティをはるかに小さな鍵サイズで提供する。例えば、256ビットのECC鍵は3072ビットのRSA鍵と同等のセキュリティを提供し、高速な計算と低い帯域/ストレージ要件を実現する。"
@@ -28,7 +28,7 @@
   {
     "id": 3,
     "category": "Cryptography",
-    "question": "Which hashing algorithm produces a 160-bit digest and is considered cryptographically broken?",
+    "question": "160ビットダイジェストを生成し、暗号学的に破られているとされるハッシュアルゴリズムはどれか。",
     "options": [
       "SHA-256",
       "SHA-1",
@@ -41,12 +41,12 @@
   {
     "id": 4,
     "category": "Cryptography",
-    "question": "In a PKI (Public Key Infrastructure), what is the role of a Certificate Authority (CA)?",
+    "question": "PKI (Public Key Infrastructure) において、認証局 (CA) の役割は何か。",
     "options": [
-      "Encrypt user data",
-      "Issue and manage digital certificates",
-      "Perform key escrow",
-      "Monitor network traffic"
+      "ユーザーデータの暗号化",
+      "デジタル証明書の発行と管理",
+      "鍵エスクローの実行",
+      "ネットワークトラフィックの監視"
     ],
     "correct": 1,
     "explanation": "認証局(CA)は公開鍵をエンティティの識別情報に紐付けるデジタル証明書の発行、管理、失効を行う。CAはPKI階層における信頼のアンカーを形成する。"
@@ -54,7 +54,7 @@
   {
     "id": 5,
     "category": "Cryptography",
-    "question": "Which mode of operation for block ciphers requires no padding and turns a block cipher into a stream cipher?",
+    "question": "パディングを必要とせず、ブロック暗号をストリーム暗号に変換するブロック暗号の運用モードはどれか。",
     "options": [
       "ECB",
       "CBC",
@@ -67,12 +67,12 @@
   {
     "id": 6,
     "category": "Cryptography",
-    "question": "What is the purpose of an Initialization Vector (IV) in CBC mode encryption?",
+    "question": "CBCモード暗号化において初期化ベクタ (IV) の目的は何か。",
     "options": [
-      "Increase encryption speed",
-      "Ensure identical plaintext blocks produce different ciphertext",
-      "Reduce key size requirements",
-      "Enable compression"
+      "暗号化速度の向上",
+      "同一の平文ブロックが異なる暗号文を生成するようにする",
+      "鍵サイズ要件の削減",
+      "圧縮の有効化"
     ],
     "correct": 1,
     "explanation": "CBC(Cipher Block Chaining)モードでは、IVを最初の平文ブロックとXORしてから暗号化する。これにより同一平文メッセージが異なる暗号文を生成し、パターン分析攻撃を防止する。"
@@ -80,7 +80,7 @@
   {
     "id": 7,
     "category": "Cryptography",
-    "question": "Which cryptographic protocol provides forward secrecy by using ephemeral Diffie-Hellman key exchange?",
+    "question": "一時的Diffie-Hellman鍵交換を使用して前方秘匿性を提供する暗号プロトコルはどれか。",
     "options": [
       "TLS 1.0",
       "SSL 3.0",
@@ -93,12 +93,12 @@
   {
     "id": 8,
     "category": "Cryptography",
-    "question": "What is the key length of DES (Data Encryption Standard)?",
+    "question": "DES (Data Encryption Standard) の鍵長は何ビットか。",
     "options": [
-      "40 bits",
-      "56 bits",
-      "64 bits",
-      "128 bits"
+      "40ビット",
+      "56ビット",
+      "64ビット",
+      "128ビット"
     ],
     "correct": 1,
     "explanation": "DESは56ビットの実効鍵長を使用(パリティビット8つを含む64ビット合計)。現代のハードウェアで比較的容易に総当たり攻撃が可能なため、現代の使用には安全でない。"
@@ -106,7 +106,7 @@
   {
     "id": 9,
     "category": "Cryptography",
-    "question": "Which digital signature algorithm is based on the difficulty of computing discrete logarithms?",
+    "question": "離散対数問題の計算の困難さに基づくデジタル署名アルゴリズムはどれか。",
     "options": [
       "RSA",
       "DSA",
@@ -119,12 +119,12 @@
   {
     "id": 10,
     "category": "Cryptography",
-    "question": "What does a Certificate Revocation List (CRL) contain?",
+    "question": "CRL (Certificate Revocation List) には何が含まれるか。",
     "options": [
-      "All valid certificates issued by a CA",
-      "List of certificates that have been revoked before their expiration",
-      "Public keys of all users",
-      "Encryption keys for recovery"
+      "CAが発行したすべての有効な証明書",
+      "有効期限前に失効した証明書のリスト",
+      "すべてのユーザーの公開鍵",
+      "回復用の暗号鍵"
     ],
     "correct": 1,
     "explanation": "CRLは発行CAが予定有効期限前に失効させたデジタル証明書のリスト。CRLはOCSP(Online Certificate Status Protocol)と並ぶ証明書有効性確認メカニズム。"
@@ -132,7 +132,7 @@
   {
     "id": 11,
     "category": "Cryptography",
-    "question": "Which asymmetric encryption algorithm is based on the difficulty of factoring the product of two large prime numbers?",
+    "question": "2つの大きな素数の積の素因数分解の困難さに基づく非対称暗号アルゴリズムはどれか。",
     "options": [
       "ECC",
       "Diffie-Hellman",
@@ -145,12 +145,12 @@
   {
     "id": 12,
     "category": "Cryptography",
-    "question": "What is the primary weakness of ECB (Electronic Codebook) mode?",
+    "question": "ECB (Electronic Codebook) モードの主な弱点は何か。",
     "options": [
-      "It is too slow",
-      "Identical plaintext blocks produce identical ciphertext blocks",
-      "It requires large IVs",
-      "It only works with AES"
+      "遅すぎる",
+      "同一の平文ブロックが同一の暗号文ブロックを生成する",
+      "大きなIVが必要",
+      "AESでのみ動作する"
     ],
     "correct": 1,
     "explanation": "ECBモードは各ブロックを独立して暗号化するため、同一の平文ブロックは常に同一の暗号文ブロックを生成する。これによりデータ内のパターンが露呈する('ECBペンギン'が有名なデモ)。"
@@ -158,7 +158,7 @@
   {
     "id": 13,
     "category": "Cryptography",
-    "question": "Which hash function produces a 256-bit digest and is part of the SHA-2 family?",
+    "question": "256ビットダイジェストを生成し、SHA-2ファミリに属するハッシュ関数はどれか。",
     "options": [
       "SHA-1",
       "SHA-256",
@@ -171,12 +171,12 @@
   {
     "id": 14,
     "category": "Cryptography",
-    "question": "In key management, what is key escrow?",
+    "question": "鍵管理において、鍵エスクローとは何か。",
     "options": [
-      "Destroying keys after use",
-      "Storing copies of keys with a trusted third party",
-      "Generating keys on demand",
-      "Sharing keys between users"
+      "使用後に鍵を破棄する",
+      "鍵のコピーを信頼できる第三者に保管する",
+      "要求に応じて鍵を生成する",
+      "ユーザー間で鍵を共有する"
     ],
     "correct": 1,
     "explanation": "鍵エスクローは暗号鍵のコピーを信頼できる第三者に保管すること。鍵紛失時の回復や当局による法的アクセスを可能にするが、単一の侵害ポイントを生むため議論を呼ぶ。"
@@ -184,12 +184,12 @@
   {
     "id": 15,
     "category": "Cryptography",
-    "question": "What type of cipher operates on one bit or byte of data at a time?",
+    "question": "1ビットまたは1バイトずつデータを処理する暗号の種類はどれか。",
     "options": [
-      "Block cipher",
-      "Stream cipher",
-      "Hash cipher",
-      "Substitution cipher"
+      "ブロック暗号",
+      "ストリーム暗号",
+      "ハッシュ暗号",
+      "置換暗号"
     ],
     "correct": 1,
     "explanation": "ストリーム暗号は1ビットまたは1バイトずつデータを暗号化し、平文とXORするキーストリームを生成する。例: RC4、ChaCha20。ブロック暗号は固定サイズブロック(例: 128ビット)で動作。"
@@ -197,7 +197,7 @@
   {
     "id": 16,
     "category": "Cryptography",
-    "question": "Which protocol is used to verify the revocation status of a digital certificate in real-time?",
+    "question": "デジタル証明書の失効状態をリアルタイムで検証するために使用されるプロトコルはどれか。",
     "options": [
       "CRL",
       "OCSP",
@@ -210,12 +210,12 @@
   {
     "id": 17,
     "category": "Cryptography",
-    "question": "What is the difference between a hash and a MAC (Message Authentication Code)?",
+    "question": "ハッシュとMAC (Message Authentication Code) の違いは何か。",
     "options": [
-      "They are the same thing",
-      "A MAC requires a secret key while a hash does not",
-      "A hash is faster than a MAC",
-      "A MAC produces a larger output"
+      "同じもの",
+      "MACは秘密鍵を必要とするが、ハッシュは必要としない",
+      "ハッシュはMACより高速",
+      "MACはより大きな出力を生成する"
     ],
     "correct": 1,
     "explanation": "ハッシュ関数は秘密鍵なしで入力データから固定サイズダイジェストを生成。MAC(HMACなど)は秘密鍵とハッシュ関数を使用し、完全性と認証の両方を提供。誰でもハッシュを計算できるが、秘密鍵を持つ者のみが有効なMACを生成できる。"
@@ -223,7 +223,7 @@
   {
     "id": 18,
     "category": "Cryptography",
-    "question": "Which encryption mode combines CBC with a MAC to provide both confidentiality and integrity?",
+    "question": "CBCとMACを組み合わせて機密性と完全性の両方を提供する暗号モードはどれか。",
     "options": [
       "ECB",
       "CTR",
@@ -236,12 +236,12 @@
   {
     "id": 19,
     "category": "Cryptography",
-    "question": "What is steganography?",
+    "question": "ステガノグラフィとは何か。",
     "options": [
-      "Encrypting messages with asymmetric keys",
-      "Hiding the existence of a message within other data",
-      "A method of key distribution",
-      "A hash collision attack"
+      "非対称鍵によるメッセージの暗号化",
+      "メッセージの存在を他のデータ内に隠蔽する",
+      "鍵配布の手法",
+      "ハッシュ衝突攻撃"
     ],
     "correct": 1,
     "explanation": "ステガノグラフィはメッセージの存在を他のデータ(画像、音声、テキストなど)内に隠蔽する技術。暗号化が内容を不明にするのに対し、ステガノグラフィはメッセージの存在そのものを不明にする。"
@@ -249,12 +249,12 @@
   {
     "id": 20,
     "category": "Cryptography",
-    "question": "In RSA, what mathematical operation is used for encryption and what for decryption?",
+    "question": "RSAにおいて、暗号化と復号にそれぞれどの数学演算が使用されるか。",
     "options": [
-      "Both use multiplication",
-      "Encryption: M^e mod n, Decryption: C^d mod n",
-      "Encryption: C^d mod n, Decryption: M^e mod n",
-      "Both use addition"
+      "両方とも乗算を使用",
+      "暗号化: M^e mod n、復号: C^d mod n",
+      "暗号化: C^d mod n、復号: M^e mod n",
+      "両方とも加算を使用"
     ],
     "correct": 1,
     "explanation": "RSA暗号化では平文MをC=M^e mod nで暗号化(eは公開指数)。復号はM=C^d mod n(dは秘密指数)。セキュリティはeとnからdを導出する困難さに依存。"
@@ -262,12 +262,12 @@
   {
     "id": 21,
     "category": "Cryptography",
-    "question": "What is the purpose of a salt in password hashing?",
+    "question": "パスワードハッシュにおけるソルトの目的は何か。",
     "options": [
-      "Speed up hashing",
-      "Prevent rainbow table attacks by adding unique random data to each password",
-      "Compress the hash output",
-      "Enable key recovery"
+      "ハッシュの高速化",
+      "各パスワードに固有のランダムデータを追加し、レインボーテーブル攻撃を防止する",
+      "ハッシュ出力の圧縮",
+      "鍵回復の有効化"
     ],
     "correct": 1,
     "explanation": "ソルトは各パスワードをハッシュする前に追加するランダム値。レインボーテーブルの使用を防止し、同じパスワードでも各ハッシュが一意になる。ソルトはパスワードごとに一意でハッシュと一緒に格納すべき。"
@@ -275,9 +275,9 @@
   {
     "id": 22,
     "category": "Cryptography",
-    "question": "Which key exchange protocol allows two parties to establish a shared secret over an insecure channel?",
+    "question": "安全でないチャネル上で2者が共有秘密を確立できる鍵交換プロトコルはどれか。",
     "options": [
-      "RSA encryption",
+      "RSA暗号化",
       "Diffie-Hellman",
       "AES",
       "MD5"
@@ -288,12 +288,12 @@
   {
     "id": 23,
     "category": "Cryptography",
-    "question": "What is the output length of SHA-512?",
+    "question": "SHA-512の出力長は何ビットか。",
     "options": [
-      "256 bits",
-      "384 bits",
-      "512 bits",
-      "1024 bits"
+      "256ビット",
+      "384ビット",
+      "512ビット",
+      "1024ビット"
     ],
     "correct": 2,
     "explanation": "SHA-512は512ビット(64バイト)ダイジェストを生成。SHA-2ファミリの一部で、64ビットプラットフォームでは一般的にSHA-256より高速。暗号学的に安全とされ、セキュリティアプリケーションで広く使用される。"
@@ -301,7 +301,7 @@
   {
     "id": 24,
     "category": "Cryptography",
-    "question": "Which password hashing function is specifically designed to be computationally expensive to resist brute-force attacks?",
+    "question": "総当たり攻撃に耐性を持つよう計算的に高コストに設計されたパスワードハッシュ関数はどれか。",
     "options": [
       "MD5",
       "SHA-1",
@@ -314,12 +314,12 @@
   {
     "id": 25,
     "category": "Cryptography",
-    "question": "What is a digital envelope in cryptography?",
+    "question": "暗号におけるデジタルエンベロープとは何か。",
     "options": [
-      "A physical envelope with encrypted contents",
-      "A combination of symmetric encryption for data and asymmetric encryption for the key",
-      "A type of digital signature",
-      "An encrypted email format"
+      "暗号化された内容の物理的な封筒",
+      "データには対称暗号、鍵には非対称暗号を組み合わせたもの",
+      "デジタル署名の一種",
+      "暗号化メールフォーマット"
     ],
     "correct": 1,
     "explanation": "デジタルエンベロープは対称暗号(高速)でデータを暗号化し、非対称暗号(安全な鍵交換)で対称鍵を暗号化する。対称暗号の効率性と非対称暗号の鍵配布利点を組み合わせる。"
@@ -327,12 +327,12 @@
   {
     "id": 26,
     "category": "Cryptography",
-    "question": "Which attack exploits the mathematical structure of RSA when the same message is encrypted with a small public exponent to multiple recipients?",
+    "question": "小さな公開指数で同一メッセージを複数の受信者に暗号化した場合にRSAの数学的構造を悪用する攻撃はどれか。",
     "options": [
-      "Birthday attack",
-      "Hastad's broadcast attack",
-      "Man-in-the-middle attack",
-      "Replay attack"
+      "バースデー攻撃",
+      "Hastadのブロードキャスト攻撃",
+      "中間者攻撃",
+      "リプレイ攻撃"
     ],
     "correct": 1,
     "explanation": "Hastadのブロードキャスト攻撃は小さな公開指数(例:e=3)で同一メッセージを複数の受信者に暗号化した場合にRSAを悪用。中国剰余定理を使用し、受信者数が公開指数以上の場合に平文を回復可能。"
@@ -340,12 +340,12 @@
   {
     "id": 27,
     "category": "Cryptography",
-    "question": "What is a certificate chain in PKI?",
+    "question": "PKIにおける証明書チェーンとは何か。",
     "options": [
-      "A series of encrypted messages",
-      "A hierarchy of certificates from the end-entity to a trusted root CA",
-      "A backup of all private keys",
-      "A list of revoked certificates"
+      "一連の暗号化メッセージ",
+      "エンドエンティティから信頼できるルートCAまでの証明書階層",
+      "すべての秘密鍵のバックアップ",
+      "失効した証明書のリスト"
     ],
     "correct": 1,
     "explanation": "証明書チェーン(認証パス)はエンドエンティティ証明書から中間CAを経て信頼できるルートCAまでの証明書の列。各証明書が発行CAによって検証可能なことで信頼を確立。"
@@ -353,12 +353,12 @@
   {
     "id": 28,
     "category": "Cryptography",
-    "question": "What is the purpose of a nonce (number used once) in cryptographic protocols?",
+    "question": "暗号プロトコルにおけるナンス (number used once) の目的は何か。",
     "options": [
-      "Encrypt data faster",
-      "Ensure freshness and prevent replay attacks",
-      "Compress data",
-      "Generate keys"
+      "データの高速暗号化",
+      "鮮度を保証し、リプレイ攻撃を防止する",
+      "データの圧縮",
+      "鍵の生成"
     ],
     "correct": 1,
     "explanation": "ナンスは暗号プロトコルで一度だけ使用されるランダムまたは疑似乱数の数。メッセージの鮮度を保証し、攻撃者が有効なメッセージをキャプチャして再送信するリプレイ攻撃を防止。"
@@ -366,7 +366,7 @@
   {
     "id": 29,
     "category": "Cryptography",
-    "question": "Which symmetric cipher uses a Feistel network structure?",
+    "question": "ファイステルネットワーク構造を使用する共通鍵暗号はどれか。",
     "options": [
       "AES",
       "DES",
@@ -379,12 +379,12 @@
   {
     "id": 30,
     "category": "Cryptography",
-    "question": "What is a Meet-in-the-Middle attack?",
+    "question": "ミート・イン・ザ・ミドル攻撃とは何か。",
     "options": [
-      "An attack on hash functions",
-      "An attack that reduces the effective key strength of double encryption",
-      "A social engineering technique",
-      "A physical attack on hardware"
+      "ハッシュ関数に対する攻撃",
+      "二重暗号化の実効鍵強度を低下させる攻撃",
+      "ソーシャルエンジニアリング手法",
+      "ハードウェアに対する物理的攻撃"
     ],
     "correct": 1,
     "explanation": "ミート・イン・ザ・ミドル攻撃は二重暗号化に対し、片側から暗号化しもう片側から復号して中間で結果を一致させる。実効セキュリティを2^nからn+1に低減し、2重DESではなく3DESが開発された理由。"
@@ -392,12 +392,12 @@
   {
     "id": 31,
     "category": "Cryptography",
-    "question": "Which cryptographic primitive provides non-repudiation?",
+    "question": "否認防止を提供する暗号プリミティブはどれか。",
     "options": [
-      "Symmetric encryption",
-      "Hash functions",
-      "Digital signatures",
-      "Stream ciphers"
+      "対称暗号化",
+      "ハッシュ関数",
+      "デジタル署名",
+      "ストリーム暗号"
     ],
     "correct": 2,
     "explanation": "デジタル署名は秘密鍵の保持者のみが有効な署名を作成できるため否認防止を提供する。署名者が後で署名を否定することを防止。対称暗号とハッシュ関数単独ではこの性質を提供しない。"
@@ -405,12 +405,12 @@
   {
     "id": 32,
     "category": "Cryptography",
-    "question": "What is the role of a Registration Authority (RA) in PKI?",
+    "question": "PKIにおける登録局 (RA) の役割は何か。",
     "options": [
-      "Issue root certificates",
-      "Verify identity before certificate issuance by the CA",
-      "Store all private keys",
-      "Monitor network traffic"
+      "ルート証明書の発行",
+      "CAによる証明書発行前に身元を検証する",
+      "すべての秘密鍵の保管",
+      "ネットワークトラフィックの監視"
     ],
     "correct": 1,
     "explanation": "登録局(RA)はユーザーとCA間の仲介として機能。RAは証明書申請者の識別を検証し管理タスクを実行。実際の証明書発行はCAが行う。"
@@ -418,7 +418,7 @@
   {
     "id": 33,
     "category": "Cryptography",
-    "question": "Which authentication mode of GCM (Galois/Counter Mode) provides both encryption and integrity?",
+    "question": "GCM (Galois/Counter Mode) のどの認証モードが暗号化と完全性の両方を提供するか。",
     "options": [
       "ECB-GCM",
       "CBC-GCM",
@@ -431,12 +431,12 @@
   {
     "id": 34,
     "category": "Cryptography",
-    "question": "What is key wrapping in cryptography?",
+    "question": "暗号における鍵ラッピングとは何か。",
     "options": [
-      "Wrapping physical keys",
-      "Encrypting one cryptographic key with another key",
-      "A key rotation technique",
-      "Distributing keys via email"
+      "物理的な鍵のラッピング",
+      "ある暗号鍵を別の鍵で暗号化する",
+      "鍵ローテーション手法",
+      "メールによる鍵配布"
     ],
     "correct": 1,
     "explanation": "鍵ラッピングはある暗号鍵(データ暗号化鍵)を別の鍵(鍵暗号化鍵)で暗号化するプロセス。鍵の安全な保管や転送に使用。AES Key Wrap(RFC 3394)が標準アルゴリズム。"
@@ -444,12 +444,12 @@
   {
     "id": 35,
     "category": "Cryptography",
-    "question": "What happens during a birthday attack on a hash function?",
+    "question": "ハッシュ関数に対するバースデー攻撃では何が起きるか。",
     "options": [
-      "The hash function crashes",
-      "An attacker finds two different inputs that produce the same hash output",
-      "The hash output is reversed",
-      "The hash speed is reduced"
+      "ハッシュ関数がクラッシュする",
+      "攻撃者が同じハッシュ出力を生成する2つの異なる入力を見つける",
+      "ハッシュ出力が逆算される",
+      "ハッシュ速度が低下する"
     ],
     "correct": 1,
     "explanation": "バースデー攻撃はバースデイのパラドックスを利用してハッシュ衝突を探索。nビットハッシュに対して2^(n/2)回の操作で衝突が見つかり、総当たりの2^nよりはるかに容易。"
@@ -457,7 +457,7 @@
   {
     "id": 36,
     "category": "Access Control",
-    "question": "Which access control model assigns permissions based on the user's role within an organization?",
+    "question": "組織内のユーザーのロールに基づいて権限を割り当てるアクセス制御モデルはどれか。",
     "options": [
       "DAC (Discretionary Access Control)",
       "MAC (Mandatory Access Control)",
@@ -470,12 +470,12 @@
   {
     "id": 37,
     "category": "Access Control",
-    "question": "What is the principle of least privilege?",
+    "question": "最小権限の原則とは何か。",
     "options": [
-      "All users should have admin access",
-      "Users should only have the minimum permissions necessary to perform their tasks",
-      "Passwords should be short",
-      "Access should be granted by default"
+      "すべてのユーザーに管理者アクセスを付与する",
+      "ユーザーにはタスク実行に必要な最小限の権限のみを付与する",
+      "パスワードは短くすべき",
+      "デフォルトでアクセスを許可する"
     ],
     "correct": 1,
     "explanation": "最小権限の原則はユーザー、プロセス、システムが承認されたタスクを実行するために必要な最小限の権限のみを付与されるべきとする。事故、エラー、侵害されたアカウントによる潜在的損害を制限。"
@@ -483,7 +483,7 @@
   {
     "id": 38,
     "category": "Access Control",
-    "question": "Which biometric measure refers to the rate at which authorized users are incorrectly rejected?",
+    "question": "正規ユーザーが誤って拒否される割合を指す生体認証の指標はどれか。",
     "options": [
       "FAR (False Acceptance Rate)",
       "FRR (False Rejection Rate)",
@@ -496,12 +496,12 @@
   {
     "id": 39,
     "category": "Access Control",
-    "question": "What is OAuth 2.0 primarily used for?",
+    "question": "OAuth 2.0は主に何のために使用されるか。",
     "options": [
-      "Encrypting data in transit",
-      "Delegated authorization - allowing third-party applications limited access to user resources",
-      "User authentication",
-      "Network access control"
+      "転送中データの暗号化",
+      "委譲認可 - サードパーティアプリにユーザーリソースへの限定アクセスを許可",
+      "ユーザー認証",
+      "ネットワークアクセス制御"
     ],
     "correct": 1,
     "explanation": "OAuth 2.0は認可フレームワークで、ユーザーが資格情報を共有せずにサードパーティアプリに限定アクセスを許可。'Google/Facebookでログイン'やAPIアクセス委譲で一般的に使用。"
@@ -509,7 +509,7 @@
   {
     "id": 40,
     "category": "Access Control",
-    "question": "Which access control model uses security labels (like 'Top Secret', 'Confidential') to control access?",
+    "question": "セキュリティラベル ('Top Secret'、'Confidential' など) を使用してアクセスを制御するアクセス制御モデルはどれか。",
     "options": [
       "DAC",
       "RBAC",
@@ -522,12 +522,12 @@
   {
     "id": 41,
     "category": "Access Control",
-    "question": "What is Single Sign-On (SSO)?",
+    "question": "シングルサインオン (SSO) とは何か。",
     "options": [
-      "Using one password for life",
-      "An authentication scheme that allows a user to log in once and access multiple systems",
-      "A type of firewall",
-      "A password manager"
+      "生涯1つのパスワードを使用する",
+      "一度ログインして複数のシステムにアクセスできる認証方式",
+      "ファイアウォールの一種",
+      "パスワードマネージャー"
     ],
     "correct": 1,
     "explanation": "SSOはユーザーが一度認証して複数の関連独立システムにアクセスできるようにする。一般的な実装にKerberos、SAML、OpenID Connectがある。"
@@ -535,12 +535,12 @@
   {
     "id": 42,
     "category": "Access Control",
-    "question": "In DAC (Discretionary Access Control), who determines access permissions?",
+    "question": "DAC (Discretionary Access Control) では、誰がアクセス権限を決定するか。",
     "options": [
-      "System administrator only",
-      "The owner of the resource",
-      "Security labels",
-      "Role assignments"
+      "システム管理者のみ",
+      "リソースの所有者",
+      "セキュリティラベル",
+      "ロール割り当て"
     ],
     "correct": 1,
     "explanation": "DACではリソースの所有者(または権限付与された者)が誰がアクセスできるかを決定。リソース所有者の裁量でアクセス制御が行われ、MACのようにシステムポリシーで強制されない。"
@@ -548,12 +548,12 @@
   {
     "id": 43,
     "category": "Access Control",
-    "question": "What is Multi-Factor Authentication (MFA)?",
+    "question": "多要素認証 (MFA) とは何か。",
     "options": [
-      "Using multiple passwords",
-      "Authentication requiring two or more independent verification factors",
-      "Using biometrics only",
-      "Shared account access"
+      "複数のパスワードを使用する",
+      "2つ以上の独立した検証要素を必要とする認証",
+      "生体認証のみを使用する",
+      "共有アカウントアクセス"
     ],
     "correct": 1,
     "explanation": "MFAは異なるカテゴリの2つ以上の独立した検証要素を要求: 知識(パスワード)、所持(トークン/電話)、生体(指紋など)。単要素認証よりセキュリティを大幅に向上。"
@@ -561,7 +561,7 @@
   {
     "id": 44,
     "category": "Access Control",
-    "question": "Which protocol provides centralized authentication using a ticket-granting system?",
+    "question": "チケット付与システムを使用して集中認証を提供するプロトコルはどれか。",
     "options": [
       "OAuth",
       "LDAP",
@@ -574,12 +574,12 @@
   {
     "id": 45,
     "category": "Access Control",
-    "question": "What is the Crossover Error Rate (CER) in biometric systems?",
+    "question": "生体認証システムにおけるCER (Crossover Error Rate) とは何か。",
     "options": [
-      "The maximum error rate allowed",
-      "The point where FAR and FRR are equal",
-      "The average error rate",
-      "The error rate at system startup"
+      "許容される最大エラー率",
+      "FARとFRRが等しい点",
+      "平均エラー率",
+      "システム起動時のエラー率"
     ],
     "correct": 1,
     "explanation": "CER(等誤り率とも呼ばれる)はFAR=FRRの点。低いCERはより正確な生体認証システムを示す。生体認証技術を比較する主要指標。"
@@ -587,12 +587,12 @@
   {
     "id": 46,
     "category": "Access Control",
-    "question": "What is OpenID Connect?",
+    "question": "OpenID Connectとは何か。",
     "options": [
-      "An access control model",
-      "An identity layer on top of OAuth 2.0 for authentication",
-      "A VPN protocol",
-      "A database standard"
+      "アクセス制御モデル",
+      "OAuth 2.0上に構築された認証用アイデンティティレイヤー",
+      "VPNプロトコル",
+      "データベース規格"
     ],
     "correct": 1,
     "explanation": "OpenID Connect(OIDC)はOAuth 2.0上に構築された認証レイヤ。クライアントが認可サーバーによって実行された認証に基づいてエンドユーザーの識別情報を検証し、JWT(JSON Web Tokens)を使用してRESTfulに基本プロフィール情報を取得。"
@@ -600,7 +600,7 @@
   {
     "id": 47,
     "category": "Access Control",
-    "question": "Which access control model evaluates access based on attributes of the subject, object, and environment?",
+    "question": "サブジェクト、オブジェクト、環境の属性に基づいてアクセスを評価するアクセス制御モデルはどれか。",
     "options": [
       "RBAC",
       "DAC",
@@ -613,12 +613,12 @@
   {
     "id": 48,
     "category": "Access Control",
-    "question": "What is Separation of Duties (SoD)?",
+    "question": "職務の分離 (SoD) とは何か。",
     "options": [
-      "Each employee works alone",
-      "Critical tasks are divided among multiple people to prevent fraud",
-      "Users have no shared responsibilities",
-      "Access is denied by default"
+      "各従業員が単独で作業する",
+      "重要タスクを複数人に分割し、不正を防止する",
+      "ユーザーに共有責任はない",
+      "デフォルトでアクセスを拒否する"
     ],
     "correct": 1,
     "explanation": "職務の分離は重要な機能を複数の個人に分割し、単一人物が機密性の高い取引を単独で完了できないようにする。共謀が必要になるため不正とエラーを防止。"
@@ -626,12 +626,12 @@
   {
     "id": 49,
     "category": "Access Control",
-    "question": "What is the difference between authentication and authorization?",
+    "question": "認証と認可の違いは何か。",
     "options": [
-      "They are the same",
-      "Authentication verifies identity; authorization determines permissions",
-      "Authentication is more important",
-      "Authorization comes before authentication"
+      "同じもの",
+      "認証は身元を検証し、認可は権限を決定する",
+      "認証の方が重要",
+      "認可が認証に先行する"
     ],
     "correct": 1,
     "explanation": "認証(AuthN)は「誰か」を検証(識別確認)。認可(AuthZ)は「何ができるか」を決定(権限確認)。認証は常に認可に先行する。身元を証明して初めてアクセスが許可される。"
@@ -639,7 +639,7 @@
   {
     "id": 50,
     "category": "Access Control",
-    "question": "Which LDAP operation is used to verify a user's credentials?",
+    "question": "ユーザーの資格情報を検証するために使用されるLDAP操作はどれか。",
     "options": [
       "SEARCH",
       "BIND",
@@ -652,12 +652,12 @@
   {
     "id": 51,
     "category": "Access Control",
-    "question": "What is an Identity Provider (IdP)?",
+    "question": "IdP (Identity Provider) とは何か。",
     "options": [
-      "A type of firewall",
-      "An entity that manages user identities and provides authentication services",
-      "A database backup system",
-      "A network protocol"
+      "ファイアウォールの一種",
+      "ユーザーIDを管理し認証サービスを提供するエンティティ",
+      "データベースバックアップシステム",
+      "ネットワークプロトコル"
     ],
     "correct": 1,
     "explanation": "IdP(Identity Provider)は識別情報を作成・維持・管理し、フェデレーションまたは分散ネットワーク内の依存アプリケーションに認証サービスを提供する。例: Okta、Azure AD、Keycloak。"
@@ -665,12 +665,12 @@
   {
     "id": 52,
     "category": "Access Control",
-    "question": "What is privilege escalation?",
+    "question": "権限昇格とは何か。",
     "options": [
-      "Increasing password complexity",
-      "Gaining higher access permissions than authorized",
-      "Escalating a support ticket",
-      "Upgrading software"
+      "パスワード複雑性の向上",
+      "承認された権限を超える上位アクセス権限を取得する",
+      "サポートチケットのエスカレーション",
+      "ソフトウェアのアップグレード"
     ],
     "correct": 1,
     "explanation": "権限昇格は脆弱性を悪用して通常保護されているリソースへの昇格アクセスを取得する行為。垂直権限昇格は上位権限(ユーザー→管理者)を、水平権限昇格は同レベルの他ユーザーデータへのアクセスを取得。"
@@ -678,7 +678,7 @@
   {
     "id": 53,
     "category": "Access Control",
-    "question": "Which protocol is commonly used for centralized authentication, authorization, and accounting for network access?",
+    "question": "ネットワークアクセスのための集中認証・認可・アカウンティングに一般的に使用されるプロトコルはどれか。",
     "options": [
       "Kerberos",
       "RADIUS",
@@ -691,12 +691,12 @@
   {
     "id": 54,
     "category": "Access Control",
-    "question": "What is just-in-time (JIT) access provisioning?",
+    "question": "JIT (Just-In-Time) アクセスプロビジョニングとは何か。",
     "options": [
-      "Pre-assigning all possible permissions",
-      "Granting temporary elevated access only when needed and revoking it automatically",
-      "Access provisioning during business hours only",
-      "Batch provisioning of accounts"
+      "可能なすべての権限を事前に割り当てる",
+      "必要時のみ一時的に昇格アクセスを付与し、完了後に自動的に取り消す",
+      "営業時間中のみアクセスプロビジョニング",
+      "アカウントの一括プロビジョニング"
     ],
     "correct": 1,
     "explanation": "JITアクセスプロビジョニングは特定のタスク完了に必要な期間のみ昇格権限を付与し、完了後自動的に取り消す。最小権限の原則を動的に実装し、固定権限のリスクを削減。"
@@ -704,12 +704,12 @@
   {
     "id": 55,
     "category": "Access Control",
-    "question": "What is a federated identity?",
+    "question": "フェデレーションIDとは何か。",
     "options": [
-      "A single identity for all services in one company",
-      "An identity that is recognized across multiple autonomous organizations",
-      "An anonymous identity",
-      "A backup identity"
+      "1社の全サービス向けの単一ID",
+      "複数の自律組織間で認識されるID",
+      "匿名ID",
+      "バックアップID"
     ],
     "correct": 1,
     "explanation": "フェデレーションIDは各組織が別々のアカウントを維持せずに複数組織間でユーザーの識別情報が認識・信頼されることを可能にする。SAMLとOpenID Connectがフェデレーションを可能に。"
@@ -717,12 +717,12 @@
   {
     "id": 56,
     "category": "Access Control",
-    "question": "What is the primary purpose of a PAM (Privileged Access Management) system?",
+    "question": "PAM (Privileged Access Management) システムの主な目的は何か。",
     "options": [
-      "Manage regular user passwords",
-      "Control and monitor access of privileged accounts",
-      "Provide network acceleration",
-      "Manage cloud resources"
+      "一般ユーザーのパスワード管理",
+      "特権アカウントのアクセスを制御・監視する",
+      "ネットワークアクセラレーションの提供",
+      "クラウドリソースの管理"
     ],
     "correct": 1,
     "explanation": "PAMシステムは特権アカウント(管理者、root、サービスアカウント)のアクセスを制御・監視・監査。機能に資格情報保管、セッション記録、JITアクセス、自動資格情報ローテーションが含まれる。"
@@ -730,12 +730,12 @@
   {
     "id": 57,
     "category": "Access Control",
-    "question": "What type of access control list (ACL) associates users directly with permissions on each resource?",
+    "question": "各リソースの権限にユーザーを直接関連付けるACL (Access Control List) の種類はどれか。",
     "options": [
-      "Implicit ACL",
-      "Explicit ACL (or DAC ACL)",
-      "Role ACL",
-      "Network ACL"
+      "暗黙的ACL",
+      "明示的ACL (またはDAC ACL)",
+      "ロールACL",
+      "ネットワークACL"
     ],
     "correct": 1,
     "explanation": "DACベースの明示的ACLでは、各リソースにユーザー(またはグループ)と特定の権限(読み取り、書き込み、実行)のリストが関連付けられる。リソース所有者が管理し、裁量制御を提供。"
@@ -743,12 +743,12 @@
   {
     "id": 58,
     "category": "Access Control",
-    "question": "What is the difference between identification and authentication?",
+    "question": "識別と認証の違いは何か。",
     "options": [
-      "They are the same",
-      "Identification claims an identity; authentication verifies that claim",
-      "Authentication comes first",
-      "Identification requires a password"
+      "同じもの",
+      "識別はIDを主張し、認証はその主張を検証する",
+      "認証が先",
+      "識別にはパスワードが必要"
     ],
     "correct": 1,
     "explanation": "識別は特定の識別情報を主張すること(例: ユーザー名の提供)。認証はその主張を検証すること(例: 正しいパスワードの提供)。識別は常に認証に先行する。"
@@ -756,7 +756,7 @@
   {
     "id": 59,
     "category": "Access Control",
-    "question": "Which SAML component generates authentication assertions?",
+    "question": "SAMLで認証アサーションを生成するコンポーネントはどれか。",
     "options": [
       "Service Provider",
       "Identity Provider",
@@ -769,12 +769,12 @@
   {
     "id": 60,
     "category": "Access Control",
-    "question": "What is the primary risk of shared accounts?",
+    "question": "共有アカウントの主なリスクは何か。",
     "options": [
-      "Faster login times",
-      "No individual accountability for actions performed",
-      "Lower password complexity",
-      "Easier password management"
+      "ログイン時間の短縮",
+      "実行されたアクションに対する個別の責任追跡性がない",
+      "パスワード複雑性の低下",
+      "パスワード管理の簡素化"
     ],
     "correct": 1,
     "explanation": "共有アカウントは誰が特定のアクションを実行したか判定不可能なため、個別の責任追跡性を排除する。監査要件に違反し、フォレンジック調査を困難にし、内部脅威リスクを増大。"
@@ -782,12 +782,12 @@
   {
     "id": 61,
     "category": "Network Security",
-    "question": "What is the primary difference between a stateful and stateless firewall?",
+    "question": "ステートフルファイアウォールとステートレスファイアウォールの主な違いは何か。",
     "options": [
-      "Speed only",
-      "A stateful firewall tracks connection state; a stateless one filters each packet independently",
-      "Stateless is more secure",
-      "No difference"
+      "速度のみ",
+      "ステートフルは接続状態を追跡し、ステートレスは各パケットを独立してフィルタリングする",
+      "ステートレスの方が安全",
+      "違いはない"
     ],
     "correct": 1,
     "explanation": "ステートフルファイアウォールはアクティブ接続の状態を追跡し、コンテキスト(確立済み接続の戻りトラフィック許可など)に基づいて判断。ステートレスファイアウォールは送信元/宛先IPとポートのみで各パケットを個別評価。"
@@ -795,12 +795,12 @@
   {
     "id": 62,
     "category": "Network Security",
-    "question": "What is the purpose of a DMZ (Demilitarized Zone) in network architecture?",
+    "question": "ネットワークアーキテクチャにおけるDMZ (Demilitarized Zone) の目的は何か。",
     "options": [
-      "Encrypt all network traffic",
-      "Provide a buffer zone between the internal network and external networks for public-facing services",
-      "Block all external traffic",
-      "Replace the firewall"
+      "すべてのネットワークトラフィックを暗号化する",
+      "内部ネットワークと外部ネットワークの間に公開向けサービス用のバッファゾーンを提供する",
+      "すべての外部トラフィックをブロックする",
+      "ファイアウォールを置き換える"
     ],
     "correct": 1,
     "explanation": "DMZは内部(信頼)ネットワークと外部(非信頼)ネットワークの間にある別のネットワークセグメント。Webサーバーやメールサーバーなど公開向けサービスをホストし、DMZサーバーが侵害されても内部ネットワークを保護する隔離層。"
@@ -808,7 +808,7 @@
   {
     "id": 63,
     "category": "Network Security",
-    "question": "Which protocol is used by IPsec to provide data integrity and origin authentication?",
+    "question": "IPsecでデータ完全性と送信元認証を提供するために使用されるプロトコルはどれか。",
     "options": [
       "ESP (Encapsulating Security Payload)",
       "AH (Authentication Header)",
@@ -821,12 +821,12 @@
   {
     "id": 64,
     "category": "Network Security",
-    "question": "What is the difference between an IDS and an IPS?",
+    "question": "IDSとIPSの違いは何か。",
     "options": [
-      "No difference",
-      "IDS detects and alerts; IPS detects and actively blocks threats",
-      "IPS is older technology",
-      "IDS is more expensive"
+      "違いはない",
+      "IDSは検知してアラート、IPSは検知してアクティブにブロックする",
+      "IPSは古い技術",
+      "IDSはより高価"
     ],
     "correct": 1,
     "explanation": "IDS(Intrusion Detection System)はネットワークトラフィックを監視して不審な活動を検知しアラート生成。IPS(Intrusion Prevention System)はリアルタイムで悪意のあるトラフィックをアクティブに遮断・ドロップ。IPSはインライン配置、IDSはパッシブ監視。"
@@ -834,12 +834,12 @@
   {
     "id": 65,
     "category": "Network Security",
-    "question": "Which type of firewall inspects the actual content of network packets up to the application layer?",
+    "question": "アプリケーション層までネットワークパケットの実際の内容を検査するファイアウォールの種類はどれか。",
     "options": [
-      "Packet filtering firewall",
-      "Stateful firewall",
-      "Application-level (proxy) firewall",
-      "Circuit-level gateway"
+      "パケットフィルタリングファイアウォール",
+      "ステートフルファイアウォール",
+      "アプリケーションレベル (プロキシ) ファイアウォール",
+      "サーキットレベルゲートウェイ"
     ],
     "correct": 2,
     "explanation": "アプリケーションレベル(プロキシ)ファイアウォールはOSIモデルLayer 7で動作し、パケットの実際の内容を特定アプリケーションプロトコル向けに検査。最も深い検査だが最もリソース集約。WAFは特殊なタイプ。"
@@ -847,12 +847,12 @@
   {
     "id": 66,
     "category": "Network Security",
-    "question": "What is a VPN concentrator?",
+    "question": "VPNコンセントレータとは何か。",
     "options": [
-      "A device that compresses VPN traffic",
-      "A device that handles many VPN connections simultaneously",
-      "A VPN client application",
-      "A type of encryption algorithm"
+      "VPNトラフィックを圧縮するデバイス",
+      "多数のVPN接続を同時に処理するデバイス",
+      "VPNクライアントアプリケーション",
+      "暗号化アルゴリズムの一種"
     ],
     "correct": 1,
     "explanation": "VPNコンセントレータは多数の同時VPN接続を管理する専用ハードウェアまたはソフトウェア。暗号化/復号のワークロードと接続管理を処理し、数百〜数千のリモートユーザーをサポート。"
@@ -860,12 +860,12 @@
   {
     "id": 67,
     "category": "Network Security",
-    "question": "What is Network Access Control (NAC)?",
+    "question": "NAC (Network Access Control) とは何か。",
     "options": [
-      "A type of VPN",
-      "A security solution that enforces policy compliance before allowing network access",
-      "A web proxy",
-      "A load balancer"
+      "VPNの一種",
+      "ネットワークアクセス前にポリシー準拠を強制するセキュリティソリューション",
+      "Webプロキシ",
+      "ロードバランサー"
     ],
     "correct": 1,
     "explanation": "NACはネットワークアクセスを許可前にデバイスを評価し、セキュリティポリシー(アンチウイルス状態、OSパッチ、構成)への準拠を確認。非準拠デバイスは隔離、限定アクセス、または完全拒否。"
@@ -873,7 +873,7 @@
   {
     "id": 68,
     "category": "Network Security",
-    "question": "Which protocol operates at Layer 2 of the OSI model and prevents unauthorized network access through port-based authentication?",
+    "question": "OSIモデルの第2層で動作し、ポートベース認証による不正なネットワークアクセスを防止するプロトコルはどれか。",
     "options": [
       "RADIUS",
       "IPsec",
@@ -886,12 +886,12 @@
   {
     "id": 69,
     "category": "Network Security",
-    "question": "What is the primary function of a WAF (Web Application Firewall)?",
+    "question": "WAF (Web Application Firewall) の主な機能は何か。",
     "options": [
-      "Block all web traffic",
-      "Filter, monitor, and block HTTP traffic to and from a web application",
-      "Accelerate web page loading",
-      "Manage SSL certificates"
+      "すべてのWebトラフィックをブロックする",
+      "Webアプリケーションとの間のHTTPトラフィックをフィルタリング・監視・ブロックする",
+      "Webページの読み込みを高速化する",
+      "SSL証明書の管理"
     ],
     "correct": 1,
     "explanation": "WAFはWebアプリケーションとインターネット間のHTTPトラフィックをフィルタリング・監視し保護。SQLインジェクション、XSS、CSRF、DDoSなどの一般的なWeb攻撃をHTTPリクエスト検査とルールセット適用で防御。"
@@ -899,12 +899,12 @@
   {
     "id": 70,
     "category": "Network Security",
-    "question": "What is a DDoS (Distributed Denial of Service) attack?",
+    "question": "DDoS (Distributed Denial of Service) 攻撃とは何か。",
     "options": [
-      "A single server sending many requests",
-      "Multiple compromised systems flooding a target with traffic from many sources",
-      "A software vulnerability",
-      "A password attack"
+      "単一サーバーが多数のリクエストを送信する",
+      "複数の侵害されたシステムが多数のソースからターゲットにトラフィックを集中させる",
+      "ソフトウェアの脆弱性",
+      "パスワード攻撃"
     ],
     "correct": 1,
     "explanation": "DDoS攻撃は複数の侵害されたシステム(ボットネット)を使用してターゲットにトラフィックを集中させ、リソースを圧倒して正当なユーザーがサービスを利用できないようにする。単一ソースのDoSより緩和が困難。"
@@ -912,12 +912,12 @@
   {
     "id": 71,
     "category": "Network Security",
-    "question": "Which IPsec mode encrypts both the payload and the original IP header?",
+    "question": "ペイロードと元のIPヘッダーの両方を暗号化するIPsecモードはどれか。",
     "options": [
-      "Transport mode",
-      "Tunnel mode",
-      "AH mode",
-      "Quick mode"
+      "トランスポートモード",
+      "トンネルモード",
+      "AHモード",
+      "クイックモード"
     ],
     "correct": 1,
     "explanation": "IPsecトンネルモードは元のIPパケット全体(ヘッダーとペイロード)を新しいIPパケットにカプセル化。元の送信元/宛先アドレスを隠蔽。トランスポートモードはペイロードのみ暗号化し元IPヘッダーをそのまま残す。"
@@ -925,12 +925,12 @@
   {
     "id": 72,
     "category": "Network Security",
-    "question": "What is network segmentation?",
+    "question": "ネットワークセグメンテーションとは何か。",
     "options": [
-      "Splitting a network into smaller subnetworks to limit the spread of breaches and improve performance",
-      "Adding more firewalls",
-      "Encrypting all network traffic",
-      "Using a VPN for all connections"
+      "ネットワークを小さなサブネットワークに分割し、侵害の拡大を制限してパフォーマンスを向上させる",
+      "ファイアウォールを追加する",
+      "すべてのネットワークトラフィックを暗号化する",
+      "すべての接続にVPNを使用する"
     ],
     "correct": 1,
     "explanation": "ネットワークセグメンテーションはネットワークを小さなセグメント(VLAN、サブネット)に分割し、攻撃者の横移動を制限、侵害を封じ込め、パフォーマンス向上、セグメントごとに異なるセキュリティポリシー適用を実現。防御-in-depthの重要要素。"
@@ -938,12 +938,12 @@
   {
     "id": 73,
     "category": "Network Security",
-    "question": "Which SSL/TLS attack exploits the ability to force a downgrade to an older, weaker protocol version?",
+    "question": "クライアントとサーバーを古くて弱いプロトコルバージョンにダウングレードさせることで悪用するSSL/TLS攻撃はどれか。",
     "options": [
       "Heartbleed",
       "POODLE",
       "BEAST",
-      "Downgrade attack / Protocol downgrade"
+      "ダウングレード攻撃 / プロトコルダウングレード"
     ],
     "correct": 3,
     "explanation": "プロトコルダウングレード攻撃はクライアントとサーバーを弱い暗号プロトコルバージョンのネゴシエーションに誘導。SSLストリッピング(例: FORCE)やバージョンロールバック攻撃はハンドシェイクを傍受し脆弱なプロトコルを強制。"
@@ -951,12 +951,12 @@
   {
     "id": 74,
     "category": "Network Security",
-    "question": "What is the purpose of a honeypot in network security?",
+    "question": "ネットワークセキュリティにおけるハニーポットの目的は何か。",
     "options": [
-      "Improve network speed",
-      "A decoy system designed to attract and detect attackers",
-      "A backup server",
-      "A type of firewall"
+      "ネットワーク速度の向上",
+      "攻撃者を誘引・検出するよう設計されたデコイシステム",
+      "バックアップサーバー",
+      "ファイアウォールの一種"
     ],
     "correct": 1,
     "explanation": "ハニーポットは正当なターゲットに見えるデコイシステムで攻撃者を誘引。セキュリティチームが攻撃手法を研究、侵入を早期検知、実際の本番システムをリスクなくインテリジェンスを収集。"
@@ -964,12 +964,12 @@
   {
     "id": 75,
     "category": "Network Security",
-    "question": "Which type of IDS uses a database of known attack signatures to detect threats?",
+    "question": "既知の攻撃シグネチャのデータベースを使用して脅威を検出するIDSの種類はどれか。",
     "options": [
-      "Anomaly-based IDS",
-      "Signature-based IDS",
-      "Heuristic-based IDS",
-      "Behavioral IDS"
+      "異常検知型IDS",
+      "シグネチャベースIDS",
+      "ヒューリスティックベースIDS",
+      "ビヘイビアベースIDS"
     ],
     "correct": 1,
     "explanation": "シグネチャベースIDSはネットワークトラフィックを既知の攻撃パターン(シグネチャ)データベースと比較。既知の脅威に有効だが新規(ゼロデイ)攻撃を検出不可。異常ベースIDSは正常動作のベースラインを確立し逸脱をアラート。"
@@ -977,12 +977,12 @@
   {
     "id": 76,
     "category": "Network Security",
-    "question": "What is SSL VPN remote access?",
+    "question": "SSL VPNリモートアクセスとは何か。",
     "options": [
-      "A VPN that only uses SSL certificates",
-      "VPN access through a web browser using HTTPS/TLS without requiring client software",
-      "A VPN for SSL traffic only",
-      "A deprecated VPN technology"
+      "SSL証明書のみを使用するVPN",
+      "クライアントソフトウェア不要でHTTPS/TLS経由でブラウザからアクセスするVPN",
+      "SSLトラフィックのみのVPN",
+      "非推奨のVPN技術"
     ],
     "correct": 1,
     "explanation": "SSL VPN(Web VPNとも)はHTTPS/TLSを使用してWebブラウザ経由でリモートアクセスを提供し、専用VPNクライアントソフトウェアを不要にする。IPsec VPNは通常専用クライアントアプリを必要とする。"
@@ -990,12 +990,12 @@
   {
     "id": 77,
     "category": "Network Security",
-    "question": "What is MAC flooding in the context of network security?",
+    "question": "ネットワークセキュリティにおけるMACフラッディングとは何か。",
     "options": [
-      "Sending too much data through a network",
-      "Overwhelming a switch's MAC address table to force it into hub mode",
-      "A type of DDoS attack",
-      "A wireless attack"
+      "ネットワークに過剰なデータを送信する",
+      "スイッチのMACアドレステーブルを圧倒し、ハブモードに強制する",
+      "DDoS攻撃の一種",
+      "無線攻撃"
     ],
     "correct": 1,
     "explanation": "MACフラッディングはスイッチに大量の偽MACアドレスを送信し、MACアドレステーブルを圧倒。テーブルが一杯になるとスイッチがハブのように全ポートにブロードキャストを開始し、他ポートのトラフィックをキャプチャ可能に。"
@@ -1003,12 +1003,12 @@
   {
     "id": 78,
     "category": "Network Security",
-    "question": "Which protocol provides mutual authentication for Wi-Fi networks?",
+    "question": "Wi-Fiネットワークで相互認証を提供するプロトコルはどれか。",
     "options": [
       "WEP",
       "WPA",
       "WPA2-Enterprise (802.1X/EAP)",
-      "Open Wi-Fi"
+      "オープンWi-Fi"
     ],
     "correct": 2,
     "explanation": "WPA2-Enterpriseは802.1XとEAP認証方式およびRADIUSサーバーを使用して相互認証を提供。クライアントとネットワークが相互に認証。WPA2-Personalは事前共有鍵(PSK)を使用し相互認証を提供しない。"
@@ -1016,12 +1016,12 @@
   {
     "id": 79,
     "category": "Network Security",
-    "question": "What is a TCP SYN flood attack?",
+    "question": "TCP SYNフラッド攻撃とは何か。",
     "options": [
-      "Sending many TCP SYN packets without completing the handshake to exhaust server resources",
-      "Flooding with TCP ACK packets",
-      "Sending malformed TCP packets",
-      "A UDP-based attack"
+      "ハンドシェイクを完了せずに多数のTCP SYNパケットを送信し、サーバーリソースを消費する",
+      "TCP ACKパケットでフラッディングする",
+      "不正なTCPパケットを送信する",
+      "UDPベースの攻撃"
     ],
     "correct": 1,
     "explanation": "SYNフラッドはTCP 3ウェイハンドシェイクを悪用し、最終ACKで接続を完了せずに多数のSYN要求を送信。サーバーは各ハーフオープン接続にリソースを割り当て、最終的に容量を使い果たして正当な接続を受け付けられなくなる。"
@@ -1029,12 +1029,12 @@
   {
     "id": 80,
     "category": "Network Security",
-    "question": "What is the purpose of IPSec IKE (Internet Key Exchange)?",
+    "question": "IPsec IKE (Internet Key Exchange) の目的は何か。",
     "options": [
-      "Encrypt web traffic",
-      "Establish and manage security associations and exchange cryptographic keys for IPsec",
-      "Manage firewall rules",
-      "Provide web authentication"
+      "Webトラフィックの暗号化",
+      "IPsecのセキュリティアソシエーションを確立し暗号鍵を交換する",
+      "ファイアウォールルールの管理",
+      "Web認証の提供"
     ],
     "correct": 1,
     "explanation": "IKEはIPsecでセキュリティアソシエーション(SA)を設定するプロトコル。ピアの認証、暗号アルゴリズムのネゴシエーション、鍵交換を処理。フェーズ1で安全なチャネルを確立し、フェーズ2でデータ転送用のIPsec SAを確立。"
@@ -1042,12 +1042,12 @@
   {
     "id": 81,
     "category": "Network Security",
-    "question": "What is a next-generation firewall (NGFW)?",
+    "question": "NGFW (Next-Generation Firewall) とは何か。",
     "options": [
-      "A firewall with faster hardware",
-      "A firewall that combines traditional filtering with application awareness, IPS, and threat intelligence",
-      "A cloud-only firewall",
-      "A wireless firewall"
+      "より高速なハードウェアのファイアウォール",
+      "従来のフィルタリングにアプリケーション認識、IPS、脅威インテリジェンスを組み合わせたファイアウォール",
+      "クラウド限定のファイアウォール",
+      "無線ファイアウォール"
     ],
     "correct": 1,
     "explanation": "NGFWは従来のファイアウォール機能にディープパケットインスペクション、アプリケーションレベル認識、統合IPS、SSL/TLSインスペクション、脅威インテリジェンスフィードを組み合わせたもの。従来ファイアウォールよりアプリケーションと脅威のより詳細な可視性と制御を提供。"
@@ -1055,12 +1055,12 @@
   {
     "id": 82,
     "category": "Network Security",
-    "question": "What is ARP spoofing (poisoning)?",
+    "question": "ARPスプーフィング (ポイズニング) とは何か。",
     "options": [
-      "Corrupting ARP cache on routers",
-      "Sending fake ARP messages to associate attacker's MAC with a legitimate IP address",
-      "A DNS attack",
-      "A routing protocol attack"
+      "ルーターのARPキャッシュの破損",
+      "偽造ARPメッセージを送信し、攻撃者のMACを正当なIPに関連付ける",
+      "DNS攻撃",
+      "ルーティングプロトコル攻撃"
     ],
     "correct": 1,
     "explanation": "ARPスプーフィングはLAN上で偽造ARPメッセージを送信し、攻撃者のMACアドレスを正当なデバイスのIPアドレスに関連付ける。これにより攻撃者はターゲット宛てのトラフィックを傍受、変更、または停止(中間者攻撃)。"
@@ -1068,10 +1068,10 @@
   {
     "id": 83,
     "category": "Network Security",
-    "question": "Which technology prevents lateral movement within a data center by applying security policies at the workload level?",
+    "question": "ワークロードレベルでセキュリティポリシーを適用し、データセンター内の横移動を防止する技術はどれか。",
     "options": [
-      "Traditional VLANs",
-      "Microsegmentation",
+      "従来のVLAN",
+      "マイクロセグメンテーション",
       "NAT",
       "DMZ"
     ],
@@ -1081,12 +1081,12 @@
   {
     "id": 84,
     "category": "Network Security",
-    "question": "What is DNS tunneling?",
+    "question": "DNSトンネリングとは何か。",
     "options": [
-      "Encrypting DNS queries",
-      "Using DNS protocol to encapsulate and exfiltrate data, bypassing network controls",
-      "A DNS performance optimization",
-      "A DNS cache poisoning attack"
+      "DNSクエリの暗号化",
+      "DNSプロトコルを使用してデータをカプセル化し流出させることでネットワーク制御をバイパスする",
+      "DNSのパフォーマンス最適化",
+      "DNSキャッシュポイズニング攻撃"
     ],
     "correct": 1,
     "explanation": "DNStunellingはDNSプロトコルを使用してDNSクエリとレスポンス内にデータをカプセル化し、ファイアウォールが通常許可するDNSトラフィック(ポート53)をバイパス。データ流出やコマンド・アンド・コントロール通信に一般的に使用。"
@@ -1094,12 +1094,12 @@
   {
     "id": 85,
     "category": "Network Security",
-    "question": "What is the difference between circuit-level gateway and application-level gateway firewalls?",
+    "question": "サーキットレベルゲートウェイとアプリケーションレベルゲートウェイファイアウォールの違いは何か。",
     "options": [
-      "No difference",
-      "Circuit-level validates TCP sessions; application-level inspects specific protocol content",
-      "Application-level is faster",
-      "Circuit-level is more secure"
+      "違いはない",
+      "サーキットレベルはTCPセッションを検証し、アプリケーションレベルはプロトコル内容を検査する",
+      "アプリケーションレベルの方が高速",
+      "サーキットレベルの方が安全"
     ],
     "correct": 1,
     "explanation": "サーキットレベルゲートウェイはセッション層(Layer 5)で動作し、TCPハンドシェイクを検証するがパケット内容を検査しない。アプリケーションレベルゲートウェイ(プロキシ)はLayer 7で動作し、特定アプリケーションプロトコルを理解して深く検査。"
@@ -1107,12 +1107,12 @@
   {
     "id": 86,
     "category": "Network Security",
-    "question": "Which DDoS mitigation technique uses a globally distributed network of scrubbing centers to filter attack traffic?",
+    "question": "グローバルに分散したスクラビングセンターネットワークを使用して攻撃トラフィックをフィルタリングするDDoS緩和技術はどれか。",
     "options": [
-      "Rate limiting",
-      "Blackholing",
-      "CDN-based scrubbing / Anycast mitigation",
-      "Firewall rules"
+      "レート制限",
+      "ブラックホール化",
+      "CDNベースのスクラビング / Anycast緩和",
+      "ファイアウォールルール"
     ],
     "correct": 2,
     "explanation": "CDNベースのスクラビングはグローバルなスクラビングセンターネットワークにトラフィックを分散させ、悪意のあるトラフィックをターゲット到達前にフィルタリング。Anycastルーティングで着信トラフィックを複数ロケーションに分散し容量攻撃を吸収。"
@@ -1120,12 +1120,12 @@
   {
     "id": 87,
     "category": "Network Security",
-    "question": "What is a VLAN (Virtual Local Area Network) hopping attack?",
+    "question": "VLAN (Virtual Local Area Network) ホッピング攻撃とは何か。",
     "options": [
-      "Moving between VLANs legitimately",
-      "An attack that sends traffic across VLAN boundaries to access unauthorized segments",
-      "A wireless attack",
-      "A routing attack"
+      "正当にVLAN間を移動する",
+      "VLAN境界を越えてトラフィックを送信し、不正セグメントにアクセスする攻撃",
+      "無線攻撃",
+      "ルーティング攻撃"
     ],
     "correct": 1,
     "explanation": "VLANホッピングはスイッチの脆弱性(ダブルタギングなど)を悪用して、攻撃者のVLANとは異なるVLANにフレームを送信。VLANセグメンテーションをバイパスし、許可されていないネットワークへのアクセスを取得。トランク自動ネゴシエーションの無効化とVLAN ACLが軽減策。"
@@ -1133,12 +1133,12 @@
   {
     "id": 88,
     "category": "Network Security",
-    "question": "What is the function of NAT (Network Address Translation) in the context of security?",
+    "question": "セキュリティの観点からNAT (Network Address Translation) の機能は何か。",
     "options": [
-      "Encrypt network traffic",
-      "Hides internal IP addresses from external networks, providing a degree of obscurity",
-      "Speeds up network connections",
-      "Provides authentication"
+      "ネットワークトラフィックの暗号化",
+      "内部IPアドレスを外部ネットワークから隠蔽し、一定の秘匿性を提供する",
+      "ネットワーク接続の高速化",
+      "認証の提供"
     ],
     "correct": 1,
     "explanation": "NATは内部IPアドレスを外部通信用にパブリックIPに変換。セキュリティ機能自体ではないが、外部観察者から内部ネットワークトポロジーを隠蔽する曖昧性を提供。ただし、NATを主要セキュリティメカニズムとして依存すべきではない。"
@@ -1146,12 +1146,12 @@
   {
     "id": 89,
     "category": "Network Security",
-    "question": "Which network device operates at Layer 7 and can block specific web application attacks?",
+    "question": "第7層で動作し、特定のWebアプリケーション攻撃をブロックできるネットワークデバイスはどれか。",
     "options": [
-      "Router",
-      "Switch",
-      "Web Application Firewall (WAF)",
-      "Hub"
+      "ルーター",
+      "スイッチ",
+      "WAF (Web Application Firewall)",
+      "ハブ"
     ],
     "correct": 2,
     "explanation": "WAFはLayer 7(アプリケーション層)で動作し、HTTP/HTTPSトラフィックを理解。下位層で動作する従来のネットワークファイアウォールでは検出できないSQLインジェクション、XSS、ファイルインクルージョンなどの特定Web攻撃をブロック。"
@@ -1159,12 +1159,12 @@
   {
     "id": 90,
     "category": "Network Security",
-    "question": "What is port knocking?",
+    "question": "ポートノッキングとは何か。",
     "options": [
-      "A network test utility",
-      "A method of externally opening ports by connecting to a predefined sequence of closed ports",
-      "A firewall configuration technique",
-      "A VPN protocol"
+      "ネットワークテストユーティリティ",
+      "事前定義された順序で閉じたポートに接続することで外部からポートを開く手法",
+      "ファイアウォール設定手法",
+      "VPNプロトコル"
     ],
     "correct": 1,
     "explanation": "ポートノッキングは特定の順序で閉じたポートに接続を試みることでファイアウォールポートをステルスにオープンする。ファイアウォールが接続試行を監視し、正しいシーケンス検出時に目的のポートをオープン。"
@@ -1172,10 +1172,10 @@
   {
     "id": 91,
     "category": "Application Security",
-    "question": "Which OWASP Top 10 vulnerability involves injecting malicious SQL commands through user input?",
+    "question": "ユーザー入力を通じて悪意のあるSQLコマンドを注入するOWASP Top 10脆弱性はどれか。",
     "options": [
       "XSS",
-      "SQL Injection",
+      "SQLインジェクション",
       "CSRF",
       "Broken Authentication"
     ],
@@ -1185,12 +1185,12 @@
   {
     "id": 92,
     "category": "Application Security",
-    "question": "What is Cross-Site Scripting (XSS)?",
+    "question": "クロスサイトスクリプティング (XSS) とは何か。",
     "options": [
-      "A server-side attack",
-      "Injecting malicious scripts into web pages viewed by other users",
-      "A database attack",
-      "A network-level attack"
+      "サーバーサイド攻撃",
+      "悪意のあるスクリプトを他のユーザーが閲覧するWebページに注入する",
+      "データベース攻撃",
+      "ネットワークレベル攻撃"
     ],
     "correct": 1,
     "explanation": "XSSは悪意のあるクライアント側スクリプト(通常JavaScript)をWebページに注入し、他のユーザーのブラウザで実行させる。保存型XSSはDBに永続し、反射型XSSはURL内にあり、DOMベースXSSはサーバー交互なしにDOMを操作。"
@@ -1198,12 +1198,12 @@
   {
     "id": 93,
     "category": "Application Security",
-    "question": "What is Cross-Site Request Forgery (CSRF)?",
+    "question": "クロスサイトリクエストフォージェリ (CSRF) とは何か。",
     "options": [
-      "Stealing cookies",
-      "Tricking a user's browser into making authenticated requests to a different site",
-      "A server-side attack",
-      "A password attack"
+      "Cookieの窃取",
+      "ユーザーのブラウザを騙して認証済みリクエストを別のサイトに送信させる",
+      "サーバーサイド攻撃",
+      "パスワード攻撃"
     ],
     "correct": 1,
     "explanation": "CSRFはWebアプリケーションがユーザーのブラウザに抱く信頼を悪用。攻撃者はユーザーのブラウザが自動的にユーザーのセッションクッキーと共に送信するリクエストを作成し、意図しないアクションを引き起こす。対策: CSRFトークン、SameSiteクッキー、Originヘッダー確認。"
@@ -1211,12 +1211,12 @@
   {
     "id": 94,
     "category": "Application Security",
-    "question": "What is the best defense against SQL injection?",
+    "question": "SQLインジェクションに対する最適な防御策は何か。",
     "options": [
-      "Input validation only",
-      "Parameterized queries (prepared statements)",
-      "Blacklisting keywords",
-      "Using stored procedures only"
+      "入力検証のみ",
+      "パラメータ化クエリ (プリペアドステートメント)",
+      "キーワードのブラックリスト化",
+      "ストアドプロシージャのみの使用"
     ],
     "correct": 1,
     "explanation": "パラメータ化クエリ(プリペアドステートメント)はSQLコードとデータを分離し、ユーザー入力がSQLコマンドとして解釈されるのを防止。入力検証も重要だが最も信頼性の高い防御。プレースホルダーを使用して自動的にエスケープ。"
@@ -1224,12 +1224,12 @@
   {
     "id": 95,
     "category": "Application Security",
-    "question": "Which security testing approach has full knowledge of the system's internal structure?",
+    "question": "システムの内部構造に関する完全な知識を持つセキュリティテスト手法はどれか。",
     "options": [
-      "Black-box testing",
-      "White-box testing",
-      "Gray-box testing",
-      "Penetration testing"
+      "ブラックボックステスト",
+      "ホワイトボックステスト",
+      "グレーボックステスト",
+      "ペネトレーションテスト"
     ],
     "correct": 1,
     "explanation": "ホワイトボックステスト(クリアボックス/構造テストとも)はシステムのソースコード、アーキテクチャ、設計への完全なアクセスと知識を持つ。全コードパスの包括的テストが可能。ブラックボックステストはシステムを不透明として外部からテスト。"
@@ -1237,12 +1237,12 @@
   {
     "id": 96,
     "category": "Application Security",
-    "question": "What is a buffer overflow vulnerability?",
+    "question": "バッファオーバーフロー脆弱性とは何か。",
     "options": [
-      "Too much data stored in a database",
-      "Writing data beyond the bounds of allocated memory, potentially executing arbitrary code",
-      "A network congestion issue",
-      "A disk space problem"
+      "データベースに過剰なデータ",
+      "割り当てられたメモリの境界を越えてデータを書き込み、任意のコード実行を可能にする",
+      "ネットワーク輻輳の問題",
+      "ディスク容量の問題"
     ],
     "correct": 1,
     "explanation": "バッファオーバーフローはプログラムがメモリバッファの容量を超えるデータを書き込み、隣接メモリを上書き。プログラムのクラッシュや最悪の場合任意のコード実行を許可。対策: 境界チェック、安全な関数使用、ASLR。"
@@ -1250,7 +1250,7 @@
   {
     "id": 97,
     "category": "Application Security",
-    "question": "Which HTTP header prevents clickjacking attacks?",
+    "question": "クリックジャッキング攻撃を防止するHTTPヘッダーはどれか。",
     "options": [
       "X-Frame-Options",
       "Content-Security-Policy",
@@ -1263,12 +1263,12 @@
   {
     "id": 98,
     "category": "Application Security",
-    "question": "What is fuzz testing (fuzzing)?",
+    "question": "ファジング (Fuzz Testing) とは何か。",
     "options": [
-      "Testing network speed",
-      "Automatically providing random or malformed input to software to find vulnerabilities",
-      "Testing with predefined test cases",
-      "A performance testing technique"
+      "ネットワーク速度のテスト",
+      "ランダムまたは不正な入力を自動的にソフトウェアに供給し脆弱性を発見する",
+      "事前定義されたテストケースでのテスト",
+      "パフォーマンステスト手法"
     ],
     "correct": 1,
     "explanation": "ファジングはランダム、予期外、または不正な入力データを自動生成してソフトウェアに供給し、バッファオーバーフロー、フォーマット文字列バグ、クラッシュなどの脆弱性を発見する。パーサーやプロトコル実装のセキュリティバグ発見に有効。"
@@ -1276,12 +1276,12 @@
   {
     "id": 99,
     "category": "Application Security",
-    "question": "What is Content Security Policy (CSP)?",
+    "question": "Content Security Policy (CSP) とは何か。",
     "options": [
-      "A password policy",
-      "An HTTP header that restricts which resources a page can load to prevent XSS",
-      "A network security policy",
-      "A data classification policy"
+      "パスワードポリシー",
+      "XSSを防止するためにページが読み込めるリソースを制限するHTTPヘッダー",
+      "ネットワークセキュリティポリシー",
+      "データ分類ポリシー"
     ],
     "correct": 1,
     "explanation": "CSPはブラウザが読み込み可能なコンテンツ(スクリプト、スタイル、画像など)の承認ソースを定義するHTTPレスポンスヘッダー。ブラウザが不正スクリプトを実行するのを防止することでXSSやデータインジェクション攻撃に対する強力な防御。"
@@ -1289,12 +1289,12 @@
   {
     "id": 100,
     "category": "Application Security",
-    "question": "In the SDLC, at which phase should security activities begin?",
+    "question": "SDLCにおいて、セキュリティ活動はどのフェーズから開始すべきか。",
     "options": [
-      "Testing phase",
-      "Design phase",
-      "Requirements phase",
-      "Deployment phase"
+      "テストフェーズ",
+      "設計フェーズ",
+      "要件フェーズ",
+      "デプロイメントフェーズ"
     ],
     "correct": 2,
     "explanation": "セキュリティはSDLCの最初から統合し、要件フェーズでセキュリティ要件を定義。後段階での脆弱性発見よりコストと複雑さを削減(シフトレフト)。"
@@ -1302,12 +1302,12 @@
   {
     "id": 101,
     "category": "Application Security",
-    "question": "What is insecure deserialization?",
+    "question": "安全でないデシリアライゼーションとは何か。",
     "options": [
-      "Failure to serialize data",
-      "When untrusted data is used to deserialize objects, potentially leading to remote code execution",
-      "A slow deserialization process",
-      "Data compression issue"
+      "データのシリアライゼーション失敗",
+      "信頼できないデータでオブジェクトをデシリアライズし、リモートコード実行を引き起こす可能性がある",
+      "遅いデシリアライゼーション処理",
+      "データ圧縮の問題"
     ],
     "correct": 1,
     "explanation": "安全でないデシリアライズはアプリケーションが信頼できないデータを検証なしにオブジェクトにデシリアライズする場合に発生。攻撃者はデシリアライズ時に任意コード実行、オブジェクト操作、DoSを引き起こすよう悪意のあるシリアライズデータを作成。"
@@ -1315,12 +1315,12 @@
   {
     "id": 102,
     "category": "Application Security",
-    "question": "What is the principle of input validation (input sanitization)?",
+    "question": "入力検証 (入力サニタイゼーション) の原則とは何か。",
     "options": [
-      "Accepting all user input",
-      "Validating that user input conforms to expected format, length, and type before processing",
-      "Encrypting user input",
-      "Logging all user input"
+      "すべてのユーザー入力を受け入れる",
+      "処理前にユーザー入力が期待されるフォーマット、長さ、型に適合するか検証する",
+      "ユーザー入力の暗号化",
+      "すべてのユーザー入力の記録"
     ],
     "correct": 1,
     "explanation": "入力検証はユーザー提供データが処理前に期待される基準(型、長さ、フォーマット、範囲)を満たすことを確認。許可リスト(既知の良を受理)を使用し、ブロックリスト(既知の悪を拒否)より優先。インジェクション攻撃の基本的防御。"
@@ -1328,12 +1328,12 @@
   {
     "id": 103,
     "category": "Application Security",
-    "question": "What is Server-Side Request Forgery (SSRF)?",
+    "question": "SSRF (Server-Side Request Forgery) とは何か。",
     "options": [
-      "A client-side attack",
-      "When a server is tricked into making requests to internal or external resources",
-      "A database attack",
-      "A file system attack"
+      "クライアントサイド攻撃",
+      "サーバーが内部または外部リソースへのリクエストを行うよう騙される",
+      "データベース攻撃",
+      "ファイルシステム攻撃"
     ],
     "correct": 1,
     "explanation": "SSRFは攻撃者がサーバーに攻撃者選択のURLへのHTTPリクエストを行わせる場合に発生。内部ネットワークのスキャン、内部サービスへのアクセス、ローカルファイルの読み取りに使用可能。クラウド環境ではクラウドメタデータAPIへのアクセスが特に危険。"
@@ -1341,12 +1341,12 @@
   {
     "id": 104,
     "category": "Application Security",
-    "question": "What is the OWASP ASVS?",
+    "question": "OWASP ASVSとは何か。",
     "options": [
-      "A vulnerability scanner",
-      "Application Security Verification Standard - a list of security requirements for applications",
-      "A testing methodology",
-      "A programming language"
+      "脆弱性スキャナー",
+      "Application Security Verification Standard - アプリケーション向けセキュリティ要件リスト",
+      "テスト手法",
+      "プログラミング言語"
     ],
     "correct": 1,
     "explanation": "ASVS(Application Security Verification Standard)はOWASPのWebアプリケーション向け包括的なセキュリティ要件とコントロールリスト。アプリケーションの技術的セキュリティコントロールテストの基盤を提供し、安全な開発のガイドとして使用可能。"
@@ -1354,12 +1354,12 @@
   {
     "id": 105,
     "category": "Application Security",
-    "question": "What is a race condition vulnerability?",
+    "question": "レースコンディション脆弱性とは何か。",
     "options": [
-      "A fast execution vulnerability",
-      "When the timing of events affects program correctness, allowing exploitation",
-      "A network latency issue",
-      "A multi-threading error only"
+      "高速実行の脆弱性",
+      "イベントのタイミングがプログラムの正確性に影響し、悪用を許す",
+      "ネットワーク遅延の問題",
+      "マルチスレッドエラーのみ"
     ],
     "correct": 1,
     "explanation": "レースコンディション(TOCTOU - Checkの時間からUseの時間)は結果が制御不能なイベントの順序またはタイミングに依存する場合に発生。攻撃者は条件チェックと結果使用の間の隙を悪用。例: ファイル権限チェックとファイルオープンの間にシンボリックリンク作成。"
@@ -1367,12 +1367,12 @@
   {
     "id": 106,
     "category": "Application Security",
-    "question": "What is HTTP Strict Transport Security (HSTS)?",
+    "question": "HTTP Strict Transport Security (HSTS) とは何か。",
     "options": [
-      "An encryption protocol",
-      "A header that forces browsers to use HTTPS for all future requests to the domain",
-      "A firewall rule",
-      "A VPN protocol"
+      "暗号化プロトコル",
+      "ブラウザにドメインへの今後のすべてのリクエストにHTTPSを使用させるヘッダー",
+      "ファイアウォールルール",
+      "VPNプロトコル"
     ],
     "correct": 1,
     "explanation": "HSTSはHTTPレスポンスヘッダーでブラウザに指定期間ドメインへの今後の全リクエストにHTTPSのみを使用するよう指示。プロトコルダウングレード攻撃とSSLストリッピングを防止。プリロードリストで初回訪問時もHSTSを強制可能。"
@@ -1380,12 +1380,12 @@
   {
     "id": 107,
     "category": "Application Security",
-    "question": "Which security code review technique uses automated tools to scan source code for vulnerabilities?",
+    "question": "自動ツールを使用してソースコードの脆弱性をスキャンするセキュリティコードレビュー手法はどれか。",
     "options": [
-      "Manual review",
-      "Static Application Security Testing (SAST)",
-      "Dynamic Application Security Testing (DAST)",
-      "Penetration testing"
+      "手動レビュー",
+      "SAST (Static Application Security Testing)",
+      "DAST (Dynamic Application Security Testing)",
+      "ペネトレーションテスト"
     ],
     "correct": 1,
     "explanation": "SAST(Static Application Security Testing)はアプリケーションを実行せずにソースコード、バイトコード、またはバイナリを分析。SQLインジェクション、バッファオーバーフロー、ハードコードされた資格情報を開発初期に発見。DASTは稼働中アプリケーションを外部からテスト。"
@@ -1393,12 +1393,12 @@
   {
     "id": 108,
     "category": "Application Security",
-    "question": "What is an XML External Entity (XXE) attack?",
+    "question": "XXE (XML External Entity) 攻撃とは何か。",
     "options": [
-      "An XML formatting issue",
-      "Exploiting XML parser features to read local files, execute requests, or cause DoS",
-      "A database attack",
-      "A network attack"
+      "XMLフォーマットの問題",
+      "XMLパーサー機能を悪用し、ローカルファイルの読み取りやDoSを引き起こす",
+      "データベース攻撃",
+      "ネットワーク攻撃"
     ],
     "correct": 1,
     "explanation": "XXE攻撃はXML入力内の外部エンティティ参照を処理する脆弱なXMLパーサーを悪用。攻撃者はローカルファイル、内部ネットワークリソースを参照する外部エンティティを定義、またはビリオン・ラフス攻撃でDoSを引き起こす。DTD処理と外部エンティティの無効化が対策。"
@@ -1406,12 +1406,12 @@
   {
     "id": 109,
     "category": "Application Security",
-    "question": "What is the principle of defense in depth in application security?",
+    "question": "アプリケーションセキュリティにおける防御-in-depthの原則とは何か。",
     "options": [
-      "Using a single strong control",
-      "Layering multiple security controls so that if one fails, others still provide protection",
-      "Focusing only on perimeter security",
-      "Relying solely on encryption"
+      "単一の強力なコントロールを使用する",
+      "複数のセキュリティ制御を階層化し、1つが失敗しても他が保護を提供する",
+      "境界セキュリティのみに集中する",
+      "暗号化のみに依存する"
     ],
     "correct": 1,
     "explanation": "防御-in-depthは複数のセキュリティ制御レイヤー(入力検証、パラメータ化クエリ、WAF、最小権限、監視など)を適用。一つの制御が失敗または回避されても残りのレイヤーが保護を提供。単一制御単独では不十分。"
@@ -1419,12 +1419,12 @@
   {
     "id": 110,
     "category": "Application Security",
-    "question": "What is a security misconfiguration in web applications?",
+    "question": "Webアプリケーションにおけるセキュリティ設定不備とは何か。",
     "options": [
-      "A coding error",
-      "Improperly configured security settings like default credentials, unnecessary features, or open cloud storage",
-      "A network error",
-      "A hardware issue"
+      "コーディングエラー",
+      "デフォルト資格情報、不要な機能、公開クラウドストレージなどの不適切なセキュリティ設定",
+      "ネットワークエラー",
+      "ハードウェアの問題"
     ],
     "correct": 1,
     "explanation": "セキュリティ設定不備にはデフォルト資格情報の使用、不要な機能/サービスの有効化、過度に詳細なエラーメッセージ、セキュリティヘッダーの欠落、未パッチシステムが含まれる。設定が見直しや硬化されないことが多いため最も一般的な脆弱性カテゴリ。"
@@ -1432,12 +1432,12 @@
   {
     "id": 111,
     "category": "Application Security",
-    "question": "What is the difference between SAST and DAST?",
+    "question": "SASTとDASTの違いは何か。",
     "options": [
-      "No difference",
-      "SAST analyzes source code without running; DAST tests the running application from outside",
-      "SAST is faster",
-      "DAST finds more vulnerabilities"
+      "違いはない",
+      "SASTはソースコードを静止状態で分析し、DASTは稼働中のアプリケーションを外部からテストする",
+      "SASTの方が高速",
+      "DASTの方が多くの脆弱性を発見する"
     ],
     "correct": 1,
     "explanation": "SAST(Static AST)はソース/バイナリコードを静止状態で分析し開発初期に脆弱性を発見(アプリ未実行)。DAST(Dynamic AST)は稼働中アプリケーションと対話しランタイム脆弱性を発見。両方は相補的: SASTはシフトレフト、DASTは本番稼働準備。"
@@ -1445,12 +1445,12 @@
   {
     "id": 112,
     "category": "Application Security",
-    "question": "What is the purpose of using a Web Application Firewall (WAF) compared to traditional firewalls?",
+    "question": "従来のファイアウォールと比較したWAF (Web Application Firewall) の目的は何か。",
     "options": [
-      "WAF is faster",
-      "WAF understands HTTP/HTTPS traffic and can filter application-layer attacks",
-      "WAF replaces all other security",
-      "WAF is cheaper"
+      "WAFの方が高速",
+      "WAFはHTTP/HTTPSトラフィックを理解しアプリケーション層攻撃をフィルタリングできる",
+      "WAFは他のすべてのセキュリティを置き換える",
+      "WAFの方が安価"
     ],
     "correct": 1,
     "explanation": "従来ファイアウォールはLayer 3-4(ネットワーク/トランスポート)で動作しアプリケーションプロトコルを理解不可。WAFはLayer 7で動作し、HTTP/HTTPS内容を理解してSQLインジェクション、XSS、CSRFなどのアプリケーション固有攻撃を検出・ブロック。"
@@ -1458,12 +1458,12 @@
   {
     "id": 113,
     "category": "Application Security",
-    "question": "What is broken access control?",
+    "question": "アクセス制御の不備とは何か。",
     "options": [
-      "Failure of authentication",
-      "Users can act outside their intended permissions, accessing unauthorized functionality or data",
-      "A network control failure",
-      "A database access issue"
+      "認証の失敗",
+      "ユーザーが意図された権限を超えて不正な機能やデータにアクセスできる",
+      "ネットワーク制御の失敗",
+      "データベースアクセスの問題"
     ],
     "correct": 1,
     "explanation": "アクセス制御の不備(2021年OWASP Top 10第1位)はユーザーが権限を超えてリソースにアクセスまたはアクションを実行可能にする。例: IDOR(Insecure Direct Object Reference)、権限昇格、権限なしでの管理ページアクセス。"
@@ -1471,12 +1471,12 @@
   {
     "id": 114,
     "category": "Application Security",
-    "question": "What is sensitive data exposure?",
+    "question": "機密データ漏洩とは何か。",
     "options": [
-      "Exposing API documentation",
-      "Unintentionally revealing sensitive data like passwords, credit cards, or personal information",
-      "Sharing source code",
-      "Public server logs"
+      "APIドキュメントの公開",
+      "パスワード、クレジットカード、個人情報などの機密データを意図せず公開する",
+      "ソースコードの共有",
+      "公開サーバーログ"
     ],
     "correct": 1,
     "explanation": "機密データ漏洩はアプリケーションが弱い暗号化、暗号化の欠落、不適切な処理により機密情報の保護に失敗した場合に発生。例: パスワードの平文保存、HTTP上のデータ送信、URLやログでの機密データ露出。"
@@ -1484,12 +1484,12 @@
   {
     "id": 115,
     "category": "Application Security",
-    "question": "What is a dependency vulnerability?",
+    "question": "依存関係の脆弱性とは何か。",
     "options": [
-      "A coding error",
-      "A security flaw in third-party libraries or components used by the application",
-      "A network dependency",
-      "A hardware dependency"
+      "コーディングエラー",
+      "アプリケーションが使用するサードパーティライブラリやコンポーネントのセキュリティ欠陥",
+      "ネットワークの依存関係",
+      "ハードウェアの依存関係"
     ],
     "correct": 1,
     "explanation": "依存関係の脆弱性はアプリケーションが使用するサードパーティライブラリ、フレームワーク、コンポーネントのセキュリティ欠陥。現代アプリケーションはオープンソースコンポーネントに大きく依存するため、依存関係の更新と既知脆弱性スキャン(SCAツール)が重要。"
@@ -1497,12 +1497,12 @@
   {
     "id": 116,
     "category": "Risk Management",
-    "question": "What is ALE (Annual Loss Expectancy)?",
+    "question": "ALE (Annual Loss Expectancy) とは何か。",
     "options": [
-      "The cost of a single security incident",
-      "The estimated financial loss per year from a specific risk, calculated as SLE x ARO",
-      "The maximum possible loss",
-      "The insurance premium"
+      "単一セキュリティインシデントのコスト",
+      "特定リスクの年間予想財務損失、SLE x AROで計算",
+      "最大可能損失",
+      "保険プレミアム"
     ],
     "correct": 1,
     "explanation": "ALE = SLE(単一損失期待値) x ARO(年間発生率)。ALEは特定リスクの年間予想財務影響を定量化。例: リスクが1件あたり$10,000の損失(SLE)で年2回発生(ARO)する場合、ALEは$20,000。"
@@ -1510,12 +1510,12 @@
   {
     "id": 117,
     "category": "Risk Management",
-    "question": "Which risk response strategy transfers the risk to a third party?",
+    "question": "リスクを第三者に移転するリスク対応戦略はどれか。",
     "options": [
-      "Risk avoidance",
-      "Risk transference",
-      "Risk mitigation",
-      "Risk acceptance"
+      "リスク回避",
+      "リスク移転",
+      "リスク軽減",
+      "リスク受容"
     ],
     "correct": 1,
     "explanation": "リスク移転はリスクの財務的影響を第三者(通常は保険またはアウトソーシング契約)に移す。リスクは存在するが別の当事者が財務的結果を負担。例: サイバー保険、SLAを通じたクラウドプロバイダーへのリスク移転。"
@@ -1523,12 +1523,12 @@
   {
     "id": 118,
     "category": "Risk Management",
-    "question": "What is SLE (Single Loss Expectancy)?",
+    "question": "SLE (Single Loss Expectancy) とは何か。",
     "options": [
-      "The total annual loss",
-      "The financial loss from a single occurrence of a threat",
-      "The number of incidents per year",
-      "The cost of risk mitigation"
+      "年間総損失",
+      "脅威の単一発生による財務損失",
+      "年間のインシデント数",
+      "リスク軽減のコスト"
     ],
     "correct": 1,
     "explanation": "SLE = 資産価値(AV) x 暴露係数(EF)。SLEは特定の脅威の単一発生による財務的影響。例: $50,000のサーバーが火災に30%の暴露係数を持つ場合、SLEは$15,000。"
@@ -1536,7 +1536,7 @@
   {
     "id": 119,
     "category": "Risk Management",
-    "question": "Which threat modeling methodology identifies six categories of threats: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege?",
+    "question": "Spoofing、Tampering、Repudiation、Information Disclosure、Denial of Service、Elevation of Privilegeの6カテゴリで脅威を識別する脅威モデリング手法はどれか。",
     "options": [
       "DREAD",
       "PASTA",
@@ -1549,12 +1549,12 @@
   {
     "id": 120,
     "category": "Risk Management",
-    "question": "What is qualitative risk assessment?",
+    "question": "定性リスク評価とは何か。",
     "options": [
-      "Using numerical values for risk",
-      "Using subjective categories like High/Medium/Low to assess risk likelihood and impact",
-      "Using statistical models",
-      "Automated risk calculation"
+      "リスクに数値を使用する",
+      "高・中・低などの主観的カテゴリを使用してリスクの可能性と影響を評価する",
+      "統計モデルを使用する",
+      "自動リスク計算"
     ],
     "correct": 1,
     "explanation": "定性リスク評価は記述的尺度(高・中・低、または1-5)と専門家の判断を使用し、正確な数値を使用しない。定量的評価より高速で伝達しやすいが精度が低い。正確な財務データが利用できない場合に適している。"
@@ -1562,12 +1562,12 @@
   {
     "id": 121,
     "category": "Risk Management",
-    "question": "What is the ARO (Annualized Rate of Occurrence)?",
+    "question": "ARO (Annualized Rate of Occurrence) とは何か。",
     "options": [
-      "The annual cost of controls",
-      "The estimated frequency of a threat occurring per year",
-      "The maximum loss per year",
-      "The recovery time"
+      "コントロールの年間コスト",
+      "脅威が1年間に発生する予想頻度",
+      "年間最大損失",
+      "復旧時間"
     ],
     "correct": 1,
     "explanation": "AROは特定の脅威またはリスクが1年間に発生する予想回数。ALE(ALE = SLE x ARO)計算の主要構成要素。ARO 0.5は2年に1回発生を予想し、ARO 5は年5回発生を予想。"
@@ -1575,12 +1575,12 @@
   {
     "id": 122,
     "category": "Risk Management",
-    "question": "What is a risk register?",
+    "question": "リスクレジスタとは何か。",
     "options": [
-      "A list of insurance policies",
-      "A documented inventory of identified risks, their assessment, and planned responses",
-      "A security tool",
-      "A compliance checklist"
+      "保険ポリシーのリスト",
+      "識別されたリスク、評価、計画された対応を文書化したインベントリ",
+      "セキュリティツール",
+      "コンプライアンスチェックリスト"
     ],
     "correct": 1,
     "explanation": "リスクレジスタは識別されたすべてのリスク、その発生可能性と影響評価、担当者、計画された対応、現在のステータス、関連するコントロールを文書化する中央リポジトリ。リスク管理ライフサイクル全体で継続的に更新される。"
@@ -1588,12 +1588,12 @@
   {
     "id": 123,
     "category": "Risk Management",
-    "question": "Which risk response accepts the risk without implementing additional controls because the cost exceeds the benefit?",
+    "question": "追加コントロールの実装コストが利益を上回るため、追加コントロールを実装せずにリスクを受け入れるリスク対応はどれか。",
     "options": [
-      "Risk avoidance",
-      "Risk mitigation",
-      "Risk transference",
-      "Risk acceptance"
+      "リスク回避",
+      "リスク軽減",
+      "リスク移転",
+      "リスク受容"
     ],
     "correct": 3,
     "explanation": "リスク受容はリスクが存在することを認識するが、軽減コストが潜在的損失を上回るため追加コントロールを実装しないことを選択。組織の許容リスク内に収まる場合は意識的で文書化された決定であるべき。"
@@ -1601,12 +1601,12 @@
   {
     "id": 124,
     "category": "Risk Management",
-    "question": "What is quantitative risk assessment?",
+    "question": "定量リスク評価とは何か。",
     "options": [
-      "Using High/Medium/Low categories",
-      "Using numerical and financial data to calculate risk in monetary terms",
-      "Using expert opinion",
-      "Using automated scanning"
+      "高・中・低カテゴリを使用する",
+      "数値と財務データを使用しリスクを金額で計算する",
+      "専門家の意見を使用する",
+      "自動スキャニングを使用する"
     ],
     "correct": 1,
     "explanation": "定量的リスク評価は財務データと数学モデルを使用しリスクを金額(例: ALEをドル単位)で表現。ALE = SLE x ARO等の公式を使用し、セキュリティコントロールのコスト便益分析に正確で正当化可能な数値を提供。"
@@ -1614,12 +1614,12 @@
   {
     "id": 125,
     "category": "Risk Management",
-    "question": "What is DREAD in threat modeling?",
+    "question": "脅威モデリングにおけるDREADとは何か。",
     "options": [
-      "A risk framework",
-      "A rating system: Damage, Reproducibility, Exploitability, Affected users, Discoverability",
-      "A vulnerability scanner",
-      "An encryption standard"
+      "リスクフレームワーク",
+      "評価システム: 損害可能性、再現性、悪用可能性、影響ユーザー、発見可能性",
+      "脆弱性スキャナー",
+      "暗号化規格"
     ],
     "correct": 1,
     "explanation": "DREADは5つの次元で脅威を評価するリスク評価方法論: 損害可能性、再現性、悪用可能性、影響を受けるユーザー、発見可能性。各項目を1-10で評価し、脆弱性修復の優先順位付けに総合リスクスコアを生成。"
@@ -1627,12 +1627,12 @@
   {
     "id": 126,
     "category": "Risk Management",
-    "question": "What is the residual risk?",
+    "question": "残余リスクとは何か。",
     "options": [
-      "The initial risk before controls",
-      "The risk remaining after security controls have been applied",
-      "The risk of using outdated technology",
-      "The transferred risk"
+      "コントロール適用前の初期リスク",
+      "セキュリティコントロール適用後に残存するリスク",
+      "古い技術を使用するリスク",
+      "移転されたリスク"
     ],
     "correct": 1,
     "explanation": "残余リスクはセキュリティコントロール実装後に残存するリスク(残余リスク = 総リスク - コントロールギャップ)。ゼロに削減不可能で、組織は残余リスクが許容リスク内かを判断する必要がある。"
@@ -1640,12 +1640,12 @@
   {
     "id": 127,
     "category": "Risk Management",
-    "question": "What is the difference between inherent risk and control risk?",
+    "question": "固有リスクとコントロールリスクの違いは何か。",
     "options": [
-      "No difference",
-      "Inherent risk exists without controls; control risk is the risk that controls will fail",
-      "Control risk is higher",
-      "Inherent risk is always higher"
+      "違いはない",
+      "固有リスクはコントロールなしで存在し、コントロールリスクはコントロールが失敗するリスク",
+      "コントロールリスクの方が高い",
+      "固有リスクが常に高い"
     ],
     "correct": 1,
     "explanation": "固有リスクはコントロール適用前の自然なリスクレベル。コントロールリスクは既存コントロールが脅威を防止または検出しない可能性。両方とも全体的リスクエクスポージャーを評価し追加コントロールの必要性を判断。"
@@ -1653,12 +1653,12 @@
   {
     "id": 128,
     "category": "Risk Management",
-    "question": "What is risk avoidance?",
+    "question": "リスク回避とは何か。",
     "options": [
-      "Ignoring the risk",
-      "Eliminating the risk by not engaging in the activity that creates it",
-      "Buying insurance",
-      "Installing a firewall"
+      "リスクを無視する",
+      "リスクを生み出す活動に関与しないことでリスクを排除する",
+      "保険を購入する",
+      "ファイアウォールを設置する"
     ],
     "correct": 1,
     "explanation": "リスク回避はリスクを作成する活動に従事しないことを選択することでリスクを完全に排除。例: 機密データを保存しないことでデータ侵害リスクを排除。最も効果的だがビジネス機会を制限する可能性。"
@@ -1666,12 +1666,12 @@
   {
     "id": 129,
     "category": "Risk Management",
-    "question": "What is a risk appetite?",
+    "question": "リスクアペタイトとは何か。",
     "options": [
-      "A desire for risk",
-      "The amount and type of risk an organization is willing to accept in pursuit of its objectives",
-      "A risk assessment tool",
-      "A compliance requirement"
+      "リスクへの欲求",
+      "組織が目標追求のために許容するリスクの量とタイプ",
+      "リスク評価ツール",
+      "コンプライアンス要件"
     ],
     "correct": 1,
     "explanation": "リスクアペタイトは組織が目標追求のために許容するリスクのレベルとタイプ。経営陣と取締役会が定義し、リスク管理判断を導き、どのリスクを処理・受容すべきかを判断。業界、規制環境、組織文化により異なる。"
@@ -1679,7 +1679,7 @@
   {
     "id": 130,
     "category": "Risk Management",
-    "question": "What is the formula for calculating ALE?",
+    "question": "ALEの計算式は何か。",
     "options": [
       "ALE = AV - EF",
       "ALE = SLE x ARO",
@@ -1692,12 +1692,12 @@
   {
     "id": 131,
     "category": "Risk Management",
-    "question": "What is the purpose of a Business Impact Analysis (BIA)?",
+    "question": "BIA (Business Impact Analysis) の目的は何か。",
     "options": [
-      "Assess financial performance",
-      "Identify critical business processes and determine the impact of their disruption",
-      "Evaluate employee performance",
-      "Plan marketing strategies"
+      "財務パフォーマンスの評価",
+      "重要ビジネスプロセスを特定し、中断の影響を評価する",
+      "従業員パフォーマンスの評価",
+      "マーケティング戦略の策定"
     ],
     "correct": 1,
     "explanation": "BIAは重要ビジネス機能を特定し、その中断による影響(財務、運用、評判)を評価し、リカバリ優先度を確立。各重要プロセスのRTO(Recovery Time Objective)とRPO(Recovery Point Objective)を決定。"
@@ -1705,12 +1705,12 @@
   {
     "id": 132,
     "category": "Risk Management",
-    "question": "In risk management, what is a threat?",
+    "question": "リスク管理において、脅威とは何か。",
     "options": [
-      "A vulnerability in the system",
-      "Any potential event or circumstance that can cause harm to an asset",
-      "A security control",
-      "A business process"
+      "システムの脆弱性",
+      "資産に被害を引き起こす可能性のあるイベントや状況",
+      "セキュリティコントロール",
+      "ビジネスプロセス"
     ],
     "correct": 1,
     "explanation": "脅威は脆弱性を悪用して資産に被害を引き起こす可能性のあるイベント、アクション、または状況。脅威は自然(地震)、人為(ハッカー、従業員)、技術(ソフトウェア障害、マルウェア)。リスク = 脅威 x 脆弱性 x 影響。"
@@ -1718,12 +1718,12 @@
   {
     "id": 133,
     "category": "Risk Management",
-    "question": "What is risk mitigation?",
+    "question": "リスク軽減とは何か。",
     "options": [
-      "Eliminating the risk",
-      "Implementing controls to reduce the likelihood or impact of a risk to an acceptable level",
-      "Transferring the risk",
-      "Accepting the risk"
+      "リスクを排除する",
+      "コントロールを実装してリスクの可能性や影響を許容レベルに低減する",
+      "リスクを移転する",
+      "リスクを受け入れる"
     ],
     "correct": 1,
     "explanation": "リスク軽減(リスク削減とも)はセキュリティコントロールを実装して脅威の発生可能性または影響を許容レベルに削減。最も一般的なリスク対応。例: ファイアウォールの設置(可能性削減)、バックアップ(影響削減)。"
@@ -1731,12 +1731,12 @@
   {
     "id": 134,
     "category": "Risk Management",
-    "question": "What is the control gap in risk management?",
+    "question": "リスク管理におけるコントロールギャップとは何か。",
     "options": [
-      "A missing security guard",
-      "The difference between the current risk level and the acceptable risk level",
-      "A software bug",
-      "A network vulnerability"
+      "セキュリティガードの不足",
+      "現在のリスクレベルと許容リスクレベルの差",
+      "ソフトウェアのバグ",
+      "ネットワークの脆弱性"
     ],
     "correct": 1,
     "explanation": "コントロールギャップは組織の現在リスクエクスポージャーと許容リスクレベル(リスクアペタイト)の差。このギャップを埋めるには追加コントロールの実装または既存コントロールの改善が必要。セキュリティ投資の優先順位付けに使用。"
@@ -1744,12 +1744,12 @@
   {
     "id": 135,
     "category": "Risk Management",
-    "question": "What is a vulnerability in the context of risk management?",
+    "question": "リスク管理の観点から脆弱性とは何か。",
     "options": [
-      "A threat actor",
-      "A weakness that could be exploited by a threat to cause harm",
-      "A security policy",
-      "A risk assessment"
+      "脅威アクター",
+      "脅威によって悪用され被害を引き起こす可能性のある弱点",
+      "セキュリティポリシー",
+      "リスク評価"
     ],
     "correct": 1,
     "explanation": "脆弱性は脅威によって悪用され被害を引き起こす可能性のあるシステム防衛の弱点、欠陥、またはギャップ。技術的(未パッチソフトウェア、設定不備)、人的(訓練不足)、手順的(ポリシー欠落)。リスク = 脅威 x 脆弱性 x 資産価値。"
@@ -1757,12 +1757,12 @@
   {
     "id": 136,
     "category": "Risk Management",
-    "question": "What is OCTAVE in risk management?",
+    "question": "リスク管理におけるOCTAVEとは何か。",
     "options": [
-      "A music term",
-      "Operationally Critical Threat, Asset, and Vulnerability Evaluation - a risk assessment methodology",
-      "A vulnerability scanner",
-      "An encryption algorithm"
+      "音楽用語",
+      "Operationally Critical Threat, Asset, and Vulnerability Evaluation - リスク評価手法",
+      "脆弱性スキャナー",
+      "暗号化アルゴリズム"
     ],
     "correct": 1,
     "explanation": "OCTAVEはカーネギーメロンで開発されたリスクベースの戦略的評価方法論。技術的脆弱性だけでなく組織的リスクに焦点を当て、主要ステークホルダーが重要資産、脅威、脆弱性を特定し保護戦略を策定。"
@@ -1770,12 +1770,12 @@
   {
     "id": 137,
     "category": "Risk Management",
-    "question": "What is the primary goal of risk management?",
+    "question": "リスク管理の主な目標は何か。",
     "options": [
-      "Eliminate all risks",
-      "Identify, assess, and treat risks to bring them within acceptable levels",
-      "Comply with regulations",
-      "Reduce costs"
+      "すべてのリスクを排除する",
+      "リスクを識別、評価、処理し許容レベルに収める",
+      "規制に準拠する",
+      "コストを削減する"
     ],
     "correct": 1,
     "explanation": "リスク管理はリスクを識別、評価、処理し、残余リスクを組織のリスクアペタイト内に収めることを目的。すべてのリスクを排除することは不可能(非現実的)。目標はどのリスクを軽減・移転・回避・受容するかについての情報に基づいた意思決定。"
@@ -1783,12 +1783,12 @@
   {
     "id": 138,
     "category": "Risk Management",
-    "question": "What is a risk treatment plan?",
+    "question": "リスク処理計画とは何か。",
     "options": [
-      "A medical plan",
-      "A document describing selected risk responses, responsible parties, timelines, and resources",
-      "A backup plan",
-      "A disaster recovery plan"
+      "医療計画",
+      "選択されたリスク対応、担当者、タイムライン、リソースを記述した文書",
+      "バックアップ計画",
+      "ディザスタリカバリ計画"
     ],
     "correct": 1,
     "explanation": "リスク処理計画は各識別リスクへの対処方法を文書化: 選択された対応戦略(軽減、移転、回避、受容)、実装する特定コントロール、責任ある所有者、実装タイムライン、必要リソース、成功指標。"
@@ -1796,12 +1796,12 @@
   {
     "id": 139,
     "category": "Risk Management",
-    "question": "What is the exposure factor (EF) in risk calculation?",
+    "question": "リスク計算における暴露係数 (EF) とは何か。",
     "options": [
-      "The number of exposed systems",
-      "The percentage of asset value that would be lost if a threat materialized",
-      "The frequency of threats",
-      "The cost of controls"
+      "公開システムの数",
+      "脅威が実現した場合に資産価値の何パーセントが失われるか",
+      "脅威の頻度",
+      "コントロールのコスト"
     ],
     "correct": 1,
     "explanation": "暴露係数(EF)は特定の脅威が実現した場合に資産価値の何パーセントが失われるかを表す。例: 火災で建物価値の60%が失われる場合、EFは0.6。SLE = 資産価値 x 暴露係数。"
@@ -1809,12 +1809,12 @@
   {
     "id": 140,
     "category": "Risk Management",
-    "question": "What is Monte Carlo simulation in risk assessment?",
+    "question": "リスク評価におけるモンテカルロシミュレーションとは何か。",
     "options": [
-      "A gambling technique",
-      "A computational technique using random sampling to model probability distributions of risk outcomes",
-      "A statistical test",
-      "A data mining technique"
+      "ギャンブル手法",
+      "乱数サンプリングを使用してリスク結果の確率分布をモデル化する計算手法",
+      "統計的検定",
+      "データマイニング手法"
     ],
     "correct": 1,
     "explanation": "モンテカルロシミュレーションは定義された確率分布からの乱数変数を使用して数千回の反復を実行し、リスク結果の範囲をモデル化。点推定ではなく確率分布(潜在的損失)を提供し、より包括的なリスク像を示す。"
@@ -1822,12 +1822,12 @@
   {
     "id": 141,
     "category": "Governance & Compliance",
-    "question": "What is ISO 27001?",
+    "question": "ISO 27001とは何か。",
     "options": [
-      "A security product standard",
-      "An international standard for establishing, implementing, and improving an Information Security Management System (ISMS)",
-      "A US federal law",
-      "A network security standard"
+      "セキュリティ製品規格",
+      "ISMS (Information Security Management System) の確立・実装・改善に関する国際規格",
+      "米国連邦法",
+      "ネットワークセキュリティ規格"
     ],
     "correct": 1,
     "explanation": "ISO 27001は情報セキュリティ管理システム(ISMS)の国際規格。リスク管理アプローチを通じた情報セキュリティの確立、実装、維持、継続的改善のフレームワークを提供。認証には第三者監査が必要。"
@@ -1835,12 +1835,12 @@
   {
     "id": 142,
     "category": "Governance & Compliance",
-    "question": "What is the difference between ISO 27001 and ISO 27002?",
+    "question": "ISO 27001とISO 27002の違いは何か。",
     "options": [
-      "No difference",
-      "27001 defines ISMS requirements; 27002 provides security control guidelines",
-      "27002 is the certification standard",
-      "27001 is for physical security"
+      "違いはない",
+      "27001はISMS要件を定義し、27002はセキュリティコントロールのガイドラインを提供",
+      "27002が認証規格",
+      "27001は物理セキュリティ用"
     ],
     "correct": 1,
     "explanation": "ISO 27001はISMS要件を定義(認証可能)。ISO 27002はセキュリティコントロール実装のガイドラインとベストプラクティスを提供(単独では認証不可)。組織は通常両方を使用: 27001は管理フレームワーク、27002はコントロール実装ガイダンス。"
@@ -1848,12 +1848,12 @@
   {
     "id": 143,
     "category": "Governance & Compliance",
-    "question": "What is GDPR?",
+    "question": "GDPRとは何か。",
     "options": [
-      "A US law",
-      "The European Union's General Data Protection Regulation governing personal data privacy",
-      "A technical standard",
-      "A security framework"
+      "米国の法律",
+      "EUの個人情報保護を規定する一般データ保護規則 (GDPR)",
+      "技術的規格",
+      "セキュリティフレームワーク"
     ],
     "correct": 1,
     "explanation": "GDPR(一般データ保護規則)は2018年5月発効のEU包括的データ保護規則。EU居住者の個人データの収集、処理、保存を規制し、同意、データ主体の権利、侵害通知(72時間)、重大な罰金(世界売上高の4%まで)を要求。"
@@ -1861,12 +1861,12 @@
   {
     "id": 144,
     "category": "Governance & Compliance",
-    "question": "What is SOC 2 Type II?",
+    "question": "SOC 2 Type IIとは何か。",
     "options": [
-      "A security tool",
-      "An audit report verifying that security controls were operating effectively over a specified period",
-      "A certification for software",
-      "A government regulation"
+      "セキュリティツール",
+      "指定期間にわたりセキュリティコントロールが有効に運用されていたことを検証する監査レポート",
+      "ソフトウェア認証",
+      "政府規制"
     ],
     "correct": 1,
     "explanation": "SOC 2 Type IIは指定期間(通常6-12ヶ月)にわたる組織のコントロールの設計と運用有効性を評価する監査レポート。セキュリティ、可用性、処理完全性、機密性、プライバシーの信頼サービス基準を対象。"
@@ -1874,12 +1874,12 @@
   {
     "id": 145,
     "category": "Governance & Compliance",
-    "question": "What is the purpose of a security policy?",
+    "question": "セキュリティポリシーの目的は何か。",
     "options": [
-      "Replace all technical controls",
-      "Provide management direction and support for information security, defining rules and expectations",
-      "Describe technical configurations",
-      "List all vulnerabilities"
+      "すべての技術的コントロールを置き換える",
+      "情報セキュリティのための経営方針と支援を提供し、ルールと期待を定義する",
+      "技術的構成の記述",
+      "すべての脆弱性のリスト"
     ],
     "correct": 1,
     "explanation": "セキュリティポリシーは経営陣の情報セキュリティへの方向性と支援を提供。何を保護すべきか、なぜか、一般的なアプローチを定義。基準、手順、ガイドラインが構築される基盤。ポリシーなしでは技術的コントロールに組織的権限と正当性がない。"
@@ -1887,12 +1887,12 @@
   {
     "id": 146,
     "category": "Governance & Compliance",
-    "question": "Which PCI DSS requirement mandates encryption of cardholder data in transit across open, public networks?",
+    "question": "オープンなパブリックネットワーク上でカードホルダーデータの送信時暗号化を義務付けるPCI DSS要件はどれか。",
     "options": [
-      "Requirement 1",
-      "Requirement 3",
-      "Requirement 4",
-      "Requirement 8"
+      "要件1",
+      "要件3",
+      "要件4",
+      "要件8"
     ],
     "correct": 2,
     "explanation": "PCI DSS要件4はオープンなパブリックネットワークを経由するカードホルダーデータの送信に強力な暗号化を義務付け。要件1はネットワークセキュリティ、要件3は保存データ暗号化、要件8はアクセス制御。"
@@ -1900,12 +1900,12 @@
   {
     "id": 147,
     "category": "Governance & Compliance",
-    "question": "What is Japan's APPI (Act on the Protection of Personal Information)?",
+    "question": "日本のAPPI (個人情報保護法) とは何か。",
     "options": [
-      "A US privacy law",
-      "Japan's comprehensive personal information protection law regulating handling of personal data",
-      "An encryption standard",
-      "A network security protocol"
+      "米国のプライバシー法",
+      "個人情報の取り扱いを規制する日本の個人情報保護法",
+      "暗号化規格",
+      "ネットワークセキュリティプロトコル"
     ],
     "correct": 1,
     "explanation": "APPIは日本の個人情報保護に関する基本法。利用目的の特定、要配慮個人情報の同意取得、セキュリティ対策の実装、個人のアクセス・訂正・削除権への準拠を組織に要求。"
@@ -1913,12 +1913,12 @@
   {
     "id": 148,
     "category": "Governance & Compliance",
-    "question": "What are the three pillars of an ISMS (Information Security Management System) according to ISO 27001?",
+    "question": "ISO 27001に基づくISMS (Information Security Management System) の3つの柱は何か。",
     "options": [
-      "People, Process, Technology",
-      "Confidentiality, Integrity, Availability",
-      "Prevention, Detection, Response",
-      "Policy, Procedure, Guideline"
+      "人、プロセス、技術",
+      "機密性、完全性、可用性",
+      "予防、検知、対応",
+      "ポリシー、手順、ガイドライン"
     ],
     "correct": 1,
     "explanation": "CIAトライアド(機密性、完全性、可用性)は情報セキュリティの基盤。ISO 27001のISMSはこれら3つの側面の保護を中心に構築: 機密性(不正開示なし)、完全性(不適切な変更なし)、可用性(必要時にアクセス可能)。"
@@ -1926,12 +1926,12 @@
   {
     "id": 149,
     "category": "Governance & Compliance",
-    "question": "What is the difference between a security policy, standard, procedure, and guideline?",
+    "question": "セキュリティポリシー、基準、手順、ガイドラインの違いは何か。",
     "options": [
-      "They are all the same",
-      "Policy=what/why; Standard=what rules; Procedure=how-to steps; Guideline=recommendations",
-      "Policy=technical; Standard=management; Procedure=executive; Guideline=legal",
-      "No meaningful difference"
+      "すべて同じ",
+      "ポリシー=何を・なぜ、基準=ルール、手順=実行手順書、ガイドライン=推奨",
+      "ポリシー=技術、基準=管理、手順=経営、ガイドライン=法務",
+      "意味のある違いはない"
     ],
     "correct": 1,
     "explanation": "ポリシーは何を・なぜ(必須、経営陣から)。基準は特定ルールと構成(必須)。手順はタスクの実行方法の手順書(必須)。ガイドラインは推奨・ベストプラクティス(任意/助言的)。"
@@ -1939,10 +1939,10 @@
   {
     "id": 150,
     "category": "Governance & Compliance",
-    "question": "What is the PDCA cycle in ISO 27001?",
+    "question": "ISO 27001におけるPDCAサイクルとは何か。",
     "options": [
       "Policy, Design, Control, Audit",
-      "Plan, Do, Check, Act - a continuous improvement cycle",
+      "Plan, Do, Check, Act - 継続改善サイクル",
       "Protect, Detect, Correct, Analyze",
       "Process, Document, Certify, Assess"
     ],
@@ -1952,12 +1952,12 @@
   {
     "id": 151,
     "category": "Governance & Compliance",
-    "question": "What does 'data minimization' mean in the context of privacy regulations?",
+    "question": "プライバシー規制の観点からデータ最小化とは何か。",
     "options": [
-      "Compressing data",
-      "Collecting only the minimum personal data necessary for the stated purpose",
-      "Deleting data immediately",
-      "Encrypting all data"
+      "データの圧縮",
+      "指定目的に必要な最小限の個人データのみを収集する",
+      "データを直ちに削除する",
+      "すべてのデータを暗号化する"
     ],
     "correct": 1,
     "explanation": "データ最小化は組織が指定目的に直接関連し必要な個人データのみを収集することを求めるコアプライバシー原則。過剰なデータ収集を防止しプライバシーリスクを削減。GDPRとAPPIの両方がこの原則を強調。"
@@ -1965,12 +1965,12 @@
   {
     "id": 152,
     "category": "Governance & Compliance",
-    "question": "What is due care in information security governance?",
+    "question": "情報セキュリティガバナンスにおけるdue careとは何か。",
     "options": [
-      "Providing good customer service",
-      "Taking responsible steps to protect others from foreseeable harm, meeting minimum standards",
-      "Exceeding all security standards",
-      "Following industry trends"
+      "良好なカスタマーサービスの提供",
+      "予見可能な被害から保護するための責任ある措置を講じ、最低基準を満たすこと",
+      "すべてのセキュリティ基準を超過する",
+      "業界トレンドに従うこと"
     ],
     "correct": 1,
     "explanation": "_due care_は情報とシステムを保護するための合理的かつ適切な措置を講じ、業界で期待される最低水準のケアを満たすこと。_due diligence_は監視、評価、改善を通じたケア維持の継続的取り組み。両方ともガバナンスの責任。"
@@ -1978,12 +1978,12 @@
   {
     "id": 153,
     "category": "Governance & Compliance",
-    "question": "What is the role of a Data Protection Officer (DPO) under GDPR?",
+    "question": "GDPR下でのDPO (Data Protection Officer) の役割は何か。",
     "options": [
-      "IT security manager",
-      "A designated officer responsible for overseeing data protection strategy and compliance",
-      "Database administrator",
-      "Chief Information Officer"
+      "ITセキュリティマネージャー",
+      "データ保護戦略とコンプライアンスの監督を担当する指定された役員",
+      "データベース管理者",
+      "CIO (Chief Information Officer)"
     ],
     "correct": 1,
     "explanation": "GDPR下のDPOはデータ保護戦略の監督、コンプライアンスの確保、監督当局とデータ主体との連絡窓口、監査と訓練の監視を担当。DPOの任命は公的機関と大規模個人データ処理組織で義務。"
@@ -1991,12 +1991,12 @@
   {
     "id": 154,
     "category": "Governance & Compliance",
-    "question": "What is the purpose of an internal audit in security governance?",
+    "question": "セキュリティガバナンスにおける内部監査の目的は何か。",
     "options": [
-      "Replace external audits",
-      "Independently assess the effectiveness of security controls and compliance with policies",
-      "Test network performance",
-      "Hire new employees"
+      "外部監査の置き換え",
+      "セキュリティコントロールの有効性とポリシー準拠を独立して評価する",
+      "ネットワークパフォーマンスのテスト",
+      "新規従業員の採用"
     ],
     "correct": 1,
     "explanation": "内部監査はセキュリティコントロール、ポリシー、コンプライアンスの独立した評価を提供。現状と要件のギャップを特定し、コントロール有効性を評価し、改善推奨事項を提供。監査対象機能からの独立性が客観性に不可欠。"
@@ -2004,12 +2004,12 @@
   {
     "id": 155,
     "category": "Governance & Compliance",
-    "question": "What is privacy by design?",
+    "question": "プライバシー・バイ・デザインとは何か。",
     "options": [
-      "Encrypting all data",
-      "Integrating privacy protections into systems and processes from the initial design stage",
-      "Having a privacy policy",
-      "Complying with GDPR only"
+      "すべてのデータを暗号化する",
+      "初期設計段階からシステムとプロセスにプライバシー保護を組み込む",
+      "プライバシーポリシーを持つこと",
+      "GDPRへの準拠のみ"
     ],
     "correct": 1,
     "explanation": "プライバシー・バイ・デザイン(PbD)は事後対応ではなく初期設計段階からシステムライフサイクル全体にプライバシー配慮を組み込む。7原則には事前予防、デフォルトプライバシー保護設定、設計へのプライバシー組み込みが含まれる。GDPRで法的に義務化。"
@@ -2017,12 +2017,12 @@
   {
     "id": 156,
     "category": "Governance & Compliance",
-    "question": "What does SOC 2 Type I report evaluate?",
+    "question": "SOC 2 Type Iレポートは何を評価するか。",
     "options": [
-      "Operational effectiveness over time",
-      "Control design at a specific point in time",
-      "Financial performance",
-      "Employee satisfaction"
+      "期間中の運用有効性",
+      "特定時点でのコントロール設計",
+      "財務パフォーマンス",
+      "従業員満足度"
     ],
     "correct": 1,
     "explanation": "SOC 2 Type Iは特定時点のコントロール設計を評価。コントロールが信頼サービス基準を満たすように適切に設計されているか。Type IIは追加で指定期間(通常6-12ヶ月)にわたるコントロールの運用有効性を評価。"
@@ -2030,12 +2030,12 @@
   {
     "id": 157,
     "category": "Governance & Compliance",
-    "question": "What is regulatory compliance in information security?",
+    "question": "情報セキュリティにおける規制コンプライアンスとは何か。",
     "options": [
-      "Following industry trends",
-      "Adhering to laws, regulations, and standards applicable to the organization",
-      "Using specific security products",
-      "Having a security team"
+      "業界トレンドに従うこと",
+      "組織に適用される法律、規制、基準に準拠すること",
+      "特定のセキュリティ製品を使用すること",
+      "セキュリティチームを持つこと"
     ],
     "correct": 1,
     "explanation": "規制コンプライアンスは組織が適用されるすべての法律、規制、基準、契約上の義務に準拠すること。例: GDPR、PCI DSS、HIPAA、SOX、APPI。不コンプライアンスは法的罰則、罰金、ビジネス損失、評判毀損を招く。"
@@ -2043,12 +2043,12 @@
   {
     "id": 158,
     "category": "Governance & Compliance",
-    "question": "What is the penalty for serious GDPR violations?",
+    "question": "重大なGDPR違反の罰則は何か。",
     "options": [
-      "Warning letter only",
-      "Up to 20 million EUR or 4% of global annual revenue, whichever is higher",
-      "Up to 1 million EUR",
-      "No financial penalty"
+      "警告書のみ",
+      "2,000万ユーロまたは全世界年間売上高の4%のいずれか高い方",
+      "最大100万ユーロ",
+      "財政的罰則はない"
     ],
     "correct": 1,
     "explanation": "GDPR第83条により、最も重大な違反は2,000万EURまたは前年度全世界年間売上高の4%のいずれか高い方の罰金。軽微な違反は1,000万EURまたは2%まで。"
@@ -2056,12 +2056,12 @@
   {
     "id": 159,
     "category": "Governance & Compliance",
-    "question": "What is a security awareness training program designed to achieve?",
+    "question": "セキュリティ意識研修プログラムは何を達成するよう設計されているか。",
     "options": [
-      "Replace technical controls",
-      "Educate employees to recognize and respond to security threats, reducing human-factor risks",
-      "Teach employees to hack",
-      "Comply with marketing requirements"
+      "技術的コントロールの置き換え",
+      "従業員にセキュリティ脅威の認識と対応を教育し、人的要因リスクを低減する",
+      "従業員にハッキングを教える",
+      "マーケティング要件に準拠する"
     ],
     "correct": 1,
     "explanation": "セキュリティ意識研修は従業員にセキュリティポリシー、脅威(フィッシング、ソーシャルエンジニアリング)、自身の責任について教育。人的エラーはセキュリティインシデントの主要因のため、資格情報窃取、データ漏洩、ポリシー違反のリスクを削減。"
@@ -2069,12 +2069,12 @@
   {
     "id": 160,
     "category": "Governance & Compliance",
-    "question": "What is an information security governance framework?",
+    "question": "情報セキュリティガバナンスフレームワークとは何か。",
     "options": [
-      "A software tool",
-      "A structured approach that defines how security strategy aligns with business objectives and manages risk",
-      "A firewall configuration",
-      "An encryption standard"
+      "ソフトウェアツール",
+      "セキュリティ戦略とビジネス目標の整合を定義しリスクを管理する構造化アプローチ",
+      "ファイアウォール設定",
+      "暗号化規格"
     ],
     "correct": 1,
     "explanation": "セキュリティガバナンスフレームワークはセキュリティ戦略とビジネス目標の整合、リスク管理のための構造、ポリシー、プロセスを提供。COBIT、ITIL、NIST CSF等のフレームワークがリスク管理、コンプライアンス確保、情報に基づいたセキュリティ投資判断を支援。"
@@ -2082,7 +2082,7 @@
   {
     "id": 161,
     "category": "Incident Response",
-    "question": "What is the correct order of the incident response process (SANS/NIST)?",
+    "question": "インシデント対応プロセス (SANS/NIST) の正しい順序はどれか。",
     "options": [
       "Respond -> Detect -> Contain -> Recover",
       "Prepare -> Detect & Analyze -> Contain & Eradicate -> Recover -> Post-Incident",
@@ -2095,12 +2095,12 @@
   {
     "id": 162,
     "category": "Incident Response",
-    "question": "What is the primary goal of the containment phase in incident response?",
+    "question": "インシデント対応における封じ込めフェーズの主な目的は何か。",
     "options": [
-      "Fix the root cause",
-      "Limit the damage and prevent further spread of the incident",
-      "Notify all stakeholders",
-      "Start legal proceedings"
+      "根本原因を修正する",
+      "被害を限定しインシデントのさらなる拡大を防止する",
+      "すべてのステークホルダーに通知する",
+      "法的措置を開始する"
     ],
     "correct": 1,
     "explanation": "封じ込めは証拠保存を保ちながら被害を限定し、さらなる拡大を防止することを目的。短期封じ込めは影響を受けたシステムを即座に隔離。長期封じ込めはインシデント完全解決までビジネス継続を可能にする。証拠保存がこのフェーズで重要。"
@@ -2108,12 +2108,12 @@
   {
     "id": 163,
     "category": "Incident Response",
-    "question": "What is RPO (Recovery Point Objective)?",
+    "question": "RPO (Recovery Point Objective) とは何か。",
     "options": [
-      "The maximum acceptable downtime",
-      "The maximum acceptable amount of data loss, measured in time backward from the incident",
-      "The time to detect an incident",
-      "The backup frequency"
+      "最大許容ダウンタイム",
+      "インシデントから遡った時間で計測される最大許容データ損失量",
+      "インシデント検出時間",
+      "バックアップ頻度"
     ],
     "correct": 1,
     "explanation": "RPOは時間で計測される最大許容データ損失。RPO4時間はシステムが最大4時間のデータを失ってもよいことを意味。バックアップ頻度を決定 - バックアップはRPO以下の頻度が必要。RPO0はゼロデータ損失(同期レプリケーション)を要求。"
@@ -2121,12 +2121,12 @@
   {
     "id": 164,
     "category": "Incident Response",
-    "question": "What is RTO (Recovery Time Objective)?",
+    "question": "RTO (Recovery Time Objective) とは何か。",
     "options": [
-      "The maximum data loss",
-      "The maximum acceptable time to restore a system or service after disruption",
-      "The time to detect an incident",
-      "The time to contain an incident"
+      "最大データ損失",
+      "中断後にシステムまたはサービスを復旧させる最大許容時間",
+      "インシデント検出時間",
+      "インシデント封じ込め時間"
     ],
     "correct": 1,
     "explanation": "RTOは中断後にシステムがビジネスに重大な影響を与えるまでの最大許容ダウンタイム。短いRTOは高コストなソリューション(ホットサイト、クラスタリング)、長いRTOはシンプルなアプローチ(コールドサイト)を使用。"
@@ -2134,12 +2134,12 @@
   {
     "id": 165,
     "category": "Incident Response",
-    "question": "What is the purpose of maintaining a chain of custody for digital evidence?",
+    "question": "デジタル証拠の証拠保全チェーンを維持する目的は何か。",
     "options": [
-      "Track who accessed the evidence to ensure it is admissible in legal proceedings",
-      "Backup evidence",
-      "Share evidence with the public",
-      "Encrypt evidence"
+      "証拠へのアクセス者を追跡し、法的証拠能力を確保する",
+      "証拠のバックアップ",
+      "証拠を公開に共有する",
+      "証拠の暗号化"
     ],
     "correct": 1,
     "explanation": "証拠保全チェーンは証拠を処理した全人物、時期、理由、変更内容を文書化。証拠の完全性と法的証拠能力を確保。破損したチェーンは証拠を法的に不採用にする可能性。"
@@ -2147,12 +2147,12 @@
   {
     "id": 166,
     "category": "Incident Response",
-    "question": "What is a Business Continuity Plan (BCP)?",
+    "question": "BCP (Business Continuity Plan) とは何か。",
     "options": [
-      "A backup plan for data",
-      "A comprehensive plan ensuring critical business operations continue during and after a disruption",
-      "An IT recovery plan",
-      "A financial recovery plan"
+      "データ用バックアップ計画",
+      "中断中および中断後に重要ビジネス機能の継続を確保する包括的計画",
+      "IT復旧計画",
+      "財務復旧計画"
     ],
     "correct": 1,
     "explanation": "BCPは中断中および中断後に重要ビジネス機能の継続を確保。ビジネス継続戦略、通信計画、役割と責任、回避策を含む。DRP(ITシステム復旧に特化)より広範。"
@@ -2160,12 +2160,12 @@
   {
     "id": 167,
     "category": "Incident Response",
-    "question": "Which type of disaster recovery site has the equipment and data but no active staff, requiring setup time?",
+    "question": "機器とデータはあるがスタッフは常駐しておらず、セットアップ時間が必要なディザスタリカバリサイトの種類はどれか。",
     "options": [
-      "Hot site",
-      "Warm site",
-      "Cold site",
-      "Mobile site"
+      "ホットサイト",
+      "ウォームサイト",
+      "コールドサイト",
+      "モバイルサイト"
     ],
     "correct": 1,
     "explanation": "ウォームサイトはコンピューティング機器、ソフトウェア、データコピーが準備されているが稼働していない。データ復元とシステム構成に時間が必要。ホットサイトは完全稼働(即時)、コールドサイトは電源と空調のみ(日〜週)。"
@@ -2173,12 +2173,12 @@
   {
     "id": 168,
     "category": "Incident Response",
-    "question": "What is computer forensics?",
+    "question": "コンピュータフォレンジクスとは何か。",
     "options": [
-      "Fixing broken computers",
-      "The practice of collecting, preserving, analyzing, and presenting digital evidence in a legally defensible manner",
-      "Writing security software",
-      "Network monitoring"
+      "壊れたコンピュータの修理",
+      "法的に防御可能な方法でデジタル証拠を収集、保存、分析、提示する実践",
+      "セキュリティソフトウェアの作成",
+      "ネットワーク監視"
     ],
     "correct": 1,
     "explanation": "コンピュータフォレンジクスは証拠保全チェーンを維持しながらデジタル証拠の体系的な収集、保存、分析、提示。厳格な方法論と専門ツール(EnCase、FTK、Autopsy)を使用し証拠の法的証拠能力を確保。"
@@ -2186,12 +2186,12 @@
   {
     "id": 169,
     "category": "Incident Response",
-    "question": "What is malware analysis?",
+    "question": "マルウェア解析とは何か。",
     "options": [
-      "Deleting malware",
-      "The study of malicious software to understand its behavior, purpose, and impact",
-      "Writing antivirus software",
-      "Patching vulnerabilities"
+      "マルウェアの削除",
+      "動作、目的、影響を理解するための悪意のあるソフトウェアの研究",
+      "アンチウイルスソフトウェアの作成",
+      "脆弱性のパッチ適用"
     ],
     "correct": 1,
     "explanation": "マルウェア解析は機能性、感染方法、永続化メカニズム、ネットワーク通信、潜在的影響を理解するための悪意のあるソフトウェアの検査。静的解析はコードを実行せず検査。動的解析は隔離環境(サンドボックス)でマルウェアを実行し動作を観察。"
@@ -2199,12 +2199,12 @@
   {
     "id": 170,
     "category": "Incident Response",
-    "question": "What is an Incident Response Team (IRT)?",
+    "question": "IRT (Incident Response Team) とは何か。",
     "options": [
-      "IT support team",
-      "A designated team responsible for detecting, responding to, and recovering from security incidents",
-      "A management team",
-      "A vendor team"
+      "ITサポートチーム",
+      "セキュリティインシデントの検知、対応、復旧を担当する指定チーム",
+      "管理チーム",
+      "ベンダーチーム"
     ],
     "correct": 1,
     "explanation": "IRT(Computer Incident Response Teamとも)は定義された役割(インシデントコマンダー、技術リード、通信、法務)を持つセキュリティインシデント管理専任チーム。明確なエスカレーション手順、研修、ツールが必要。"
@@ -2212,12 +2212,12 @@
   {
     "id": 171,
     "category": "Incident Response",
-    "question": "What is the first step when a security incident is detected?",
+    "question": "セキュリティインシデントが検出された場合の最初のステップは何か。",
     "options": [
-      "Immediately shut down all systems",
-      "Activate the incident response plan and assess the situation",
-      "Notify the public",
-      "Call law enforcement"
+      "すべてのシステムを直ちにシャットダウンする",
+      "インシデント対応計画を稼働させ状況を評価する",
+      "一般市民に通知する",
+      "法執行機関に連絡する"
     ],
     "correct": 1,
     "explanation": "最初のステップはインシデント対応計画を稼働させ初期評価を実行: 範囲、重大度、影響システム、インシデントタイプを判定。全システムシャットダウン等のパニック対応は証拠破壊と混乱を増大。評価が適切な対応を導く。"
@@ -2225,12 +2225,12 @@
   {
     "id": 172,
     "category": "Incident Response",
-    "question": "What is the difference between BCP and DRP?",
+    "question": "BCPとDRPの違いは何か。",
     "options": [
-      "No difference",
-      "BCP covers business operations continuity; DRP focuses on IT systems recovery",
-      "BCP is for small companies; DRP is for large",
-      "DRP is more important"
+      "違いはない",
+      "BCPはビジネス運用の継続をカバーし、DRPはITシステムの復旧に焦点",
+      "BCPは中小企業向け、DRPは大企業向け",
+      "DRPの方が重要"
     ],
     "correct": 1,
     "explanation": "BCPはビジネス運用の継続性をカバー。DRPはITシステム復旧に焦点。BCPは中小企業に限定されず、DRPがより重要ということもない。両方とも異なる目的を持つ。"
@@ -2238,12 +2238,12 @@
   {
     "id": 173,
     "category": "Incident Response",
-    "question": "What is a disaster recovery hot site?",
+    "question": "ディザスタリカバリのホットサイトとは何か。",
     "options": [
-      "A warm location",
-      "A fully equipped and operational facility with real-time data replication, ready for immediate failover",
-      "A site with only power and cooling",
-      "A cloud backup"
+      "ウォームロケーション",
+      "リアルタイムデータレプリケーションを備え即時フェイルオーバー可能な完全装備の施設",
+      "電源と空調のみのサイト",
+      "クラウドバックアップ"
     ],
     "correct": 1,
     "explanation": "RTO(Recovery Time Objective)は中断後にシステムがビジネスに重大な影響を与えるまでの最大許容時間。これによりディザスタリカバリ戦略が決定される。短いRTOは高コストソリューション(ホットサイト)、長いRTOはシンプル(コールドサイト)。"
@@ -2251,12 +2251,12 @@
   {
     "id": 174,
     "category": "Incident Response",
-    "question": "What is the purpose of a post-incident review (lessons learned)?",
+    "question": "事後レビュー (lessons learned) の目的は何か。",
     "options": [
-      "Assign blame",
-      "Analyze what happened, what went well, what could improve, and update plans accordingly",
-      "Close the incident",
-      "Prepare for legal action"
+      "責任の所在を問う",
+      "何が起きたか、何がうまくいったか、何を改善すべきかを分析し計画を更新する",
+      "インシデントをクローズする",
+      "法的措置の準備"
     ],
     "correct": 1,
     "explanation": "証拠保全チェーンは証拠を処理した全人物、時期、理由、変更を文書化。証拠の完全性と法的証拠能力を確保。破損したチェーンは証拠を法的に不採用にする可能性。"
@@ -2264,12 +2264,12 @@
   {
     "id": 175,
     "category": "Incident Response",
-    "question": "What is the definition of MTTR (Mean Time to Recovery)?",
+    "question": "MTTR (Mean Time to Recovery) の定義は何か。",
     "options": [
-      "The average time between incidents",
-      "The average time required to restore a system to normal operation after a failure",
-      "The time to detect an incident",
-      "The time to contain an incident"
+      "インシデント間の平均時間",
+      "障害後にシステムを正常稼働に復旧させる平均所要時間",
+      "インシデント検出時間",
+      "インシデント封じ込め時間"
     ],
     "correct": 1,
     "explanation": "BCPは中断中および中断後に重要ビジネス機能の継続を確保する包括的計画。業務継続戦略、通信計画、役割と責任、回避策を含む。DRP(ITシステム復旧に特化)より広範。"
@@ -2277,12 +2277,12 @@
   {
     "id": 176,
     "category": "Incident Response",
-    "question": "What is MTBF (Mean Time Between Failures)?",
+    "question": "MTBF (Mean Time Between Failures) とは何か。",
     "options": [
-      "The time to repair a failure",
-      "The average time between system failures, measuring reliability",
-      "The maximum uptime",
-      "The backup frequency"
+      "障害の修復時間",
+      "システム障害間の平均時間、信頼性を測定する指標",
+      "最大稼働時間",
+      "バックアップ頻度"
     ],
     "correct": 1,
     "explanation": "インシデント対応の封じ込めフェーズの目的は証拠保存を保ちながら被害を限定し、さらなる拡大を防止。短期封じ込めで即座に影響システムを隔離。長期封じ込めでインシデント完全解決までビジネス継続を可能にする。"
@@ -2290,12 +2290,12 @@
   {
     "id": 177,
     "category": "Incident Response",
-    "question": "What is the importance of incident triage?",
+    "question": "インシデントトリアージの重要性は何か。",
     "options": [
-      "Assigning blame",
-      "Prioritizing incidents based on severity, impact, and urgency to allocate resources effectively",
-      "Documenting all incidents equally",
-      "Ignoring low-priority incidents"
+      "責任の所在を問う",
+      "重大度、影響、緊急度に基づいてインシデントに優先順位を付けリソースを効果的に配分する",
+      "すべてのインシデントを均等に記録する",
+      "低優先度のインシデントを無視する"
     ],
     "correct": 1,
     "explanation": "RPO(Recovery Point Objective)は時間で計測される最大許容データ損失。バックアップ頻度を決定。RPO4時間は最大4時間のデータ損失を許容。"
@@ -2303,12 +2303,12 @@
   {
     "id": 178,
     "category": "Incident Response",
-    "question": "What is an incident response playbook (runbook)?",
+    "question": "インシデント対応プレイブック (ランブック) とは何か。",
     "options": [
-      "A list of phone numbers",
-      "A documented step-by-step procedure for responding to specific types of incidents",
-      "A type of malware",
-      "A backup procedure"
+      "電話番号のリスト",
+      "特定種別のインシデントに対応する段階的手順を文書化したもの",
+      "マルウェアの一種",
+      "バックアップ手順"
     ],
     "correct": 1,
     "explanation": "RTOは中断後にシステムがビジネスに重大な影響を与えるまでの最大許容ダウンタイム。ディザスタリカバリ戦略を決定。短いRTOは高コスト、長いRTOはシンプル。"
@@ -2316,12 +2316,12 @@
   {
     "id": 179,
     "category": "Incident Response",
-    "question": "What is forensic imaging?",
+    "question": "フォレンジックイメージングとは何か。",
     "options": [
-      "Regular system backup",
-      "Creating an exact bit-for-bit copy of a storage device for forensic analysis",
-      "Compressing files",
-      "Encrypting evidence"
+      "通常のシステムバックアップ",
+      "フォレンジック分析のためにストレージデバイスの完全なビット単位コピーを作成する",
+      "ファイルの圧縮",
+      "証拠の暗号化"
     ],
     "correct": 1,
     "explanation": "ウォームサイトは機器、ソフトウェア、データコピーが準備済みだが非稼働。データ復元と構成に時間が必要(時間〜日)。ホットサイトは即時、コールドサイトは電源と空調のみ。"
@@ -2329,12 +2329,12 @@
   {
     "id": 180,
     "category": "Incident Response",
-    "question": "What is the role of the incident commander during a security incident?",
+    "question": "セキュリティインシデント中のインシデントコマンダーの役割は何か。",
     "options": [
-      "Perform technical analysis",
-      "Lead and coordinate the response effort, make strategic decisions, and manage communications",
-      "Write reports",
-      "Contact vendors"
+      "技術的分析の実施",
+      "対応活動をリード・調整し、戦略的判断を行い、コミュニケーションを管理する",
+      "レポートの作成",
+      "ベンダーへの連絡"
     ],
     "correct": 1,
     "explanation": "コンピュータフォレンジクスは法的に防御可能な方法でデジタル証拠の収集、保存、分析、提示の実践。証拠保全チェーンを維持し、専門ツールを使用。"
@@ -2342,12 +2342,12 @@
   {
     "id": 181,
     "category": "Physical Security",
-    "question": "What is the CPTED approach to physical security?",
+    "question": "物理セキュリティにおけるCPTEDアプローチとは何か。",
     "options": [
-      "Using armed guards only",
-      "Crime Prevention Through Environmental Design - designing the physical environment to deter criminal activity",
-      "A type of camera",
-      "An alarm system"
+      "武装警備のみを使用する",
+      "CPTED - 犯罪防止のための環境設計",
+      "カメラの一種",
+      "アラームシステム"
     ],
     "correct": 1,
     "explanation": "マルウェア解析は動作、目的、影響を理解するための悪意のあるソフトウェアの研究。静的解析はコード検査、動的解析はサンドボックスで実行観察。"
@@ -2355,12 +2355,12 @@
   {
     "id": 182,
     "category": "Physical Security",
-    "question": "Which type of access card uses radio frequency for contactless access?",
+    "question": "非接触アクセスに無線周波数を使用するアクセスカードの種類はどれか。",
     "options": [
-      "Magnetic stripe card",
-      "Smart card",
-      "RFID card",
-      "Proximity card"
+      "磁気ストライプカード",
+      "スマートカード",
+      "RFIDカード",
+      "近接カード"
     ],
     "correct": 2,
     "explanation": "IRTはセキュリティインシデントの検知、対応、復旧を担当する専任チーム。定義された役割、エスカレーション手順、研修、ツールが必要。"
@@ -2368,12 +2368,12 @@
   {
     "id": 183,
     "category": "Physical Security",
-    "question": "What is a mantrap in physical security?",
+    "question": "物理セキュリティにおけるマントラップとは何か。",
     "options": [
-      "A trap for intruders",
-      "A small room with two interlocking doors that prevents tailgating and controls access",
-      "A type of alarm",
-      "A security camera"
+      "侵入者用の罠",
+      "2つの連動ドアがある小部屋で、テールゲーティングを防止しアクセスを制御する",
+      "アラームの一種",
+      "セキュリティカメラ"
     ],
     "correct": 1,
     "explanation": "セキュリティインシデント検知時の第一歩はインシデント対応計画を稼働させ初期評価を実行。範囲、重大度、影響システムを判定。パニック対応は証拠破壊を招く。"
@@ -2381,12 +2381,12 @@
   {
     "id": 184,
     "category": "Physical Security",
-    "question": "What is the proper method for disposing of hard drives containing sensitive data?",
+    "question": "機密データを含むハードディスクの適切な廃棄方法は何か。",
     "options": [
-      "Throw in regular trash",
-      "Physical destruction (shredding, degaussing) or certified data wiping",
-      "Recycle normally",
-      "Donate to charity"
+      "通常のゴミに捨てる",
+      "物理的破壊 (シュレッディング、消磁) または認定データ消去",
+      "通常にリサイクルする",
+      "慈善団体に寄贈する"
     ],
     "correct": 1,
     "explanation": "BCPは業務運用継続をカバー。DRPはITシステム復旧に特化。DRPが中小企業のみ、またはBCPより重要ということはない。"
@@ -2394,12 +2394,12 @@
   {
     "id": 185,
     "category": "Physical Security",
-    "question": "What is an environmental control system in a data center?",
+    "question": "データセンターの環境制御システムとは何か。",
     "options": [
-      "A security camera system",
-      "Systems that maintain optimal temperature, humidity, and power conditions for IT equipment",
-      "A door lock system",
-      "A fire suppression system only"
+      "セキュリティカメラシステム",
+      "IT機器の適切な温度、湿度、電力条件を維持するシステム",
+      "ドアロックシステム",
+      "消火システムのみ"
     ],
     "correct": 1,
     "explanation": "RTOは中断後にシステムがビジネスに重大な影響を与えるまでの最大許容ダウンタイム。これによりディザスタリカバリ戦略の方向性が決まる。"
@@ -2407,12 +2407,12 @@
   {
     "id": 186,
     "category": "Physical Security",
-    "question": "What is the principle of defense in depth applied to physical security?",
+    "question": "物理セキュリティに適用される防御-in-depthの原則とは何か。",
     "options": [
-      "One strong door lock",
-      "Multiple layers of physical security barriers (fences, guards, cameras, mantraps, locks)",
-      "A single security guard",
-      "Electronic access only"
+      "1つの強力なドアロック",
+      "フェンス、警備員、カメラ、マントラップ、ロックなど複数の物理的セキュリティ障壁",
+      "単一のセキュリティガード",
+      "電子アクセスのみ"
     ],
     "correct": 1,
     "explanation": "証拠保全チェーンは証拠の完全性と法的証拠能力を確保。全処理者、時期、理由を文書化。破損したチェーンは証拠を不採用にする可能性。"
@@ -2420,12 +2420,12 @@
   {
     "id": 187,
     "category": "Physical Security",
-    "question": "What type of fire suppression system is safe for use in data centers without damaging electronic equipment?",
+    "question": "データセンターで電子機器を損傷せずに使用できる消火システムの種類はどれか。",
     "options": [
-      "Water sprinklers",
-      "FM-200 or Novec 1230 clean agent systems",
-      "CO2 flooding",
-      "Dry chemical"
+      "水スプリンクラー",
+      "FM-200またはNovec 1230のクリーンエージェントシステム",
+      "CO2フラッディング",
+      "ドライケミカル"
     ],
     "correct": 1,
     "explanation": "BCPは重要ビジネス機能の継続を確保する包括的計画。業務継続戦略、通信計画、役割、回避策を含む。DRPはIT復旧に焦点。"
@@ -2433,12 +2433,12 @@
   {
     "id": 188,
     "category": "Physical Security",
-    "question": "What is tailgating (piggybacking) in physical security?",
+    "question": "物理セキュリティにおけるテールゲーティング (ピギーバッキング) とは何か。",
     "options": [
-      "Following someone on social media",
-      "An unauthorized person following an authorized person through a secured entrance",
-      "A type of lock",
-      "A surveillance technique"
+      "ソーシャルメディアでのフォロー",
+      "不正な人物が正規の人物に続いてセキュリティされた入口を通過する",
+      "ロックの一種",
+      "監視手法"
     ],
     "correct": 1,
     "explanation": "封じ込めフェーズの目的は被害を限定し拡大を防止しながら証拠を保存。短期で即座隔離、長期でビジネス継続可能にしながら完全解決。"
@@ -2446,12 +2446,12 @@
   {
     "id": 189,
     "category": "Physical Security",
-    "question": "What is a UPS (Uninterruptible Power Supply)?",
+    "question": "UPS (Uninterruptible Power Supply) とは何か。",
     "options": [
-      "A shipping service",
-      "A device that provides emergency power when main power fails, allowing graceful shutdown or bridging to generators",
-      "A backup server",
-      "A network cable"
+      "配送サービス",
+      "主電源停止時に非常用電力を提供し、安全なシャットダウンまたは発電機への移行を可能にするデバイス",
+      "バックアップサーバー",
+      "ネットワークケーブル"
     ],
     "correct": 1,
     "explanation": "RPOは時間で計測される最大許容データ損失。バックアップ頻度の決定基準。RPO0は同期レプリケーションによるゼロデータ損失。"
@@ -2459,12 +2459,12 @@
   {
     "id": 190,
     "category": "Physical Security",
-    "question": "What is the recommended operating temperature range for a data center?",
+    "question": "データセンターの推奨稼働温度範囲は何か。",
     "options": [
-      "0-15 degrees C",
-      "18-27 degrees C (64-80 degrees F)",
-      "30-40 degrees C",
-      "Any temperature is fine"
+      "0-15度C",
+      "18-27度C (64-80度F)",
+      "30-40度C",
+      "任意の温度でよい"
     ],
     "correct": 1,
     "explanation": "RTOは中断後にビジネスに重大な影響を与えるまでの最大許容ダウンタイム。短いRTOは高コスト(ホットサイト)、長いRTOはシンプル(コールドサイト)。"
@@ -2472,12 +2472,12 @@
   {
     "id": 191,
     "category": "Physical Security",
-    "question": "What is a raised floor in a data center?",
+    "question": "データセンターのRaised Floorとは何か。",
     "options": [
-      "A second story",
-      "An elevated floor creating a space for power cables, data cables, and cooling airflow",
-      "A type of ceiling",
-      "A security barrier"
+      "2階建て",
+      "電源ケーブル、データケーブル、冷却空気流のための空間を作る高架床",
+      "天井の一種",
+      "セキュリティバリア"
     ],
     "correct": 1,
     "explanation": "ウォームサイトは機器とデータコピーが準備済みだが非稼働。復元に時間が必要(時間〜日)。"
@@ -2485,12 +2485,12 @@
   {
     "id": 192,
     "category": "Physical Security",
-    "question": "What is social engineering in the context of physical security?",
+    "question": "物理セキュリティの観点からソーシャルエンジニアリングとは何か。",
     "options": [
-      "Engineering social networks",
-      "Manipulating people into performing actions or divulging information that compromises physical security",
-      "Building security systems",
-      "Installing cameras"
+      "ソーシャルネットワークの構築",
+      "人々を操作して物理セキュリティを脅かす行動や情報の開示をさせる",
+      "セキュリティシステムの構築",
+      "カメラの設置"
     ],
     "correct": 1,
     "explanation": "フォレンジクスは法的に防御可能な方法でのデジタル証拠の体系的収集、保存、分析、提示。"
@@ -2498,12 +2498,12 @@
   {
     "id": 193,
     "category": "Physical Security",
-    "question": "What is a visitor management system?",
+    "question": "来客管理システムとは何か。",
     "options": [
-      "A tourist guide system",
-      "A system for registering, tracking, and controlling access of visitors to a facility",
-      "An email system",
-      "A phone system"
+      "観光ガイドシステム",
+      "施設の来訪者を登録、追跡、アクセス制御するシステム",
+      "メールシステム",
+      "電話システム"
     ],
     "correct": 1,
     "explanation": "マルウェア解析は動作、目的、影響を理解する研究。静的解析(コード検査)と動的解析(サンドボックス実行)。"
@@ -2511,12 +2511,12 @@
   {
     "id": 194,
     "category": "Physical Security",
-    "question": "What is the purpose of security lighting?",
+    "question": "セキュリティ照明の目的は何か。",
     "options": [
-      "Decorative purpose only",
-      "To deter criminal activity by eliminating hiding spots and enabling surveillance cameras to capture clear footage",
-      "To reduce electricity costs",
-      "To light up advertisements"
+      "装飾目的のみ",
+      "隠れ場所を排除し監視カメラが鮮明な映像を撮影できるようにして犯罪行為を抑止する",
+      "電気料金の削減",
+      "広告の照明"
     ],
     "correct": 1,
     "explanation": "IRTはインシデント管理の専任チーム。定義された役割とエスカレーション手順で検知、対応、復旧を担当。"
@@ -2524,12 +2524,12 @@
   {
     "id": 195,
     "category": "Physical Security",
-    "question": "What is degaussing?",
+    "question": "消磁 (Degaussing) とは何か。",
     "options": [
-      "A cleaning method",
-      "Using a powerful magnetic field to erase data from magnetic storage media",
-      "A type of encryption",
-      "A data backup method"
+      "清掃方法",
+      "強力な磁場を使用して磁気記録媒体からデータを消去する",
+      "暗号化の一種",
+      "データバックアップ方法"
     ],
     "correct": 1,
     "explanation": "インシデント検知時は対応計画を稼働し初期評価を実行。パニック対応は証拠破壊を招く。"
@@ -2537,12 +2537,12 @@
   {
     "id": 196,
     "category": "Security Architecture",
-    "question": "What is the core principle of Zero Trust architecture?",
+    "question": "ゼロトラストアーキテクチャの中核原則は何か。",
     "options": [
-      "Trust all internal traffic",
-      "Never trust, always verify - authenticate and authorize every request regardless of origin",
-      "Only verify external traffic",
-      "Trust the network perimeter"
+      "すべての内部トラフィックを信頼する",
+      "常に信頼せず常に検証する - 起源にかかわらずすべてのリクエストを認証・認可する",
+      "外部トラフィックのみ検証する",
+      "ネットワーク境界を信頼する"
     ],
     "correct": 1,
     "explanation": "BCPは業務継続をカバー。DRPはIT復旧に焦点。両方とも重要で異なる目的を持つ。"
@@ -2550,12 +2550,12 @@
   {
     "id": 197,
     "category": "Security Architecture",
-    "question": "What is a SIEM system?",
+    "question": "SIEMシステムとは何か。",
     "options": [
-      "A firewall",
-      "Security Information and Event Management - a system that aggregates and analyzes security logs and events",
-      "An antivirus",
-      "A VPN"
+      "ファイアウォール",
+      "Security Information and Event Management - セキュリティログとイベントを集約・分析するシステム",
+      "アンチウイルス",
+      "VPN"
     ],
     "correct": 1,
     "explanation": "RTOはビジネスに重大影響を与えるまでの最大許容ダウンタイム。DR戦略を決定。"
@@ -2563,12 +2563,12 @@
   {
     "id": 198,
     "category": "Security Architecture",
-    "question": "What is SOAR?",
+    "question": "SOARとは何か。",
     "options": [
-      "A type of encryption",
-      "Security Orchestration, Automation, and Response - automating security operations and incident response",
-      "A network protocol",
-      "A backup system"
+      "暗号化の一種",
+      "Security Orchestration, Automation, and Response - セキュリティ運用とインシデント対応の自動化",
+      "ネットワークプロトコル",
+      "バックアップシステム"
     ],
     "correct": 1,
     "explanation": "証拠保全チェーンは証拠の完全性確保。全処理記録が法的証拠能力に不可欠。"
@@ -2576,12 +2576,12 @@
   {
     "id": 199,
     "category": "Security Architecture",
-    "question": "What is defense in depth in security architecture?",
+    "question": "セキュリティアーキテクチャにおける防御-in-depthとは何か。",
     "options": [
-      "A single strong firewall",
-      "Multiple layers of security controls (physical, technical, administrative) protecting assets",
-      "Deep packet inspection",
-      "Intrusion prevention"
+      "単一の強力なファイアウォール",
+      "物理・技術・管理的な複数のセキュリティ制御階層で資産を保護する",
+      "ディープパケットインスペクション",
+      "侵入防止"
     ],
     "correct": 1,
     "explanation": "BCPは重要機能の継続確保。DRPはIT復旧に特化。"
@@ -2589,12 +2589,12 @@
   {
     "id": 200,
     "category": "Security Architecture",
-    "question": "What is microsegmentation?",
+    "question": "マイクロセグメンテーションとは何か。",
     "options": [
-      "Small VLANs",
-      "Software-defined security that applies granular policies to individual workloads within a data center",
-      "Network segmentation at the router level",
-      "Port security on switches"
+      "小さなVLAN",
+      "データセンター内の個々のワークロードに細粒度ポリシーを適用するソフトウェア定義セキュリティ",
+      "ルーターレベルのネットワークセグメンテーション",
+      "スイッチのポートセキュリティ"
     ],
     "correct": 1,
     "explanation": "封じ込めは被害限定と拡大防止。証拠保存が重要。"
@@ -2602,12 +2602,12 @@
   {
     "id": 201,
     "category": "Security Architecture",
-    "question": "What is a SOC (Security Operations Center)?",
+    "question": "SOC (Security Operations Center) とは何か。",
     "options": [
-      "A sales office",
-      "A centralized team that monitors, detects, and responds to security incidents using technology and processes",
-      "A data center",
-      "A server room"
+      "営業所",
+      "技術とプロセスを使用してセキュリティインシデントを監視・検知・対応する集中チーム",
+      "データセンター",
+      "サーバールーム"
     ],
     "correct": 1,
     "explanation": "RPOは最大許容データ損失(時間)。バックアップ頻度を決定。"
@@ -2615,12 +2615,12 @@
   {
     "id": 202,
     "category": "Security Architecture",
-    "question": "What is the principle of least privilege in architecture design?",
+    "question": "アーキテクチャ設計における最小権限の原則とは何か。",
     "options": [
-      "Give everyone admin access for convenience",
-      "Each component and user should have only the minimum permissions needed to function",
-      "Use shared accounts",
-      "Default allow all access"
+      "便宜上すべてのユーザーに管理者アクセスを付与する",
+      "各コンポーネントとユーザーに機能に必要な最小限の権限のみを付与する",
+      "共有アカウントを使用する",
+      "デフォルトですべてのアクセスを許可する"
     ],
     "correct": 1,
     "explanation": "RTOはビジネス影響までの最大許容ダウンタイム。DR戦略を決定。"
@@ -2628,12 +2628,12 @@
   {
     "id": 203,
     "category": "Security Architecture",
-    "question": "What is a CASB (Cloud Access Security Broker)?",
+    "question": "CASB (Cloud Access Security Broker) とは何か。",
     "options": [
-      "A cloud service provider",
-      "A security policy enforcement point between cloud users and cloud providers",
-      "A type of VPN",
-      "A backup service"
+      "クラウドサービスプロバイダー",
+      "クラウドユーザーとクラウドプロバイダー間のセキュリティポリシー実施ポイント",
+      "VPNの一種",
+      "バックアップサービス"
     ],
     "correct": 1,
     "explanation": "ウォームサイトは準備済みだが非稼働。復元に時間が必要。"
@@ -2641,12 +2641,12 @@
   {
     "id": 204,
     "category": "Security Architecture",
-    "question": "What is a Software-Defined Perimeter (SDP)?",
+    "question": "SDP (Software-Defined Perimeter) とは何か。",
     "options": [
-      "A traditional firewall",
-      "A security framework that dynamically creates one-to-one network connections between users and resources",
-      "A VPN",
-      "A load balancer"
+      "従来のファイアウォール",
+      "ユーザーとリソース間に動的に1対1のネットワーク接続を作成するセキュリティフレームワーク",
+      "VPN",
+      "ロードバランサー"
     ],
     "correct": 1,
     "explanation": "フォレンジクスは証拠の収集、保存、分析、提示を体系的に実施。"
@@ -2654,12 +2654,12 @@
   {
     "id": 205,
     "category": "Security Architecture",
-    "question": "What is security information management (SIM) as part of SIEM?",
+    "question": "SIEMの一部としてのセキュリティ情報管理 (SIM) とは何か。",
     "options": [
-      "Sending security emails",
-      "Collecting, normalizing, and storing security event logs for analysis and compliance reporting",
-      "Managing security policies",
-      "Training security staff"
+      "セキュリティメールの送信",
+      "セキュリティイベントログを収集・正規化・保存し分析とコンプライアンス報告に使用する",
+      "セキュリティポリシーの管理",
+      "セキュリティスタッフの育成"
     ],
     "correct": 1,
     "explanation": "マルウェア解析で動作と影響を理解。静的・動的解析。"
@@ -2667,12 +2667,12 @@
   {
     "id": 206,
     "category": "Security Architecture",
-    "question": "What is immutable infrastructure in security architecture?",
+    "question": "セキュリティアーキテクチャにおけるイミュータブルインフラとは何か。",
     "options": [
-      "Infrastructure that cannot be changed",
-      "Infrastructure that is replaced rather than modified, reducing configuration drift and attack surface",
-      "Physical-only infrastructure",
-      "Legacy infrastructure"
+      "変更不可能なインフラ",
+      "変更せずに置き換えるインフラストラクチャで、構成ドリフトと攻撃面を削減する",
+      "物理専用インフラ",
+      "レガシーインフラ"
     ],
     "correct": 1,
     "explanation": "IRTは定義された役割でインシデント管理。エスカレーション手順必要。"
@@ -2680,12 +2680,12 @@
   {
     "id": 207,
     "category": "Security Architecture",
-    "question": "What is a threat intelligence feed?",
+    "question": "脅威インテリジェンスフィードとは何か。",
     "options": [
-      "A news feed",
-      "A stream of data about current and emerging threats including indicators of compromise (IoCs)",
-      "A vulnerability scanner",
-      "A firewall rule set"
+      "ニュースフィード",
+      "IoC (Indicators of Compromise) を含む現在および新興の脅威に関するデータストリーム",
+      "脆弱性スキャナー",
+      "ファイアウォールルールセット"
     ],
     "correct": 1,
     "explanation": "インシデント検知時は計画を稼働し初期評価を実行。"
@@ -2693,12 +2693,12 @@
   {
     "id": 208,
     "category": "Security Architecture",
-    "question": "What is the security concept of 'blast radius'?",
+    "question": "セキュリティの概念としての 'blast radius' とは何か。",
     "options": [
-      "Explosion damage",
-      "The scope of damage or access that can result from a single security breach",
-      "A network term",
-      "A type of attack"
+      "爆発被害",
+      "単一のセキュリティ侵害から生じうる被害やアクセスの範囲",
+      "ネットワーク用語",
+      "攻撃の一種"
     ],
     "correct": 1,
     "explanation": "BCPは業務継続、DRPはIT復旧。異なる目的。"
@@ -2706,12 +2706,12 @@
   {
     "id": 209,
     "category": "Security Architecture",
-    "question": "What is an API gateway in security architecture?",
+    "question": "セキュリティアーキテクチャにおけるAPIゲートウェイとは何か。",
     "options": [
-      "A payment gateway",
-      "A centralized entry point for API calls that handles authentication, rate limiting, and access control",
-      "A database connector",
-      "A load balancer"
+      "決済ゲートウェイ",
+      "API呼び出しの集中エントリポイントで認証、レート制限、アクセス制御を処理する",
+      "データベースコネクタ",
+      "ロードバランサー"
     ],
     "correct": 1,
     "explanation": "RTOは重大影響までの最大許容ダウンタイム。"
@@ -2719,12 +2719,12 @@
   {
     "id": 210,
     "category": "Security Architecture",
-    "question": "What is data loss prevention (DLP) in security architecture?",
+    "question": "セキュリティアーキテクチャにおけるDLP (Data Loss Prevention) とは何か。",
     "options": [
-      "Backing up data",
-      "Technology that detects and prevents unauthorized transmission of sensitive data outside the organization",
-      "Encrypting data",
-      "Deleting old data"
+      "データのバックアップ",
+      "機密データの組織外への不正送信を検出・防止する技術",
+      "データの暗号化",
+      "古いデータの削除"
     ],
     "correct": 1,
     "explanation": "証拠保全チェーンは証拠の完全性と法的証拠能力を確保。"
@@ -2732,12 +2732,12 @@
   {
     "id": 211,
     "category": "Security Architecture",
-    "question": "What is a sandbox in security architecture?",
+    "question": "セキュリティアーキテクチャにおけるサンドボックスとは何か。",
     "options": [
-      "A children's play area",
-      "An isolated environment for executing and analyzing suspicious code without risking the production environment",
-      "A backup server",
-      "A development environment"
+      "子供の遊び場",
+      "本番環境をリスクにさらさずに疑わしいコードを実行・分析する隔離環境",
+      "バックアップサーバー",
+      "開発環境"
     ],
     "correct": 1,
     "explanation": "BCPは包括的継続計画。DRPはIT特化。"
@@ -2745,12 +2745,12 @@
   {
     "id": 212,
     "category": "Security Architecture",
-    "question": "What is the principle of complete mediation?",
+    "question": "完全メディエーションの原則とは何か。",
     "options": [
-      "Mediating disputes",
-      "Every access request must be checked against the access control mechanism, with no caching of permissions",
-      "Full logging of all access",
-      "Mediating between departments"
+      "紛争の調停",
+      "すべてのアクセス要求がアクセス制御メカニズムでチェックされ、権限のキャッシュがない",
+      "すべてのアクセスの完全なログ",
+      "部門間の調停"
     ],
     "correct": 1,
     "explanation": "封じ込めは被害限定と拡大防止。証拠保存が重要。"
@@ -2758,12 +2758,12 @@
   {
     "id": 213,
     "category": "Security Architecture",
-    "question": "What is a Secure Access Service Edge (SASE)?",
+    "question": "SASE (Secure Access Service Edge) とは何か。",
     "options": [
-      "A type of firewall",
-      "A convergent architecture combining network security (SD-WAN, FWaaS, CASB, SWG) with cloud-native access",
-      "A VPN alternative only",
-      "A data center design"
+      "ファイアウォールの一種",
+      "SD-WAN、FWaaS、CASB、SWGなどのネットワークセキュリティとクラウドネイティブアクセスを統合する融合アーキテクチャ",
+      "VPNの代替のみ",
+      "データセンター設計"
     ],
     "correct": 1,
     "explanation": "RPOは最大許容データ損失。バックアップ頻度を決定。"
@@ -2771,12 +2771,12 @@
   {
     "id": 214,
     "category": "Security Architecture",
-    "question": "What is the difference between allowlist and denylist approaches in security?",
+    "question": "セキュリティにおける許可リスト (allowlist) と拒否リスト (denylist) の違いは何か。",
     "options": [
-      "No difference",
-      "Allowlist permits only known-good; denylist blocks only known-bad",
-      "Denylist is more secure",
-      "Allowlist is less restrictive"
+      "違いはない",
+      "許可リストは既知の良のみ許可し、拒否リストは既知の悪のみブロックする",
+      "拒否リストの方が安全",
+      "許可リストの方が制限が緩い"
     ],
     "correct": 1,
     "explanation": "RTOはビジネス影響までの最大許容ダウンタイム。"
@@ -2784,12 +2784,12 @@
   {
     "id": 215,
     "category": "Security Architecture",
-    "question": "What is network detection and response (NDR)?",
+    "question": "NDR (Network Detection and Response) とは何か。",
     "options": [
-      "A firewall feature",
-      "Continuous network traffic monitoring using AI/ML to detect and respond to threats",
-      "A backup system",
-      "A wireless security protocol"
+      "ファイアウォール機能",
+      "AI/MLを使用して継続的にネットワークトラフィックを監視し脅威を検知・対応する",
+      "バックアップシステム",
+      "無線セキュリティプロトコル"
     ],
     "correct": 1,
     "explanation": "ウォームサイトは準備済み非稼働。復元に時間必要。"
@@ -2797,12 +2797,12 @@
   {
     "id": 216,
     "category": "Security Architecture",
-    "question": "What is an air-gapped system?",
+    "question": "エアギャップシステムとは何か。",
     "options": [
-      "A system without a network card",
-      "A system physically isolated from unsecured networks, requiring data transfer via physical media",
-      "A wireless system",
-      "A virtual machine"
+      "ネットワークカードのないシステム",
+      "安全でないネットワークから物理的に隔離されたシステムで、物理メディア経由のデータ転送が必要",
+      "ワイヤレスシステム",
+      "仮想マシン"
     ],
     "correct": 1,
     "explanation": "フォレンジクスは法的防御可能な証拠処理。"
@@ -2810,12 +2810,12 @@
   {
     "id": 217,
     "category": "Security Architecture",
-    "question": "What is the economic mechanism principle (Saltzer-Schroeder)?",
+    "question": "経済的メカニズムの原則 (Saltzer-Schroeder) とは何か。",
     "options": [
-      "Cheap security products",
-      "Security mechanisms should be simple and small, making verification and correctness easier",
-      "Economic analysis of security",
-      "Buying security insurance"
+      "安価なセキュリティ製品",
+      "セキュリティメカニズムはシンプルで小さく、検証と正確性を容易にすべきという原則",
+      "セキュリティの経済分析",
+      "セキュリティ保険の購入"
     ],
     "correct": 1,
     "explanation": "マルウェア解析で機能と影響を理解。"
@@ -2823,12 +2823,12 @@
   {
     "id": 218,
     "category": "Security Architecture",
-    "question": "What is extended detection and response (XDR)?",
+    "question": "XDR (Extended Detection and Response) とは何か。",
     "options": [
-      "A type of firewall",
-      "A unified threat detection and response platform integrating endpoints, network, cloud, and email telemetry",
-      "An extended VPN",
-      "A backup solution"
+      "ファイアウォールの一種",
+      "エンドポイント、ネットワーク、クラウド、メールテレメトリを統合した統合脅威検知・対応プラットフォーム",
+      "拡張VPN",
+      "バックアップソリューション"
     ],
     "correct": 1,
     "explanation": "IRTは専任のインシデント管理チーム。"
@@ -2836,12 +2836,12 @@
   {
     "id": 219,
     "category": "Security Architecture",
-    "question": "What is an IAM (Identity and Access Management) architecture?",
+    "question": "IAM (Identity and Access Management) アーキテクチャとは何か。",
     "options": [
-      "A firewall architecture",
-      "A framework for managing digital identities, authentication, and authorization across an organization",
-      "A database architecture",
-      "A cloud architecture"
+      "ファイアウォールアーキテクチャ",
+      "組織全体でデジタルID、認証、認可を管理するためのフレームワーク",
+      "データベースアーキテクチャ",
+      "クラウドアーキテクチャ"
     ],
     "correct": 1,
     "explanation": "インシデント検知時は初期評価を最優先。"
@@ -2849,12 +2849,12 @@
   {
     "id": 220,
     "category": "Security Architecture",
-    "question": "What is the fail-safe principle in security design?",
+    "question": "セキュリティ設計におけるフェイルセーフの原則とは何か。",
     "options": [
-      "Systems should never fail",
-      "When a security mechanism fails, it should default to a secure state (deny access) rather than an open state",
-      "Systems should auto-recover",
-      "Backup everything"
+      "システムは決して故障すべきではない",
+      "セキュリティメカニズムが故障した場合、オープン状態ではなく安全な状態 (アクセス拒否) にデフォルトすべき",
+      "システムは自動回復すべき",
+      "すべてをバックアップすべき"
     ],
     "correct": 1,
     "explanation": "BCPは業務継続、DRPはIT復旧に特化。"
@@ -2862,12 +2862,12 @@
   {
     "id": 221,
     "category": "Emerging Threats",
-    "question": "What is ransomware?",
+    "question": "ランサムウェアとは何か。",
     "options": [
-      "A type of firewall",
-      "Malware that encrypts victim's files and demands payment for the decryption key",
-      "A password attack",
-      "A network protocol"
+      "ファイアウォールの一種",
+      "被害者のファイルを暗号化し、復号鍵の支払いを要求するマルウェア",
+      "パスワード攻撃",
+      "ネットワークプロトコル"
     ],
     "correct": 1,
     "explanation": "RTOは最大許容ダウンタイム。DR戦略を決定。"
@@ -2875,12 +2875,12 @@
   {
     "id": 222,
     "category": "Emerging Threats",
-    "question": "What is an APT (Advanced Persistent Threat)?",
+    "question": "APT (Advanced Persistent Threat) とは何か。",
     "options": [
-      "A quick attack",
-      "A prolonged, targeted cyberattack by a skilled, well-resourced adversary maintaining long-term access",
-      "A simple virus",
-      "A network scan"
+      "迅速な攻撃",
+      "高度なスキルと豊富なリソースを持つ攻撃者による長期かつ標的型のサイバー攻撃",
+      "単純なウイルス",
+      "ネットワークスキャン"
     ],
     "correct": 1,
     "explanation": "証拠保全チェーンは法的証拠能力を確保。"
@@ -2888,12 +2888,12 @@
   {
     "id": 223,
     "category": "Emerging Threats",
-    "question": "What is a supply chain attack?",
+    "question": "サプライチェーン攻撃とは何か。",
     "options": [
-      "Attacking delivery trucks",
-      "Compromising a trusted third-party software or hardware vendor to attack downstream customers",
-      "A physical supply disruption",
-      "A logistics attack"
+      "配送トラックへの攻撃",
+      "信頼できるサードパーティのソフトウェアまたはハードウェアベンダーを侵害し下流の顧客を攻撃する",
+      "物理的サプライチェーンの途絶",
+      "物流攻撃"
     ],
     "correct": 1,
     "explanation": "BCPは包括的継続確保計画。"
@@ -2901,12 +2901,12 @@
   {
     "id": 224,
     "category": "Emerging Threats",
-    "question": "What is spear phishing?",
+    "question": "スピアフィッシングとは何か。",
     "options": [
-      "A fishing technique",
-      "A highly targeted phishing attack customized for a specific individual or organization",
-      "A general phishing email",
-      "A phone scam"
+      "釣り技法",
+      "特定の個人や組織にカスタマイズされた高度な標的型フィッシング攻撃",
+      "一般的なフィッシングメール",
+      "電話詐欺"
     ],
     "correct": 1,
     "explanation": "封じ込めは被害限定と拡大防止。"
@@ -2914,12 +2914,12 @@
   {
     "id": 225,
     "category": "Emerging Threats",
-    "question": "What is the primary security concern with IoT devices?",
+    "question": "IoTデバイスの主なセキュリティ上の懸念は何か。",
     "options": [
-      "They are too expensive",
-      "Limited built-in security, weak defaults, and difficulty in patching leading to large-scale compromises",
-      "They use too much bandwidth",
-      "They are not useful"
+      "高価すぎる",
+      "限られた内蔵セキュリティ、弱いデフォルト設定、パッチ適用の困難さによる大規模侵害",
+      "過剰な帯域幅消費",
+      "有用ではない"
     ],
     "correct": 1,
     "explanation": "RPOは最大許容データ損失。"
@@ -2927,12 +2927,12 @@
   {
     "id": 226,
     "category": "Emerging Threats",
-    "question": "What threat does quantum computing pose to current cryptographic systems?",
+    "question": "量子コンピューティングは現在の暗号システムにどのような脅威をもたらすか。",
     "options": [
-      "No threat at all",
-      "Shor's algorithm could break RSA, ECC, and Diffie-Hellman; Grover's algorithm halves symmetric key strength",
-      "Only affects symmetric encryption",
-      "Only affects hash functions"
+      "脅威はない",
+      "ShorのアルゴリズムでRSA/ECC/Diffie-Hellmanが破られ、Groverのアルゴリズムで共通鍵の強度が半減する",
+      "共通鍵暗号のみに影響",
+      "ハッシュ関数のみに影響"
     ],
     "correct": 1,
     "explanation": "RTOはビジネス影響までのダウンタイム。"
@@ -2940,12 +2940,12 @@
   {
     "id": 227,
     "category": "Emerging Threats",
-    "question": "What is a deepfake in the context of cybersecurity?",
+    "question": "サイバーセキュリティにおけるディープフェイクとは何か。",
     "options": [
-      "A deep network",
-      "AI-generated synthetic media (video, audio) used for impersonation, disinformation, and social engineering",
-      "A deep web site",
-      "An AI model"
+      "ディープネットワーク",
+      "なりすまし、偽情報、ソーシャルエンジニアリングに使用されるAI生成合成メディア (映像、音声)",
+      "ディープウェブサイト",
+      "AIモデル"
     ],
     "correct": 1,
     "explanation": "ウォームサイトは非稼働の準備済み環境。"
@@ -2953,12 +2953,12 @@
   {
     "id": 228,
     "category": "Emerging Threats",
-    "question": "What is a cryptojacking attack?",
+    "question": "クリプトジャッキング攻撃とは何か。",
     "options": [
-      "Stealing cryptocurrency wallets",
-      "Unauthorized use of someone else's computing resources to mine cryptocurrency",
-      "An attack on blockchain",
-      "A type of phishing"
+      "暗号通貨ウォレットの窃取",
+      "暗号通貨のマイニングのために他人の計算リソースを不正使用する",
+      "ブロックチェーンへの攻撃",
+      "フィッシングの一種"
     ],
     "correct": 1,
     "explanation": "フォレンジクスは体系的な証拠処理。"
@@ -2966,12 +2966,12 @@
   {
     "id": 229,
     "category": "Emerging Threats",
-    "question": "What is cloud security's shared responsibility model?",
+    "question": "クラウドセキュリティの共有責任モデルとは何か。",
     "options": [
-      "The cloud provider handles all security",
-      "Security responsibilities are divided between cloud provider (infrastructure) and customer (data, apps, access)",
-      "The customer handles all security",
-      "No security is needed in the cloud"
+      "クラウドプロバイダーがすべてのセキュリティを処理する",
+      "セキュリティ責任がクラウドプロバイダー (インフラ) と顧客 (データ、アプリ、アクセス) に分割される",
+      "顧客がすべてのセキュリティを処理する",
+      "クラウドではセキュリティは不要"
     ],
     "correct": 1,
     "explanation": "マルウェア解析で動作を理解。"
@@ -2979,12 +2979,12 @@
   {
     "id": 230,
     "category": "Emerging Threats",
-    "question": "What is a formjacking attack?",
+    "question": "フォームジャッキング攻撃とは何か。",
     "options": [
-      "Stealing physical forms",
-      "Injecting malicious code into e-commerce forms to steal payment card data",
-      "A type of DDoS",
-      "A SQL injection variant"
+      "物理的なフォームの窃取",
+      "Eコマースフォームに悪意のあるコードを注入し決済カードデータを窃取する",
+      "DDoSの一種",
+      "SQLインジェクションの変種"
     ],
     "correct": 1,
     "explanation": "IRTはインシデント管理の専任チーム。"
@@ -2992,12 +2992,12 @@
   {
     "id": 231,
     "category": "Emerging Threats",
-    "question": "What is adversarial machine learning?",
+    "question": "敵対的機械学習とは何か。",
     "options": [
-      "ML used by attackers",
-      "Attacks that manipulate ML models through crafted inputs to produce incorrect outputs",
-      "ML for defense only",
-      "A type of algorithm"
+      "攻撃者によるMLの使用",
+      "工夫された入力でMLモデルを操作し誤った出力を生成させる攻撃",
+      "防衛専用のML",
+      "アルゴリズムの一種"
     ],
     "correct": 1,
     "explanation": "インシデント検知時は評価を最優先。"
@@ -3005,12 +3005,12 @@
   {
     "id": 232,
     "category": "Emerging Threats",
-    "question": "What is a botnet?",
+    "question": "ボットネットとは何か。",
     "options": [
-      "A robot network",
-      "A network of compromised devices (bots/zombies) controlled by a command-and-control server for malicious activities",
-      "A social network",
-      "A distributed computing platform"
+      "ロボットネットワーク",
+      "C&Cサーバーに制御される侵害されたデバイス (ボット/ゾンビ) のネットワークで悪意ある活動に使用される",
+      "ソーシャルネットワーク",
+      "分散コンピューティングプラットフォーム"
     ],
     "correct": 1,
     "explanation": "BCPは業務継続計画。DRPはIT復旧。"
@@ -3018,12 +3018,12 @@
   {
     "id": 233,
     "category": "Emerging Threats",
-    "question": "What is a watering hole attack?",
+    "question": "ウォーターホール攻撃とは何か。",
     "options": [
-      "Attacking water supplies",
-      "Compromising a website frequently visited by a target group to infect them with malware",
-      "A phishing variant",
-      "A social media attack"
+      "水道インフラへの攻撃",
+      "標的グループが頻繁に訪問するWebサイトを侵害しマルウェアで感染させる",
+      "フィッシングの変種",
+      "ソーシャルメディア攻撃"
     ],
     "correct": 1,
     "explanation": "RTOは最大許容ダウンタイム。"
@@ -3031,12 +3031,12 @@
   {
     "id": 234,
     "category": "Emerging Threats",
-    "question": "What is the security risk of misconfigured cloud storage (e.g., S3 buckets)?",
+    "question": "設定不備のクラウドストレージ (S3バケットなど) のセキュリティリスクは何か。",
     "options": [
-      "Slower access",
-      "Public exposure of sensitive data due to improper access controls",
-      "Higher costs",
-      "Data loss"
+      "アクセス速度の低下",
+      "不適切なアクセス制御による機密データの公開",
+      "コストの増加",
+      "データ損失"
     ],
     "correct": 1,
     "explanation": "証拠保全チェーンは証拠の完全性確保。"
@@ -3044,12 +3044,12 @@
   {
     "id": 235,
     "category": "Emerging Threats",
-    "question": "What is a Business Email Compromise (BEC) attack?",
+    "question": "BEC (Business Email Compromise) 攻撃とは何か。",
     "options": [
-      "Hacking business applications",
-      "A social engineering attack where attackers impersonate executives to request fraudulent wire transfers",
-      "A spam campaign",
-      "A password attack"
+      "ビジネスアプリケーションのハッキング",
+      "攻撃者が経営者をなりすまし不正な送金を要求するソーシャルエンジニアリング攻撃",
+      "スパムキャンペーン",
+      "パスワード攻撃"
     ],
     "correct": 1,
     "explanation": "封じ込めは被害限定と拡大防止。"
@@ -3057,12 +3057,12 @@
   {
     "id": 236,
     "category": "Emerging Threats",
-    "question": "What is a fileless malware?",
+    "question": "ファイルレスマルウェアとは何か。",
     "options": [
-      "Malware without a filename",
-      "Malware that operates in memory without writing files to disk, evading file-based detection",
-      "Malware in the cloud",
-      "A type of virus"
+      "ファイル名のないマルウェア",
+      "ディスクにファイルを書き込まずにメモリ上で動作しファイルベース検知を回避するマルウェア",
+      "クラウド上のマルウェア",
+      "ウイルスの一種"
     ],
     "correct": 1,
     "explanation": "RPOは最大許容データ損失。"
@@ -3070,12 +3070,12 @@
   {
     "id": 237,
     "category": "Emerging Threats",
-    "question": "What is homomorphic encryption in the context of cloud security?",
+    "question": "クラウドセキュリティの観点から準同型暗号とは何か。",
     "options": [
-      "A type of attack",
-      "An encryption scheme that allows computation on encrypted data without decrypting it first",
-      "A hash function",
-      "A key exchange protocol"
+      "攻撃の一種",
+      "復号せずに暗号化データ上で計算を可能にする暗号方式",
+      "ハッシュ関数",
+      "鍵交換プロトコル"
     ],
     "correct": 1,
     "explanation": "ウォームサイトは復元に時間必要。"
@@ -3083,12 +3083,12 @@
   {
     "id": 238,
     "category": "Emerging Threats",
-    "question": "What is a Zero-Day vulnerability?",
+    "question": "ゼロデイ脆弱性とは何か。",
     "options": [
-      "A vulnerability discovered on day zero of release",
-      "A previously unknown vulnerability with no available patch, exploitable by attackers",
-      "An old vulnerability",
-      "A theoretical vulnerability"
+      "リリース初日に発見された脆弱性",
+      "利用可能なパッチがない事前に未知の脆弱性で、攻撃者に悪用可能なもの",
+      "古い脆弱性",
+      "理論上の脆弱性"
     ],
     "correct": 1,
     "explanation": "フォレンジクスは証拠の法的処理。"
@@ -3096,12 +3096,12 @@
   {
     "id": 239,
     "category": "Emerging Threats",
-    "question": "What is container security primarily concerned with?",
+    "question": "コンテナセキュリティは主に何に懸念するか。",
     "options": [
-      "Shipping container safety",
-      "Securing containerized applications including image vulnerabilities, runtime protection, and orchestration security",
-      "Physical container security",
-      "Database containerization"
+      "船舶コンテナの安全",
+      "イメージの脆弱性、ランタイム保護、オーケストレーションセキュリティを含むコンテナ化アプリケーションの保護",
+      "物理コンテナのセキュリティ",
+      "データベースのコンテナ化"
     ],
     "correct": 1,
     "explanation": "マルウェア解析で影響を理解。"
@@ -3109,12 +3109,12 @@
   {
     "id": 240,
     "category": "Emerging Threats",
-    "question": "What is vishing (voice phishing)?",
+    "question": "ビッシング (Vishing、音声フィッシング) とは何か。",
     "options": [
-      "Video phishing",
-      "Social engineering attacks conducted over phone calls using voice manipulation and pretexting",
-      "Visual phishing",
-      "VPN phishing"
+      "ビデオフィッシング",
+      "音声操作と pretexting を使用した電話経由のソーシャルエンジニアリング攻撃",
+      "ビジュアルフィッシング",
+      "VPNフィッシング"
     ],
     "correct": 1,
     "explanation": "IRTはセキュリティインシデント管理。"
@@ -3122,12 +3122,12 @@
   {
     "id": 241,
     "category": "Emerging Threats",
-    "question": "What is data poisoning in the context of AI security?",
+    "question": "AIセキュリティにおけるデータポイズニングとは何か。",
     "options": [
-      "Corrupting databases",
-      "Deliberately corrupting ML training data to cause the model to produce incorrect or biased outputs",
-      "A type of SQL injection",
-      "A network attack"
+      "データベースの破損",
+      "MLモデルが誤ったまたは偏った出力を生成するよう意図的に訓練データを汚染する",
+      "SQLインジェクションの一種",
+      "ネットワーク攻撃"
     ],
     "correct": 1,
     "explanation": "インシデント検知で評価を最優先。"
@@ -3135,12 +3135,12 @@
   {
     "id": 242,
     "category": "Emerging Threats",
-    "question": "What is an infostealer (information stealer) malware?",
+    "question": "インフォスティーラ (Infostealer) マルウェアとは何か。",
     "options": [
-      "A type of firewall",
-      "Malware specifically designed to extract sensitive data (credentials, cookies, crypto wallets) from compromised systems",
-      "A backup tool",
-      "A data loss prevention tool"
+      "ファイアウォールの一種",
+      "資格情報、Cookie、暗号通貨ウォレットなど機密データを抽出するよう設計されたマルウェア",
+      "バックアップツール",
+      "DLPツール"
     ],
     "correct": 1,
     "explanation": "BCPとDRPは異なる目的。"
@@ -3148,12 +3148,12 @@
   {
     "id": 243,
     "category": "Emerging Threats",
-    "question": "What is the security implication of serverless architecture?",
+    "question": "サーバーレスアーキテクチャのセキュリティへの影響は何か。",
     "options": [
-      "No security concerns",
-      "Shared responsibility increases, with risks in function permissions, event injection, dependency vulnerabilities, and debugging complexity",
-      "Only the provider is responsible",
-      "Serverless means more secure by default"
+      "セキュリティ上の懸念はない",
+      "共有責任が増加し、関数権限、イベントインジェクション、依存関係の脆弱性、デバッグの複雑性にリスクがある",
+      "プロバイダーのみが責任を負う",
+      "サーバーレスはデフォルトでより安全"
     ],
     "correct": 1,
     "explanation": "RTOは重大影響までのダウンタイム。"
@@ -3161,12 +3161,12 @@
   {
     "id": 244,
     "category": "Emerging Threats",
-    "question": "What is SMiShing (SMS phishing)?",
+    "question": "SMiShing (SMSフィッシング) とは何か。",
     "options": [
-      "A smart messaging attack",
-      "Phishing attacks delivered via SMS/text messages, often with malicious links",
-      "A social media attack",
-      "A Wi-Fi attack"
+      "スマートメッセージング攻撃",
+      "SMS/テキストメッセージで配信されるフィッシング攻撃で、悪意のあるリンクを含むことが多い",
+      "ソーシャルメディア攻撃",
+      "Wi-Fi攻撃"
     ],
     "correct": 1,
     "explanation": "証拠保全チェーンは法的証拠能力。"
@@ -3174,12 +3174,12 @@
   {
     "id": 245,
     "category": "Emerging Threats",
-    "question": "What is the MITRE ATT&CK framework?",
+    "question": "MITRE ATT&CKフレームワークとは何か。",
     "options": [
-      "A vulnerability scanner",
-      "A knowledge base of adversary tactics, techniques, and procedures (TTPs) based on real-world observations",
-      "A compliance standard",
-      "A security product"
+      "脆弱性スキャナー",
+      "実世界の観察に基づく攻撃者の戦術・手法・手順 (TTP) のナレッジベース",
+      "コンプライアンス規格",
+      "セキュリティ製品"
     ],
     "correct": 1,
     "explanation": "封じ込めは拡大防止と被害限定。"
@@ -3187,12 +3187,12 @@
   {
     "id": 246,
     "category": "Emerging Threats",
-    "question": "What is a credential stuffing attack?",
+    "question": "クレデンシャルスタッフィング攻撃とは何か。",
     "options": [
-      "Stuffing credentials in a database",
-      "Automated injection of stolen username/password pairs across multiple websites to find reused credentials",
-      "A brute force attack",
-      "A password spray attack"
+      "データベースに資格情報を詰め込む",
+      "窃取したユーザー名/パスワードのペアを複数のWebサイトに自動注入し再利用資格情報を探す",
+      "総当たり攻撃",
+      "パスワードスプレー攻撃"
     ],
     "correct": 1,
     "explanation": "RPOは最大データ損失の許容値。"
@@ -3200,12 +3200,12 @@
   {
     "id": 247,
     "category": "Emerging Threats",
-    "question": "What is the security concern with APIs (Application Programming Interfaces)?",
+    "question": "API (Application Programming Interface) のセキュリティ上の懸念は何か。",
     "options": [
-      "APIs are always secure",
-      "Broken authentication, excessive data exposure, lack of rate limiting, and injection vulnerabilities",
-      "APIs are too slow",
-      "APIs cannot be hacked"
+      "APIは常に安全",
+      "認証の不備、過剰なデータ露出、レート制限の欠如、インジェクション脆弱性",
+      "APIは遅すぎる",
+      "APIはハックできない"
     ],
     "correct": 1,
     "explanation": "ウォームサイトは非稼働の準備環境。"
@@ -3213,12 +3213,12 @@
   {
     "id": 248,
     "category": "Emerging Threats",
-    "question": "What is a side-channel attack?",
+    "question": "サイドチャネル攻撃とは何か。",
     "options": [
-      "An attack on network cables",
-      "Extracting information from physical characteristics of a system (timing, power consumption, electromagnetic emissions)",
-      "A social engineering attack",
-      "A software bug"
+      "ネットワークケーブルへの攻撃",
+      "システムの物理的特性 (タイミング、消費電力、電磁放射) から情報を抽出する",
+      "ソーシャルエンジニアリング攻撃",
+      "ソフトウェアのバグ"
     ],
     "correct": 1,
     "explanation": "フォレンジクスは証拠の体系的処理。"
@@ -3226,12 +3226,12 @@
   {
     "id": 249,
     "category": "Emerging Threats",
-    "question": "What is shadow IT in the context of cloud security?",
+    "question": "クラウドセキュリティの観点からシャドーITとは何か。",
     "options": [
-      "IT systems in the dark",
-      "Use of IT systems, software, or services within an organization without explicit organizational approval",
-      "Backup IT systems",
-      "Old IT systems"
+      "暗いITシステム",
+      "組織内で明示的な承認なしにITシステム、ソフトウェア、サービスを使用すること",
+      "バックアップITシステム",
+      "古いITシステム"
     ],
     "correct": 1,
     "explanation": "マルウェア解析は悪意ソフトの研究。"
@@ -3239,12 +3239,12 @@
   {
     "id": 250,
     "category": "Emerging Threats",
-    "question": "What is a password spray attack?",
+    "question": "パスワードスプレー攻撃とは何か。",
     "options": [
-      "Spraying passwords randomly",
-      "Trying a few common passwords against many accounts to avoid account lockout detection",
-      "A brute force on one account",
-      "A dictionary attack"
+      "パスワードをランダムにスプレーする",
+      "アカウントロックアウト検出を回避するため、多数のアカウントに対して少数の一般的なパスワードを試す",
+      "単一アカウントへの総当たり",
+      "辞書攻撃"
     ],
     "correct": 1,
     "explanation": "IRTはインシデント検知・対応・復旧担当。"
