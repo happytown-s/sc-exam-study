@@ -2,1081 +2,1081 @@
   {
     "id": 1,
     "category": "Cryptographic Calculations",
-    "question": "If RSA uses two prime numbers p=61 and q=53, what is n (the modulus)?",
+    "question": "RSAで2つの素数 p=61, q=53 を使用する場合、n（法）はいくつか？",
     "options": ["323", "3133", "3233", "114"],
     "correct": 2,
-    "explanation": "Step 1: Identify p=61 and q=53. Step 2: Calculate n = p * q = 61 * 53 = 3233. The modulus n is used as part of both the public and private keys. Its size determines the key length (1024-bit RSA means n is ~1024 bits).",
-    "cheatsheet": "RSA Key Generation:\n1. Select two large primes p and q\n2. n = p * q (modulus)\n3. phi(n) = (p-1)(q-1)\n4. Choose e where 1 < e < phi(n), gcd(e, phi(n)) = 1\n5. d = e^(-1) mod phi(n)\n6. Public key: (e, n), Private key: (d, n)"
+    "explanation": "ステップ1: p=61, q=53 を確認。ステップ2: n = p * q = 61 * 53 = 3233。法nは公開鍵と秘密鍵の両方の一部として使用される。nのサイズが鍵長を決定する（1024-bit RSA は n が約1024ビット）。",
+    "cheatsheet": "RSA鍵生成:\n1. 2つの大きな素数 p と q を選択\n2. n = p * q (法)\n3. phi(n) = (p-1)(q-1)\n4. gcd(e, phi(n)) = 1 となる e を選択 (1 < e < phi(n))\n5. d = e^(-1) mod phi(n)\n6. 公開鍵: (e, n), 秘密鍵: (d, n)"
   },
   {
     "id": 2,
     "category": "Cryptographic Calculations",
-    "question": "Using p=61 and q=53, calculate Euler's totient function phi(n).",
+    "question": "p=61, q=53 を使用して、オイラーのトーティエント関数 phi(n) を計算せよ。",
     "options": ["3000", "3120", "3232", "113"],
     "correct": 1,
-    "explanation": "Step 1: phi(n) = (p-1) * (q-1). Step 2: phi(n) = (61-1) * (53-1) = 60 * 52 = 3120. Euler's totient phi(n) gives the count of numbers less than n that are coprime to n. It is essential for RSA key generation to find e and d.",
-    "cheatsheet": "Euler's Totient for RSA:\nphi(n) = (p-1)(q-1)\nThis function counts integers coprime to n.\nIt is used to determine the public and private exponents in RSA.\nFor a prime p: phi(p) = p-1"
+    "explanation": "ステップ1: phi(n) = (p-1) * (q-1)。ステップ2: phi(n) = (61-1) * (53-1) = 60 * 52 = 3120。オイラーのトーティエント phi(n) は n と互いに素な整数の個数を表す。RSA鍵生成で e と d を求めるために不可欠。",
+    "cheatsheet": "RSA用オイラーのトーティエント:\nphi(n) = (p-1)(q-1)\nこの関数は n と互いに素な整数の個数を数える。\nRSA の公開指数と秘密指数を決定するために使用。\n素数 p について: phi(p) = p-1"
   },
   {
     "id": 3,
     "category": "Cryptographic Calculations",
-    "question": "Given phi(n)=3120 and e=17, find the private key exponent d (inverses of 17 mod 3120).",
+    "question": "phi(n)=3120, e=17 の場合、秘密鍵指数 d（17 mod 3120 の逆元）を求めよ。",
     "options": ["275", "2753", "183", "2937"],
     "correct": 1,
-    "explanation": "Step 1: We need d such that e*d mod phi(n) = 1, i.e., 17*d mod 3120 = 1. Step 2: Using the Extended Euclidean Algorithm: 3120 = 183*17 + 9, 17 = 1*9 + 8, 9 = 1*8 + 1. Step 3: Working backwards: d = 2753. Verification: 17*2753 = 46801 = 15*3120 + 1. Therefore d=2753.",
-    "cheatsheet": "Finding d in RSA:\nd = e^(-1) mod phi(n)\nUse Extended Euclidean Algorithm:\ngcd(e, phi(n)) must equal 1\nIf gcd != 1, e is not valid and another e must be chosen.\nCommon e values: 3, 17, 65537"
+    "explanation": "ステップ1: e*d mod phi(n) = 1、つまり 17*d mod 3120 = 1 となる d を求める。ステップ2: 拡張ユークリッド互除法を使用: 3120 = 183*17 + 9, 17 = 1*9 + 8, 9 = 1*8 + 1。ステップ3: 逆算して d = 2753。検証: 17*2753 = 46801 = 15*3120 + 1。よって d=2753。",
+    "cheatsheet": "RSAにおける d の計算:\nd = e^(-1) mod phi(n)\n拡張ユークリッド互除法を使用:\ngcd(e, phi(n)) は 1 でなければならない\ngcd != 1 の場合、e は不適切で別の e を選ぶ必要がある。\n一般的な e の値: 3, 17, 65537"
   },
   {
     "id": 4,
     "category": "Cryptographic Calculations",
-    "question": "Using RSA public key (e=17, n=3233), encrypt the message M=42. What is the ciphertext C?",
+    "question": "RSA公開鍵 (e=17, n=3233) を使用して、平文 M=42 を暗号化せよ。暗号文 C はいくつか？",
     "options": ["2557", "2790", "42", "3233"],
     "correct": 0,
-    "explanation": "Step 1: Apply encryption formula C = M^e mod n. Step 2: C = 42^17 mod 3233. Step 3: Using modular exponentiation: 42^2 mod 3233 = 1764, 42^4 mod 3233 = 1764^2 mod 3233 = 2025, 42^8 mod 3233 = 2025^2 mod 3233 = 2826, 42^16 mod 3233 = 2826^2 mod 3233 = 2386. Step 4: 42^17 = 42^16 * 42 mod 3233 = 2386 * 42 mod 3233 = 100212 mod 3233 = 2557.",
-    "cheatsheet": "RSA Encryption:\nC = M^e mod n\nWhere M is the plaintext message (as integer)\nC is the ciphertext\ne is the public exponent\nn is the modulus\nModular exponentiation is used for efficiency."
+    "explanation": "ステップ1: 暗号化公式 C = M^e mod n を適用。ステップ2: C = 42^17 mod 3233。ステップ3: 累乗の剰余計算: 42^2 mod 3233 = 1764, 42^4 mod 3233 = 1764^2 mod 3233 = 2025, 42^8 mod 3233 = 2025^2 mod 3233 = 2826, 42^16 mod 3233 = 2826^2 mod 3233 = 2386。ステップ4: 42^17 = 42^16 * 42 mod 3233 = 2386 * 42 mod 3233 = 100212 mod 3233 = 2557。",
+    "cheatsheet": "RSA暗号化:\nC = M^e mod n\nM: 平文メッセージ（整数）\nC: 暗号文\ne: 公開指数\nn: 法\n効率化のため累乗の剰余計算を使用。"
   },
   {
     "id": 5,
     "category": "Cryptographic Calculations",
-    "question": "A system uses a 128-bit encryption key. How many possible keys exist?",
+    "question": "システムが128ビット暗号鍵を使用している場合、可能な鍵の数はいくつか？",
     "options": ["2^64", "2^128", "2^256", "128^2"],
     "correct": 1,
-    "explanation": "A 128-bit key has 2^128 possible combinations. This is approximately 3.4 x 10^38. Even at a rate of one trillion (10^12) keys per second, it would take approximately 10.8 billion billion years to exhaust all possibilities, far longer than the age of the universe.",
-    "cheatsheet": "Key Space Calculation:\nKey space = 2^n where n = key length in bits\n64-bit: 2^64 ~ 1.8 x 10^19\n128-bit: 2^128 ~ 3.4 x 10^38\n256-bit: 2^256 ~ 1.2 x 10^77\nEach additional bit doubles the key space."
+    "explanation": "128ビット鍵は 2^128 の組み合わせを持つ。約 3.4 x 10^38。毎秒1兆（10^12）個の鍵を試しても、全ての組み合わせを尽くすには約108億億年かかる。これは宇宙の年齢よりはるかに長い。",
+    "cheatsheet": "鍵空間の計算:\n鍵空間 = 2^n（n = 鍵のビット長）\n64ビット: 2^64 ~ 1.8 x 10^19\n128ビット: 2^128 ~ 3.4 x 10^38\n256ビット: 2^256 ~ 1.2 x 10^77\n1ビット追加するごとに鍵空間は2倍になる。"
   },
   {
     "id": 6,
     "category": "Cryptographic Calculations",
-    "question": "If a computer can test 10^9 keys per second, how long would it take to brute-force a 56-bit DES key?",
-    "options": ["About 1 day", "About 1 year", "About 114 years", "About 10,000 years"],
+    "question": "コンピュータが毎秒 10^9 個の鍵を試行できる場合、56ビットのDES鍵を総当たり攻撃するのにどれくらいかかるか？",
+    "options": ["約1日", "約1年", "約114年", "約10,000年"],
     "correct": 1,
-    "explanation": "Step 1: Total keys = 2^56 = 7.2 x 10^16. Step 2: Time = 2^56 / 10^9 = 7.2 x 10^7 seconds. Step 3: Convert: 7.2 x 10^7 / 3600 / 24 / 365 = approximately 2.28 years on average (since we expect to find the key after checking half the key space on average). In practice, specialized hardware (DES cracker) broke DES in 56 hours in 1998.",
-    "cheatsheet": "Brute Force Time Estimation:\nTime = 2^(key_bits - 1) / testing_rate\nDivide by 2 because on average the key is found\nat the halfway point.\nDES (56-bit): ~1 year at 10^9/sec\nAES-128 (128-bit): ~10^22 years at 10^9/sec"
+    "explanation": "ステップ1: 総鍵数 = 2^56 = 7.2 x 10^16。ステップ2: 時間 = 2^56 / 10^9 = 7.2 x 10^7 秒。ステップ3: 変換: 7.2 x 10^7 / 3600 / 24 / 365 = 約2.28年（鍵空間の半分を試した時点で見つかるのが平均的なため）。実際には、専用ハードウェア（DESクラッカー）が1998年に56時間でDESを破った。",
+    "cheatsheet": "総当たり攻撃の時間推定:\n時間 = 2^(鍵ビット - 1) / 試行速度\n鍵は平均して中間地点で見つかるため2で割る。\nDES (56ビット): 10^9/秒で約1年\nAES-128 (128ビット): 10^9/秒で約10^22年"
   },
   {
     "id": 7,
     "category": "Cryptographic Calculations",
-    "question": "How many bits of security does AES-256 provide against quantum computers using Grover's algorithm?",
-    "options": ["256 bits", "128 bits", "64 bits", "512 bits"],
+    "question": "グローバーのアルゴリズムを使用する量子コンピュータに対して、AES-256は何ビットの安全性を提供するか？",
+    "options": ["256ビット", "128ビット", "64ビット", "512ビット"],
     "correct": 1,
-    "explanation": "Grover's algorithm provides a quadratic speedup for brute-force search, effectively halving the key length. AES-256 with 256-bit key against quantum: effective security = 256/2 = 128 bits. This means AES-256 remains secure against quantum attacks (128 bits of classical security is still considered strong).",
-    "cheatsheet": "Post-Quantum Key Security:\nGrover's algorithm: symmetric key strength is halved\nAES-128 -> 64 bits (insufficient)\nAES-256 -> 128 bits (still strong)\nShor's algorithm: breaks RSA and ECC entirely\nNo polynomial-time quantum attack on AES is known."
+    "explanation": "グローバーのアルゴリズムは総当たり攻撃を二次加速し、実質的に鍵長を半分にする。AES-256（256ビット鍵）の量子コンピュータに対する実効安全性 = 256/2 = 128ビット。つまり AES-256 は量子攻撃に対しても安全である（128ビットの古典的安全性は依然として強力とされる）。",
+    "cheatsheet": "ポスト量子鍵安全性:\nグローバーのアルゴリズム: 対称鍵の強度は半分になる\nAES-128 -> 64ビット（不十分）\nAES-256 -> 128ビット（依然として強力）\nショアのアルゴリズム: RSAとECCを完全に破壊\nAESに対する多項式時間の量子攻撃は知られていない。"
   },
   {
     "id": 8,
     "category": "Cryptographic Calculations",
-    "question": "An RSA key is 2048 bits. What is the approximate equivalent ECC key size for the same security level?",
-    "options": ["512 bits", "256 bits", "384 bits", "1024 bits"],
+    "question": "RSA鍵が2048ビットの場合、同等のセキュリティレベルのECC鍵のサイズはおおよそいくつか？",
+    "options": ["512ビット", "256ビット", "384ビット", "1024ビット"],
     "correct": 1,
-    "explanation": "According to NIST recommendations, a 2048-bit RSA key provides approximately equivalent security to a 256-bit ECC key. Key size comparison: RSA 1024 ~ ECC 160, RSA 2048 ~ ECC 256, RSA 3072 ~ ECC 384, RSA 15360 ~ ECC 521.",
-    "cheatsheet": "Equivalent Key Sizes (NIST):\nAES-80  : RSA-1024 / ECC-160 / DH-1024\nAES-112 : RSA-2048 / ECC-224 / DH-2048\nAES-128 : RSA-3072 / ECC-256 / DH-3072\nAES-192 : RSA-7680 / ECC-384 / DH-7680\nAES-256 : RSA-15360 / ECC-521 / DH-15360"
+    "explanation": "NISTの推奨によると、2048ビットRSA鍵は約256ビットECC鍵と同等のセキュリティを提供する。鍵サイズ比較: RSA 1024 ~ ECC 160, RSA 2048 ~ ECC 256, RSA 3072 ~ ECC 384, RSA 15360 ~ ECC 521。",
+    "cheatsheet": "同等の鍵サイズ（NIST）:\nAES-80  : RSA-1024 / ECC-160 / DH-1024\nAES-112 : RSA-2048 / ECC-224 / DH-2048\nAES-128 : RSA-3072 / ECC-256 / DH-3072\nAES-192 : RSA-7680 / ECC-384 / DH-7680\nAES-256 : RSA-15360 / ECC-521 / DH-15360"
   },
   {
     "id": 9,
     "category": "Cryptographic Calculations",
-    "question": "How many rounds does AES-256 use?",
+    "question": "AES-256のラウンド数はいくつか？",
     "options": ["10", "12", "14", "16"],
     "correct": 2,
-    "explanation": "AES uses different numbers of rounds based on key size: AES-128 uses 10 rounds, AES-192 uses 12 rounds, and AES-256 uses 14 rounds. Each round consists of substitution (SubBytes), row shifting (ShiftRows), column mixing (MixColumns - except last round), and key addition (AddRoundKey).",
-    "cheatsheet": "AES Round Counts:\nAES-128 (128-bit key): 10 rounds\nAES-192 (192-bit key): 12 rounds\nAES-256 (256-bit key): 14 rounds\nEach round: SubBytes -> ShiftRows -> MixColumns -> AddRoundKey\nFinal round omits MixColumns."
+    "explanation": "AESは鍵サイズに応じて異なるラウンド数を使用する: AES-128は10ラウンド、AES-192は12ラウンド、AES-256は14ラウンド。各ラウンドは置換（SubBytes）、行シフト（ShiftRows）、列混合（MixColumns - 最終ラウンドを除く）、鍵加算（AddRoundKey）で構成される。",
+    "cheatsheet": "AESラウンド数:\nAES-128 (128ビット鍵): 10ラウンド\nAES-192 (192ビット鍵): 12ラウンド\nAES-256 (256ビット鍵): 14ラウンド\n各ラウンド: SubBytes -> ShiftRows -> MixColumns -> AddRoundKey\n最終ラウンドは MixColumns を省略。"
   },
   {
     "id": 10,
     "category": "Cryptographic Calculations",
-    "question": "If SHA-256 produces a 256-bit hash, what is the approximate probability of finding a collision using the birthday attack?",
-    "options": ["2^256 attempts", "2^128 attempts", "2^64 attempts", "2^32 attempts"],
+    "question": "SHA-256が256ビットハッシュを生成する場合、バースデー攻撃を使用して衝突を見つける確率はおおよそどれくらいか？",
+    "options": ["2^256回の試行", "2^128回の試行", "2^64回の試行", "2^32回の試行"],
     "correct": 1,
-    "explanation": "The birthday attack reduces collision search from 2^n to approximately 2^(n/2). For SHA-256 with 256-bit output: collision probability becomes significant after approximately 2^(256/2) = 2^128 operations. This is why SHA-256 is considered secure against collision attacks.",
-    "cheatsheet": "Birthday Paradox in Hashing:\nCollision probability ≈ 2^(n/2) for n-bit hash\nMD5 (128-bit): collision in ~2^64 (BROKEN)\nSHA-1 (160-bit): collision in ~2^80 (BROKEN)\nSHA-256 (256-bit): collision in ~2^128 (SECURE)\nSHA-512 (512-bit): collision in ~2^256 (SECURE)"
+    "explanation": "バースデー攻撃により衝突探索は 2^n から約 2^(n/2) に低減する。256ビット出力のSHA-256の場合: 約 2^(256/2) = 2^128 回の演算で衝突確率が有意になる。これがSHA-256が衝突攻撃に対して安全とされる理由。",
+    "cheatsheet": "ハッシュにおけるバースデーパラドックス:\n衝突確率 ≒ 2^(n/2)（nビットハッシュの場合）\nMD5 (128ビット): 約2^64で衝突（脆弱）\nSHA-1 (160ビット): 約2^80で衝突（脆弱）\nSHA-256 (256ビット): 約2^128で衝突（安全）\nSHA-512 (512ビット): 約2^256で衝突（安全）"
   },
   {
     "id": 11,
     "category": "Cryptographic Calculations",
-    "question": "A message encrypted with RSA has a maximum plaintext size of 256 bytes. What is the minimum RSA key size in bits?",
-    "options": ["1024 bits", "2048 bits", "4096 bits", "512 bits"],
+    "question": "RSAで暗号化されたメッセージの最大平文サイズが256バイトの場合、RSA鍵の最小ビット数はいくつか？",
+    "options": ["1024ビット", "2048ビット", "4096ビット", "512ビット"],
     "correct": 1,
-    "explanation": "RSA can encrypt messages smaller than the modulus. With 256 bytes = 2048 bits, the modulus must be at least 2048 bits. In practice, the maximum plaintext for RSA with PKCS#1 v1.5 padding is (key_size_in_bytes - 11) bytes. For a 2048-bit key: (256 - 11) = 245 bytes of plaintext maximum.",
-    "cheatsheet": "RSA Plaintext Size:\nMax plaintext (PKCS#1 v1.5) = key_bytes - 11\nMax plaintext (OAEP) = key_bytes - 2*hash_len - 2\n2048-bit key: ~245 bytes (PKCS#1 v1.5)\n3072-bit key: ~374 bytes (PKCS#1 v1.5)\nFor larger data: use hybrid encryption (digital envelope)."
+    "explanation": "RSAは法より小さいメッセージを暗号化できる。256バイト = 2048ビットなので、法は少なくとも2048ビット必要。実際には、PKCS#1 v1.5パディング使用時のRSA最大平文は (鍵バイト数 - 11) バイト。2048ビット鍵の場合: (256 - 11) = 245バイトの最大平文。",
+    "cheatsheet": "RSA平文サイズ:\n最大平文（PKCS#1 v1.5）= 鍵バイト数 - 11\n最大平文（OAEP）= 鍵バイト数 - 2*ハッシュ長 - 2\n2048ビット鍵: 約245バイト（PKCS#1 v1.5）\n3072ビット鍵: 約374バイト（PKCS#1 v1.5）\n大きなデータにはハイブリッド暗号（デジタルエンベロープ）を使用。"
   },
   {
     "id": 12,
     "category": "Cryptographic Calculations",
-    "question": "If 3DES operates on 64-bit blocks and uses a 168-bit key, what is the effective key strength?",
-    "options": ["168 bits", "112 bits", "56 bits", "84 bits"],
+    "question": "3DESが64ビットブロックで動作し、168ビット鍵を使用する場合、実効鍵の強度はいくつか？",
+    "options": ["168ビット", "112ビット", "56ビット", "84ビット"],
     "correct": 1,
-    "explanation": "3DES applies DES three times with three keys (K1, K2, K3). Effective security: If K1=K2=K3, effective = 56 bits (DES). If K1=K3, effective = 80 bits (2-key 3DES). If K1, K2, K3 all different, effective = 112 bits (not 168) due to the meet-in-the-middle attack reducing from 2^168 to 2^112.",
-    "cheatsheet": "3DES Key Strength:\n3-key 3DES (K1,K2,K3 all different): 112-bit effective\n2-key 3DES (K1=K3): 80-bit effective\n1-key 3DES (K1=K2=K3): 56-bit effective (same as DES)\nMeet-in-the-middle attack: 2^n becomes n+1 for double encryption."
+    "explanation": "3DESは3つの鍵（K1, K2, K3）でDESを3回適用する。実効安全性: K1=K2=K3の場合、実効=56ビット（DES）。K1=K3の場合、実効=80ビット（2鍵3DES）。K1, K2, K3がすべて異なる場合、実効=112ビット（168ではなく）。ミートインザミドル攻撃により 2^168 から 2^112 に低減されるため。",
+    "cheatsheet": "3DES鍵の強度:\n3鍵3DES（K1, K2, K3すべて異なる）: 112ビット実効\n2鍵3DES（K1=K3）: 80ビット実効\n1鍵3DES（K1=K2=K3）: 56ビット実効（DESと同じ）\nミートインザミドル攻撃: 二重暗号化では 2^n が n+1 になる。"
   },
   {
     "id": 13,
     "category": "Cryptographic Calculations",
-    "question": "A certificate uses SHA-256 with RSA-2048 for its signature. If SHA-256 were broken, what would happen?",
-    "options": ["Nothing, RSA is still secure", "The certificate signature could be forged regardless of RSA key size", "Only the encryption would be affected", "The key would need to be doubled"],
+    "question": "証明書がSHA-256とRSA-2048で署名されている。SHA-256が破られた場合、どうなるか？",
+    "options": ["影響なし、RSAは安全", "RSA鍵のサイズに関係なく証明書の署名が偽造される可能性がある", "暗号化のみに影響", "鍵を2倍にする必要がある"],
     "correct": 1,
-    "explanation": "A digital signature combines hash + asymmetric encryption. The security of the signature depends on the weaker of the two. If SHA-256 were broken (collisions found), an attacker could create a different document with the same hash, and the RSA signature would still validate. The overall security = min(hash_security, RSA_security).",
-    "cheatsheet": "Signature Security:\nDigital Signature Security = min(hash_security, asymmetric_security)\nIf hash is broken: signature is broken\nIf asymmetric key is broken: signature is broken\nPractice: use matching security levels:\nRSA-2048 + SHA-256 is well-matched."
+    "explanation": "デジタル署名はハッシュ + 非対称暗号の組み合わせ。署名の安全性は両者のうち弱い方に依存する。SHA-256が破られた場合（衝突発見）、攻撃者は同じハッシュを持つ異なる文書を作成でき、RSA署名は依然として検証される。全体の安全性 = min(ハッシュ安全性, RSA安全性)。",
+    "cheatsheet": "署名の安全性:\nデジタル署名の安全性 = min(ハッシュ安全性, 非対称安全性)\nハッシュが破られた場合: 署名が破られる\n非対称鍵が破られた場合: 署名が破られる\n実践: 同等のセキュリティレベルを使用:\nRSA-2048 + SHA-256 はよくマッチしている。"
   },
   {
     "id": 14,
     "category": "Cryptographic Calculations",
-    "question": "What is the block size of AES?",
-    "options": ["64 bits", "128 bits", "192 bits", "256 bits"],
+    "question": "AESのブロックサイズはいくつか？",
+    "options": ["64ビット", "128ビット", "192ビット", "256ビット"],
     "correct": 1,
-    "explanation": "AES always uses a 128-bit block size regardless of the key length (128, 192, or 256 bits). This means AES processes data in 16-byte chunks. For messages that are not a multiple of 16 bytes, padding (like PKCS#7) is required for block cipher modes.",
-    "cheatsheet": "AES Block Size:\nBlock size: ALWAYS 128 bits (16 bytes)\nKey sizes: 128, 192, or 256 bits\nDES block size: 64 bits\nBlowfish block size: 64 bits\nChaCha20: stream cipher (no block size)"
+    "explanation": "AESは鍵長（128, 192, 256ビット）に関係なく常に128ビットのブロックサイズを使用する。つまりAESは16バイト単位でデータを処理する。16の倍数でないメッセージにはパディング（PKCS#7など）が必要。",
+    "cheatsheet": "AESブロックサイズ:\nブロックサイズ: 常に128ビット（16バイト）\n鍵サイズ: 128, 192, 256ビット\nDESブロックサイズ: 64ビット\nBlowfishブロックサイズ: 64ビット\nChaCha20: ストリーム暗号（ブロックサイズなし）"
   },
   {
     "id": 15,
     "category": "Cryptographic Calculations",
-    "question": "A system uses CBC mode with AES-128 and 100 KB of data. How many AES block operations are performed?",
+    "question": "システムがCBCモードでAES-128を使用し、100KBのデータを処理する場合、何回のAESブロック演算が実行されるか？",
     "options": ["100", "6250", "6400", "12800"],
     "correct": 1,
-    "explanation": "Step 1: Block size = 128 bits = 16 bytes. Step 2: 100 KB = 100 * 1024 = 102,400 bytes. Step 3: Number of blocks = 102,400 / 16 = 6,400 blocks. Each block requires one AES encryption operation. With padding, if the data is not a multiple of 16, one additional block is added.",
-    "cheatsheet": "Block Cipher Operations:\nNumber of blocks = ceil(data_size / block_size)\nAES: block_size = 16 bytes\nDES: block_size = 8 bytes\nFor CBC mode, each block requires one encryption.\nFor CTR mode, blocks can be processed in parallel."
+    "explanation": "ステップ1: ブロックサイズ = 128ビット = 16バイト。ステップ2: 100KB = 100 * 1024 = 102,400バイト。ステップ3: ブロック数 = 102,400 / 16 = 6,400ブロック。各ブロックは1回のAES暗号化演算を必要とする。パディングにより、データが16の倍数でない場合は1ブロック追加される。",
+    "cheatsheet": "ブロック暗号の演算:\nブロック数 = ceil(データサイズ / ブロックサイズ)\nAES: ブロックサイズ = 16バイト\nDES: ブロックサイズ = 8バイト\nCBCモードでは各ブロックに1回の暗号化が必要。\nCTRモードではブロックを並列処理できる。"
   },
   {
     "id": 16,
     "category": "Cryptographic Calculations",
-    "question": "If a Diffie-Hellman key exchange uses a prime p=23 and base g=5, and Alice sends A=8, Bob sends B=19, what is the shared secret if Alice's private key a=6?",
+    "question": "ディフィー・ヘルマン鍵交換で素数 p=23、基数 g=5 を使用し、アリスが A=8 を送信、ボブが B=19 を送信した場合、アリスの秘密鍵 a=6 のときの共有秘密はいくつか？",
     "options": ["2", "8", "19", "7"],
     "correct": 0,
-    "explanation": "Step 1: Alice computes the shared secret: s = B^a mod p. Step 2: s = 19^6 mod 23. Step 3: 19^2 mod 23 = 361 mod 23 = 16. Step 4: 19^4 mod 23 = 16^2 mod 23 = 256 mod 23 = 3. Step 5: 19^6 = 19^4 * 19^2 = 3 * 16 mod 23 = 48 mod 23 = 2. The shared secret is 2. Bob would compute the same: 8^b mod 23.",
-    "cheatsheet": "Diffie-Hellman Key Exchange:\nPublic parameters: prime p, base g\nAlice: private a, sends A = g^a mod p\nBob: private b, sends B = g^b mod p\nShared secret: s = B^a mod p = A^b mod p = g^(ab) mod p\nSecurity: discrete logarithm problem"
+    "explanation": "ステップ1: アリスは共有秘密を計算: s = B^a mod p。ステップ2: s = 19^6 mod 23。ステップ3: 19^2 mod 23 = 361 mod 23 = 16。ステップ4: 19^4 mod 23 = 16^2 mod 23 = 256 mod 23 = 3。ステップ5: 19^6 = 19^4 * 19^2 = 3 * 16 mod 23 = 48 mod 23 = 2。共有秘密は2。ボブも同じ計算: 8^b mod 23 で2になる。",
+    "cheatsheet": "ディフィー・ヘルマン鍵交換:\n公開パラメータ: 素数 p, 基数 g\nアリス: 秘密鍵 a, A = g^a mod p を送信\nボブ: 秘密鍵 b, B = g^b mod p を送信\n共有秘密: s = B^a mod p = A^b mod p = g^(ab) mod p\n安全性: 離散対数問題"
   },
   {
     "id": 17,
     "category": "Cryptographic Calculations",
-    "question": "For a 2048-bit RSA key, approximately how many decimal digits does the modulus n have?",
-    "options": ["308", "616", "154", "77"],
+    "question": "2048ビットRSA鍵の場合、法 n はおおよそ何桁の10進数になるか？",
+    "options": ["308桁", "616桁", "154桁", "77桁"],
     "correct": 1,
-    "explanation": "Step 1: 2048 bits = 2^2048. Step 2: Number of decimal digits = log10(2^2048) = 2048 * log10(2) = 2048 * 0.3010 = 616.5. Step 3: The modulus has approximately 617 decimal digits. For reference: 1024-bit RSA ~ 309 digits, 4096-bit RSA ~ 1234 digits.",
-    "cheatsheet": "RSA Key Size to Decimal Digits:\nDigits = bits * log10(2) = bits * 0.30103\n1024 bits ~ 309 digits\n2048 bits ~ 617 digits\n4096 bits ~ 1234 digits\nFactorization difficulty grows exponentially with digits."
+    "explanation": "ステップ1: 2048ビット = 2^2048。ステップ2: 10進数桁数 = log10(2^2048) = 2048 * log10(2) = 2048 * 0.3010 = 616.5。ステップ3: 法は約617桁の10進数を持つ。参考: 1024ビットRSA ~ 309桁, 4096ビットRSA ~ 1234桁。",
+    "cheatsheet": "RSA鍵サイズから10進数桁数への変換:\n桁数 = ビット数 * log10(2) = ビット数 * 0.30103\n1024ビット ~ 309桁\n2048ビット ~ 617桁\n4096ビット ~ 1234桁\n素因数分解の難しさは桁数に対して指数関数的に増大。"
   },
   {
     "id": 18,
     "category": "Cryptographic Calculations",
-    "question": "If a hash function processes 1000 messages per second and has a 256-bit output, how long to find a collision via brute force?",
-    "options": ["About 1 year", "About 10^31 years", "About 10^15 years", "About 1 million years"],
+    "question": "ハッシュ関数が毎秒1000メッセージを処理し、256ビット出力の場合、総当たりで衝突を見つけるのにどれくらいかかるか？",
+    "options": ["約1年", "約10^31年", "約10^15年", "約100万年"],
     "correct": 1,
-    "explanation": "Step 1: Birthday attack needs ~2^128 operations for 256-bit hash. Step 2: Time = 2^128 / 1000 per second. Step 3: 2^128 = 3.4 x 10^38. Step 4: 3.4 x 10^38 / 1000 / (365.25 * 24 * 3600) = approximately 1.08 x 10^31 years. This is astronomically longer than the age of the universe (~1.4 x 10^10 years).",
-    "cheatsheet": "Collision Resistance Time:\nFor n-bit hash: ~2^(n/2) operations\nSHA-256 at 10^9/sec: ~10^22 years\nSHA-1 at 10^9/sec: ~10^12 years (but practical attacks exist)\nMD5 at 10^9/sec: ~10^10 years (broken in practice - seconds to minutes)"
+    "explanation": "ステップ1: 256ビットハッシュのバースデー攻撃には約 2^128 回の演算が必要。ステップ2: 時間 = 2^128 / 1000（毎秒）。ステップ3: 2^128 = 3.4 x 10^38。ステップ4: 3.4 x 10^38 / 1000 / (365.25 * 24 * 3600) = 約 1.08 x 10^31年。これは宇宙の年齢（約1.4 x 10^10年）より天文学的に長い。",
+    "cheatsheet": "衝突耐性の時間:\nnビットハッシュの場合: 約 2^(n/2) 回の演算\nSHA-256（10^9/秒）: 約10^22年\nSHA-1（10^9/秒）: 約10^12年（実用的な攻撃が存在）\nMD5（10^9/秒）: 約10^10年（実用上は秒〜分で破られる）"
   },
   {
     "id": 19,
     "category": "Cryptographic Calculations",
-    "question": "In elliptic curve cryptography, if the curve order is approximately 2^256, what is the security level in bits?",
-    "options": ["256 bits", "128 bits", "512 bits", "64 bits"],
+    "question": "楕円曲線暗号で、曲線の位数が約 2^256 の場合、ビット単位のセキュリティレベルはいくつか？",
+    "options": ["256ビット", "128ビット", "512ビット", "64ビット"],
     "correct": 1,
-    "explanation": "The best known algorithm for breaking ECC is Pollard's rho algorithm with complexity O(sqrt(n)). For a curve of order 2^256, the complexity is approximately sqrt(2^256) = 2^128. Therefore, ECC with a 256-bit curve provides 128 bits of security.",
-    "cheatsheet": "ECC Security Level:\nSecurity = curve_size / 2 (due to Pollard's rho)\nCurve 160-bit: 80-bit security\nCurve 256-bit: 128-bit security\nCurve 384-bit: 192-bit security\nCurve 521-bit: 260-bit security"
+    "explanation": "ECCを破る最良の既知アルゴリズムはポラードのロー法で、計算量 O(sqrt(n))。位数 2^256 の曲線の場合、計算量は約 sqrt(2^256) = 2^128。したがって、256ビット曲線のECCは128ビットのセキュリティを提供する。",
+    "cheatsheet": "ECCセキュリティレベル:\nセキュリティ = 曲線サイズ / 2（ポラードのロー法のため）\n曲線160ビット: 80ビットセキュリティ\n曲線256ビット: 128ビットセキュリティ\n曲線384ビット: 192ビットセキュリティ\n曲線521ビット: 260ビットセキュリティ"
   },
   {
     "id": 20,
     "category": "Cryptographic Calculations",
-    "question": "What is the time complexity of Shor's algorithm for factoring an n-bit RSA key on a quantum computer?",
-    "options": ["O(2^n)", "O(n^3) polynomial time", "O(n^2)", "O(sqrt(n))"],
+    "question": "ショアのアルゴリズムの量子コンピュータでのnビットRSA鍵の素因数分解の時間計算量は？",
+    "options": ["O(2^n)", "O(n^3) 多項式時間", "O(n^2)", "O(sqrt(n))"],
     "correct": 1,
-    "explanation": "Shor's algorithm factors integers in polynomial time O((log N)^3) on a quantum computer, where N is the number to factor. This means factoring a 2048-bit RSA modulus would take polynomial rather than exponential time, effectively breaking RSA. This is the primary quantum threat to asymmetric cryptography.",
-    "cheatsheet": "Shor's Algorithm Complexity:\nQuantum: O((log N)^3) - polynomial time\nClassical best: sub-exponential O(exp(c * n^(1/3)))\nImpact: breaks RSA, ECC, DH\nDoes NOT break: symmetric encryption, hash functions\nGrover's algorithm affects symmetric: O(sqrt(2^n))"
+    "explanation": "ショアのアルゴリズムは量子コンピュータ上で多項式時間 O((log N)^3) で整数を素因数分解する（Nは素因数分解する数）。つまり2048ビットRSA法の素因数分解は指数関数的ではなく多項式時間で実行でき、事実上RSAを破壊する。これが非対称暗号に対する最大の量子脅威。",
+    "cheatsheet": "ショアのアルゴリズムの計算量:\n量子: O((log N)^3) - 多項式時間\n古典最良: 準指数時間 O(exp(c * n^(1/3)))\n影響: RSA, ECC, DH を破壊\n破壊しない: 対称暗号、ハッシュ関数\nグローバーのアルゴリズムは対称暗号に影響: O(sqrt(2^n))"
   },
   {
     "id": 21,
     "category": "Risk Quantification",
-    "question": "A server worth $100,000 has a 40% chance of data loss from a fire. What is the SLE?",
+    "question": "10万ドルの価値を持つサーバーで、火災によるデータ損失の確率が40%の場合、SLEはいくらか？",
     "options": ["$40,000", "$100,000", "$140,000", "$60,000"],
     "correct": 0,
-    "explanation": "Step 1: Identify Asset Value (AV) = $100,000. Step 2: Identify Exposure Factor (EF) = 40% = 0.4. Step 3: Calculate SLE = AV x EF = $100,000 x 0.4 = $40,000. SLE represents the monetary loss from a single fire incident on this server.",
-    "cheatsheet": "SLE (Single Loss Expectancy):\nSLE = Asset Value x Exposure Factor\nAV: the total value of the asset\nEF: the percentage of value that would be lost (0 to 1)\nSLE: the expected loss from ONE occurrence of the threat\nExample: $50,000 server x 0.3 EF = $15,000 SLE"
+    "explanation": "ステップ1: 資産価値（AV）= $100,000。ステップ2: 損害率（EF）= 40% = 0.4。ステップ3: SLE = AV x EF = $100,000 x 0.4 = $40,000。SLEはこのサーバーに対する単一の火災事故による金銭的損失を表す。",
+    "cheatsheet": "SLE (単一損失期待値):\nSLE = 資産価値 x 損害率\nAV: 資産の総価値\nEF: 失われる価値の割合（0〜1）\nSLE: 脅威の1回発生あたりの期待損失\n例: $50,000サーバー x 0.3 EF = $15,000 SLE"
   },
   {
     "id": 22,
     "category": "Risk Quantification",
-    "question": "If the SLE is $40,000 and the threat is expected to occur 0.25 times per year (once every 4 years), what is the ALE?",
+    "question": "SLEが$40,000で、脅威が年0.25回発生すると予想される場合、ALEはいくらか？",
     "options": ["$10,000", "$160,000", "$40,000", "$40,250"],
     "correct": 0,
-    "explanation": "Step 1: SLE = $40,000. Step 2: ARO = 0.25. Step 3: ALE = SLE x ARO = $40,000 x 0.25 = $10,000. An ALE of $10,000 means the organization can expect to lose $10,000 per year on average from this threat.",
-    "cheatsheet": "ALE (Annual Loss Expectancy):\nALE = SLE x ARO\nSLE: loss per single incident\nARO: how many times per year the incident occurs\nARO < 1: incident happens less than once per year\nARO > 1: incident happens multiple times per year\nALE helps justify security control costs."
+    "explanation": "ステップ1: SLE = $40,000。ステップ2: ARO = 0.25。ステップ3: ALE = SLE x ARO = $40,000 x 0.25 = $10,000。ALE $10,000は、組織がこの脅威から年間平均$10,000を失うことを意味する。",
+    "cheatsheet": "ALE (年間損失期待値):\nALE = SLE x ARO\nSLE: 単一事故あたりの損失\nARO: 年間の事故発生回数\nARO < 1: 年に1回未満の発生\nARO > 1: 年に複数回の発生\nALEはセキュリティ管理措置のコスト正当化に役立つ。"
   },
   {
     "id": 23,
     "category": "Risk Quantification",
-    "question": "A company's ALE for data breaches is $500,000/year. A security control costs $200,000/year and reduces the ALE to $150,000/year. What is the annual cost-benefit?",
-    "options": ["$150,000 savings", "$500,000 savings", "$350,000 savings", "$300,000 savings"],
+    "question": "データ漏洩のALEが年$500,000の企業で、セキュリティ管理措置が年$200,000かかり、ALEを年$150,000に低減する場合、年間コスト便益はいくらか？",
+    "options": ["$150,000の節約", "$500,000の節約", "$350,000の節約", "$300,000の節約"],
     "correct": 0,
-    "explanation": "Step 1: Original ALE = $500,000. Step 2: Residual ALE with control = $150,000. Step 3: Control cost = $200,000. Step 4: Net benefit = (Original ALE - Residual ALE) - Control cost = ($500,000 - $150,000) - $200,000 = $150,000. The control provides $150,000 in annual savings and should be implemented.",
-    "cheatsheet": "Cost-Benefit Analysis:\nNet Benefit = (ALE_before - ALE_after) - Control_Cost\nIf Net Benefit > 0: implement the control\nIf Net Benefit < 0: control costs more than the risk\nIf Net Benefit = 0: break-even decision\nAlways factor in indirect benefits (reputation, compliance)."
+    "explanation": "ステップ1: 導入前ALE = $500,000。ステップ2: 導入後ALE = $150,000。ステップ3: 管理措置コスト = $200,000。ステップ4: 正味便益 = (導入前ALE - 導入後ALE) - 管理措置コスト = ($500,000 - $150,000) - $200,000 = $150,000。この管理措置は年$150,000の節約を提供し、導入すべき。",
+    "cheatsheet": "コスト便益分析:\n正味便益 = (導入前ALE - 導入後ALE) - 管理措置コスト\n正味便益 > 0: 導入する\n正味便益 < 0: 管理措置コストがリスクを上回る\n正味便益 = 0: 損益分岐の判断\n常に間接便益（評判、コンプライアンス）も考慮。"
   },
   {
     "id": 24,
     "category": "Risk Quantification",
-    "question": "An asset is valued at $500,000. If stolen, 80% of value would be lost. Theft occurs approximately 0.1 times per year. What is the ALE?",
+    "question": "資産価値$500,000で、盗難時に80%の価値が失われる場合、盗難が年0.1回発生するとき、ALEはいくらか？",
     "options": ["$40,000", "$50,000", "$400,000", "$4,000"],
     "correct": 0,
-    "explanation": "Step 1: AV = $500,000, EF = 80% = 0.8, ARO = 0.1. Step 2: SLE = AV x EF = $500,000 x 0.8 = $400,000. Step 3: ALE = SLE x ARO = $400,000 x 0.1 = $40,000. The expected annual loss from theft is $40,000.",
-    "cheatsheet": "Full Risk Calculation:\n1. AV (Asset Value) = total value\n2. EF (Exposure Factor) = % loss per incident\n3. SLE = AV x EF\n4. ARO (Annual Rate of Occurrence)\n5. ALE = SLE x ARO\nExample: $500K x 0.8 x 0.1 = $40K ALE"
+    "explanation": "ステップ1: AV = $500,000, EF = 80% = 0.8, ARO = 0.1。ステップ2: SLE = AV x EF = $500,000 x 0.8 = $400,000。ステップ3: ALE = SLE x ARO = $400,000 x 0.1 = $40,000。盗難による期待年間損失は$40,000。",
+    "cheatsheet": "完全なリスク計算:\n1. AV（資産価値）= 総価値\n2. EF（損害率）= 事故あたりの損失率\n3. SLE = AV x EF\n4. ARO（年間発生率）\n5. ALE = SLE x ARO\n例: $500K x 0.8 x 0.1 = $40K ALE"
   },
   {
     "id": 25,
     "category": "Risk Quantification",
-    "question": "A control reduces the ALE from $100,000 to $30,000 per year. The control costs $80,000 per year. Should it be implemented?",
-    "options": ["Yes, saves $20,000/year", "No, costs exceed savings by $10,000/year", "Yes, reduces risk to zero", "No, the residual risk is still too high"],
+    "question": "管理措置がALEを$100,000から年$30,000に低減する。管理措置の年間コストが$80,000の場合、導入すべきか？",
+    "options": ["はい、年$20,000の節約", "いいえ、節約額をコストが年$10,000上回る", "はい、リスクをゼロにする", "いいえ、残存リスクが高すぎる"],
     "correct": 1,
-    "explanation": "Step 1: Risk reduction = $100,000 - $30,000 = $70,000. Step 2: Control cost = $80,000. Step 3: Net benefit = $70,000 - $80,000 = -$10,000. The control costs $10,000 more per year than the risk it reduces. Unless there are non-financial reasons (compliance, reputation), this control is not cost-effective.",
-    "cheatsheet": "Cost-Effectiveness Decision:\nRisk Reduction = ALE_before - ALE_after\nNet Benefit = Risk Reduction - Control Cost\nIf Net Benefit > 0: IMPLEMENT\nIf Net Benefit <= 0: RECONSIDER\nNote: Compliance requirements may mandate\nimplementation regardless of cost-benefit."
+    "explanation": "ステップ1: リスク低減額 = $100,000 - $30,000 = $70,000。ステップ2: 管理措置コスト = $80,000。ステップ3: 正味便益 = $70,000 - $80,000 = -$10,000。管理措置は削減するリスクより年$10,000多くかかる。非財務的理由（コンプライアンス、評判）がなければ、費用対効果がない。",
+    "cheatsheet": "費用対効果の判断:\nリスク低減額 = 導入前ALE - 導入後ALE\n正味便益 = リスク低減額 - 管理措置コスト\n正味便益 > 0: 導入する\n正味便益 <= 0: 再考する\n注: コンプライアンス要件は費用便益に関係なく導入を義務付ける場合がある。"
   },
   {
     "id": 26,
     "category": "Risk Quantification",
-    "question": "If a control costs $50,000/year and the maximum justifiable cost is when ALE reduction equals control cost, what ALE reduction makes this break-even?",
+    "question": "管理措置が年$50,000かかり、ALE低減額が管理措置コストに等しい場合が損益分岐点であるとき、ALE低減額はいくつになるか？",
     "options": ["$25,000", "$50,000", "$100,000", "$75,000"],
     "correct": 1,
-    "explanation": "At break-even: ALE_reduction = Control_cost. Therefore, ALE reduction must be $50,000 to justify a $50,000 control. Any ALE reduction above $50,000 provides positive ROI; below $50,000 means the control costs more than it saves.",
-    "cheatsheet": "Break-Even Analysis:\nBreak-even: ALE_reduction = Control_cost\nMaximum justifiable cost = ALE_before - ALE_after\nThis is the 'risk-adjusted return on security investment'\n(ROSI = (ALE_reduction - Control_cost) / Control_cost x 100%)"
+    "explanation": "損益分岐点で: ALE低減額 = 管理措置コスト。したがって、ALE低減額は$50,000で$50,000の管理措置を正当化できる。$50,000を超えるALE低減は正のROIを提供し、$50,000未満は管理措置が節約額を上回る。",
+    "cheatsheet": "損益分岐分析:\n損益分岐: ALE低減額 = 管理措置コスト\n最大正当化可能コスト = 導入前ALE - 導入後ALE\nこれは「リスク調整後セキュリティ投資収益率」\n（ROSI = (ALE低減額 - 管理措置コスト) / 管理措置コスト x 100%）"
   },
   {
     "id": 27,
     "category": "Risk Quantification",
-    "question": "A company has 5 servers, each worth $200,000. A flood would destroy 100% of 3 servers and damage 50% of 2 servers. What is the SLE for a flood?",
+    "question": "企業に5台のサーバーがあり、各$200,000。洪水で3台は100%破壊、2台は50%損傷する場合、洪水のSLEはいくらか？",
     "options": ["$1,000,000", "$700,000", "$500,000", "$1,200,000"],
     "correct": 0,
-    "explanation": "Step 1: Total AV = 5 x $200,000 = $1,000,000. Step 2: Loss from 3 destroyed servers = 3 x $200,000 = $600,000. Step 3: Loss from 2 damaged servers = 2 x $200,000 x 0.5 = $200,000. Step 4: Total SLE = $600,000 + $200,000 = $800,000. Alternatively: EF = (3x100% + 2x50%) / 5 = 400/500 = 80%. SLE = $1,000,000 x 0.8 = $800,000.",
-    "cheatsheet": "Multi-Asset SLE Calculation:\nFor multiple assets: SLE = sum of (AV_i x EF_i) for each asset\nOr: SLE = Total_AV x Overall_EF\nOverall_EF = total_expected_loss / total_asset_value\nAlways convert partial damage to monetary terms."
+    "explanation": "ステップ1: 総AV = 5 x $200,000 = $1,000,000。ステップ2: 3台破壊による損失 = 3 x $200,000 = $600,000。ステップ3: 2台損傷による損失 = 2 x $200,000 x 0.5 = $200,000。ステップ4: 総SLE = $600,000 + $200,000 = $800,000。別解: EF = (3x100% + 2x50%) / 5 = 400/500 = 80%。SLE = $1,000,000 x 0.8 = $800,000。",
+    "cheatsheet": "複数資産のSLE計算:\n複数資産: SLE = 各資産の(AV_i x EF_i)の合計\nまたは: SLE = 総AV x 全体EF\n全体EF = 総期待損失 / 総資産価値\n部分損傷は常に金銭的価値に変換する。"
   },
   {
     "id": 28,
     "category": "Risk Quantification",
-    "question": "A data breach occurs on average 2 times per year. Each breach costs an estimated $250,000 in damages. What is the ALE?",
+    "question": "データ漏洩が平均年2回発生する。各漏洩の損害が$250,000の場合、ALEはいくらか？",
     "options": ["$125,000", "$250,000", "$500,000", "$2,000,000"],
     "correct": 2,
-    "explanation": "Step 1: SLE = $250,000 (cost per breach). Step 2: ARO = 2 (two breaches per year). Step 3: ALE = $250,000 x 2 = $500,000. The company can expect $500,000 in annual losses from data breaches.",
-    "cheatsheet": "Multiple Incidents Per Year:\nIf ARO > 1: the threat occurs multiple times annually\nALE = SLE x ARO\n2 breaches/year x $250K each = $500K/year\n12 phishing incidents/year x $5K each = $60K/year\nHigher ARO means more urgent mitigation needed."
+    "explanation": "ステップ1: SLE = $250,000（1回あたりのコスト）。ステップ2: ARO = 2（年2回の漏洩）。ステップ3: ALE = $250,000 x 2 = $500,000。企業はデータ漏洩から年$500,000の損失を期待できる。",
+    "cheatsheet": "年間複数回の事故:\nARO > 1の場合: 脅威が年に複数回発生\nALE = SLE x ARO\n2回/年 x $250K = $500K/年\n12回/年のフィッシング x $5K = $60K/年\n高いAROはより緊急の対策が必要。"
   },
   {
     "id": 29,
     "category": "Risk Quantification",
-    "question": "The ROSI (Return on Security Investment) for a $100,000 control that reduces ALE by $150,000 is what percentage?",
+    "question": "$100,000の管理措置がALEを$150,000低減する場合、ROSI（セキュリティ投資収益率）は何パーセントか？",
     "options": ["150%", "50%", "33%", "67%"],
     "correct": 1,
-    "explanation": "Step 1: ALE reduction = $150,000. Step 2: Control cost = $100,000. Step 3: ROSI = (ALE_reduction - Control_cost) / Control_cost x 100 = ($150,000 - $100,000) / $100,000 x 100 = 50%. A 50% ROSI means for every dollar spent on the control, the organization saves 50 cents in risk reduction.",
-    "cheatsheet": "ROSI (Return on Security Investment):\nROSI = (ALE_reduction - Control_cost) / Control_cost x 100%\nROSI > 0%: positive return\nROSI = 50%: saves $0.50 per $1.00 spent\nROSI = 0%: break-even\nCompare ROSI across controls to prioritize investments."
+    "explanation": "ステップ1: ALE低減額 = $150,000。ステップ2: 管理措置コスト = $100,000。ステップ3: ROSI = (ALE低減額 - 管理措置コスト) / 管理措置コスト x 100 = ($150,000 - $100,000) / $100,000 x 100 = 50%。50%のROSIは、管理措置に$1使うごとに組織がリスク低減で$0.50を節約することを意味する。",
+    "cheatsheet": "ROSI（セキュリティ投資収益率）:\nROSI = (ALE低減額 - 管理措置コスト) / 管理措置コスト x 100%\nROSI > 0%: 正の収益\nROSI = 50%: $1.00使うごとに$0.50節約\nROSI = 0%: 損益分岐\n複数の管理措置のROSIを比較して投資を優先。"
   },
   {
     "id": 30,
     "category": "Risk Quantification",
-    "question": "A qualitative risk matrix has likelihood 1-5 and impact 1-5. What is the risk score for a threat with likelihood 3 and impact 4?",
+    "question": "定性的リスクマトリクスで可能性1-5、影響1-5の場合、可能性3、影響4の脅威のリスクスコアはいくらか？",
     "options": ["7", "12", "15", "1"],
     "correct": 1,
-    "explanation": "Step 1: Identify likelihood = 3, impact = 4. Step 2: Risk score = likelihood x impact = 3 x 4 = 12. In a typical 5x5 matrix: 1-4 = Low (green), 5-9 = Medium (yellow), 10-15 = High (orange/red), 16-25 = Critical (dark red). A score of 12 falls in the High risk category.",
-    "cheatsheet": "5x5 Risk Matrix:\nRisk = Likelihood x Impact (each 1-5)\n1-4: Low risk\n5-9: Medium risk\n10-15: High risk\n16-25: Critical risk\n3x4=12 (High), 5x5=25 (Critical), 1x1=1 (Low)"
+    "explanation": "ステップ1: 可能性 = 3、影響 = 4。ステップ2: リスクスコア = 可能性 x 影響 = 3 x 4 = 12。典型的な5x5マトリクスでは: 1-4 = 低（緑）、5-9 = 中（黄）、10-15 = 高（橙/赤）、16-25 = 重要（暗赤）。スコア12は高リスクに分類される。",
+    "cheatsheet": "5x5リスクマトリクス:\nリスク = 可能性 x 影響（各1-5）\n1-4: 低リスク\n5-9: 中リスク\n10-15: 高リスク\n16-25: 重要リスク\n3x4=12（高）、5x5=25（重要）、1x1=1（低）"
   },
   {
     "id": 31,
     "category": "Risk Quantification",
-    "question": "A threat has an ALE of $200,000. After implementing a $30,000 control, the ALE becomes $100,000. What is the control effectiveness percentage?",
+    "question": "脅威のALEが$200,000。$30,000の管理措置導入後、ALEが$100,000になる場合、管理措置の有効性は何パーセントか？",
     "options": ["50%", "65%", "35%", "85%"],
     "correct": 0,
-    "explanation": "Step 1: ALE reduction = $200,000 - $100,000 = $100,000. Step 2: Control effectiveness = ALE reduction / Original ALE x 100 = $100,000 / $200,000 x 100 = 50%. The control eliminates 50% of the risk. Note that net benefit = $100,000 - $30,000 = $70,000.",
-    "cheatsheet": "Control Effectiveness:\nEffectiveness = ALE_reduction / Original_ALE x 100%\nAlso called Risk Reduction Percentage\n50% effectiveness: reduces risk by half\n100% effectiveness: eliminates risk entirely\nCost-effectiveness: effectiveness relative to control cost"
+    "explanation": "ステップ1: ALE低減額 = $200,000 - $100,000 = $100,000。ステップ2: 管理措置有効性 = ALE低減額 / 導入前ALE x 100 = $100,000 / $200,000 x 100 = 50%。管理措置はリスクの50%を除去。正味便益 = $100,000 - $30,000 = $70,000。",
+    "cheatsheet": "管理措置の有効性:\n有効性 = ALE低減額 / 導入前ALE x 100%\nリスク低減率とも呼ばれる\n50%有効性: リスクを半分に削減\n100%有効性: リスクを完全に除去\n費用対効果: 管理措置コストに対する有効性"
   },
   {
     "id": 32,
     "category": "Risk Quantification",
-    "question": "An organization has 3 risks with ALEs of $100K, $50K, and $200K. If controls cost $80K total and reduce the ALEs to $20K, $10K, and $40K respectively, what is the total net benefit?",
+    "question": "組織に3つのリスクがあり、ALEがそれぞれ$100K, $50K, $200K。管理措置が合計$80KでALEをそれぞれ$20K, $10K, $40Kに低減する場合、総正味便益はいくらか？",
     "options": ["$100K", "$200K", "$300K", "$50K"],
     "correct": 1,
-    "explanation": "Step 1: Original total ALE = $100K + $50K + $200K = $350K. Step 2: Residual total ALE = $20K + $10K + $40K = $70K. Step 3: Total ALE reduction = $350K - $70K = $280K. Step 4: Net benefit = $280K - $80K = $200K.",
-    "cheatsheet": "Portfolio Risk Analysis:\nTotal ALE = sum of individual ALEs\nTotal Residual ALE = sum of residual ALEs\nTotal ALE reduction = Total_ALE - Total_Residual\nNet Benefit = Total Reduction - Total Control Cost\nPrioritize risks with highest individual ROI."
+    "explanation": "ステップ1: 導入前総ALE = $100K + $50K + $200K = $350K。ステップ2: 導入後総ALE = $20K + $10K + $40K = $70K。ステップ3: 総ALE低減額 = $350K - $70K = $280K。ステップ4: 正味便益 = $280K - $80K = $200K。",
+    "cheatsheet": "ポートフォリオリスク分析:\n総ALE = 個別ALEの合計\n総残存ALE = 残存ALEの合計\n総ALE低減額 = 総ALE - 総残存ALE\n正味便益 = 総低減額 - 総管理措置コスト\n最も高い個別ROIを持つリスクを優先。"
   },
   {
     "id": 33,
     "category": "Risk Quantification",
-    "question": "An ARO of 0.1 means the incident is expected to occur:",
-    "options": ["10 times per year", "Once every 10 years", "Once per year with 10% probability", "10 times every 10 years"],
+    "question": "AROが0.1とは、事故がどの程度発生すると予想されることを意味するか？",
+    "options": ["年に10回", "10年に1回", "年に1回（確率10%）", "10年に10回"],
     "correct": 1,
-    "explanation": "An ARO of 0.1 means the event occurs 0.1 times per year, which is once every 10 years (1/0.1 = 10 years). ARO can be a fraction less than 1 (rare events) or greater than 1 (frequent events like phishing attempts).",
-    "cheatsheet": "Understanding ARO:\nARO = frequency per year\nARO = 0.1 -> once every 10 years\nARO = 0.5 -> once every 2 years\nARO = 1 -> once per year\nARO = 5 -> 5 times per year\nARO = 365 -> approximately daily"
+    "explanation": "ARO 0.1は年間0.1回発生することを意味し、10年に1回（1/0.1 = 10年）。AROは1未満の分数（稀な事象）または1より大きい値（フィッシング試行などの頻繁な事象）になり得る。",
+    "cheatsheet": "AROの理解:\nARO = 年間頻度\nARO = 0.1 -> 10年に1回\nARO = 0.5 -> 2年に1回\nARO = 1 -> 年に1回\nARO = 5 -> 年に5回\nARO = 365 -> ほぼ毎日"
   },
   {
     "id": 34,
     "category": "Risk Quantification",
-    "question": "What is the total risk before controls if inherent risk is $500,000 ALE?",
+    "question": "固有リスクが$500,000 ALEの場合、管理措置前の総リスクはいくらか？",
     "options": ["$500,000", "$250,000", "$1,000,000", "$0"],
     "correct": 0,
-    "explanation": "Total risk (before controls) equals the inherent risk, which is $500,000 ALE. This represents the expected annual loss with no security controls in place. The inherent risk is the starting point for risk assessment before determining what controls are needed to reduce it to an acceptable level.",
-    "cheatsheet": "Risk Before and After Controls:\nTotal Risk = Inherent Risk = ALE (no controls)\nControl Risk = likelihood that controls will fail\nResidual Risk = Total Risk - Risk Reduction\nResidual Risk should be within Risk Appetite\nResidual Risk can never be zero."
+    "explanation": "総リスク（管理措置前）は固有リスクに等しく、$500,000 ALE。これはセキュリティ管理措置がない場合の期待年間損失を表す。固有リスクは、必要な管理措置を決定して受容可能なレベルに低減するためのリスク評価の出発点。",
+    "cheatsheet": "管理措置前後のリスク:\n総リスク = 固有リスク = ALE（管理措置なし）\n管理リスク = 管理措置が失敗する可能性\n残存リスク = 総リスク - リスク低減額\n残存リスクはリスクアペタイト内にあるべき\n残存リスクはゼロにはならない。"
   },
   {
     "id": 35,
     "category": "Risk Quantification",
-    "question": "An organization has a risk appetite of $50,000 ALE. Current ALE is $200,000. How much ALE reduction is needed?",
+    "question": "組織のリスクアペタイトが$50,000 ALE。現在のALEが$200,000の場合、どれくらいのALE低減が必要か？",
     "options": ["$150,000", "$200,000", "$50,000", "$250,000"],
     "correct": 0,
-    "explanation": "Step 1: Current ALE = $200,000. Step 2: Risk appetite = $50,000. Step 3: Required ALE reduction = $200,000 - $50,000 = $150,000. Security controls must reduce the annual expected loss by at least $150,000 to bring the residual risk within the organization's risk appetite.",
-    "cheatsheet": "Gap Analysis:\nControl Gap = Current Risk - Risk Appetite\nThis is the minimum risk reduction required.\nIf control costs > control gap: consider acceptance or transfer\nIf control costs < control gap: implement controls\nAlways document the rationale for the decision."
+    "explanation": "ステップ1: 現在のALE = $200,000。ステップ2: リスクアペタイト = $50,000。ステップ3: 必要ALE低減額 = $200,000 - $50,000 = $150,000。セキュリティ管理措置は残存リスクを組織のリスクアペタイト内に収めるために、少なくとも$150,000の期待年間損失を削減する必要がある。",
+    "cheatsheet": "ギャップ分析:\n管理措置ギャップ = 現在のリスク - リスクアペタイト\nこれが最小限必要なリスク低減量。\n管理措置コスト > ギャップ: 受容または移転を検討\n管理措置コスト < ギャップ: 管理措置を導入\n常に判断の理由を文書化する。"
   },
   {
     "id": 36,
     "category": "Risk Quantification",
-    "question": "A company purchases cyber insurance for $50,000/year with a $100,000 deductible. If a breach costs $500,000, what is the company's out-of-pocket cost?",
+    "question": "企業が年$50,000のサイバー保険に加入し、免責額$100,000。漏洩のコストが$500,000の場合、企業の自己負担はいくらか？",
     "options": ["$50,000", "$100,000", "$150,000", "$500,000"],
     "correct": 2,
-    "explanation": "Step 1: Insurance premium (already paid) = $50,000. Step 2: Deductible (out-of-pocket before insurance pays) = $100,000. Step 3: Total out-of-pocket = premium + deductible = $50,000 + $100,000 = $150,000. Insurance covers the remaining $400,000.",
-    "cheatsheet": "Insurance Cost Calculation:\nTotal cost = Premium + Deductible + (Loss - Coverage)\nPremium: annual insurance cost\nDeductible: amount paid before insurance kicks in\nCoverage limit: maximum insurance payout\nOut-of-pocket = min(loss, deductible) + premium"
+    "explanation": "ステップ1: 保険料（既払）= $50,000。ステップ2: 免責額（保険が支払う前の自己負担）= $100,000。ステップ3: 総自己負担 = 保険料 + 免責額 = $50,000 + $100,000 = $150,000。保険は残りの$400,000をカバーする。",
+    "cheatsheet": "保険コストの計算:\n総コスト = 保険料 + 免責額 + (損失 - 補償額)\n保険料: 年間保険コスト\n免責額: 保険が適用される前に支払う金額\n補償限度額: 保険の最大支払額\n自己負担 = min(損失, 免責額) + 保険料"
   },
   {
     "id": 37,
     "category": "Risk Quantification",
-    "question": "If annual maintenance of a security system is $25,000 and it needs replacement every 5 years at $100,000, what is the annualized total cost?",
+    "question": "セキュリティシステムの年間保守費が$25,000で、5年ごとに$100,000で更新が必要な場合、年間均等化コストはいくらか？",
     "options": ["$45,000", "$125,000", "$25,000", "$145,000"],
     "correct": 0,
-    "explanation": "Step 1: Annual maintenance = $25,000. Step 2: Replacement amortized = $100,000 / 5 years = $20,000/year. Step 3: Annualized total cost = $25,000 + $20,000 = $45,000. This gives a fair comparison of multi-year investments against annual ALE.",
-    "cheatsheet": "Annualized Cost Calculation:\nAnnualized Cost = Annual_maintenance + (Capital_cost / Useful_life)\nExample: $100K system / 5 years = $20K/year\nAdd $25K maintenance = $45K total annual cost\nCompare against ALE to determine cost-effectiveness."
+    "explanation": "ステップ1: 年間保守費 = $25,000。ステップ2: 更新の償却 = $100,000 / 5年 = $20,000/年。ステップ3: 年間均等化総コスト = $25,000 + $20,000 = $45,000。これにより多年投資を年間ALEと公平に比較できる。",
+    "cheatsheet": "年間均等化コストの計算:\n年間均等化コスト = 年間保守費 + (設備コスト / 耐用年数)\n例: $100Kシステム / 5年 = $20K/年\n+ $25K保守費 = $45K総年間コスト\nALEと比較して費用対効果を判定。"
   },
   {
     "id": 38,
     "category": "Risk Quantification",
-    "question": "What does a risk score of 'High' with 'Likelihood: Unlikely' and 'Impact: Catastrophic' indicate?",
-    "options": ["Ignore it", "Accept the risk", "Requires careful planning and contingency despite low likelihood", "Transfer the risk only"],
+    "question": "「可能性: 低い」「影響: 災害的」でリスクスコアが「高」であることは何を示すか？",
+    "options": ["無視する", "リスクを受容する", "可能性は低いが、慎重な計画と対応策が必要", "リスクを移転のみ行う"],
     "correct": 2,
-    "explanation": "Even though unlikely, a catastrophic impact warrants serious attention. While you may not spend heavily on prevention, you should have contingency plans (insurance, BCP/DRP) to handle the scenario if it occurs. The risk treatment combines preparation with cost-effective mitigation.",
-    "cheatsheet": "Risk Response by Score:\nHigh Likelihood + High Impact: Mitigate immediately\nHigh Likelihood + Low Impact: Monitor and optimize\nLow Likelihood + High Impact: Plan contingencies\nLow Likelihood + Low Impact: Accept and monitor"
+    "explanation": "可能性は低いが、災害的な影響には真剣な注意が必要。予防に多額を費やす必要はないが、発生した場合に対応するための対応策（保険、BCP/DRP）を用意すべき。リスク対応は準備と費用対効果のある緩和策を組み合わせる。",
+    "cheatsheet": "スコア別リスク対応:\n高可能性 + 高影響: 直ちに緩和\n高可能性 + 低影響: 監視と最適化\n低可能性 + 高影響: 対応策を準備\n低可能性 + 低影響: 受容して監視"
   },
   {
     "id": 39,
     "category": "Risk Quantification",
-    "question": "After implementing 3 controls, the residual risk is $30,000 ALE but the risk appetite is $20,000. What should the organization do?",
-    "options": ["Accept the risk and stop", "Implement additional controls, accept the residual risk with management approval, or transfer the remaining risk", "Ignore the gap", "Remove all controls"],
+    "question": "3つの管理措置導入後、残存リスクが$30,000 ALEだが、リスクアペタイトは$20,000の場合、組織はどうすべきか？",
+    "options": ["リスクを受容して終了", "追加管理措置を導入、経営陣承認で残存リスクを受容、または残りを移転", "ギャップを無視", "すべての管理措置を削除"],
     "correct": 1,
-    "explanation": "The residual risk ($30,000) exceeds the risk appetite ($20,000) by $10,000. Options: (1) implement more controls to close the gap, (2) formally accept the excess risk with senior management approval and documented rationale, or (3) transfer the remaining $10,000 through insurance.",
-    "cheatsheet": "Handling Residual Risk > Risk Appetite:\n1. Implement additional controls (if cost-effective)\n2. Formally accept with management approval\n3. Transfer remaining risk (insurance, outsourcing)\n4. Document rationale regardless of choice\n5. Monitor and review periodically"
+    "explanation": "残存リスク（$30,000）がリスクアペタイト（$20,000）を$10,000上回る。選択肢: (1) 追加管理措置でギャップを閉じる、(2) 上級経営陣の承認と文書化された理由で超過リスクを正式に受容、(3) 保険で残り$10,000を移転。",
+    "cheatsheet": "残存リスク > リスクアペタイトの処理:\n1. 追加管理措置の導入（費用対効果がある場合）\n2. 経営陣承認で正式に受容\n3. 残りを移転（保険、アウトソーシング）\n4. 選択に関わらず理由を文書化\n5. 定期的に監視と見直し"
   },
   {
     "id": 40,
     "category": "Risk Quantification",
-    "question": "In a quantitative risk assessment, if an asset has no assigned monetary value, which approach should be used?",
-    "options": ["Skip the assessment", "Use qualitative assessment instead", "Assign a value based on replacement cost or business impact", "Set value to $0"],
+    "question": "定量的リスク評価で、資産に金銭的価値が割り当てられていない場合、どのアプローチをとるべきか？",
+    "options": ["評価をスキップ", "代わりに定性的評価を使用", "再調達コストまたは事業影響に基づいて価値を割り当てる", "価値を$0に設定"],
     "correct": 2,
-    "explanation": "If an asset lacks a direct market value, assign a monetary value based on: replacement cost (cost to rebuild/replace), business impact (revenue loss if unavailable), regulatory penalty cost, or reputation damage estimate. Quantification enables cost-benefit analysis of controls.",
-    "cheatsheet": "Valuing Intangible Assets:\nReplacement cost: what it costs to recreate\nBusiness impact: revenue lost per hour/day\nRegulatory fines: penalties for breach/loss\nCompetitive advantage: value of IP/trade secrets\nReputation: cost of brand damage\nAlways document valuation methodology."
+    "explanation": "資産に直接的な市場価値がない場合、以下に基づいて金銭的価値を割り当てる: 再調達コスト（再構築/再取得費用）、事業影響（利用不可時の収益損失）、規制罰金コスト、または評判損害の推定。定量化により管理措置のコスト便益分析が可能になる。",
+    "cheatsheet": "無形資産の価値評価:\n再調達コスト: 再作成にかかる費用\n事業影響: 時間/日あたりの損失収益\n規制罰金: 漏洩/損失に対する罰金\n競争優位性: 知的財産/営業秘密の価値\n評判: ブランド損害のコスト\n評価方法論を常に文書化。"
   },
   {
     "id": 41,
     "category": "Access Control Math",
-    "question": "A password uses 8 lowercase letters. What is the approximate entropy in bits?",
-    "options": ["8 bits", "26 bits", "37.6 bits", "52 bits"],
+    "question": "8文字の小文字パスワードのエントロピーは約何ビットか？",
+    "options": ["8ビット", "26ビット", "37.6ビット", "52ビット"],
     "correct": 2,
-    "explanation": "Step 1: Character pool size for lowercase letters = 26. Step 2: Entropy per character = log2(26) = 3.7 bits. Step 3: Total entropy = 8 x 3.7 = 29.6 bits. Wait, let me recalculate: log2(26) = ln(26)/ln(2) = 3.322 x log10(26) = 3.322 x 1.4147 = 4.7 bits per character. Total = 8 x 4.7 = 37.6 bits.",
-    "cheatsheet": "Password Entropy:\nEntropy = length x log2(charset_size)\nLowercase (26): 4.7 bits/char\nAlphanumeric (62): 5.95 bits/char\nAll printable (95): 6.57 bits/char\n8 lowercase: 37.6 bits\n12 alphanumeric: 71.4 bits\n16 all printable: 105.1 bits"
+    "explanation": "ステップ1: 小文字の文字プール = 26。ステップ2: 1文字あたりのエントロピー = log2(26) = 4.7ビット。ステップ3: 総エントロピー = 8 x 4.7 = 37.6ビット。小文字のみでは強力なパスワードにするには長さが必要。文字種の混合が重要。",
+    "cheatsheet": "パスワードエントロピー:\nエントロピー = 長さ x log2(文字種サイズ)\n小文字（26）: 4.7ビット/文字\n英数字（62）: 5.95ビット/文字\n全印刷可能文字（95）: 6.57ビット/文字\n8小文字: 37.6ビット\n12英数字: 71.4ビット\n16全印刷可能: 105.1ビット"
   },
   {
     "id": 42,
     "category": "Access Control Math",
-    "question": "A password has 64 bits of entropy. At 1 billion guesses per second, how long to brute-force on average?",
-    "options": ["About 1 year", "About 292 years", "About 2.9 years", "About 584 years"],
+    "question": "パスワードのエントロピーが64ビットの場合、毎秒10億回の推測で平均総当たりにどれくらいかかるか？",
+    "options": ["約1年", "約292年", "約2.9年", "約584年"],
     "correct": 1,
-    "explanation": "Step 1: Total combinations = 2^64. Step 2: Average guesses to find = 2^63 (half the key space). Step 3: Time = 2^63 / 10^9 seconds. Step 4: 2^63 / 10^9 = 9.22 x 10^9 seconds = 292 years. This demonstrates why 64 bits of entropy is considered a minimum for strong passwords.",
-    "cheatsheet": "Brute Force Time:\nTime = 2^(entropy-1) / guesses_per_second\n64 bits at 10^9/sec: ~292 years\n80 bits at 10^9/sec: ~19 million years\n128 bits at 10^9/sec: ~5.4 x 10^22 years\nAdditional entropy dramatically increases cracking time."
+    "explanation": "ステップ1: 総組み合わせ = 2^64。ステップ2: 平均推測数 = 2^63（鍵空間の半分）。ステップ3: 時間 = 2^63 / 10^9秒。ステップ4: 2^63 / 10^9 = 9.22 x 10^9秒 = 292年。64ビットエントロピーが強力なパスワードの最低限とされる理由。",
+    "cheatsheet": "総当たり攻撃の時間:\n時間 = 2^(エントロピー-1) / 毎秒推測数\n64ビット（10^9/秒）: 約292年\n80ビット（10^9/秒）: 約1900万年\n128ビット（10^9/秒）: 約5.4 x 10^22年\nエントロピーを増やすと総当たり時間が劇的に増加。"
   },
   {
     "id": 43,
     "category": "Access Control Math",
-    "question": "A biometric system has FAR=0.1% and FRR=1%. If 10,000 impostors attempt access, how many are falsely accepted?",
-    "options": ["1", "10", "100", "1,000"],
+    "question": "生体認証システムでFAR=0.1%, FRR=1%の場合、10,000人のなりすましがアクセスを試行したとき、何人が誤って受け入れられるか？",
+    "options": ["1人", "10人", "100人", "1,000人"],
     "correct": 2,
-    "explanation": "Step 1: FAR = 0.1% = 0.001. Step 2: Number of impostors = 10,000. Step 3: False acceptances = 10,000 x 0.001 = 10. About 10 impostors would be falsely accepted. Lower FAR means better security against unauthorized access.",
-    "cheatsheet": "Biometric Error Rates:\nFAR (False Accept Rate): unauthorized users accepted\nFRR (False Reject Rate): authorized users rejected\nFalse Accepts = Impostors x FAR\nFalse Rejects = Authorized x FRR\nCER: point where FAR = FRR (system accuracy)\nLower CER = better biometric system"
+    "explanation": "ステップ1: FAR = 0.1% = 0.001。ステップ2: なりすまし数 = 10,000。ステップ3: 誤受け入れ = 10,000 x 0.001 = 10人。低いFARは不正アクセスに対するセキュリティが高いことを意味する。",
+    "cheatsheet": "生体認証のエラー率:\nFAR（誤受入率）: 不正ユーザーが受け入れられる\nFRR（誤拒否率）: 正規ユーザーが拒否される\n誤受け入れ = なりすまし数 x FAR\n誤拒否 = 正規試行数 x FRR\nCER: FAR = FRR になる点（システム精度）\nCERが低いほど優れた生体認証システム"
   },
   {
     "id": 44,
     "category": "Access Control Math",
-    "question": "The same biometric system (FAR=0.1%, FRR=1%) serves 5,000 legitimate users daily. How many authorized users are falsely rejected?",
-    "options": ["5", "50", "500", "5,000"],
+    "question": "同じ生体認証システム（FAR=0.1%, FRR=1%）が毎日5,000人の正規ユーザーに対応する場合、何人が誤って拒否されるか？",
+    "options": ["5人", "50人", "500人", "5,000人"],
     "correct": 1,
-    "explanation": "Step 1: FRR = 1% = 0.01. Step 2: Number of legitimate attempts = 5,000. Step 3: False rejections = 5,000 x 0.01 = 50. About 50 authorized users would be falsely rejected each day. This highlights the trade-off between security (FAR) and usability (FRR).",
-    "cheatsheet": "FAR/FRR Trade-off:\nDecrease threshold -> FAR increases, FRR decreases\nIncrease threshold -> FAR decreases, FRR increases\nSystem administrator must choose balance based on use case:\nHigh security (data center): lower FAR tolerated\nHigh convenience (office door): lower FRR preferred"
+    "explanation": "ステップ1: FRR = 1% = 0.01。ステップ2: 正規試行数 = 5,000。ステップ3: 誤拒否 = 5,000 x 0.01 = 50人。約50人の正規ユーザーが毎日誤って拒否される。セキュリティ（FAR）と利便性（FRR）のトレードオフを示す。",
+    "cheatsheet": "FAR/FRRのトレードオフ:\n閾値を下げる -> FAR増加、FRR減少\n閾値を上げる -> FAR減少、FRR増加\n用途に応じてバランスを選択:\n高セキュリティ（データセンター）: 低FAR優先\n高利便性（オフィスドア）: 低FRR優先"
   },
   {
     "id": 45,
     "category": "Access Control Math",
-    "question": "What is the minimum password length needed for 128 bits of entropy using only lowercase letters?",
-    "options": ["27 characters", "32 characters", "37 characters", "16 characters"],
+    "question": "小文字のみで128ビットのエントロピーを得るための最小パスワード長はいくつか？",
+    "options": ["27文字", "32文字", "37文字", "16文字"],
     "correct": 0,
-    "explanation": "Step 1: Entropy per lowercase character = log2(26) = 4.7 bits. Step 2: Length needed = 128 / 4.7 = 27.2 characters. Step 3: Round up to 28 characters for 128-bit equivalent. This shows why password complexity requirements (mixing character types) are important for shorter passwords.",
-    "cheatsheet": "Password Length for Target Entropy:\n128 bits needed:\n- Lowercase only: 28 chars\n- Alphanumeric: 22 chars\n- All printable: 20 chars\nThis is why passphrases (lowercase words) need\nto be 6-8 random words for strong security."
+    "explanation": "ステップ1: 小文字1文字あたりのエントロピー = log2(26) = 4.7ビット。ステップ2: 必要長 = 128 / 4.7 = 27.2文字。ステップ3: 128ビット相当にするには28文字に切り上げ。パスワードの複雑性要件（文字種の混合）が短いパスワードに重要な理由。",
+    "cheatsheet": "目標エントロピーに必要なパスワード長:\n128ビット必要:\n- 小文字のみ: 28文字\n- 英数字: 22文字\n- 全印刷可能文字: 20文字\nパスフレーズ（小さい単語）は強力なセキュリティに\n6-8のランダム単語が必要な理由。"
   },
   {
     "id": 46,
     "category": "Access Control Math",
-    "question": "A password policy requires 8+ characters, uppercase, lowercase, and numbers. What is the maximum entropy?",
-    "options": ["47.6 bits", "52.7 bits", "37.6 bits", "8 bits"],
+    "question": "パスワードポリシーが8文字以上、大文字・小文字・数字を必須とする場合、最大エントロピーはいくつか？",
+    "options": ["47.6ビット", "52.7ビット", "37.6ビット", "8ビット"],
     "correct": 0,
-    "explanation": "Step 1: Charset = 26 uppercase + 26 lowercase + 10 digits = 62 characters. Step 2: Entropy per char = log2(62) = 5.95 bits. Step 3: Max entropy for 8 chars = 8 x 5.95 = 47.6 bits. Note: this assumes random selection. Human-chosen passwords typically have far less entropy due to patterns.",
-    "cheatsheet": "Real vs. Theoretical Entropy:\nTheoretical: length x log2(charset) assumes random\nReal-world human passwords: typically 40% of theoretical\n'Password1!' has much less than 48-bit entropy\nUse password managers or Diceware for true random entropy\nNIST SP 800-63B: length matters more than complexity"
+    "explanation": "ステップ1: 文字種 = 26大文字 + 26小文字 + 10数字 = 62文字。ステップ2: 1文字あたりエントロピー = log2(62) = 5.95ビット。ステップ3: 8文字の最大エントロピー = 8 x 5.95 = 47.6ビット。これはランダム選択を仮定。人間が選ぶパスワードはパターンによりはるかに少ないエントロピー。",
+    "cheatsheet": "理論値と実質値のエントロピー:\n理論値: 長さ x log2(文字種)はランダムを仮定\n実世界の人間パスワード: 理論値の約40%\n'Password1!'は48ビットエントロピーよりはるかに低い\n真のランダムエントロピーにはパスワードマネージャーかDicewareを\nNIST SP 800-63B: 長さが複雑性より重要"
   },
   {
     "id": 47,
     "category": "Access Control Math",
-    "question": "In an RBAC system with 5 roles and 100 resources, each role accesses an average of 20 resources. How many access rules are there?",
+    "question": "RBACシステムで5つのロールと100のリソースがあり、各ロールが平均20リソースにアクセスする場合、アクセスルール数はいくつか？",
     "options": ["5,000", "100", "200", "500"],
     "correct": 2,
-    "explanation": "Step 1: Number of roles = 5. Step 2: Average resources per role = 20. Step 3: Total access rules = 5 x 20 = 100. Compare to DAC where each of 500 users might need individual rules: RBAC drastically reduces administrative overhead by managing access at the role level.",
-    "cheatsheet": "RBAC vs DAC Complexity:\nRBAC rules = roles x avg_permissions_per_role\nDAC rules = users x avg_permissions_per_user\nWith 500 users and 100 resources:\nDAC: potentially 500 x 100 = 50,000 rules\nRBAC: 5 roles x 20 perms = 100 rules\nSimplicity and consistency are key RBAC benefits."
+    "explanation": "ステップ1: ロール数 = 5。ステップ2: ロールあたりの平均リソース = 20。ステップ3: 総アクセスルール = 5 x 20 = 100。DACでは500ユーザーそれぞれに個別ルールが必要な可能性がある。RBACはロールレベルの管理で管理オーバーヘッドを劇的に削減。",
+    "cheatsheet": "RBAC vs DACの複雑性:\nRBACルール = ロール数 x ロールあたりの平均権限\nDACルール = ユーザー数 x ユーザーあたりの平均権限\n500ユーザー、100リソースの場合:\nDAC: 最大500 x 100 = 50,000ルール\nRBAC: 5ロール x 20権限 = 100ルール\nシンプルさと一貫性がRBACの主な利点。"
   },
   {
     "id": 48,
     "category": "Access Control Math",
-    "question": "If a system has 3 authentication factors, what is the probability of an attacker guessing all three if each has a 1/10,000 chance?",
+    "question": "システムに3つの認証要因があり、各要因が1/10,000の確率で推測可能な場合、攻撃者が全3要因を推測する確率はいくらか？",
     "options": ["1/10,000", "3/10,000", "1/10^12", "1/30,000"],
     "correct": 2,
-    "explanation": "Step 1: Probability of guessing each factor = 1/10,000. Step 2: For independent factors, multiply probabilities: (1/10,000) x (1/10,000) x (1/10,000) = 1/10^12 = 1/1,000,000,000,000. Multi-factor authentication exponentially increases security.",
-    "cheatsheet": "Multi-Factor Security:\nP(all factors guessed) = P(factor1) x P(factor2) x ... x P(factorN)\n2 factors at 1/10^4 each: 1/10^8\n3 factors at 1/10^4 each: 1/10^12\nThis is why MFA is so effective - factors multiply,\nnot add, in terms of security improvement."
+    "explanation": "ステップ1: 各要因の推測確率 = 1/10,000。ステップ2: 独立要因の場合、確率を掛け合わせ: (1/10,000) x (1/10,000) x (1/10,000) = 1/10^12 = 1/1,000,000,000,000。多要素認証はセキュリティを指数関数的に向上させる。",
+    "cheatsheet": "多要素セキュリティ:\nP(全要因推測) = P(要因1) x P(要因2) x ... x P(要因N)\n2要因（各1/10^4）: 1/10^8\n3要因（各1/10^4）: 1/10^12\nMFAが非常に有効な理由 - 要因はセキュリティ改善において\n加算ではなく乗算になる。"
   },
   {
     "id": 49,
     "category": "Access Control Math",
-    "question": "A system uses 4-digit PIN (0000-9999). How many possible combinations exist?",
+    "question": "4桁PIN（0000-9999）を使用するシステムの可能な組み合わせ数はいくつか？",
     "options": ["4,000", "10,000", "99,999", "1,000"],
     "correct": 1,
-    "explanation": "A 4-digit PIN uses digits 0-9 for each position. Each position has 10 possibilities. Total = 10^4 = 10,000 possible combinations. With no rate limiting, this could be brute-forced very quickly. This is why additional factors (biometrics, device trust) are important for PIN-based systems.",
-    "cheatsheet": "PIN and Passcode Combinations:\n4-digit PIN: 10^4 = 10,000\n6-digit PIN: 10^6 = 1,000,000\n8-digit numeric: 10^8 = 100,000,000\n4-digit alphanumeric: 62^4 = 14,776,336\nAlways combine with rate limiting and lockout policies."
+    "explanation": "4桁PINは各桁に数字0-9を使用。各桁に10の可能性。総数 = 10^4 = 10,000の可能な組み合わせ。レート制限がない場合、非常に速く総当たりできる。PINベースシステムでは追加要因（生体認証、デバイス信頼）が重要。",
+    "cheatsheet": "PINとパスコードの組み合わせ:\n4桁PIN: 10^4 = 10,000\n6桁PIN: 10^6 = 1,000,000\n8桁数字: 10^8 = 100,000,000\n4桁英数字: 62^4 = 14,776,336\n常にレート制限とロックアウトポリシーを組み合わせる。"
   },
   {
     "id": 50,
     "category": "Access Control Math",
-    "question": "A biometric system has a CER of 0.5%. System A has FAR=0.01% and System B has FAR=1%. Which is more appropriate for a nuclear facility?",
-    "options": ["System A (lower FAR)", "System B (lower FRR)", "Neither", "Both are equivalent"],
+    "question": "生体認証システムのCERが0.5%。システムAはFAR=0.01%、システムBはFAR=1%。原子力施設により適切なのはどちらか？",
+    "options": ["システムA（低FAR）", "システムB（低FRR）", "どちらも不適", "両方とも同等"],
     "correct": 0,
-    "explanation": "For a nuclear facility, security is paramount - preventing unauthorized access is more important than convenience. System A has FAR=0.01% (1 in 10,000 impostors accepted) vs System B's 1% (1 in 100). System A's lower FAR is more appropriate for high-security environments, even though it may have a higher FRR.",
-    "cheatsheet": "Choosing FAR/FRR by Use Case:\nHigh security (military, nuclear): minimize FAR\nHigh convenience (office, mobile): minimize FRR\nModerate security (banking): balanced\nThe threshold adjustment affects both rates inversely.\nCER provides a comparison point between systems."
+    "explanation": "原子力施設ではセキュリティが最優先 - 不正アクセスの防止が利便性より重要。システムAはFAR=0.01%（10,000人のうち1人が不正受け入れ）で、システムBの1%（100人に1人）より優れている。FRRが高くても、原子力施設のような高セキュリティ環境には低FARが適切。",
+    "cheatsheet": "用途別FAR/FRRの選択:\n高セキュリティ（軍事、原子力）: FAR最小化\n高利便性（オフィス、モバイル）: FRR最小化\n中程度セキュリティ（銀行）: バランス\n閾値調整は両方のレートに逆比例して影響。\nCERはシステム間の比較ポイント。"
   },
   {
     "id": 51,
     "category": "Access Control Math",
-    "question": "If a password uses a dictionary of 10,000 common words and is 4 words long, what is the entropy?",
-    "options": ["13.3 bits", "40,000 bits", "53.2 bits", "16 bits"],
+    "question": "パスワードが10,000語の辞書を使用し、4語で構成される場合、エントロピーはいくつか？",
+    "options": ["13.3ビット", "40,000ビット", "53.2ビット", "16ビット"],
     "correct": 2,
-    "explanation": "Step 1: Word pool size = 10,000. Step 2: Entropy per word = log2(10,000) = 13.29 bits. Step 3: Total entropy = 4 x 13.29 = 53.2 bits. This is comparable to an 8-character random alphanumeric password but much easier to remember. Using EFF's 7,776-word list: 4 words = 51.7 bits.",
-    "cheatsheet": "Passphrase Entropy:\nEntropy = num_words x log2(word_list_size)\nDiceware (7776 words):\n4 words: 51.7 bits\n6 words: 77.6 bits\n8 words: 103.4 bits\nPassphrases trade length for memorability.\nRandom word selection is critical."
+    "explanation": "ステップ1: 語プールサイズ = 10,000。ステップ2: 1語あたりエントロピー = log2(10,000) = 13.29ビット。ステップ3: 総エントロピー = 4 x 13.29 = 53.2ビット。8文字ランダム英数字パスワードと同等だが、はるかに覚えやすい。EFFの7,776語リスト使用時: 4語 = 51.7ビット。",
+    "cheatsheet": "パスフレーズのエントロピー:\nエントロピー = 語数 x log2(辞書サイズ)\nDiceware（7776語）:\n4語: 51.7ビット\n6語: 77.6ビット\n8語: 103.4ビット\nパスフレーズは記憶性のために長さと交換。\nランダムな単語選択が重要。"
   },
   {
     "id": 52,
     "category": "Access Control Math",
-    "question": "An account lockout policy allows 5 attempts before locking for 30 minutes. Against a 4-digit PIN with 10,000 combinations, what is the maximum daily attempts?",
+    "question": "アカウントロックアウトポリシーが5回試行で30分間ロックする場合、10,000組み合わせの4桁PINに対する1日の最大試行回数はいくらか？",
     "options": ["10,000", "240", "120", "720"],
-    "correct": 0,
-    "explanation": "Wait - let me recalculate: 24 hours x 60 minutes = 1,440 minutes. 1,440 / 30 = 48 lockout cycles. 48 x 5 attempts = 240 attempts per day. This means only 240/10,000 = 2.4% of the PIN space can be tested per day, making brute force impractical.",
-    "cheatsheet": "Account Lockout Math:\nMax daily attempts = (1440/lockout_minutes) x max_attempts\n5 attempts, 30-min lockout: 240/day\n5 attempts, 60-min lockout: 120/day\n3 attempts, 15-min lockout: 288/day\nRate limiting dramatically slows brute force attacks."
+    "correct": 1,
+    "explanation": "計算: 24時間 x 60分 = 1,440分。1,440 / 30 = 48ロックアウトサイクル。48 x 5回試行 = 1日240回試行。PIN空間の240/10,000 = 2.4%しか1日にテストできず、総当たりが非現実的になる。",
+    "cheatsheet": "アカウントロックアウトの計算:\n1日最大試行 = (1440/ロックアウト分数) x 最大試行回数\n5回試行、30分ロック: 240/日\n5回試行、60分ロック: 120/日\n3回試行、15分ロック: 288/日\nレート制限は総当たり攻撃を劇的に遅延。"
   },
   {
     "id": 53,
     "category": "Access Control Math",
-    "question": "What is the effective security level of two independent authentication factors with 20 bits and 24 bits of entropy respectively?",
-    "options": ["44 bits", "24 bits", "20 bits", "480 bits"],
+    "question": "20ビットと24ビットのエントロピーを持つ2つの独立した認証要因の実効セキュリティレベルはいくつか？",
+    "options": ["44ビット", "24ビット", "20ビット", "480ビット"],
     "correct": 0,
-    "explanation": "For independent authentication factors, the effective entropy is the SUM of individual entropies: 20 + 24 = 44 bits. This is because the attacker must crack both factors independently. This is the fundamental reason multi-factor authentication is so much stronger than single-factor.",
-    "cheatsheet": "MFA Entropy Addition:\nTotal entropy = entropy_factor1 + entropy_factor2 + ...\nFactor 1 (password): 40 bits\nFactor 2 (SMS code, 6 digits): ~20 bits\nCombined: 60 bits (not 40 or 20)\nEach additional factor adds to total security."
+    "explanation": "独立した認証要因の場合、実効エントロピーは個別エントロピーの合計: 20 + 24 = 44ビット。攻撃者は両方の要因を独立して突破する必要があるため。これが多要素認証が単一要素よりはるかに強力な理由。",
+    "cheatsheet": "MFAエントロピーの加算:\n総エントロピー = 要因1エントロピー + 要因2エントロピー + ...\n要因1（パスワード）: 40ビット\n要因2（SMSコード、6桁）: 約20ビット\n合計: 60ビット（40や20ではない）\n追加の各要因が総セキュリティに加算される。"
   },
   {
     "id": 54,
     "category": "Access Control Math",
-    "question": "A company has 1000 employees, each with unique access permissions. After implementing RBAC with 10 roles, how many permission sets need to be managed?",
+    "question": "企業に1,000人の従業員がおり、各人に固有のアクセス権限がある。10ロールのRBAC導入後、管理すべき権限セット数はいくらか？",
     "options": ["1,000", "10", "100", "5,000"],
     "correct": 1,
-    "explanation": "With RBAC, permissions are assigned to 10 roles, not to 1000 individual users. Each user is assigned one or more roles. This reduces permission management from 1000 permission sets (DAC) to just 10 role-based permission sets. User-role assignments (1000) are simpler than resource-permission assignments.",
-    "cheatsheet": "RBAC Efficiency:\nBefore RBAC: manage permissions per user (N users)\nAfter RBAC: manage permissions per role (R roles)\nSimplification ratio: N/R\n1000 users / 10 roles = 100x simplification\nRole engineering is the critical initial investment."
+    "explanation": "RBACでは権限は10ロールに割り当てられ、1,000の個別ユーザーには割り当てられない。各ユーザーは1つ以上のロールに割り当てられる。権限管理が1,000の権限セット（DAC）から10のロールベース権限セットに削減。ユーザーロール割り当て（1,000）はリソース権限割り当てよりシンプル。",
+    "cheatsheet": "RBACの効率性:\nRBAC前: ユーザーごとの権限管理（Nユーザー）\nRBAC後: ロールごとの権限管理（Rロール）\n簡素化率: N/R\n1000ユーザー / 10ロール = 100倍の簡素化\nロール設計（ロールエンジニアリング）が重要な初期投資。"
   },
   {
     "id": 55,
     "category": "Access Control Math",
-    "question": "A system has a maximum of 10 failed login attempts before account lockout. If there are 10,000 possible passwords, what percentage can an attacker try?",
+    "question": "最大10回のログイン失敗でアカウントロックアウトするシステムで、10,000の可能なパスワードがある場合、攻撃者は何パーセント試行できるか？",
     "options": ["1%", "0.1%", "10%", "100%"],
     "correct": 1,
-    "explanation": "Step 1: Maximum attempts = 10. Step 2: Total passwords = 10,000. Step 3: Percentage = 10/10,000 x 100 = 0.1%. The attacker can only try 0.1% of the password space before being locked out. This demonstrates the effectiveness of account lockout policies against brute force.",
-    "cheatsheet": "Brute Force with Lockout:\nCoverage = max_attempts / total_passwords x 100%\n10 attempts / 10K passwords: 0.1%\n5 attempts / 10K passwords: 0.05%\nFor higher security: reduce max attempts and add delays\nCombine with MFA for defense in depth."
+    "explanation": "ステップ1: 最大試行 = 10。ステップ2: 総パスワード = 10,000。ステップ3: 割合 = 10/10,000 x 100 = 0.1%。攻撃者はロックアウト前にパスワード空間の0.1%しか試行できない。アカウントロックアウトポリシーの総当たりへの有効性を示す。",
+    "cheatsheet": "ロックアウト付き総当たり:\nカバレッジ = 最大試行回数 / 総パスワード数 x 100%\n10試行 / 10Kパスワード: 0.1%\n5試行 / 10Kパスワード: 0.05%\n高セキュリティ: 最大試行を減らし遅延を追加\nMFAと組み合わせて多層防御。"
   },
   {
     "id": 56,
     "category": "Network Security",
-    "question": "A DMZ subnet uses 192.168.1.0/28. How many usable host addresses are available?",
+    "question": "DMZサブネットが192.168.1.0/28を使用する場合、利用可能なホストアドレスはいくつか？",
     "options": ["14", "16", "15", "12"],
     "correct": 0,
-    "explanation": "Step 1: /28 means 28 bits for network, 4 bits for hosts. Step 2: Total addresses = 2^4 = 16. Step 3: Usable addresses = 16 - 2 (network address and broadcast) = 14. The DMZ can have 14 hosts (e.g., web servers, email servers, DNS servers).",
-    "cheatsheet": "Subnet Host Calculation:\nUsable hosts = 2^(32-prefix) - 2\n/24: 254 hosts\n/25: 126 hosts\n/26: 62 hosts\n/27: 30 hosts\n/28: 14 hosts\n/29: 6 hosts\n/30: 2 hosts (common for point-to-point links)"
+    "explanation": "ステップ1: /28はネットワークに28ビット、ホストに4ビット。ステップ2: 総アドレス = 2^4 = 16。ステップ3: 利用可能アドレス = 16 - 2（ネットワークアドレスとブロードキャスト）= 14。DMZには14台のホスト（Webサーバー、メールサーバー、DNSサーバーなど）を置ける。",
+    "cheatsheet": "サブネットのホスト計算:\n利用可能ホスト = 2^(32-プレフィックス) - 2\n/24: 254ホスト\n/25: 126ホスト\n/26: 62ホスト\n/27: 30ホスト\n/28: 14ホスト\n/29: 6ホスト\n/30: 2ホスト（ポイントツーポイントリンクに一般的）"
   },
   {
     "id": 57,
     "category": "Network Security",
-    "question": "How many /24 subnets can be created from a 192.168.0.0/21 network?",
+    "question": "192.168.0.0/21ネットワークからいくつの/24サブネットを作成できるか？",
     "options": ["2", "4", "8", "16"],
     "correct": 2,
-    "explanation": "Step 1: /21 has 11 bits for hosts. Step 2: /24 has 8 bits for hosts. Step 3: Borrowed bits = 24 - 21 = 3 bits. Step 4: Number of /24 subnets = 2^3 = 8. Each /24 subnet provides 254 usable addresses. This is useful for network segmentation in security architecture.",
-    "cheatsheet": "Subnet Division:\nNew subnets = 2^(new_prefix - original_prefix)\n/16 to /24: 2^8 = 256 subnets\n/20 to /24: 2^4 = 16 subnets\n/22 to /24: 2^2 = 4 subnets\n/21 to /24: 2^3 = 8 subnets\nSubnetting is key to network segmentation."
+    "explanation": "ステップ1: /21はホストに11ビット。ステップ2: /24はホストに8ビット。ステップ3: 借用ビット = 24 - 21 = 3ビット。ステップ4: /24サブネット数 = 2^3 = 8。各/24サブネットは254の利用可能アドレスを提供。セキュリティアーキテクチャのネットワークセグメンテーションに有用。",
+    "cheatsheet": "サブネット分割:\n新サブネット = 2^(新プレフィックス - 元プレフィックス)\n/16から/24: 2^8 = 256サブネット\n/20から/24: 2^4 = 16サブネット\n/22から/24: 2^2 = 4サブネット\n/21から/24: 2^3 = 8サブネット\nサブネット化はネットワークセグメンテーションの鍵。"
   },
   {
     "id": 58,
     "category": "Network Security",
-    "question": "A firewall rule allows TCP port 443 from any source to destination 10.0.0.5. How many connections from 192.168.1.0/24 are permitted?",
-    "options": ["1", "254", "Unlimited", "256"],
+    "question": "ファイアウォールルールが任意の送信元から宛先10.0.0.5へのTCPポート443を許可する場合、192.168.1.0/24からの接続数はいくつか？",
+    "options": ["1", "254", "無制限", "256"],
     "correct": 1,
-    "explanation": "Step 1: 192.168.1.0/24 has 254 usable hosts (excluding network 192.168.1.0 and broadcast 192.168.1.255). Step 2: Each host can connect on port 443 to 10.0.0.5. Step 3: 254 hosts can each establish connections. The number of connections (not hosts) could be much higher if each host makes multiple connections.",
-    "cheatsheet": "Firewall Rule Analysis:\nRule: Allow src_any -> dst:10.0.0.5 port:443\n/src/24: 254 hosts can connect\nConnections per host depend on application\nAdd rate limiting to prevent abuse\nUse stateful inspection to track connections"
+    "explanation": "ステップ1: 192.168.1.0/24は254の利用可能ホストを持つ（ネットワーク192.168.1.0とブロードキャスト192.168.1.255を除く）。ステップ2: 各ホストは10.0.0.5にポート443で接続できる。ステップ3: 254ホストがそれぞれ接続を確立できる。接続数（ホスト数ではない）は各ホストが複数接続すればさらに多い。",
+    "cheatsheet": "ファイアウォールルールの分析:\nルール: 許可 src_any -> dst:10.0.0.5 port:443\n/src/24: 254ホストが接続可能\nホストあたりの接続数はアプリケーションに依存\n乱用防止にレート制限を追加\nステートフルインスペクションで接続を追跡"
   },
   {
     "id": 59,
     "category": "Network Security",
-    "question": "IPsec adds approximately 50-60 bytes of overhead per packet. A 1500-byte MTU Ethernet frame carrying a 1400-byte IP packet will become approximately what size after ESP tunnel mode?",
-    "options": ["1450 bytes", "1460 bytes", "1500 bytes", "1560 bytes"],
+    "question": "IPsecがパケットあたり約50-60バイトのオーバーヘッドを追加する。1500バイトMTUのイーサネットフレームが1400バイトIPパケットを運ぶ場合、ESPトンネルモード後は約どれくらいのサイズになるか？",
+    "options": ["約1450バイト", "約1460バイト", "約1500バイト", "約1560バイト"],
     "correct": 1,
-    "explanation": "Step 1: Original IP packet = 1400 bytes. Step 2: ESP adds new IP header (20 bytes) + ESP header (8-12 bytes) + ESP trailer (~12 bytes) = ~44 bytes. Step 3: Total = 1400 + 44 = 1444 bytes. With additional overhead, approximately 1460 bytes. This often requires reducing the MTU or using TCP MSS clamping to avoid fragmentation.",
-    "cheatsheet": "IPsec Overhead:\nTransport mode: +20-30 bytes\nTunnel mode: +40-60 bytes\nESP overhead: new IP header + ESP header + ESP trailer\nResult may exceed MTU -> fragmentation\nSolution: reduce MTU or use TCP MSS clamping"
+    "explanation": "ステップ1: 元IPパケット = 1400バイト。ステップ2: ESPオーバーヘッド = 新IPヘッダ（20バイト）+ ESPヘッダ（8-12バイト）+ ESPトレーラ（約12バイト）= 約44バイト。ステップ3: 合計 = 1400 + 44 = 1444バイト。追加オーバーヘッドで約1460バイト。MTUの縮小またはTCP MSSクランプによるフラグメンテーション回避が必要な場合がある。",
+    "cheatsheet": "IPsecオーバーヘッド:\nトランスポートモード: +20-30バイト\nトンネルモード: +40-60バイト\nESPオーバーヘッド: 新IPヘッダ + ESPヘッダ + ESPトレーラ\n結果がMTUを超える -> フラグメンテーション\n対策: MTUを縮小またはTCP MSSクランプを使用"
   },
   {
     "id": 60,
     "category": "Network Security",
-    "question": "A company needs 5 isolated network segments with at least 25 hosts each. What is the most efficient subnet mask?",
+    "question": "各25ホスト以上の5つの分離されたネットワークセグメントが必要な場合、最も効率的なサブネットマスクはどれか？",
     "options": ["255.255.255.192 (/26)", "255.255.255.128 (/25)", "255.255.255.224 (/27)", "255.255.255.0 (/24)"],
     "correct": 2,
-    "explanation": "Step 1: Need at least 25 hosts per subnet. Step 2: /27 provides 2^5-2 = 30 usable hosts. /26 provides 62 hosts (more than needed). Step 3: From /24, creating /27 subnets: 2^(27-24) = 8 subnets available, need only 5. /27 is the most efficient mask providing exactly enough hosts.",
-    "cheatsheet": "Subnet Mask Selection:\nRequired hosts -> minimum host bits -> subnet mask\n1-2 hosts: /30\n3-6 hosts: /29\n7-14 hosts: /28\n15-30 hosts: /27\n31-62 hosts: /26\n63-126 hosts: /25\n127-254 hosts: /24"
+    "explanation": "ステップ1: サブネットあたり最低25ホストが必要。ステップ2: /27は 2^5-2 = 30利用可能ホスト。/26は62ホスト（過剰）。ステップ3: /24から/27サブネット作成: 2^(27-24) = 8サブネット利用可能、必要は5のみ。/27は必要なホスト数をちょうど提供する最も効率的なマスク。",
+    "cheatsheet": "サブネットマスクの選択:\n必要ホスト -> 最小ホストビット -> サブネットマスク\n1-2ホスト: /30\n3-6ホスト: /29\n7-14ホスト: /28\n15-30ホスト: /27\n31-62ホスト: /26\n63-126ホスト: /25\n127-254ホスト: /24"
   },
   {
     "id": 61,
     "category": "Network Security",
-    "question": "A firewall has 100 rules. If each rule takes 1 microsecond to evaluate, what is the maximum latency added to a packet that matches the last rule?",
+    "question": "ファイアウォールに100ルールがあり、各ルールの評価に1マイクロ秒かかる場合、最後のルールに一致するパケットの最大レイテンシはいくらか？",
     "options": ["1 ms", "10 ms", "100 ms", "0.1 ms"],
     "correct": 0,
-    "explanation": "Step 1: Rules are evaluated in order (first match). Step 2: Packet matching the last rule requires evaluation of all 100 rules. Step 3: Latency = 100 x 1 microsecond = 100 microseconds = 0.1 ms. This demonstrates why firewall rule ordering matters - frequently matched rules should be placed first.",
-    "cheatsheet": "Firewall Rule Optimization:\nLatency = rule_position x evaluation_time\nPlace most-hit rules at the top\nUse default deny as the last rule\nRegularly audit and remove unused rules\nComplex rules (deep inspection) take more time"
+    "explanation": "ステップ1: ルールは順番に評価（最初一致）。ステップ2: 最後のルールに一致するパケットは全100ルールの評価が必要。ステップ3: レイテンシ = 100 x 1マイクロ秒 = 100マイクロ秒 = 0.1 ms。ファイアウォールルールの順序が重要な理由 - 高頻度一致ルールは先頭に配置すべき。",
+    "cheatsheet": "ファイアウォールルールの最適化:\nレイテンシ = ルール位置 x 評価時間\n最もヒットするルールを先頭に\nデフォルト拒否を最後のルールに\n定期的に監査し未使用ルールを削除\n複雑なルール（ディープインスペクション）はより時間がかかる"
   },
   {
     "id": 62,
     "category": "Network Security",
-    "question": "How many ports are in the ephemeral port range (typically 49152-65535)?",
+    "question": "エフェメラルポート範囲（通常49152-65535）のポート数はいくつか？",
     "options": ["1,024", "16,384", "65,536", "4,096"],
     "correct": 1,
-    "explanation": "Step 1: Range = 49152 to 65535. Step 2: Count = 65535 - 49152 + 1 = 16,384 ports. These are used for temporary client-side ports when initiating connections. TCP SYN flood attacks can exhaust this pool, preventing legitimate connections.",
-    "cheatsheet": "Port Ranges:\nWell-known: 0-1023 (require root/admin)\nRegistered: 1024-49151\nEphemeral/Dynamic: 49152-65535 (16,384 ports)\nSYN flood target: ephemeral port exhaustion\nSolutions: SYN cookies,缩短 TIME_WAIT"
+    "explanation": "ステップ1: 範囲 = 49152-65535。ステップ2: 数 = 65535 - 49152 + 1 = 16,384ポート。接続開始時の一時的なクライアント側ポートとして使用される。TCP SYNフラッド攻撃はこのプールを枯渇させ、正当な接続を妨害できる。",
+    "cheatsheet": "ポート範囲:\nWell-known: 0-1023（root/admin権限が必要）\nRegistered: 1024-49151\nエフェメラル/動的: 49152-65535（16,384ポート）\nSYNフラッドの標的: エフェメラルポート枯渇\n対策: SYNクッキー、TIME_WAIT短縮"
   },
   {
     "id": 63,
     "category": "Network Security",
-    "question": "A VPN adds 100 bytes of overhead per packet. How much bandwidth overhead for a 1 Gbps link?",
-    "options": ["0.1%", "About 5-10%", "50%", "100%"],
+    "question": "VPNがパケットあたり100バイトのオーバーヘッドを追加する場合、1Gbpsリンクの帯域幅オーバーヘッドはどれくらいか？",
+    "options": ["0.1%", "約5-10%", "50%", "100%"],
     "correct": 1,
-    "explanation": "Step 1: Typical IP packet = ~1500 bytes. Step 2: VPN overhead = ~100 bytes. Step 3: Overhead percentage = 100/1500 = 6.67%. For smaller packets (500 bytes): 100/500 = 20%. Bandwidth reduction is typically 5-15% depending on packet size distribution.",
-    "cheatsheet": "VPN Bandwidth Impact:\nOverhead % = VPN_overhead / packet_size x 100\nLarge packets (1500B): ~5-7% overhead\nSmall packets (500B): ~15-20% overhead\nVoice (200B): ~33% overhead\nCompression can offset overhead for text data"
+    "explanation": "ステップ1: 典型的IPパケット = 約1500バイト。ステップ2: VPNオーバーヘッド = 約100バイト。ステップ3: オーバーヘッド率 = 100/1500 = 6.67%。小パケット（500バイト）の場合: 100/500 = 20%。帯域幅削減はパケットサイズ分布により通常5-15%。",
+    "cheatsheet": "VPN帯域幅の影響:\nオーバーヘッド率 = VPNオーバーヘッド / パケットサイズ x 100\n大パケット（1500B）: 約5-7%オーバーヘッド\n小パケット（500B）: 約15-20%オーバーヘッド\n音声（200B）: 約33%オーバーヘッド\n圧縮でテキストデータのオーバーヘッドを相殺可能"
   },
   {
     "id": 64,
     "category": "Network Security",
-    "question": "A network uses VLAN IDs 10, 20, 30, and 40. What is the 802.1Q tag overhead per frame?",
-    "options": ["4 bytes", "8 bytes", "16 bytes", "2 bytes"],
+    "question": "ネットワークがVLAN ID 10, 20, 30, 40を使用する場合、802.1Qタグのフレームあたりオーバーヘッドはいくらか？",
+    "options": ["4バイト", "8バイト", "16バイト", "2バイト"],
     "correct": 0,
-    "explanation": "802.1Q adds a 4-byte tag to each Ethernet frame: 2 bytes for Tag Protocol Identifier (TPID, 0x8100) and 2 bytes for Tag Control Information (TCI, including 12-bit VLAN ID and 3-bit priority). The maximum Ethernet frame increases from 1518 to 1522 bytes.",
-    "cheatsheet": "802.1Q VLAN Tagging:\nTag size: 4 bytes\nBreakdown: 2B TPID + 2B TCI\nTCI: 3-bit priority + 1-bit DEI + 12-bit VLAN ID\nMax VLANs: 4096 (0-4095)\n0 and 4095 are reserved\nUsable: 1-4094"
+    "explanation": "802.1Qは各イーサネットフレームに4バイトのタグを追加: 2バイトのTPID（Tag Protocol Identifier、0x8100）と2バイトのTCI（Tag Control Information、12ビットVLAN IDと3ビット優先度）。最大イーサネットフレームは1518から1522バイトに増加。",
+    "cheatsheet": "802.1Q VLANタギング:\nタグサイズ: 4バイト\n構成: 2B TPID + 2B TCI\nTCI: 3ビット優先度 + 1ビットDEI + 12ビットVLAN ID\n最大VLAN: 4096（0-4095）\n0と4095は予約済み\n使用可能: 1-4094"
   },
   {
     "id": 65,
     "category": "Network Security",
-    "question": "An ACL has 50 rules and processes 10,000 packets per second. If 90% of packets match rule 1, what is the average evaluations per packet?",
+    "question": "ACLに50ルールがあり、毎秒10,000パケットを処理する。90%のパケットがルール1に一致する場合、平均評価回数はいくらか？",
     "options": ["1", "5", "10", "50"],
     "correct": 0,
-    "explanation": "Step 1: 90% of packets match rule 1 (1 evaluation). Step 2: Remaining 10% need more evaluations. Step 3: Average = 0.9 x 1 + 0.1 x avg_remaining = approximately 1.x. Since most packets match early, the average is close to 1. This highlights the importance of rule ordering for performance.",
-    "cheatsheet": "ACL Performance Optimization:\nMost matched rules at the top\nDefault deny at the bottom\nMonitor hit counts per rule\nRemove or consolidate unused rules\nUse object groups for cleaner rules\nEarly matches = lower processing overhead"
+    "explanation": "ステップ1: 90%のパケットがルール1に一致（1回評価）。ステップ2: 残り10%はより多くの評価が必要。ステップ3: 平均 = 0.9 x 1 + 0.1 x 残り平均 ≒ 約1.x。大部分が早期に一致するため、平均は1に近い。ルール順序がパフォーマンスに重要なことを示す。",
+    "cheatsheet": "ACLパフォーマンスの最適化:\n最も一致するルールを先頭に\nデフォルト拒否を末尾に\nルールごとのヒット数を監視\n未使用ルールを削除または統合\nオブジェクトグループでクリーンなルール\n早期一致 = 処理オーバーヘッド低減"
   },
   {
     "id": 66,
     "category": "Network Security",
-    "question": "What is the CIDR notation for a subnet mask of 255.255.255.240?",
+    "question": "サブネットマスク255.255.255.240のCIDR表記はどれか？",
     "options": ["/26", "/27", "/28", "/29"],
     "correct": 2,
-    "explanation": "Step 1: 255.255.255.240 in binary: 11111111.11111111.11111111.11110000. Step 2: Count the 1-bits: 8+8+8+4 = 28. Step 3: CIDR = /28. The last octet (240 = 11110000) has 4 host bits, giving 2^4-2 = 14 usable addresses.",
-    "cheatsheet": "Subnet Mask to CIDR:\n255.0.0.0 = /8\n255.255.0.0 = /16\n255.255.255.0 = /24\n255.255.255.128 = /25\n255.255.255.192 = /26\n255.255.255.224 = /27\n255.255.255.240 = /28\n255.255.255.248 = /29\n255.255.255.252 = /30"
+    "explanation": "ステップ1: 255.255.255.240の2進数: 11111111.11111111.11111111.11110000。ステップ2: 1のビット数: 8+8+8+4 = 28。ステップ3: CIDR = /28。最後のオクテット（240 = 11110000）は4ホストビットを持ち、2^4-2 = 14利用可能アドレス。",
+    "cheatsheet": "サブネットマスクからCIDR:\n255.0.0.0 = /8\n255.255.0.0 = /16\n255.255.255.0 = /24\n255.255.255.128 = /25\n255.255.255.192 = /26\n255.255.255.224 = /27\n255.255.255.240 = /28\n255.255.255.248 = /29\n255.255.255.252 = /30"
   },
   {
     "id": 67,
     "category": "Network Security",
-    "question": "A DDoS attack sends 10 Gbps of traffic to a server with 1 Gbps bandwidth. What happens?",
-    "options": ["The server processes normally", "The server is overwhelmed and legitimate traffic cannot get through", "The firewall blocks it all", "The attacker's traffic is slowed to 1 Gbps"],
+    "question": "DDoS攻撃が1Gbps帯域幅のサーバーに10Gbpsのトラフィックを送信する場合、どうなるか？",
+    "options": ["サーバーは正常に処理", "サーバーが過負荷となり正当なトラフィックが届かない", "ファイアウォールが全て遮断", "攻撃トラフィックは1Gbpsに低下"],
     "correct": 1,
-    "explanation": "The 10 Gbps attack overwhelms the 1 Gbps server link, saturating its bandwidth. Legitimate traffic cannot compete with the flood of malicious traffic. The server becomes unavailable to legitimate users. Mitigation requires upstream scrubbing, anycast distribution, or traffic rerouting.",
-    "cheatsheet": "DDoS Bandwidth Analysis:\nIf attack > capacity: link saturated, service unavailable\nScrubbing center: filters attack traffic upstream\nAnycast: distributes traffic globally\nBlackholing: drops all traffic to the target\nRate limiting: reduces impact of moderate attacks"
+    "explanation": "10Gbps攻撃が1Gbpsサーバーリンクを圧迫し、帯域幅を飽和させる。正当なトラフィックは悪意のあるトラフィックの洪水と競合できない。サーバーは正当なユーザーに利用できなくなる。緩和にはアップストリームスクラビング、エニーキャスト分散、トラフィック再ルーティングが必要。",
+    "cheatsheet": "DDoS帯域幅の分析:\n攻撃 > 容量の場合: リンク飽和、サービス不可\nスクラビングセンター: アップストリームで攻撃トラフィックをフィルタ\nエニーキャスト: トラフィックをグローバルに分散\nブラックホール: ターゲットへの全トラフィックを破棄\nレート制限: 中程度の攻撃の影響を低減"
   },
   {
     "id": 68,
     "category": "Network Security",
-    "question": "A stateful firewall tracks 10,000 concurrent connections. Each entry uses 300 bytes. How much memory is used?",
+    "question": "ステートフルファイアウォールが10,000の同時接続を追跡し、各エントリが300バイトを使用する場合、メモリ使用量はいくらか？",
     "options": ["3 MB", "30 MB", "300 KB", "3 GB"],
     "correct": 0,
-    "explanation": "Step 1: Connections = 10,000. Step 2: Memory per entry = 300 bytes. Step 3: Total = 10,000 x 300 = 3,000,000 bytes = 3 MB. This is manageable but state exhaustion attacks (SYN floods) can fill the state table, preventing legitimate connections.",
-    "cheatsheet": "Firewall State Table:\nMemory = connections x entry_size\nTypical entry: 200-400 bytes\n10,000 connections x 300B = 3 MB\nSYN flood: fills state table with half-open connections\nMitigation: SYN cookies, SYN proxy, TCP intercept"
+    "explanation": "ステップ1: 接続数 = 10,000。ステップ2: エントリあたりメモリ = 300バイト。ステップ3: 合計 = 10,000 x 300 = 3,000,000バイト = 3MB。管理可能だが、ステート枯渇攻撃（SYNフラッド）はステートテーブルを満たし、正当な接続を妨害できる。",
+    "cheatsheet": "ファイアウォールステートテーブル:\nメモリ = 接続数 x エントリサイズ\n典型的エントリ: 200-400バイト\n10,000接続 x 300B = 3MB\nSYNフラッド: 半開接続でステートテーブルを満たす\n対策: SYNクッキー、SYNプロキシ、TCPインターセプト"
   },
   {
     "id": 69,
     "category": "Network Security",
-    "question": "How many /24 networks can fit in a /16 network?",
+    "question": "/16ネットワークにいくつの/24ネットワークが収まるか？",
     "options": ["16", "64", "128", "256"],
     "correct": 3,
-    "explanation": "Step 1: /16 has 16 network bits. Step 2: /24 has 24 network bits. Step 3: Borrowed bits = 24 - 16 = 8 bits. Step 4: Number of /24s = 2^8 = 256. Each /24 has 254 hosts. Total: 256 x 254 = 65,024 hosts in the /16.",
-    "cheatsheet": "Network Division:\n/16 = 256 x /24 = 1024 x /22\n/8 = 256 x /16 = 65,536 x /24\nUseful for organization-wide IP planning:\nDepartment A: /24\nDepartment B: /24\nDMZ: /24\nManagement: /24"
+    "explanation": "ステップ1: /16は16ネットワークビット。ステップ2: /24は24ネットワークビット。ステップ3: 借用ビット = 24 - 16 = 8ビット。ステップ4: /24数 = 2^8 = 256。各/24は254ホストを持つ。合計: 256 x 254 = 65,024ホストが/16に収まる。",
+    "cheatsheet": "ネットワーク分割:\n/16 = 256 x /24 = 1024 x /22\n/8 = 256 x /16 = 65,536 x /24\n組織全体のIP計画に有用:\n部門A: /24\n部門B: /24\nDMZ: /24\n管理: /24"
   },
   {
     "id": 70,
     "category": "Network Security",
-    "question": "A stateless firewall processes a packet in 5 microseconds. If it receives 1,000,000 packets per second, what percentage of CPU time is used?",
+    "question": "ステートレスファイアウォールがパケットを5マイクロ秒で処理する場合、毎秒1,000,000パケットを受信すると、CPU時間の何パーセントが使用されるか？",
     "options": ["50%", "500%", "5%", "100%"],
     "correct": 1,
-    "explanation": "Step 1: Processing per packet = 5 microseconds. Step 2: Packets per second = 1,000,000. Step 3: Total processing time = 1,000,000 x 5 microseconds = 5,000,000 microseconds = 5 seconds. Step 4: At 1,000,000 pps, the firewall needs 5 seconds per second = 500% CPU. This exceeds capacity and packets will be dropped.",
-    "cheatsheet": "Firewall Capacity Planning:\nCPU usage = pps x processing_time_per_packet\nIf > 100%: packets dropped, latency increases\nBudget headroom: plan for 60-70% max utilization\nBurst capacity: handle 2-3x average traffic\nHardware acceleration helps with encrypted traffic"
+    "explanation": "ステップ1: パケットあたり処理時間 = 5マイクロ秒。ステップ2: 毎秒パケット = 1,000,000。ステップ3: 総処理時間 = 1,000,000 x 5マイクロ秒 = 5,000,000マイクロ秒 = 5秒。ステップ4: 1,000,000ppsでファイアウォールは毎秒5秒 = 500% CPUを必要。容量を超過し、パケットがドロップされる。",
+    "cheatsheet": "ファイアウォール容量計画:\nCPU使用率 = pps x パケットあたり処理時間\n100%を超える場合: パケットドロップ、レイテンシ増加\nヘッドルーム: 最大60-70%利用率で計画\nバースト容量: 平均の2-3倍トラフィックに対応\nハードウェアアクセラレーションが暗号トラフィックに有効"
   },
   {
     "id": 71,
     "category": "Incident Metrics",
-    "question": "A server was available for 7000 hours in a year and had MTTR of 10 hours per incident with 5 incidents. What is the availability percentage?",
+    "question": "サーバーが1年に7000時間稼働し、5回のインシデントで各回MTTRが10時間の場合、稼働率は何パーセントか？",
     "options": ["99.5%", "99.9%", "80%", "99.43%"],
     "correct": 3,
-    "explanation": "Step 1: Total downtime = 5 incidents x 10 hours = 50 hours. Step 2: Total time = 7000 + 50 = 7050 hours (using 8760 for a full year gives different answer). Using actual: Availability = Uptime / Total_time = 7000 / (7000 + 50) = 7000/7050 = 99.29%. Alternatively, using MTBF/MTTR: MTBF = 7000/5 = 1400. Availability = 1400/(1400+10) = 99.29%.",
-    "cheatsheet": "Availability Calculation:\nAvailability = MTBF / (MTBF + MTTR) x 100%\nOr: Uptime / Total_time x 100%\n99.9% = ~8.76 hours downtime/year\n99.99% = ~52.6 minutes/year\n99.999% = ~5.26 minutes/year (five nines)"
+    "explanation": "ステップ1: 総ダウンタイム = 5回 x 10時間 = 50時間。ステップ2: 総時間 = 7000 + 50 = 7050時間。ステップ3: 稼働率 = 7000 / 7050 = 99.29%。別解: MTBF = 7000/5 = 1400。稼働率 = 1400/(1400+10) = 99.29%。",
+    "cheatsheet": "稼働率の計算:\n稼働率 = MTBF / (MTBF + MTTR) x 100%\nまたは: 稼働時間 / 総時間 x 100%\n99.9% = 年間約8.76時間のダウンタイム\n99.99% = 年間約52.6分\n99.999% = 年間約5.26分（ファイブナイン）"
   },
   {
     "id": 72,
     "category": "Incident Metrics",
-    "question": "What is the MTBF if a system operated for 10,000 hours and had 4 failures?",
-    "options": ["2,500 hours", "4,000 hours", "10,000 hours", "2,000 hours"],
+    "question": "システムが10,000時間稼働し、4回の故障があった場合、MTBFはいくらか？",
+    "options": ["2,500時間", "4,000時間", "10,000時間", "2,000時間"],
     "correct": 0,
-    "explanation": "Step 1: Total operating time = 10,000 hours. Step 2: Number of failures = 4. Step 3: MTBF = Total operating time / Number of failures = 10,000 / 4 = 2,500 hours. MTBF measures the average time between failures, indicating system reliability.",
-    "cheatsheet": "MTBF (Mean Time Between Failures):\nMTBF = Total_operating_time / Number_of_failures\nHigher MTBF = more reliable system\nDoes not include repair time (that's MTTR)\nAvailability = MTBF / (MTBF + MTTR)\nTarget MTBF depends on business requirements"
+    "explanation": "ステップ1: 総稼働時間 = 10,000時間。ステップ2: 故障回数 = 4。ステップ3: MTBF = 総稼働時間 / 故障回数 = 10,000 / 4 = 2,500時間。MTBFは故障間の平均時間を測定し、システムの信頼性を示す。",
+    "cheatsheet": "MTBF（平均故障間隔）:\nMTBF = 総稼働時間 / 故障回数\nMTBFが高いほど信頼性が高いシステム\n修理時間は含まない（MTTR）\n稼働率 = MTBF / (MTBF + MTTR)\n目標MTBFはビジネス要件に依存"
   },
   {
     "id": 73,
     "category": "Incident Metrics",
-    "question": "If MTBF is 2000 hours and MTTR is 4 hours, what is the system availability?",
+    "question": "MTBFが2000時間、MTTRが4時間の場合、システムの稼働率はいくらか？",
     "options": ["99.5%", "99.8%", "98%", "99.9%"],
     "correct": 1,
-    "explanation": "Step 1: MTBF = 2,000 hours, MTTR = 4 hours. Step 2: Availability = MTBF / (MTBF + MTTR) = 2,000 / (2,000 + 4) = 2,000 / 2,004 = 0.9980 = 99.80%. This means the system is available 99.8% of the time, with approximately 17.5 hours of downtime per year.",
-    "cheatsheet": "Availability Targets:\n99% (two nines): 87.6 hours downtime/year\n99.9% (three nines): 8.76 hours/year\n99.99% (four nines): 52.6 minutes/year\n99.999% (five nines): 5.26 minutes/year\nEach nine requires ~10x more investment"
+    "explanation": "ステップ1: MTBF = 2,000時間、MTTR = 4時間。ステップ2: 稼働率 = MTBF / (MTBF + MTTR) = 2,000 / (2,000 + 4) = 2,000 / 2,004 = 0.9980 = 99.80%。システムは99.8%の時間稼働し、年間約17.5時間のダウンタイム。",
+    "cheatsheet": "稼働率目標:\n99%（ツーナイン）: 年間87.6時間ダウン\n99.9%（スリーナイン）: 年間8.76時間\n99.99%（フォーナイン）: 年間52.6分\n99.999%（ファイブナイン）: 年間5.26分\n各ナインには約10倍の投資が必要"
   },
   {
     "id": 74,
     "category": "Incident Metrics",
-    "question": "A system needs 99.99% availability. What is the maximum allowable downtime per year?",
-    "options": ["8.76 hours", "52.6 minutes", "5.26 minutes", "87.6 hours"],
+    "question": "システムが99.99%の稼働率が必要な場合、1年間の最大許容ダウンタイムはいくらか？",
+    "options": ["8.76時間", "52.6分", "5.26分", "87.6時間"],
     "correct": 1,
-    "explanation": "Step 1: 99.99% availability means 0.01% downtime. Step 2: Hours per year = 365 x 24 = 8,760. Step 3: Maximum downtime = 8,760 x 0.0001 = 0.876 hours = 52.56 minutes. Achieving this requires redundant systems, automatic failover, and robust disaster recovery.",
-    "cheatsheet": "Downtime Budget (per year):\n99%: 87.6 hours (3.65 days)\n99.9%: 8.76 hours\n99.99%: 52.6 minutes\n99.999%: 5.26 minutes\n99.9999%: 31.5 seconds\nSLAs typically define minimum availability requirements."
+    "explanation": "ステップ1: 99.99%稼働率は0.01%のダウンタイム。ステップ2: 年間時間 = 365 x 24 = 8,760。ステップ3: 最大ダウンタイム = 8,760 x 0.0001 = 0.876時間 = 52.56分。達成には冗長システム、自動フェイルオーバー、堅牢なディザスタリカバリが必要。",
+    "cheatsheet": "ダウンタイム予算（年間）:\n99%: 87.6時間（3.65日）\n99.9%: 8.76時間\n99.99%: 52.6分\n99.999%: 5.26分\n99.9999%: 31.5秒\nSLAは通常最小稼働率要件を定義。"
   },
   {
     "id": 75,
     "category": "Incident Metrics",
-    "question": "RTO is 4 hours and RPO is 1 hour. Backups run every 30 minutes. Does this meet the requirements?",
-    "options": ["RPO met, RTO not specified", "Both RPO and RTO are met", "RPO not met", "Neither is met"],
+    "question": "RTOが4時間、RPOが1時間。バックアップは30分ごとに実行される場合、要件を満たしているか？",
+    "options": ["RPOは満たす、RTOは未指定", "RPOとRTOの両方を満たす", "RPOを満たさない", "どちらも満たさない"],
     "correct": 0,
-    "explanation": "Step 1: RPO is 1 hour (maximum data loss). Step 2: Backup interval is 30 minutes. Step 3: Maximum data loss = 30 minutes < 1 hour RPO. RPO requirement is met. The RTO (4 hours) defines recovery time but the backup interval alone does not guarantee this - recovery procedures must also complete within 4 hours.",
-    "cheatsheet": "RPO and Backup Frequency:\nBackup interval must be <= RPO\nRPO = 1 hour: backups every 30 min (good)\nRPO = 1 hour: backups every 2 hours (NOT met)\nRPO = 0: real-time replication needed\nRTO: separate from backup frequency,\nrequires tested recovery procedures"
+    "explanation": "ステップ1: RPOは1時間（最大データ損失）。ステップ2: バックアップ間隔は30分。ステップ3: 最大データ損失 = 30分 < 1時間RPO。RPO要件は満たす。RTO（4時間）は復旧時間を定義するが、バックアップ間隔単独ではこれを保証しない - 復旧手順も4時間以内に完了する必要がある。",
+    "cheatsheet": "RPOとバックアップ頻度:\nバックアップ間隔 <= RPO\nRPO = 1時間: 30分ごとのバックアップ（良好）\nRPO = 1時間: 2時間ごとのバックアップ（不可）\nRPO = 0: リアルタイムレプリケーションが必要\nRTO: バックアップ頻度とは別で、\nテスト済み復旧手順が必要"
   },
   {
     "id": 76,
     "category": "Incident Metrics",
-    "question": "A company had 20 incidents this year. Total resolution time was 100 hours. What is the average MTTR?",
-    "options": ["20 hours", "5 hours", "100 hours", "10 hours"],
+    "question": "企業が今年20件のインシデントを記録。総解決時間が100時間の場合、平均MTTRはいくらか？",
+    "options": ["20時間", "5時間", "100時間", "10時間"],
     "correct": 1,
-    "explanation": "Step 1: Total resolution time = 100 hours. Step 2: Number of incidents = 20. Step 3: Average MTTR = 100 / 20 = 5 hours per incident. This metric helps evaluate the incident response team's efficiency and identify areas for improvement.",
-    "cheatsheet": "MTTR (Mean Time to Recovery):\nMTTR = Total_resolution_time / Number_of_incidents\nLower is better\nComponents: Detection time + Diagnosis + Repair + Verify\nTrack MTTR by incident type and severity\nTarget MTTR should be < RTO"
+    "explanation": "ステップ1: 総解決時間 = 100時間。ステップ2: インシデント数 = 20。ステップ3: 平均MTTR = 100 / 20 = 1インシデントあたり5時間。この指標はインシデント対応チームの効率を評価し、改善領域を特定するのに役立つ。",
+    "cheatsheet": "MTTR（平均復旧時間）:\nMTTR = 総解決時間 / インシデント数\n低いほど良い\n構成要素: 検出時間 + 診断 + 修復 + 検証\nインシデント種別と重大度別にMTTRを追跡\n目標MTTRはRTO未満にすべき"
   },
   {
     "id": 77,
     "category": "Incident Metrics",
-    "question": "If a system has 99.95% availability, what is the approximate annual downtime?",
-    "options": ["4.38 hours", "8.76 hours", "43.8 minutes", "26.3 minutes"],
+    "question": "システムの稼働率が99.95%の場合、年間ダウンタイムはおおよそいくらか？",
+    "options": ["4.38時間", "8.76時間", "43.8分", "26.3分"],
     "correct": 0,
-    "explanation": "Step 1: Downtime percentage = 100% - 99.95% = 0.05%. Step 2: Annual downtime = 8,760 hours x 0.0005 = 4.38 hours. Step 3: 4.38 hours = 4 hours 22.8 minutes. This is between three nines (8.76 hours) and four nines (52.6 minutes).",
-    "cheatsheet": "Quick Downtime Calculation:\nDowntime(hours) = 8760 x (1 - availability_decimal)\n99.9%: 8.76 hours\n99.95%: 4.38 hours\n99.99%: 52.56 minutes\n99.999%: 5.26 minutes\nSmall improvements in availability = big reduction in downtime"
+    "explanation": "ステップ1: ダウンタイム率 = 100% - 99.95% = 0.05%。ステップ2: 年間ダウンタイム = 8,760時間 x 0.0005 = 4.38時間。ステップ3: 4.38時間 = 4時間22.8分。スリーナイン（8.76時間）とフォーナイン（52.6分）の間。",
+    "cheatsheet": "ダウンタイムの簡易計算:\nダウンタイム（時間）= 8760 x (1 - 稼働率小数)\n99.9%: 8.76時間\n99.95%: 4.38時間\n99.99%: 52.56分\n99.999%: 5.26分\n稼働率のわずかな改善 = ダウンタイムの大幅削減"
   },
   {
     "id": 78,
     "category": "Incident Metrics",
-    "question": "An incident response team takes an average of 30 minutes to detect, 1 hour to contain, and 2 hours to eradicate and recover. What is the total MTTR?",
-    "options": ["3.5 hours", "2 hours", "1.5 hours", "3 hours"],
+    "question": "インシデント対応チームが平均30分で検出、1時間で封じ込め、2時間で排除・復旧する場合、総MTTRはいくらか？",
+    "options": ["3.5時間", "2時間", "1.5時間", "3時間"],
     "correct": 0,
-    "explanation": "Step 1: Detection time = 30 minutes. Step 2: Containment time = 1 hour. Step 3: Eradication + Recovery time = 2 hours. Step 4: Total MTTR = 0.5 + 1 + 2 = 3.5 hours. MTTR encompasses all phases from detection to full recovery.",
-    "cheatsheet": "MTTR Components:\nMTTR = Detection + Containment + Eradication + Recovery\nDetection: time to notice the incident\nContainment: time to limit the damage\nEradication: time to remove the threat\nRecovery: time to restore normal operations\nFocus improvement on the largest component."
+    "explanation": "ステップ1: 検出時間 = 30分。ステップ2: 封じ込め時間 = 1時間。ステップ3: 排除+復旧時間 = 2時間。ステップ4: 総MTTR = 0.5 + 1 + 2 = 3.5時間。MTTRは検出から完全復旧までの全フェーズを含む。",
+    "cheatsheet": "MTTRの構成要素:\nMTTR = 検出 + 封じ込め + 排除 + 復旧\n検出: インシデントを認識する時間\n封じ込め: 被害を限定する時間\n排除: 脅威を除去する時間\n復旧: 通常運用を復元する時間\n最も大きな構成要素に改善を集中。"
   },
   {
     "id": 79,
     "category": "Incident Metrics",
-    "question": "A database must have RPO = 0. Which backup strategy is required?",
-    "options": ["Daily backups", "Hourly backups", "Real-time replication (synchronous)", "Weekly backups"],
+    "question": "データベースのRPO = 0 が必要な場合、どのバックアップ戦略が必須か？",
+    "options": ["日次バックアップ", "時間ごとのバックアップ", "リアルタイムレプリケーション（同期）", "週次バックアップ"],
     "correct": 2,
-    "explanation": "RPO = 0 means zero data loss is acceptable. No periodic backup can achieve this because data created between backups would be lost. Synchronous real-time replication ensures every transaction is immediately copied to the secondary system, achieving RPO = 0.",
-    "cheatsheet": "RPO to Backup Strategy:\nRPO = 0: synchronous replication\nRPO = minutes: frequent log shipping\nRPO = hours: hourly/daily backups\nRPO = days: daily/weekly backups\nShorter RPO = exponentially higher cost\nChoose RPO based on business impact analysis"
+    "explanation": "RPO = 0はゼロデータ損失のみ許容。定期バックアップではバックアップ間に作成されたデータが失われるため不可能。同期リアルタイムレプリケーションはすべてのトランザクションを即座にセカンダリシステムにコピーし、RPO = 0を達成。",
+    "cheatsheet": "RPOからバックアップ戦略:\nRPO = 0: 同期レプリケーション\nRPO = 分単位: 高頻度ログシッピング\nRPO = 時間単位: 時間/日次バックアップ\nRPO = 日単位: 日次/週次バックアップ\nRPOが短いほど指数関数的にコストが増大\nビジネスインパクト分析に基づいてRPOを選択"
   },
   {
     "id": 80,
     "category": "Incident Metrics",
-    "question": "System A has 99.9% availability and System B has 99.99% availability. Both must be operational for the service to work. What is the combined availability?",
+    "question": "システムAは99.9%、システムBは99.99%の稼働率。両方が動作している必要があるサービスの結合稼働率はいくらか？",
     "options": ["99.89%", "99.99%", "99.9%", "99.998%"],
     "correct": 0,
-    "explanation": "Step 1: For series dependency, multiply: 0.999 x 0.9999 = 0.9989001. Step 2: Combined availability = 99.89%. This demonstrates that each additional dependent system reduces overall availability. A service with many dependencies must have extremely reliable individual components.",
-    "cheatsheet": "Combined Availability:\nSeries (all required): A1 x A2 x A3 x ...\nParallel (any one sufficient): 1 - (1-A1)(1-A2)(1-A3)...\nExample: 3 systems at 99.9% in series:\n0.999^3 = 99.7% (not 99.9%!)\nDesign for minimal dependency chains."
+    "explanation": "ステップ1: 直列依存の場合、掛け合わせ: 0.999 x 0.9999 = 0.9989001。ステップ2: 結合稼働率 = 99.89%。各依存システムが全体の稼働率を低下させることを示す。多くの依存を持つサービスは極めて信頼性の高い個別コンポーネントが必要。",
+    "cheatsheet": "結合稼働率:\n直列（全て必要）: A1 x A2 x A3 x ...\n並列（1つで十分）: 1 - (1-A1)(1-A2)(1-A3)...\n例: 3システムが99.9%で直列:\n0.999^3 = 99.7%（99.9%ではない！）\n依存チェーンを最小に設計。"
   },
   {
     "id": 81,
     "category": "Incident Metrics",
-    "question": "MTTD (Mean Time to Detect) is 2 hours and MTTR is 6 hours. What is the total incident duration?",
-    "options": ["8 hours", "6 hours", "2 hours", "4 hours"],
+    "question": "MTTDが2時間、MTTRが6時間の場合、総インシデント期間はいくらか？",
+    "options": ["8時間", "6時間", "2時間", "4時間"],
     "correct": 0,
-    "explanation": "Step 1: The total incident duration from initial occurrence to full recovery = MTTD + MTTR = 2 + 6 = 8 hours. Reducing either MTTD (faster detection through monitoring) or MTTR (faster recovery through automation) reduces the total impact.",
-    "cheatsheet": "Total Incident Duration:\nTotal = MTTD + MTTR\nMTTD: Mean Time to Detect (occurrence to detection)\nMTTR: Mean Time to Recovery (detection to restored)\nReducing MTTD often has more business impact\nthan reducing MTTR, as the vulnerability window shrinks."
+    "explanation": "ステップ1: 初期発生から完全復旧までの総インシデント期間 = MTTD + MTTR = 2 + 6 = 8時間。MTTD（モニタリングによる早期検出）またはMTTR（自動化による早期復旧）のいずれかを削減すると、総影響が低減する。",
+    "cheatsheet": "総インシデント期間:\n総期間 = MTTD + MTTR\nMTTD: 平均検出時間（発生から検出まで）\nMTTR: 平均復旧時間（検出から復旧まで）\nMTTDの削減はMTTRの削減よりビジネス影響が大きい場合が多い\n（脆弱性の窓口が縮小するため）"
   },
   {
     "id": 82,
     "category": "Incident Metrics",
-    "question": "A warm site takes 12 hours to become operational. If the RTO is 4 hours, is this acceptable?",
-    "options": ["Yes", "No, warm site recovery exceeds RTO", "It depends on RPO", "Warm sites are always acceptable"],
+    "question": "ウォームサイトが稼働まで12時間かかる。RTOが4時間の場合、許容されるか？",
+    "options": ["許容される", "不可、ウォームサイトの復旧時間がRTOを超過", "RPOによる", "ウォームサイトは常に許容される"],
     "correct": 1,
-    "explanation": "The warm site's 12-hour recovery time exceeds the 4-hour RTO requirement. The organization would need either a hot site (near-immediate recovery) or to accept a longer RTO. This illustrates the importance of aligning DR site selection with business requirements.",
-    "cheatsheet": "DR Site Selection vs RTO:\nCold site: days to weeks recovery\nWarm site: hours to days recovery\nHot site: minutes to hours recovery\nSite type must match or exceed RTO requirements\nCost increases: Cold < Warm < Hot"
+    "explanation": "ウォームサイトの12時間復旧時間が4時間RTO要件を超過。ホットサイト（即時復旧）が必要か、RTOを延長する必要がある。DRサイトの選択をビジネス要件に合わせる重要性を示す。",
+    "cheatsheet": "RTOに応じたDRサイトの選択:\nコールドサイト: 日〜週の復旧\nウォームサイト: 時間〜日の復旧\nホットサイト: 分〜時間の復旧\nサイトタイプはRTO要件に一致または超過する必要がある\nコスト順: コールド < ウォーム < ホット"
   },
   {
     "id": 83,
     "category": "Incident Metrics",
-    "question": "If an organization processes 1000 transactions per hour and the RPO is 30 minutes, what is the maximum acceptable data loss in transactions?",
-    "options": ["500 transactions", "1000 transactions", "100 transactions", "50,000 transactions"],
+    "question": "組織が毎時1,000トランザクションを処理し、RPOが30分の場合、最大許容データ損失は何トランザクションか？",
+    "options": ["500トランザクション", "1,000トランザクション", "100トランザクション", "50,000トランザクション"],
     "correct": 0,
-    "explanation": "Step 1: Transactions per hour = 1,000. Step 2: Transactions per 30 minutes = 1,000 / 2 = 500. Step 3: Maximum acceptable data loss = 500 transactions. This translates the RPO time into concrete business impact terms.",
-    "cheatsheet": "RPO in Business Terms:\nMax data loss = RPO_hours x transactions_per_hour\nRPO = 30 min, 1000 TPH: 500 transactions lost\nConvert to monetary terms: 500 x avg_value_per_transaction\nThis makes RPO meaningful to business stakeholders\nAlign RPO with acceptable financial loss."
+    "explanation": "ステップ1: 毎時トランザクション = 1,000。ステップ2: 30分間のトランザクション = 1,000 / 2 = 500。ステップ3: 最大許容データ損失 = 500トランザクション。RPO時間を具体的なビジネスインパクトに変換。",
+    "cheatsheet": "ビジネス用語でのRPO:\n最大データ損失 = RPO時間 x 毎時トランザクション数\nRPO = 30分, 1000TPH: 500トランザクション損失\n金銭用語に変換: 500 x トランザクションあたり平均価値\nビジネスステークホルダーにとってRPOを意味のあるものに\nRPOは許容可能な財務損失と一致させる。"
   },
   {
     "id": 84,
     "category": "Incident Metrics",
-    "question": "A BCP specifies an alternate processing site 200 km away. The RTO is 2 hours. What is the minimum requirement?",
-    "options": ["Data replication with <= 2 hour lag", "Near-real-time data replication and pre-staged equipment", "Manual data transport", "Cloud backup"],
+    "question": "BCPが200km離れた代替処理サイトを指定。RTOが2時間の場合、最小要件はどれか？",
+    "options": ["2時間以内のラグのデータレプリケーション", "ニアリアルタイムデータレプリケーションと事前配備機材", "手動データ搬送", "クラウドバックアップ"],
     "correct": 1,
-    "explanation": "An RTO of 2 hours requires the alternate site to be ready with current data and equipment within 2 hours. Manual transport and long-lag replication would not meet this. Pre-staged equipment with near-real-time data replication is needed.",
-    "cheatsheet": "RTO Requirements by Duration:\n< 1 hour: hot site + synchronous replication\n1-4 hours: hot/warm site + frequent replication\n4-24 hours: warm site + log shipping\n1-7 days: cold site + daily backups\n> 7 days: cold site + manual recovery"
+    "explanation": "2時間のRTOでは代替サイトが2時間以内に最新データと機材で準備される必要がある。手動搬送や長ラグのレプリケーションではこれを満たせない。事前配備機材とニアリアルタイムデータレプリケーションが必要。",
+    "cheatsheet": "期間別RTO要件:\n< 1時間: ホットサイト + 同期レプリケーション\n1-4時間: ホット/ウォームサイト + 高頻度レプリケーション\n4-24時間: ウォームサイト + ログシッピング\n1-7日: コールドサイト + 日次バックアップ\n> 7日: コールドサイト + 手動復旧"
   },
   {
     "id": 85,
     "category": "Incident Metrics",
-    "question": "System MTBF is 8760 hours (1 year). MTTR is 24 hours. If two identical systems operate in parallel, what is the approximate availability?",
+    "question": "システムMTBFが8760時間（1年）、MTTRが24時間。同一システムが2台並列稼働の場合、概算の稼働率はいくらか？",
     "options": ["99.7%", "99.99%", "99.999%", "99.97%"],
     "correct": 2,
-    "explanation": "Step 1: Single system availability = 8760/(8760+24) = 99.727%. Step 2: For parallel (redundant) systems: combined availability = 1 - (1-0.99727)^2 = 1 - 0.0000729 = 99.99927%. Two parallel systems dramatically improve availability from 99.7% to approximately 99.999% (five nines).",
-    "cheatsheet": "Parallel Redundancy:\nAvailability = 1 - (1 - A)^N\nWhere A = single system availability, N = number of systems\nA=99.7%, N=2: 99.999%\nA=99.7%, N=3: 99.999999%\nDiminishing returns after 2-3 redundant systems"
+    "explanation": "ステップ1: 単一システム稼働率 = 8760/(8760+24) = 99.727%。ステップ2: 並列（冗長）システムの場合: 結合稼働率 = 1 - (1-0.99727)^2 = 1 - 0.0000729 = 99.99927%。2台の並列システムは稼働率を99.7%から約99.999%（ファイブナイン）に劇的に向上。",
+    "cheatsheet": "並列冗長性:\n稼働率 = 1 - (1 - A)^N\nA = 単一システム稼働率、N = システム数\nA=99.7%, N=2: 99.999%\nA=99.7%, N=3: 99.999999%\n2-3台の冗長システム以降は diminishing returns"
   },
   {
     "id": 86,
     "category": "Compliance Costs",
-    "question": "A data breach exposes 100,000 records. Industry average cost per record is $150. What is the estimated total breach cost?",
+    "question": "データ漏洩で100,000レコードが流出。業界平均レコードあたりコストが$150の場合、推定総漏洩コストはいくらか？",
     "options": ["$1,500,000", "$15,000,000", "$150,000", "$15,000"],
     "correct": 1,
-    "explanation": "Step 1: Records exposed = 100,000. Step 2: Cost per record = $150. Step 3: Total estimated cost = 100,000 x $150 = $15,000,000. According to IBM/Trustwave reports, the average cost includes detection, notification, remediation, legal fees, and lost business.",
-    "cheatsheet": "Breach Cost Estimation (Ponemon/IBM):\nCost = records_exposed x cost_per_record\nAverage cost/record: $100-200 (varies by industry)\nHealthcare: $400+ per record\nFinancial: $200+ per record\nRetail: $100+ per record\nAdditional: regulatory fines, reputation damage"
+    "explanation": "ステップ1: 流出レコード = 100,000。ステップ2: レコードあたりコスト = $150。ステップ3: 総推定コスト = 100,000 x $150 = $15,000,000。IBM/Trustwave報告によると、平均コストには検出、通知、修復、法的費用、業務損失が含まれる。",
+    "cheatsheet": "漏洩コスト推定（Ponemon/IBM）:\nコスト = 流出レコード数 x レコードあたりコスト\n平均コスト/レコード: $100-200（業界による変動）\n医療: $400+/レコード\n金融: $200+/レコード\n小売: $100+/レコード\n追加: 規制罰金、評判損害"
   },
   {
     "id": 87,
     "category": "Compliance Costs",
-    "question": "A security awareness training program costs $50,000/year. It reduces phishing success rate from 30% to 5%. If 1,000 phishing emails are sent per year and each successful phishing costs $10,000, what is the ROI?",
+    "question": "セキュリティ研修プログラムが年$50,000。フィッシング成功率を30%から5%に低減。年1,000通のフィッシングメールのうち、成功時各$10,000の損害の場合、ROIはいくらか？",
     "options": ["$1,950,000", "$2,000,000", "$100,000", "$150,000"],
     "correct": 0,
-    "explanation": "Step 1: Before training: 1000 x 0.30 = 300 successful phish x $10,000 = $3,000,000 loss. Step 2: After training: 1000 x 0.05 = 50 successful phish x $10,000 = $500,000 loss. Step 3: Savings = $3,000,000 - $500,000 = $2,500,000. Step 4: ROI = ($2,500,000 - $50,000) / $50,000 x 100 = 4,900%.",
-    "cheatsheet": "Security Program ROI:\nROI = (Risk_reduction - Program_cost) / Program_cost x 100%\nInclude direct and indirect costs avoided\nQuantify: reduced incidents, faster recovery, compliance\nSecurity awareness often has the highest ROI\nCalculate for 3-5 year periods for capital investments."
+    "explanation": "ステップ1: 研修前: 1000 x 0.30 = 300件成功 x $10,000 = $3,000,000損失。ステップ2: 研修後: 1000 x 0.05 = 50件成功 x $10,000 = $500,000損失。ステップ3: 節約 = $3,000,000 - $500,000 = $2,500,000。ステップ4: ROI = ($2,500,000 - $50,000) / $50,000 x 100 = 4,900%。",
+    "cheatsheet": "セキュリティプログラムROI:\nROI = (リスク低減額 - プログラムコスト) / プログラムコスト x 100%\n直接的・間接的コスト回避を含める\n定量化: インシデント削減、早期復旧、コンプライアンス\nセキュリティ研修は通常最高のROI\n資本投資は3-5年で計算"
   },
   {
     "id": 88,
     "category": "Compliance Costs",
-    "question": "GDPR fine for a serious violation can be up to 4% of global annual revenue. A company has $500M annual revenue. What is the maximum fine?",
+    "question": "GDPRの重大違反の罰金は世界年間収益の最大4%。年間収益$500Mの企業の最大罰金はいくらか？",
     "options": ["$20M", "$500M", "$2M", "$200M"],
     "correct": 0,
-    "explanation": "Step 1: Global annual revenue = $500M. Step 2: Fine percentage = 4%. Step 3: Maximum fine = $500M x 0.04 = $20,000,000. This is the maximum; actual fines depend on severity, cooperation, and mitigation. The other cap is 20 million EUR, whichever is higher.",
-    "cheatsheet": "GDPR Fine Calculation:\nMaximum = max(20M EUR, 4% of global revenue)\nSerious violations: up to 4%\nLesser violations: up to 2% (or 10M EUR)\nFactors: severity, mitigation, cooperation, repeat\nExample: $500M revenue x 4% = $20M max fine"
+    "explanation": "ステップ1: 世界年間収益 = $500M。ステップ2: 罰金率 = 4%。ステップ3: 最大罰金 = $500M x 0.04 = $20,000,000。最大値であり、実際の罰金は重大度、協力度、緩和策により異なる。もう一つの上限は2000万ユーロで、高い方が適用される。",
+    "cheatsheet": "GDPR罰金の計算:\n最大 = max(2000万ユーロ, 世界年間収益の4%)\n重大違反: 最大4%\n軽微違反: 最大2%（または1000万ユーロ）\n要因: 重大度、緩和策、協力、再犯\n例: $500M収益 x 4% = $20M最大罰金"
   },
   {
     "id": 89,
     "category": "Compliance Costs",
-    "question": "A PCI DSS compliance program costs $500,000/year. Non-compliance fines could be $100,000/month plus loss of card processing ability. What is the annual cost of non-compliance?",
+    "question": "PCI DSSコンプライアンスプログラムが年$500,000。非コンプライアンス罰金が月$100,000＋カード決済能力喪失の場合、非コンプライアンスの年間コストはいくらか？",
     "options": ["$600,000", "$1,200,000", "$500,000", "$100,000"],
     "correct": 1,
-    "explanation": "Step 1: Monthly fines = $100,000. Step 2: Annual fines = $100,000 x 12 = $1,200,000. Step 3: This does not include the incalculable cost of losing card processing ability. Step 4: Compliance cost ($500,000) is less than non-compliance fines ($1,200,000+). Compliance is clearly cost-effective.",
-    "cheatsheet": "Compliance vs Non-Compliance:\nNon-compliance cost = fines + penalties + lost business\nPCI DSS: $5K-100K/month fines + processing loss\nHIPAA: $100-50K per violation + criminal charges\nGDPR: up to 4% of revenue\nAlways compare: compliance_cost vs non-compliance_cost"
+    "explanation": "ステップ1: 月間罰金 = $100,000。ステップ2: 年間罰金 = $100,000 x 12 = $1,200,000。ステップ3: カード決済能力喪失の計算不能なコストは含まない。ステップ4: コンプライアンスコスト（$500,000）は非コンプライアンス罰金（$1,200,000+）より少ない。コンプライアンスは明らかに費用対効果がある。",
+    "cheatsheet": "コンプライアンス vs 非コンプライアンス:\n非コンプライアンスコスト = 罰金 + ペナルティ + 業務損失\nPCI DSS: 月$5K-100K罰金 + 決済能力喪失\nHIPAA: $100-50K/違反 + 刑事告発\nGDPR: 収益の最大4%\n常に比較: コンプライアンスコスト vs 非コンプライアンスコスト"
   },
   {
     "id": 90,
     "category": "Compliance Costs",
-    "question": "An ISO 27001 certification audit costs $100,000. Preparation takes 6 months with 2 FTE staff at $80,000/year each. What is the total first-year cost?",
+    "question": "ISO 27001認証監査が$100,000。準備に6ヶ月、2名のFTEスタッフ（各年$80,000）の場合、初年度総コストはいくらか？",
     "options": ["$100,000", "$260,000", "$180,000", "$80,000"],
     "correct": 2,
-    "explanation": "Step 1: Audit cost = $100,000. Step 2: Staff cost for 6 months = 2 x $80,000 x 0.5 = $80,000. Step 3: Total first-year cost = $100,000 + $80,000 = $180,000. Subsequent years only require surveillance audits (~$40,000-60,000).",
-    "cheatsheet": "ISO 27001 Cost Estimation:\nYear 1 (certification): Audit + preparation + remediation\nYear 2-3 (surveillance): Annual surveillance audit\nYear 3 (recertification): Full recertification audit\nAdditional: technology controls, training, tools\nROI: reduced incidents, customer trust, competitive advantage"
+    "explanation": "ステップ1: 監査コスト = $100,000。ステップ2: 6ヶ月間のスタッフコスト = 2 x $80,000 x 0.5 = $80,000。ステップ3: 初年度総コスト = $100,000 + $80,000 = $180,000。以降の年はサベイランス監査のみ（約$40,000-60,000）。",
+    "cheatsheet": "ISO 27001コスト推定:\n1年目（認証取得）: 監査 + 準備 + 是正\n2-3年目（サベイランス）: 年次サベイランス監査\n3年目（再認証）: 完全再認証監査\n追加: 技術的統制、研修、ツール\nROI: インシデント削減、顧客信頼、競争力強化"
   },
   {
     "id": 91,
     "category": "Compliance Costs",
-    "question": "A security control costs $200,000 to implement and $20,000/year to maintain over 5 years. The ALE reduction is $80,000/year. What is the 5-year net benefit?",
+    "question": "セキュリティ管理措置の導入が$200,000、年間保守$20,000（5年間）。ALE低減が年$80,000の場合、5年間の正味便益はいくらか？",
     "options": ["$100,000", "$0", "$200,000", "$300,000"],
     "correct": 0,
-    "explanation": "Step 1: Total cost = $200,000 + ($20,000 x 5) = $300,000 over 5 years. Step 2: Total ALE reduction = $80,000 x 5 = $400,000. Step 3: 5-year net benefit = $400,000 - $300,000 = $100,000. The control is cost-effective over the 5-year period.",
-    "cheatsheet": "Multi-Year Cost-Benefit Analysis:\nNet Benefit = (ALE_reduction x years) - (implementation + maintenance x years)\nBreak-even year: total_savings = total_cost\nInclude: discount rate for future costs\nInclude: intangible benefits (reputation, compliance)\n5-10 year horizon for capital investments"
+    "explanation": "ステップ1: 総コスト = $200,000 + ($20,000 x 5) = $300,000（5年間）。ステップ2: 総ALE低減 = $80,000 x 5 = $400,000。ステップ3: 5年正味便益 = $400,000 - $300,000 = $100,000。5年間で費用対効果がある。",
+    "cheatsheet": "多年コスト便益分析:\n正味便益 = (ALE低減 x 年数) - (導入 + 保守 x 年数)\n損益分岐年: 総節約 = 総コスト\n含める: 将来コストの割引率\n含める: 無形便益（評判、コンプライアンス）\n資本投資は5-10年のホライズンで"
   },
   {
     "id": 92,
     "category": "Compliance Costs",
-    "question": "A company has 1,000 employees. Security awareness training costs $20 per employee per year. Phishing simulations cost $5,000/year. What is the total annual training cost?",
+    "question": "企業に1,000人の従業員。セキュリティ研修が従業員あたり年$20。フィッシングシミュレーションが年$5,000の場合、年間総研修コストはいくらか？",
     "options": ["$25,000", "$20,000", "$5,000", "$30,000"],
     "correct": 0,
-    "explanation": "Step 1: Training cost = 1,000 x $20 = $20,000. Step 2: Simulation cost = $5,000. Step 3: Total = $25,000. At about $25 per employee per year, this is a relatively small investment compared to the potential cost of a successful social engineering attack.",
-    "cheatsheet": "Security Training Budget:\nPer-employee training: $15-50/year\nPhishing simulation: $3-10 per employee/year\nTotal per employee: $20-60/year\n1,000 employees: $20,000-60,000/year\nCompare to: single breach = millions\nHighest ROI security investment"
+    "explanation": "ステップ1: 研修コスト = 1,000 x $20 = $20,000。ステップ2: シミュレーションコスト = $5,000。ステップ3: 合計 = $25,000。従業員あたり約$25の年間投資であり、成功したソーシャルエンジニアリング攻撃の潜在的コストと比べて比較的小額。",
+    "cheatsheet": "セキュリティ研修予算:\n従業員あたり研修: $15-50/年\nフィッシングシミュレーション: $3-10/従業員/年\n従業員あたり合計: $20-60/年\n1,000従業員: $20,000-60,000/年\n比較: 1回の漏洩 = 数百万\n最高ROIのセキュリティ投資"
   },
   {
     "id": 93,
     "category": "Compliance Costs",
-    "question": "A company processes credit cards and faces a breach. The forensic investigation costs $500,000, fines are $200,000, and card replacement costs are $300,000. What is the total direct cost?",
+    "question": "クレジットカード処理企業で漏洩が発生。フォレンジック調査$500,000、罰金$200,000、カード再発行$300,000の場合、総直接コストはいくらか？",
     "options": ["$1,000,000", "$500,000", "$700,000", "$200,000"],
     "correct": 0,
-    "explanation": "Step 1: Forensic investigation = $500,000. Step 2: Fines = $200,000. Step 3: Card replacement = $300,000. Step 4: Total direct cost = $500,000 + $200,000 + $300,000 = $1,000,000. This excludes indirect costs like lost business, reputation damage, and increased insurance premiums.",
-    "cheatsheet": "Breach Cost Components:\nDirect costs: investigation, fines, notification, credit monitoring\nIndirect costs: lost business, reputation, stock price\nDetection and escalation: forensics, assessment\nResponse: notification, help desk, credit services\nPost-breach: legal, regulatory, business loss"
+    "explanation": "ステップ1: フォレンジック調査 = $500,000。ステップ2: 罰金 = $200,000。ステップ3: カード再発行 = $300,000。ステップ4: 総直接コスト = $500,000 + $200,000 + $300,000 = $1,000,000。業務損失、評判損害、保険料増加などの間接コストは含まない。",
+    "cheatsheet": "漏洩コストの構成要素:\n直接コスト: 調査、罰金、通知、クレジット監視\n間接コスト: 業務損失、評判、株価\n検出とエスカレーション: フォレンジック、評価\n対応: 通知、ヘルプデスク、クレジットサービス\n事後: 法務、規制、業務損失"
   },
   {
     "id": 94,
     "category": "Compliance Costs",
-    "question": "An EDR solution costs $15 per endpoint per month. A company has 500 endpoints. What is the annual cost?",
+    "question": "EDRソリューションがエンドポイントあたり月$15。500エンドポイントの場合、年間コストはいくらか？",
     "options": ["$75,000", "$90,000", "$7,500", "$900,000"],
     "correct": 1,
-    "explanation": "Step 1: Monthly cost per endpoint = $15. Step 2: Monthly total = $15 x 500 = $7,500. Step 3: Annual cost = $7,500 x 12 = $90,000. Per-endpoint cost is a common pricing model for security tools (EDR, CASB, DLP, etc.).",
-    "cheatsheet": "Per-Endpoint Security Costing:\nAnnual cost = per_endpoint_monthly x endpoints x 12\nEDR: $10-25/endpoint/month\nCASB: $5-15/user/month\nDLP: $15-30/endpoint/month\nTotal per endpoint security: $30-70/month\nInclude: implementation, training, management overhead"
+    "explanation": "ステップ1: 月額/エンドポイント = $15。ステップ2: 月間合計 = $15 x 500 = $7,500。ステップ3: 年間コスト = $7,500 x 12 = $90,000。エンドポイント単価はセキュリティツール（EDR, CASB, DLP等）の一般的な料金モデル。",
+    "cheatsheet": "エンドポイント単価のセキュリティコスト:\n年間コスト = 月額/エンドポイント x エンドポイント数 x 12\nEDR: $10-25/エンドポイント/月\nCASB: $5-15/ユーザー/月\nDLP: $15-30/エンドポイント/月\nエンドポイントあたり総セキュリティ: $30-70/月\n含める: 導入、研修、管理オーバーヘッド"
   },
   {
     "id": 95,
     "category": "Compliance Costs",
-    "question": "A SIEM solution costs $100,000/year for the platform plus $20/day per GB of log data. The company generates 50 GB/day. What is the annual cost?",
+    "question": "SIEMソリューションがプラットフォーム年$100,000＋ログデータGBあたり日$20。1日50GB生成の場合、年間コストはいくらか？",
     "options": ["$100,000", "$465,000", "$365,000", "$200,000"],
     "correct": 1,
-    "explanation": "Step 1: Platform cost = $100,000. Step 2: Log data cost = $20 x 50 GB x 365 = $365,000. Step 3: Total annual cost = $100,000 + $365,000 = $465,000. Log volume significantly impacts SIEM cost - log optimization and filtering can reduce costs.",
-    "cheatsheet": "SIEM Cost Calculation:\nTotal = Platform_fee + (per_GB_rate x daily_GB x 365)\nPlatform: $50K-500K/year\nLog ingestion: $1-50/GB/day\nCost drivers: log volume, retention period, sources\nOptimization: log filtering, deduplication, tiered storage"
+    "explanation": "ステップ1: プラットフォームコスト = $100,000。ステップ2: ログデータコスト = $20 x 50GB x 365 = $365,000。ステップ3: 年間総コスト = $100,000 + $365,000 = $465,000。ログボリュームがSIEMコストに大きな影響 - ログ最適化とフィルタリングでコスト削減可能。",
+    "cheatsheet": "SIEMコストの計算:\n合計 = プラットフォーム料 + (GBあたり単価 x 1日GB数 x 365)\nプラットフォーム: $50K-500K/年\nログ取り込み: $1-50/GB/日\nコスト要因: ログ量、保持期間、ソース数\n最適化: ログフィルタリング、重複排除、階層ストレージ"
   },
   {
     "id": 96,
     "category": "Compliance Costs",
-    "question": "Implementing MFA for all users costs $30,000. Account compromise incidents average 20 per year at $5,000 each. MFA reduces incidents by 80%. What is the annual savings?",
+    "question": "全ユーザーのMFA導入が$30,000。アカウント侵害インシデントが年20件（各$5,000）。MFAで80%削減の場合、年間節約額はいくらか？",
     "options": ["$50,000", "$80,000", "$20,000", "$30,000"],
     "correct": 0,
-    "explanation": "Step 1: Current incident cost = 20 x $5,000 = $100,000/year. Step 2: After MFA: 20 x 0.20 = 4 incidents remaining x $5,000 = $20,000. Step 3: Annual savings = $100,000 - $20,000 = $80,000. Step 4: ROI = ($80,000 - $30,000) / $30,000 = 167%. First-year net benefit = $50,000.",
-    "cheatsheet": "MFA ROI Calculation:\nBefore MFA: incidents x cost_per_incident\nAfter MFA: incidents x (1 - reduction_rate) x cost\nAnnual savings = before - after\nFirst year ROI = (savings - cost) / cost\nMFA typically achieves 80-99% reduction in account compromise"
+    "explanation": "ステップ1: 現在インシデントコスト = 20 x $5,000 = $100,000/年。ステップ2: MFA後: 20 x 0.20 = 4件残存 x $5,000 = $20,000。ステップ3: 年間節約 = $100,000 - $20,000 = $80,000。ステップ4: ROI = ($80,000 - $30,000) / $30,000 = 167%。初年度正味便益 = $50,000。",
+    "cheatsheet": "MFA ROIの計算:\nMFA前: インシデント数 x 1件あたりコスト\nMFA後: インシデント数 x (1 - 削減率) x コスト\n年間節約 = 前後の差\n初年度ROI = (節約 - コスト) / コスト\nMFAは通常アカウント侵害を80-99%削減"
   },
   {
     "id": 97,
     "category": "Compliance Costs",
-    "question": "Cyber insurance costs $75,000/year with a $250,000 deductible. A breach costs $2M. How much does insurance save?",
+    "question": "サイバー保険が年$75,000、免責額$250,000。漏洩コスト$2Mの場合、保険の節約額はいくらか？",
     "options": ["$1,675,000", "$2,000,000", "$1,750,000", "$250,000"],
     "correct": 0,
-    "explanation": "Step 1: Without insurance: cost = $2,000,000. Step 2: With insurance: premium ($75,000) + deductible ($250,000) = $325,000. Step 3: Savings = $2,000,000 - $325,000 = $1,675,000. Insurance provides significant financial protection for catastrophic events.",
-    "cheatsheet": "Insurance Value Analysis:\nSavings = Loss - (Premium + Deductible)\nBreak-even loss = Premium / (1 - deductible_ratio)\nConsider: coverage limits, exclusions, claim process\nInsurance + controls = optimal risk strategy\nInsurance does not replace controls."
+    "explanation": "ステップ1: 保険なし: コスト = $2,000,000。ステップ2: 保険あり: 保険料($75,000) + 免責額($250,000) = $325,000。ステップ3: 節約 = $2,000,000 - $325,000 = $1,675,000。保険は大規模災害に対する重要な財務保護を提供。",
+    "cheatsheet": "保険価値の分析:\n節約 = 損失 - (保険料 + 免責額)\n損益分岐損失 = 保険料 / (1 - 免責比率)\n考慮: 補償限度、除外事項、請求プロセス\n保険 + 統制 = 最適リスク戦略\n保険は統制の代わりにはならない。"
   },
   {
     "id": 98,
     "category": "Compliance Costs",
-    "question": "A penetration test costs $30,000 and finds 3 critical vulnerabilities. If exploited, each could cause $500,000 damage. What is the value of the penetration test?",
+    "question": "ペネトレーションテストが$30,000で3件のクリティカル脆弱性を発見。各$500,000の損害の場合、ペネトレーションテストの価値はいくらか？",
     "options": ["$1,500,000", "$1,470,000", "$30,000", "$90,000"],
     "correct": 1,
-    "explanation": "Step 1: Total potential damage = 3 x $500,000 = $1,500,000. Step 2: Penetration test cost = $30,000. Step 3: Value = $1,500,000 - $30,000 = $1,470,000. The penetration test provides enormous value by identifying vulnerabilities before attackers can exploit them.",
-    "cheatsheet": "Penetration Test ROI:\nValue = (vulnerabilities_found x potential_damage) - test_cost\nCritical vulns typically cost $100K-$5M+ each\nFrequency: at least annually + after major changes\nInclude remediation costs in total security investment\nProactive testing vs reactive breach response"
+    "explanation": "ステップ1: 総潜在的損害 = 3 x $500,000 = $1,500,000。ステップ2: ペネトレーションテストコスト = $30,000。ステップ3: 価値 = $1,500,000 - $30,000 = $1,470,000。ペネトレーションテストは攻撃者に悪用される前に脆弱性を特定し、膨大な価値を提供。",
+    "cheatsheet": "ペネトレーションテストROI:\n価値 = (発見脆弱性 x 潜在損害) - テストコスト\nクリティカル脆弱性は各$100K-$5M+\n頻度: 年1回以上 + 大規模変更後\n是正コストを総セキュリティ投資に含める\n事前テスト vs 事後漏洩対応"
   },
   {
     "id": 99,
     "category": "Compliance Costs",
-    "question": "A vulnerability management program costs $150,000/year. It prevents 5 breaches per year that would each cost $200,000. What is the ROI?",
+    "question": "脆弱性管理プログラムが年$150,000。年5件の漏洩（各$200,000）を防止する場合、ROIはいくらか？",
     "options": ["567%", "500%", "667%", "300%"],
     "correct": 0,
-    "explanation": "Step 1: Total prevention = 5 x $200,000 = $1,000,000. Step 2: Cost = $150,000. Step 3: Net savings = $1,000,000 - $150,000 = $850,000. Step 4: ROI = ($850,000 / $150,000) x 100 = 567%. Vulnerability management typically has very high ROI as it prevents the most common attack vectors.",
-    "cheatsheet": "Vulnerability Management ROI:\nROI = (prevented_losses - program_cost) / program_cost x 100%\nIncludes: scanning tools, staff, remediation time\nPrevented losses = vulnerabilities_fixed x avg_exploit_cost\nIndustry average: 300-600% ROI\nCritical: patch management is highest-priority activity"
+    "explanation": "ステップ1: 総防止額 = 5 x $200,000 = $1,000,000。ステップ2: コスト = $150,000。ステップ3: 正味節約 = $1,000,000 - $150,000 = $850,000。ステップ4: ROI = ($850,000 / $150,000) x 100 = 567%。脆弱性管理は最も一般的な攻撃ベクトルを防ぐため、非常に高いROI。",
+    "cheatsheet": "脆弱性管理ROI:\nROI = (防止損失 - プログラムコスト) / プログラムコスト x 100%\n含める: スキャンツール、スタッフ、是正時間\n防止損失 = 修正脆弱性 x 平均攻撃コスト\n業界平均: 300-600% ROI\nクリティカル: パッチ管理が最高優先活動"
   },
   {
     "id": 100,
     "category": "Compliance Costs",
-    "question": "A company allocates 5% of its $10M IT budget to security. The industry average is 7%. What is the security budget gap?",
+    "question": "企業が$10MのIT予算の5%をセキュリティに割り当て。業界平均が7%の場合、セキュリティ予算のギャップはいくらか？",
     "options": ["$500,000", "$200,000", "$700,000", "$50,000"],
     "correct": 1,
-    "explanation": "Step 1: Current security budget = 5% of $10M = $500,000. Step 2: Industry average = 7% of $10M = $700,000. Step 3: Gap = $700,000 - $500,000 = $200,000. The company is underinvesting in security compared to industry peers.",
-    "cheatsheet": "Security Budget Benchmarking:\nSecurity spend typically 5-15% of IT budget\nVaries by industry: finance > retail > manufacturing\nPer-employee: $500-5,000/year\nAs percentage of revenue: 0.1-1%\nCompare to peers but also to risk exposure"
+    "explanation": "ステップ1: 現在セキュリティ予算 = 5% of $10M = $500,000。ステップ2: 業界平均 = 7% of $10M = $700,000。ステップ3: ギャップ = $700,000 - $500,000 = $200,000。企業は業界他社よりセキュリティに投資不足。",
+    "cheatsheet": "セキュリティ予算のベンチマーク:\nセキュリティ支出は通常IT予算の5-15%\n業界により変動: 金融 > 小売 > 製造\n従業員あたり: $500-5,000/年\n収益に対する割合: 0.1-1%\n同業者と比較しつつリスクエクスポージャーも考慮"
   },
   {
     "id": 101,
     "category": "Encryption Performance",
-    "question": "AES-128 processes data at 10 Gbps on a given hardware. What is the approximate throughput of AES-256 on the same hardware?",
+    "question": "AES-128が特定ハードウェアで10Gbpsでデータを処理する場合、同じハードウェアでのAES-256の概算スループットはいくらか？",
     "options": ["10 Gbps", "7 Gbps", "5 Gbps", "20 Gbps"],
     "correct": 1,
-    "explanation": "AES-256 requires 14 rounds vs AES-128's 10 rounds, a 40% increase in operations. Throughput is approximately inversely proportional to round count: 10 Gbps x (10/14) = approximately 7 Gbps. AES-192 (12 rounds) would be approximately 8.3 Gbps.",
-    "cheatsheet": "AES Throughput Comparison:\nAES-128 (10 rounds): baseline speed\nAES-192 (12 rounds): ~83% of AES-128\nAES-256 (14 rounds): ~70% of AES-128\nKey size affects key schedule, not data throughput significantly\nHardware acceleration (AES-NI) dramatically improves all"
+    "explanation": "AES-256はAES-128の10ラウンドに対し14ラウンドを必要とし、40%の演算増加。スループットはラウンド数にほぼ反比例: 10Gbps x (10/14) = 約7Gbps。AES-192（12ラウンド）は約8.3Gbps。",
+    "cheatsheet": "AESスループット比較:\nAES-128（10ラウンド）: ベースライン速度\nAES-192（12ラウンド）: AES-128の約83%\nAES-256（14ラウンド）: AES-128の約70%\n鍵サイズは鍵スケジュールに影響、データスループットにはあまり影響しない\nハードウェアアクセラレーション（AES-NI）は全てを劇的に改善"
   },
   {
     "id": 102,
     "category": "Encryption Performance",
-    "question": "TLS 1.3 with AES-128-GCM adds approximately 20 bytes of overhead per record. For a 1 KB message, what percentage overhead does encryption add?",
+    "question": "TLS 1.3のAES-128-GCMがレコードあたり約20バイトのオーバーヘッドを追加する場合、1KBメッセージの暗号化オーバーヘッド率はいくらか？",
     "options": ["2%", "20%", "0.2%", "5%"],
     "correct": 0,
-    "explanation": "Step 1: Message size = 1024 bytes (1 KB). Step 2: TLS overhead = 20 bytes (GCM tag 16 bytes + record header 5 bytes + implicit nonce). Step 3: Overhead percentage = 20/1024 x 100 = 1.95% approximately 2%. For larger messages, the percentage is even smaller.",
-    "cheatsheet": "TLS Encryption Overhead:\nTLS 1.3 record overhead: ~20-30 bytes\nAES-GCM: 16-byte authentication tag\nRecord header: 5 bytes\nOverhead % = overhead_bytes / message_size x 100\n1KB: ~2%, 10KB: ~0.2%, 1MB: ~0.002%\nLarger messages = lower relative overhead"
+    "explanation": "ステップ1: メッセージサイズ = 1024バイト（1KB）。ステップ2: TLSオーバーヘッド = 20バイト（GCMタグ16バイト + レコードヘッダ5バイト + 暗黙ノンス）。ステップ3: オーバーヘッド率 = 20/1024 x 100 = 1.95% ≒ 約2%。大きなメッセージでは割合はさらに小さい。",
+    "cheatsheet": "TLS暗号化オーバーヘッド:\nTLS 1.3レコードオーバーヘッド: 約20-30バイト\nAES-GCM: 16バイト認証タグ\nレコードヘッダ: 5バイト\nオーバーヘッド率 = オーバーヘッドバイト / メッセージサイズ x 100\n1KB: 約2%、10KB: 約0.2%、1MB: 約0.002%\n大きなメッセージ = 低い相対オーバーヘッド"
   },
   {
     "id": 103,
     "category": "Encryption Performance",
-    "question": "A certificate has a validity period of 365 days. If automated key rotation is used, how often should the key be rotated for optimal security?",
-    "options": ["Every 365 days", "Every 90 days", "Every 30 days", "Daily"],
+    "question": "証明書の有効期間が365日。自動鍵ローテーションを使用する場合、最適なセキュリティのための鍵ローテーション頻度はどれか？",
+    "options": ["365日ごと", "90日ごと", "30日ごと", "毎日"],
     "correct": 1,
-    "explanation": "Industry best practice recommends rotating TLS certificates every 90 days (or less), well before the 365-day expiry. Shorter rotation limits the window of exposure if a private key is compromised. Let's Encrypt provides 90-day certificates by default. Critical systems may rotate even more frequently.",
-    "cheatsheet": "Certificate Rotation Best Practice:\nStandard: 90 days (Let's Encrypt default)\nInternal certificates: 1 year\nLong-lived (code signing): 1-3 years\nCritical infrastructure: 30-60 days\nAutomate rotation to avoid outages\nMonitor expiry: set alerts at 30/14/7 days before expiry"
+    "explanation": "業界のベストプラクティスは365日の有効期限よりかなり前の90日ごとのTLS証明書ローテーションを推奨。短いローテーションは秘密鍵が漏洩した場合の露出期間を制限。Let's Encryptはデフォルトで90日証明書を提供。重要システムではさらに頻繁にローテーション。",
+    "cheatsheet": "証明書ローテーションのベストプラクティス:\n標準: 90日（Let's Encryptデフォルト）\n内部証明書: 1年\n長期（コード署名）: 1-3年\n重要インフラ: 30-60日\n自動化で停止を回避\n監視: 有効期限の30/14/7日前にアラート"
   },
   {
     "id": 104,
     "category": "Encryption Performance",
-    "question": "A VPN tunnel using AES-256-CBC has a throughput of 500 Mbps with a 1 Gbps network link. What is the efficiency?",
+    "question": "AES-256-CBCを使用するVPNトンネルが1Gbpsリンクで500Mbpsのスループット。効率はいくらか？",
     "options": ["50%", "75%", "25%", "100%"],
     "correct": 0,
-    "explanation": "Step 1: Available bandwidth = 1 Gbps. Step 2: VPN throughput = 500 Mbps. Step 3: Efficiency = 500/1000 x 100 = 50%. CBC mode without hardware acceleration can reduce throughput significantly. Using AES-GCM with hardware acceleration (AES-NI) can improve efficiency to 80-95%.",
-    "cheatsheet": "VPN Throughput Efficiency:\nEfficiency = VPN_throughput / raw_bandwidth x 100%\nCBC without HW acceleration: 40-60%\nGCM with AES-NI: 80-95%\nFactors: cipher, mode, CPU, packet size\nHardware acceleration is critical for performance"
+    "explanation": "ステップ1: 利用可能帯域幅 = 1Gbps。ステップ2: VPNスループット = 500Mbps。ステップ3: 効率 = 500/1000 x 100 = 50%。ハードウェアアクセラレーションなしのCBCモードはスループットを大幅に低下。AES-GCM + AES-NIで80-95%に改善可能。",
+    "cheatsheet": "VPNスループット効率:\n効率 = VPNスループット / 生帯域幅 x 100%\nCBC（HWアクセラレーションなし）: 40-60%\nGCM + AES-NI: 80-95%\n要因: 暗号、モード、CPU、パケットサイズ\nハードウェアアクセラレーションがパフォーマンスに重要"
   },
   {
     "id": 105,
     "category": "Encryption Performance",
-    "question": "A server processes 10,000 TLS handshakes per second. Each RSA-2048 handshake takes 5 ms. What percentage of CPU time is used?",
+    "question": "サーバーが毎秒10,000 TLSハンドシェイクを処理。各RSA-2048ハンドシェイクが5msの場合、CPU時間の何パーセントが使用されるか？",
     "options": ["50%", "5%", "100%", "200%"],
     "correct": 0,
-    "explanation": "Step 1: CPU time needed = 10,000 x 5 ms = 50,000 ms = 50 seconds per second. Step 2: CPU utilization = 50/1 x 100 = 5000%. This exceeds capacity (100%), so the server can only handle 200 handshakes/second (1000ms / 5ms). This is why session resumption and ECDSA are important for high-traffic servers.",
-    "cheatsheet": "TLS Handshake CPU Impact:\nRSA-2048 handshake: ~5-10ms\nECDSA/ECDHE handshake: ~1-2ms\nSession resumption: ~0.1ms\nFor high traffic: use ECDHE + session resumption\nLoad balancers can distribute handshake computation"
+    "explanation": "ステップ1: 必要CPU時間 = 10,000 x 5ms = 50,000ms = 50秒/秒。ステップ2: CPU利用率 = 50/1 x 100 = 5000%。容量（100%）を超過し、サーバーは200ハンドシェイク/秒（1000ms / 5ms）しか処理できない。セッションレジュームとECDSAが高トラフィックサーバーに重要な理由。",
+    "cheatsheet": "TLSハンドシェイクのCPU影響:\nRSA-2048ハンドシェイク: 約5-10ms\nECDSA/ECDHEハンドシェイク: 約1-2ms\nセッションレジューム: 約0.1ms\n高トラフィック: ECDHE + セッションレジュームを使用\nロードバランサーでハンドシェイク計算を分散"
   },
   {
     "id": 106,
     "category": "Encryption Performance",
-    "question": "AES-GCM provides both encryption and authentication in a single pass. If separate encryption (AES-CBC) and authentication (HMAC-SHA256) were used, approximately how much more processing would be needed?",
-    "options": ["50% more", "100% more (double)", "10% more", "200% more (triple)"],
+    "question": "AES-GCMは単一パスで暗号化と認証を提供。別々の暗号化（AES-CBC）と認証（HMAC-SHA256）を使用する場合、どれくらい余分に処理が必要か？",
+    "options": ["約50%増", "約100%増（倍）", "約10%増", "約200%増（3倍）"],
     "correct": 1,
-    "explanation": "Separate encrypt-then-MAC requires two full passes through the data: one for AES-CBC encryption and one for HMAC-SHA256 authentication. This is approximately double the processing of AEAD modes like AES-GCM which do both in a single pass.",
-    "cheatsheet": "AEAD vs Separate Encrypt+MAC:\nAES-GCM (AEAD): single pass for both\nAES-CBC + HMAC: two separate passes (~2x CPU)\nAES-GCM benefits: faster, simpler API, no padding oracle risk\nTLS 1.3 mandates AEAD modes only\nAEAD = Authenticated Encryption with Associated Data"
+    "explanation": "暗号化してからMACする場合、AES-CBC暗号化とHMAC-SHA256認証の2回の完全パスが必要。AES-GCMなどのAEADモード（単一パス）の約2倍の処理。",
+    "cheatsheet": "AEAD vs 別々の暗号化+MAC:\nAES-GCM（AEAD）: 両方を単一パスで\nAES-CBC + HMAC: 2つの別パス（約2x CPU）\nAES-GCMの利点: 高速、シンプルなAPI、パディングオラクルリスクなし\nTLS 1.3はAEADモードのみ必須\nAEAD = 関連データ付き認証済み暗号"
   },
   {
     "id": 107,
     "category": "Encryption Performance",
-    "question": "A disk encryption solution using AES-XTS adds 1 CPU cycle per 16 bytes on hardware with AES-NI. For a 1 TB disk read, how many extra CPU cycles?",
-    "options": ["1 billion", "1 million", "67 billion", "67 million"],
+    "question": "AES-NI搭載ハードウェアでAES-XTSのディスク暗号化が16バイトあたり1CPUサイクル追加する場合、1TBディスク読み取りの追加CPUサイクルはいくらか？",
+    "options": ["約10億", "約100万", "約670億", "約6700万"],
     "correct": 2,
-    "explanation": "Step 1: 1 TB = 10^12 bytes. Step 2: Extra cycles = 10^12 / 16 = 6.25 x 10^10 = 62.5 billion cycles. Step 3: At 3 GHz, this is approximately 62.5 billion / 3 x 10^9 = 20.8 seconds of CPU time. This shows hardware-accelerated encryption has minimal performance impact.",
-    "cheatsheet": "Disk Encryption Performance:\nWith AES-NI: ~1-2 cycles/16 bytes (negligible impact)\nWithout AES-NI: ~50-100 cycles/16 bytes (significant)\nSSD encryption overhead: typically <3%\nHDD encryption overhead: typically <1%\nFull disk encryption: bottleneck is usually the disk, not CPU"
+    "explanation": "ステップ1: 1TB = 10^12バイト。ステップ2: 追加サイクル = 10^12 / 16 = 6.25 x 10^10 = 625億サイクル。ステップ3: 3GHzで約625億 / 3 x 10^9 = 20.8秒のCPU時間。ハードウェアアクセラレーション暗号化のパフォーマンス影響が最小であることを示す。",
+    "cheatsheet": "ディスク暗号化パフォーマンス:\nAES-NI搭載: 約1-2サイクル/16バイト（影響無視可能）\nAES-NIなし: 約50-100サイクル/16バイト（影響大）\nSSD暗号化オーバーヘッド: 通常<3%\nHDD暗号化オーバーヘッド: 通常<1%\nフルディスク暗号化: ボトルネックはディスク、CPUではない"
   },
   {
     "id": 108,
     "category": "Encryption Performance",
-    "question": "SHA-256 hashes a large file at 500 MB/s on a given CPU. How long to hash a 10 GB file?",
-    "options": ["20 seconds", "2 seconds", "200 seconds", "10 seconds"],
+    "question": "SHA-256が特定CPUで大ファイルを500MB/sでハッシュする場合、10GBファイルのハッシュ時間はいくらか？",
+    "options": ["約20秒", "約2秒", "約200秒", "約10秒"],
     "correct": 0,
-    "explanation": "Step 1: File size = 10 GB = 10,240 MB. Step 2: Hash speed = 500 MB/s. Step 3: Time = 10,240 / 500 = 20.48 seconds. SHA-256 is relatively fast; SHA-512 would be faster on 64-bit systems. Hashing speed matters for file integrity checking and malware scanning.",
-    "cheatsheet": "Hash Function Speed:\nSHA-256: ~400-600 MB/s (software)\nSHA-512: ~600-800 MB/s (64-bit)\nMD5: ~1000 MB/s (fast but broken)\nbcrypt (password): intentionally slow (~1K/sec)\nArgon2 (password): configurable, memory-hard"
+    "explanation": "ステップ1: ファイルサイズ = 10GB = 10,240MB。ステップ2: ハッシュ速度 = 500MB/s。ステップ3: 時間 = 10,240 / 500 = 20.48秒。SHA-256は比較的高速。64ビットシステムではSHA-512がさらに高速。ハッシュ速度はファイル整合性チェックとマルウェアスキャニングに重要。",
+    "cheatsheet": "ハッシュ関数の速度:\nSHA-256: 約400-600MB/s（ソフトウェア）\nSHA-512: 約600-800MB/s（64ビット）\nMD5: 約1000MB/s（高速だが脆弱）\nbcrypt（パスワード）: 意図的に遅い（約1K/秒）\nArgon2（パスワード）: 設定可能、メモリハード"
   },
   {
     "id": 109,
     "category": "Encryption Performance",
-    "question": "A web server uses TLS termination (decrypts HTTPS, forwards HTTP). If it handles 1000 concurrent connections with 2 ms encryption overhead each, what is the total TLS overhead?",
-    "options": ["2 seconds", "2 ms", "200 ms", "20 ms"],
+    "question": "WebサーバーがTLS終端（HTTPS復号、HTTP転送）を使用。1000同時接続を処理し、各接続2msの暗号化オーバーヘッドの場合、総TLSオーバーヘッドはいくらか？",
+    "options": ["2秒", "2ms", "200ms", "20ms"],
     "correct": 0,
-    "explanation": "Step 1: Overhead per connection = 2 ms. Step 2: Concurrent connections = 1,000. Step 3: If all connections are simultaneously active, total overhead = 1,000 x 2 ms = 2,000 ms = 2 seconds. TLS offloading to dedicated hardware or using session tickets can reduce this overhead.",
-    "cheatsheet": "TLS Termination Overhead:\nPer-connection: encryption + MAC overhead\nTotal = concurrent_connections x per_connection_overhead\nMitigation: TLS offload (hardware/load balancer)\nSession tickets: avoid full handshake for returning clients\n0-RTT (TLS 1.3): eliminate round trip for repeat visits"
+    "explanation": "ステップ1: 接続あたりオーバーヘッド = 2ms。ステップ2: 同時接続 = 1,000。ステップ3: 全接続が同時にアクティブな場合、総オーバーヘッド = 1,000 x 2ms = 2,000ms = 2秒。TLSオフロード（専用ハードウェア）またはセッションチケットでオーバーヘッドを削減可能。",
+    "cheatsheet": "TLS終端オーバーヘッド:\n接続あたり: 暗号化 + MACオーバーヘッド\n総計 = 同時接続数 x 接続あたりオーバーヘッド\n対策: TLSオフロード（ハードウェア/ロードバランサ）\nセッションチケット: 再訪クライアントのフルハンドシェイクを回避\n0-RTT（TLS 1.3）: 再訪時のラウンドトリップを削除"
   },
   {
     "id": 110,
     "category": "Encryption Performance",
-    "question": "bcrypt with cost factor 10 takes approximately 100ms per hash. What is the expected time with cost factor 12?",
-    "options": ["120 ms", "400 ms", "144 ms", "200 ms"],
+    "question": "bcryptのコストファクタ10で約100ms/ハッシュ。コストファクタ12での期待時間はいくらか？",
+    "options": ["120ms", "400ms", "144ms", "200ms"],
     "correct": 1,
-    "explanation": "Step 1: bcrypt cost factor is exponential - each increment doubles the work. Step 2: Cost 10 to 12 = 2 increments = 2^2 = 4x more work. Step 3: Time = 100 ms x 4 = 400 ms. This makes brute force attacks 4x harder. Cost factor 12 is the current minimum recommendation.",
-    "cheatsheet": "bcrypt Cost Factor:\nTime doubles for each cost increment\nCost 10: ~100 ms\nCost 11: ~200 ms\nCost 12: ~400 ms\nCost 13: ~800 ms\nOWASP recommends minimum cost 10, target 12+\nHigher cost = slower login but better security"
+    "explanation": "ステップ1: bcryptコストファクタは指数的 - 各増分で作業量が2倍。ステップ2: コスト10から12 = 2増分 = 2^2 = 4倍の作業。ステップ3: 時間 = 100ms x 4 = 400ms。総当たり攻撃を4倍困難にする。コストファクタ12が現在の最小推奨。",
+    "cheatsheet": "bcryptコストファクタ:\n各増分で時間が2倍\nコスト10: 約100ms\nコスト11: 約200ms\nコスト12: 約400ms\nコスト13: 約800ms\nOWASP推奨最小コスト10、目標12+\n高コスト = ログイン遅延だがセキュリティ向上"
   },
   {
     "id": 111,
     "category": "Encryption Performance",
-    "question": "A certificate authority issues certificates with 398-day maximum validity. If automated rotation renews at 60 days before expiry, how long is each certificate actively used?",
-    "options": ["398 days", "338 days", "60 days", "460 days"],
+    "question": "認証局が398日最大有効期間の証明書を発行。自動ローテーションが有効期限60日前に更新する場合、各証明書の実際の使用期間はいくらか？",
+    "options": ["398日", "338日", "60日", "460日"],
     "correct": 1,
-    "explanation": "Step 1: Certificate validity = 398 days. Step 2: Renewal happens 60 days before expiry. Step 3: Active use = 398 - 60 = 338 days. After 338 days, a new certificate is deployed while the old one remains valid for 60 more days as overlap for compatibility.",
-    "cheatsheet": "Certificate Lifecycle:\nValidity: 398 days (CA/Browser Forum max)\nRotation: 60 days before expiry recommended\nActive use: validity - rotation lead time\nOverlap period: old and new both valid\nAutomation tools: certbot, ACME clients\nMonitor: alert at 30/14/7 days before expiry"
+    "explanation": "ステップ1: 証明書有効期間 = 398日。ステップ2: 有効期限60日前に更新。ステップ3: 実際の使用期間 = 398 - 60 = 338日。338日後に新証明書がデプロイされ、旧証明書は互換性のためさらに60日有効。",
+    "cheatsheet": "証明書ライフサイクル:\n有効期間: 398日（CA/Browser Forum最大）\nローテーション: 有効期限60日前を推奨\n実際の使用期間: 有効期間 - ローテーション猶予期間\nオーバーラップ期間: 旧新両方が有効\n自動化ツール: certbot, ACMEクライアント\n監視: 有効期限30/14/7日前にアラート"
   },
   {
     "id": 112,
     "category": "Encryption Performance",
-    "question": "An RSA-2048 signature operation takes 10 ms, while ECDSA P-256 takes 1 ms. For a system signing 1000 messages per second, how much CPU time does each save compared to RSA?",
-    "options": ["9 seconds per second (900%)", "10 seconds per second (1000%)", "1 second per second (100%)", "5 seconds per second (500%)"],
+    "question": "RSA-2048署名が10ms、ECDSA P-256が1msの場合、毎秒1000メッセージに署名するシステムで、RSAに対してCPU時間をどれくらい節約できるか？",
+    "options": ["9秒/秒（900%）", "10秒/秒（1000%）", "1秒/秒（100%）", "5秒/秒（500%）"],
     "correct": 0,
-    "explanation": "Step 1: RSA CPU time = 1000 x 10 ms = 10,000 ms = 10 seconds/second (1000% CPU - impossible). Step 2: ECDSA CPU time = 1000 x 1 ms = 1,000 ms = 1 second/second (100% CPU). Step 3: CPU savings = 9 seconds per second. RSA would require 10 cores for this workload; ECDSA needs only 1.",
-    "cheatsheet": "Signature Algorithm Performance:\nRSA-2048 sign: ~5-10 ms\nECDSA P-256 sign: ~0.5-1 ms\nEd25519 sign: ~0.05-0.1 ms\nRSA verify: ~0.1-0.5 ms (fast!)\nECDSA verify: ~1-2 ms\nFor high-volume signing: prefer ECDSA or Ed25519"
+    "explanation": "ステップ1: RSA CPU時間 = 1000 x 10ms = 10,000ms = 10秒/秒（1000% CPU - 不可能）。ステップ2: ECDSA CPU時間 = 1000 x 1ms = 1,000ms = 1秒/秒（100% CPU）。ステップ3: CPU節約 = 9秒/秒。RSAはこの負荷に10コア必要、ECDSAは1コア。",
+    "cheatsheet": "署名アルゴリズムのパフォーマンス:\nRSA-2048署名: 約5-10ms\nECDSA P-256署名: 約0.5-1ms\nEd25519署名: 約0.05-0.1ms\nRSA検証: 約0.1-0.5ms（高速！）\nECDSA検証: 約1-2ms\n大量署名にはECDSAまたはEd25519を推奨"
   },
   {
     "id": 113,
     "category": "Encryption Performance",
-    "question": "If TLS 1.3 reduces the handshake from 2 round trips (TLS 1.2) to 1 round trip, and each round trip takes 50 ms over a long-distance link, how much latency is saved on connection setup?",
-    "options": ["100 ms", "50 ms", "150 ms", "25 ms"],
+    "question": "TLS 1.3がハンドシェイクを2ラウンドトリップ（TLS 1.2）から1ラウンドトリップに削減し、長距離リンクの各ラウンドトリップが50msの場合、接続確立でどれくらいのレイテンシが節約されるか？",
+    "options": ["100ms", "50ms", "150ms", "25ms"],
     "correct": 1,
-    "explanation": "Step 1: TLS 1.2 handshake = 2 round trips = 2 x 50 ms = 100 ms. Step 2: TLS 1.3 handshake = 1 round trip = 50 ms. Step 3: Savings = 100 - 50 = 50 ms. With 0-RTT resumption, the saving can be the full 100 ms for returning clients.",
-    "cheatsheet": "TLS Handshake Latency:\nTLS 1.2 full: 2 RTT\nTLS 1.3 full: 1 RTT (saves 1 RTT)\nTLS 1.3 0-RTT: 0 RTT for resumption\nSaving = RTT time (varies by distance)\nLocal: <1 ms, Cross-country: 30-80 ms\nInternational: 100-300 ms"
+    "explanation": "ステップ1: TLS 1.2ハンドシェイク = 2ラウンドトリップ = 2 x 50ms = 100ms。ステップ2: TLS 1.3ハンドシェイク = 1ラウンドトリップ = 50ms。ステップ3: 節約 = 100 - 50 = 50ms。0-RTTレジュームでは再訪クライアントに完全な100msの節約。",
+    "cheatsheet": "TLSハンドシェイクレイテンシ:\nTLS 1.2フル: 2 RTT\nTLS 1.3フル: 1 RTT（1 RTT節約）\nTLS 1.3 0-RTT: レジュームで0 RTT\n節約 = RTT時間（距離により変動）\nローカル: <1ms、国内: 30-80ms\n国際: 100-300ms"
   },
   {
     "id": 114,
     "category": "Encryption Performance",
-    "question": "Encrypting a 1 GB database column with AES-256 takes 30 seconds. If the same database grows to 10 GB, approximately how long will encryption take?",
-    "options": ["30 seconds", "300 seconds (5 minutes)", "3 seconds", "3000 seconds"],
+    "question": "AES-256で1GBデータベース列の暗号化に30秒かかる場合、同じデータベースが10GBに成長すると、暗号化に約どれくらいかかるか？",
+    "options": ["30秒", "300秒（5分）", "3秒", "3000秒"],
     "correct": 1,
-    "explanation": "Encryption time scales linearly with data size (assuming consistent hardware). 10 GB is 10x larger than 1 GB, so time = 30 x 10 = 300 seconds = 5 minutes. This is important for planning encryption of large databases - consider incremental encryption or column-level encryption for large datasets.",
-    "cheatsheet": "Bulk Encryption Time Estimation:\nTime scales linearly with data size\n1 GB at 30 sec -> 10 GB at 300 sec (5 min)\nThroughput = data_size / time\nAES with AES-NI: 5-15 GB/s\nWithout AES-NI: 0.5-2 GB/s\nPlan for: initial encryption + ongoing performance impact"
+    "explanation": "暗号化時間は（一貫したハードウェアを仮定）データサイズに比例して増加。10GBは1GBの10倍なので、時間 = 30 x 10 = 300秒 = 5分。大規模データベースの暗号化計画に重要 - 増分暗号化や列レベル暗号化を考慮。",
+    "cheatsheet": "一括暗号化時間の推定:\n時間はデータサイズに比例\n1GBで30秒 -> 10GBで300秒（5分）\nスループット = データサイズ / 時間\nAES-NI搭載: 5-15GB/s\nAES-NIなし: 0.5-2GB/s\n考慮: 初回暗号化 + 継続的パフォーマンス影響"
   },
   {
     "id": 115,
     "category": "Encryption Performance",
-    "question": "Key derivation using PBKDF2 with 100,000 iterations takes 500 ms. Increasing to 600,000 iterations would take approximately how long?",
-    "options": ["3,000 ms (3 seconds)", "600 ms", "5,000 ms (5 seconds)", "1,000 ms (1 second)"],
+    "question": "PBKDF2の100,000反復で500msかかる場合、600,000反復に増やすと約どれくらいかかるか？",
+    "options": ["3,000ms（3秒）", "600ms", "5,000ms（5秒）", "1,000ms（1秒）"],
     "correct": 0,
-    "explanation": "Step 1: PBKDF2 time scales linearly with iterations. Step 2: Ratio = 600,000 / 100,000 = 6x. Step 3: New time = 500 ms x 6 = 3,000 ms = 3 seconds. NIST recommends at least 10,000 iterations; OWASP recommends 600,000 for PBKDF2-HMAC-SHA256.",
-    "cheatsheet": "Key Derivation Performance:\nPBKDF2: linear with iterations\nbcrypt: exponential with cost factor\nArgon2: configurable CPU, memory, parallelism\nNIST min: PBKDF2 10,000 iterations\nOWASP: PBKDF2 600K, bcrypt cost 10, Argon2id m=19456,t=2,p=1\nHigher = more secure but slower login"
+    "explanation": "ステップ1: PBKDF2時間は反復数に比例。ステップ2: 比 = 600,000 / 100,000 = 6倍。ステップ3: 新時間 = 500ms x 6 = 3,000ms = 3秒。NISTは最低10,000反復を推奨、OWASPはPBKDF2-HMAC-SHA256に600,000反復を推奨。",
+    "cheatsheet": "鍵導出のパフォーマンス:\nPBKDF2: 反復数に比例\nbcrypt: コストファクタに指数的\nArgon2: CPU、メモリ、並列度を設定可能\nNIST最小: PBKDF2 10,000反復\nOWASP: PBKDF2 600K、bcryptコスト10、Argon2id m=19456,t=2,p=1\n高くするほど安全だがログインが遅い"
   },
   {
     "id": 116,
     "category": "Encryption Performance",
-    "question": "An encrypted backup of 500 GB at 2 GB/s encryption speed takes how long?",
-    "options": ["250 seconds", "4 minutes 10 seconds", "100 seconds", "500 seconds"],
+    "question": "2GB/sの暗号化速度で500GBの暗号化バックアップはどれくらいかかるか？",
+    "options": ["250秒", "4分10秒", "100秒", "500秒"],
     "correct": 0,
-    "explanation": "Step 1: Data size = 500 GB. Step 2: Encryption speed = 2 GB/s. Step 3: Time = 500 / 2 = 250 seconds = 4 minutes 10 seconds. This should be factored into backup window planning. Encryption overhead on backup is usually minimal compared to I/O time.",
-    "cheatsheet": "Backup Encryption Time:\nTime = data_size / encryption_speed\n500 GB at 2 GB/s: 250 seconds (~4 min)\n500 GB at 0.5 GB/s: 1000 seconds (~17 min)\nI/O often bottleneck, not CPU\nHardware AES-NI dramatically improves backup encryption speed"
+    "explanation": "ステップ1: データサイズ = 500GB。ステップ2: 暗号化速度 = 2GB/s。ステップ3: 時間 = 500 / 2 = 250秒 = 4分10秒。バックアップウィンドウ計画に組み込む必要がある。バックアップの暗号化オーバーヘッドは通常I/O時間に比べて最小。",
+    "cheatsheet": "バックアップ暗号化の時間:\n時間 = データサイズ / 暗号化速度\n500GBで2GB/s: 250秒（約4分）\n500GBで0.5GB/s: 1000秒（約17分）\nI/Oがボトルネック、CPUではないことが多い\nハードウェアAES-NIがバックアップ暗号化速度を劇的に改善"
   },
   {
     "id": 117,
     "category": "Encryption Performance",
-    "question": "TLS 1.3 removed support for RSA key exchange. What is the primary performance benefit of this change?",
-    "options": ["No performance benefit", "Only one round trip needed for handshake, reducing latency", "Faster data transfer", "Smaller certificates"],
+    "question": "TLS 1.3はRSA鍵交換のサポートを削除した。この変更の主なパフォーマンス上の利点は何か？",
+    "options": ["パフォーマンス上の利点はない", "ハンドシェイクに1ラウンドトリップのみ必要でレイテンシ低減", "データ転送が高速", "証明書が小さくなる"],
     "correct": 1,
-    "explanation": "TLS 1.3 mandates ECDHE for key exchange, allowing the entire handshake to complete in 1 round trip (vs 2 for TLS 1.2 with RSA key exchange). This reduces connection setup latency by 50% and eliminates the RSA key exchange overhead.",
-    "cheatsheet": "TLS 1.3 vs 1.2 Performance:\n1 RTT vs 2 RTT for handshake (50% less latency)\n0-RTT available for resumption\nRemoved: RSA key exchange, static RSA, CBC, RC4\nMandatory: ECDHE, AEAD (AES-GCM, ChaCha20-Poly1305)\nForward secrecy by default"
+    "explanation": "TLS 1.3はECDHEを鍵交換に必須とし、ハンドシェイク全体を1ラウンドトリップで完了可能（TLS 1.2のRSA鍵交換は2ラウンドトリップ）。接続確立レイテンシを50%削減し、RSA鍵交換のオーバーヘッドを排除。",
+    "cheatsheet": "TLS 1.3 vs 1.2のパフォーマンス:\n1 RTT vs 2 RTT（50%レイテンシ削減）\n0-RTTがレジュームで利用可能\n削除: RSA鍵交換、静的RSA、CBC、RC4\n必須: ECDHE、AEAD（AES-GCM、ChaCha20-Poly1305）\nフォワードセキュリティがデフォルト"
   },
   {
     "id": 118,
     "category": "Encryption Performance",
-    "question": "A HSM (Hardware Security Module) performs 10,000 RSA-2048 signing operations per second. If an application needs 50,000 signatures per second, how many HSMs are needed?",
-    "options": ["5 HSMs", "1 HSM", "10 HSMs", "50 HSMs"],
+    "question": "HSMがRSA-2048署名を毎秒10,000件実行。アプリケーションが毎秒50,000件の署名を必要とする場合、何台のHSMが必要か？",
+    "options": ["5台", "1台", "10台", "50台"],
     "correct": 0,
-    "explanation": "Step 1: Required throughput = 50,000 ops/sec. Step 2: Per HSM capacity = 10,000 ops/sec. Step 3: HSMs needed = 50,000 / 10,000 = 5. Add redundancy (n+1), so plan for 6 HSMs. Load balancing distributes the signing operations across HSMs.",
-    "cheatsheet": "HSM Capacity Planning:\nHSMs needed = ceil(required_ops / per_HSM_ops)\nAdd 1 for redundancy (n+1 rule)\nConsider: peak vs average load\nLoad balancer distributes operations\nHSM also protects keys from extraction"
+    "explanation": "ステップ1: 必要スループット = 50,000件/秒。ステップ2: HSMあたり容量 = 10,000件/秒。ステップ3: 必要HSM = 50,000 / 10,000 = 5台。冗長性（n+1）を追加し、6台を計画。ロードバランサーで署名操作をHSM間に分散。",
+    "cheatsheet": "HSM容量計画:\n必要HSM = ceil(必要操作 / HSMあたり操作)\n冗長性に1台追加（n+1ルール）\n考慮: ピーク負荷 vs 平均負荷\nロードバランサーで操作を分散\nHSMは鍵の抽出からも保護"
   },
   {
     "id": 119,
     "category": "Encryption Performance",
-    "question": "If ChaCha20-Poly1305 and AES-256-GCM provide equivalent security, why might ChaCha20 be preferred on mobile devices?",
-    "options": ["It is more secure", "It is faster on devices without AES hardware acceleration", "It uses shorter keys", "It is newer"],
+    "question": "ChaCha20-Poly1305とAES-256-GCMが同等のセキュリティを提供する場合、モバイルデバイスでChaCha20が好まれる理由は何か？",
+    "options": ["より安全", "AESハードウェアアクセラレーションなしのデバイスで高速", "鍵が短い", "新しい"],
     "correct": 1,
-    "explanation": "ChaCha20-Poly1305 is a software-optimized cipher that performs well on devices without AES-NI hardware support (many mobile phones and IoT devices). On hardware with AES-NI, AES-GCM is faster. TLS 1.3 supports both and can negotiate based on hardware capabilities.",
-    "cheatsheet": "Cipher Selection by Hardware:\nWith AES-NI (most servers, newer CPUs): AES-GCM preferred\nWithout AES-NI (mobile, IoT, older CPUs): ChaCha20-Poly1305 preferred\nBoth provide 256-bit security level\nTLS negotiates automatically based on capabilities\nSecurity is equivalent; difference is performance"
+    "explanation": "ChaCha20-Poly1305はソフトウェア最適化された暗号で、AES-NIハードウェアサポートがないデバイス（多くのモバイルやIoTデバイス）で高いパフォーマンスを発揮。AES-NI搭載ハードウェアではAES-GCMが高速。TLS 1.3は両方をサポートし、ハードウェア能力に基づいてネゴシエート。",
+    "cheatsheet": "ハードウェア別暗号選択:\nAES-NI搭載（大半のサーバー、新しいCPU）: AES-GCM推奨\nAES-NIなし（モバイル、IoT、古いCPU）: ChaCha20-Poly1305推奨\n両方とも256ビットセキュリティレベル\nTLSは能力に基づいて自動ネゴシエート\nセキュリティは同等、違いはパフォーマンス"
   },
   {
     "id": 120,
     "category": "Encryption Performance",
-    "question": "Full disk encryption using AES-XTS on a modern CPU with AES-NI typically reduces disk I/O performance by approximately how much?",
+    "question": "AES-NI搭載現代CPUでのAES-XTSによるフルディスク暗号化がディスクI/Oパフォーマンスを約どれくらい低下させるか？",
     "options": ["50%", "1-5%", "20-30%", "0%"],
     "correct": 1,
-    "explanation": "With AES-NI hardware acceleration, full disk encryption overhead is typically 1-5% because the CPU can encrypt at speeds faster than the disk can read/write. The bottleneck is the storage device, not encryption. Without AES-NI, overhead can be 20-40%.",
-    "cheatsheet": "FDE Performance Impact:\nWith AES-NI: 1-5% overhead (negligible)\nWithout AES-NI: 20-40% overhead\nSSD + AES-NI: typically <3%\nHDD + AES-NI: typically <1%\nMost modern CPUs (since 2010) have AES-NI\nFDE should always be enabled - security benefit far exceeds tiny performance cost"
+    "explanation": "AES-NIハードウェアアクセラレーションで、フルディスク暗号化のオーバーヘッドは通常1-5%。CPUがディスクの読み書きより速く暗号化できるため。ボトルネックはストレージデバイス、暗号化ではない。AES-NIなしでは20-40%のオーバーヘッド。",
+    "cheatsheet": "FDEのパフォーマンス影響:\nAES-NI搭載: 1-5%オーバーヘッド（無視可能）\nAES-NIなし: 20-40%オーバーヘッド\nSSD + AES-NI: 通常<3%\nHDD + AES-NI: 通常<1%\n大半の現代CPU（2010年以降）はAES-NI搭載\nFDEは常に有効にすべき - セキュリティ便益は小さなパフォーマンスコストを遥かに上回る"
   }
 ]
